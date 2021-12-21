@@ -1,0 +1,114 @@
+/* RESET CSS */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  * {
+    margin: 0;
+  }
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  input, button, textarea, select {
+    font: inherit;
+  }
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  #root, #__next {
+    isolation: isolate;
+  }
+  /* END OF RESET.CSS */
+
+  /* NICE FONTS */
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* COLORS */
+  :root{
+  --color-background: #0e141b;
+  --color-muted: hsl(210deg, 38%, 15%);
+  --color-primary: hsl(230deg, 100%, 67%);
+  --color-text: hsl(0deg, 0%, 100%);
+}
+body{
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+.container{
+    padding: 5px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.banner-row{
+    display: flex;
+    flex: 2;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2.9em;
+    text-align: center;
+    background-color: rgb(7, 23, 41);
+    width: 100%;
+    margin-bottom: 2%;
+      
+}
+
+.banner{
+        
+}
+
+.subtitle{
+    display: flex;
+    font-family: cursive;
+    flex: 1;
+}
+
+.clock-row{
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+    font-size: 4.8em;
+    /* width: 50%; */
+    align-items: stretch;
+    justify-content: space-around;
+    background-color: var(--color-muted);
+    color: white;
+    border-radius: 3%;
+    padding: 10px;
+    font-family: cursive;
+    box-shadow: 4,4 ;
+    /* flex-wrap: wrap; */
+    
+}
+
+.clock-help{
+    font-size: 0.2em;
+    text-align: center;
+    width: 100%;
+}
+
+.clock{
+    /* display: flex; */
+    overflow-wrap: break-word;
+    width: 100%;
+    
+}
+
+  
