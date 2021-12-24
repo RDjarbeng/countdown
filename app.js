@@ -13,12 +13,12 @@ function startClock(){
 function startTime() {
     var today = new Date();
     var h = today.getHours();
-    var m = today.getMinutes();
+    var m = 60- today.getMinutes();
     var s = 60-today.getSeconds();
     // console.log(checkHour(h));
     h= checkHour(h)
     h = checkTime(h);
-    m = checkMin(m,h)
+    // m = checkMin(m,h)
     m = checkTime(m);
     s = checkTime(s);
     document.getElementById('clock').innerHTML =
@@ -43,9 +43,10 @@ function checkHour(h){
     return 24-h;
 }
 
-function checkMin(m, h){
-    return Math.abs(h*60 -m)
-}
+//not necessary, mins in 60 countdown only
+// function checkMin(m, h){
+//     return Math.abs(h*60 -m)
+// }
 
 function stopClock(){
     clearTimeout(t);
