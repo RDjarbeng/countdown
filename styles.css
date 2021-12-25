@@ -19,7 +19,8 @@
 }
 .light{
   --color-bg: #bddaff;
-  --color-text: rgb(255, 255, 255);  
+  --color-text: rgb(255, 255, 255); 
+  --color-text: rgb(7, 3, 46); 
 }
 
 body {
