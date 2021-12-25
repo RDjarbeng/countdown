@@ -64,3 +64,18 @@ function displayClock(){
 }
 
 */
+
+let icon = document.getElementsByClassName("toggleMode")[0];
+let body = document.body;
+icon.addEventListener("click",setMode);
+
+function setMode() {
+    if (!body.classList.contains("light")){
+        icon.innerHTML = "&#9788";
+        body.classList.toggle("light");
+    }
+    else{
+        icon.innerHTML = "&#9789";
+        body.classList.toggle("light");
+    }
+}
