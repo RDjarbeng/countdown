@@ -1,14 +1,24 @@
-# Countdown v0.1.0
+# Countdown app
+Test deployed on netlify at
+https://rcountdown.netlify.app/
+
+## Countdown v0.1.0
 
 Application that counts down to midnight with clickable features
-(Dark mode)
+with auto light and dark mode
 
-# Countdown v0.2.1
+## Countdown v0.2.1
+
+Added contributor Nathaniel Nyakotey
 
 * Changes by Nyakotey
 * Added background image
 * Changed fonts
 * Simplified css
 
-Test deployed on netlify at
-https://rcountdown.netlify.app/
+# Countdown v0.2.2
+* Added fontawesome icons
+* Fixed light and dark mode styling
+* Fixed light/dark mode toggle button layout
+* Added auto light and dark mode
+* Minor text edits
