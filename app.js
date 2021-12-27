@@ -68,14 +68,31 @@ function displayClock(){
 let icon = document.getElementsByClassName("toggleMode")[0];
 let body = document.body;
 icon.addEventListener("click",setMode);
+icon.addEventListener("click",notifyMode);
 
 function setMode() {
     if (!body.classList.contains("light")){
-        icon.innerHTML = "&#9788";
+        icon.innerHTML = `<i class="fas fa-sun"></i>`;
         body.classList.toggle("light");
     }
     else{
-        icon.innerHTML = "&#9789";
+        icon.innerHTML = `<i class="fas fa-moon"></i>`;
         body.classList.toggle("light");
+    }
+}
+function notifyMode() {
+    let notifyText;
+    if (body.classList.contains("light")) {
+        notifyText = "light mode set";
+    } else {
+        notifyText = "dark mode set";
+    }
+
+    if (document.getElementsByClassName("mode-info")[0]) {
+        document.getElementsByClassName("mode-info")[0].remove();
+        body.insertAdjacentHTML("afterbegin",`<span class="mode-info">${notifyText}</span>`);
+    }
+    else{
+        body.insertAdjacentHTML("afterbegin",`<span class="mode-info">${notifyText}</span>`);
     }
 }
