@@ -16,9 +16,11 @@ Added contributor Nathaniel Nyakotey
 * Changed fonts
 * Simplified css
 
-# Countdown v0.2.2
+## Countdown v0.2.2
 * Added fontawesome icons
 * Fixed light and dark mode styling
 * Fixed light/dark mode toggle button layout
-* Added auto light and dark mode
 * Minor text edits
+
+## Countdown v0.2.3
+* Added auto light and dark mode
