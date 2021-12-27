@@ -111,9 +111,9 @@ function setMode(autoLight) {
 function notifyMode() {
     let notifyText;
     if (body.classList.contains("light")) {
-        notifyText = "light mode set";
+        notifyText = "Light mode set";
     } else {
-        notifyText = "dark mode set";
+        notifyText = "Dark mode set";
     }
 
     if (document.getElementsByClassName("mode-info")[0]) {
