@@ -84,17 +84,15 @@ function notifyMode() {
     let notifyText;
     if (body.classList.contains("light")) {
         notifyText = "light mode set";
-        notifyText =`<span class="mode-info">${notifyText}</span>`
     } else {
         notifyText = "dark mode set";
-        notifyText =`<span class="mode-info dark">${notifyText}</span>`
     }
 
     if (document.getElementsByClassName("mode-info")[0]) {
         document.getElementsByClassName("mode-info")[0].remove();
-        body.insertAdjacentHTML("afterbegin",notifyText);
+        body.insertAdjacentHTML("afterbegin",`<span class="mode-info">${notifyText}</span>`);
     }
     else{
-        body.insertAdjacentHTML("afterbegin",notifyText);
+        body.insertAdjacentHTML("afterbegin",`<span class="mode-info">${notifyText}</span>`);
     }
 }
