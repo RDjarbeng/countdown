@@ -1,5 +1,6 @@
 // load the countdown clock
 window.onload = startClock();
+
 //todo: get the clock to stop
 // todo: implement light theme
 
@@ -7,6 +8,15 @@ window.onload = startClock();
 var t;
 var clockMovement = false;
 
+/***
+*light mode if after 6am and after 18:00 evening
+*/
+function autoLight(){
+    let h = new Date().getHours();
+    console.log(h);
+    if(h >6 && h<18 )
+    activateLightMode();
+}
 function startClock(){
     t =setInterval(startTime, 500);
 }
@@ -21,8 +31,10 @@ function startTime() {
     // m = checkMin(m,h)
     m = checkTime(m);
     s = checkTime(s);
+    // h =2;
     document.getElementById('clock').innerHTML =
     h + ":" + m + ":" + s;
+    
     // t =  setTimeout(startTime, 500);
     clockMovement = true;
     
@@ -34,8 +46,9 @@ function restartTime(){
         startClock()
     }
 }
+// add zero in front of numbers < 10
 function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    if (i < 10) {i = "0" + i};  
     return i;
 }
 
@@ -70,14 +83,29 @@ let body = document.body;
 icon.addEventListener("click",setMode);
 icon.addEventListener("click",notifyMode);
 
-function setMode() {
+function activateLightMode(){
+    icon.innerHTML = `<i class="fas fa-sun"></i>`;
+    body.classList.toggle("light");
+}
+
+function activateDarkMode(){
+    icon.innerHTML = `<i class="fas fa-moon"></i>`;
+    body.classList.toggle("light");
+}
+
+function setMode(autoLight) {
+
+    if(autoLight){
+        activateLightMode()
+        return;
+    }
+        
+
     if (!body.classList.contains("light")){
-        icon.innerHTML = `<i class="fas fa-sun"></i>`;
-        body.classList.toggle("light");
+        activateLightMode();
     }
     else{
-        icon.innerHTML = `<i class="fas fa-moon"></i>`;
-        body.classList.toggle("light");
+        activateDarkMode();
     }
 }
 function notifyMode() {
@@ -96,3 +124,4 @@ function notifyMode() {
         body.insertAdjacentHTML("afterbegin",`<span class="mode-info">${notifyText}</span>`);
     }
 }
+window.onload = autoLight();
