@@ -32,15 +32,19 @@ body {
 }
 
 .mode-info{
-  background: #182635;
-  border-radius: .2rem;
-  color: aliceblue;
+  background: #05172b;
+  border-radius: .3rem;
+  color: var(--color-text);
   padding: 0.2rem .8rem;
   animation: slide-in .2s ease-in forwards, fade-out .5s ease .9s forwards;
   position: absolute;
   left: 50%;
   top: -10rem;
   transform: translateX(-50%);
+}
+
+.light .mode-info{
+  background: aliceblue;
 }
 @keyframes slide-in {
   to{top: 2rem;}
