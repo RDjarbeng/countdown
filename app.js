@@ -70,14 +70,23 @@ let body = document.body;
 icon.addEventListener("click",setMode);
 icon.addEventListener("click",notifyMode);
 
-function setMode() {
+function activateLightMode(){
+    icon.innerHTML = `<i class="fas fa-sun"></i>`;
+    body.classList.toggle("light");
+}
+
+function activateDarkMode(){
+    icon.innerHTML = `<i class="fas fa-moon"></i>`;
+    body.classList.toggle("light");
+}
+
+function setMode(autoLight) {
+
     if (!body.classList.contains("light")){
-        icon.innerHTML = `<i class="fas fa-sun"></i>`;
-        body.classList.toggle("light");
+        setLightMode();
     }
     else{
-        icon.innerHTML = `<i class="fas fa-moon"></i>`;
-        body.classList.toggle("light");
+        activateDarkMode();
     }
 }
 function notifyMode() {
