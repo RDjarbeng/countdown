@@ -27,8 +27,7 @@ body {
   background: var(--body-bg);
   background-size: cover;
   background-blend-mode: soft-light;
-  transition: background 0.2s, color 0.2s;
-  transition-timing-function: ease, ease;
+  transition: background 0.2s ease, color 0.2s ease;
   color: var(--color-text);
   font-family: "Nunito", sans-serif;
 }
@@ -158,10 +157,19 @@ body {
   background: linear-gradient(-45deg, #0756b5, #80affa);
   padding: .5em 1em;
   border-radius: 0.3em;
-  /* border-top: 10px inset yellow;
-  border-left: 10px inset yellow; */
-  box-shadow: 2px 10px 3px -1px rgba(255, 255, 255, 0.205) inset;
+  /* box-shadow:inset 1px 5px 0px 0px #ffffff23; */
+  border-top: 1px rgba(7, 85, 181, 0.25) solid;
   animation: bg 3s ease infinite alternate;
+}
+.subtitle::before{
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 10%;
+  top: 0;
+  left: 2%;
+  background: linear-gradient(45deg,rgba(255, 255, 255, 0.15), transparent);
+  border-radius: 54% 46% 69% 31% / 57% 0% 100% 43%;
 }
 
 @keyframes bg {
