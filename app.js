@@ -1,8 +1,11 @@
 // load the countdown clock
 window.onload = startClock();
 
-//todo: get the clock to stop
-// todo: implement light theme
+
+let icon = document.getElementsByClassName("toggleMode")[0];
+let body = document.body;
+icon.addEventListener("click",setMode);
+icon.addEventListener("click",notifyMode);
 
 //to stop the clock
 var t;
@@ -13,9 +16,9 @@ var clockMovement = false;
 */
 function autoLight(){
     let h = new Date().getHours();
-    console.log(h);
-    if(h >6 && h<18 )
-    activateLightMode();
+    //between 6 am and 6pm
+    if(h >5 && h<17 )
+        activateLightMode();
 }
 function startClock(){
     t =setInterval(startTime, 500);
@@ -78,11 +81,6 @@ function displayClock(){
 
 */
 
-let icon = document.getElementsByClassName("toggleMode")[0];
-let body = document.body;
-icon.addEventListener("click",setMode);
-icon.addEventListener("click",notifyMode);
-
 function activateLightMode(){
     icon.innerHTML = `<i class="fas fa-sun"></i>`;
     body.classList.toggle("light");
@@ -93,14 +91,7 @@ function activateDarkMode(){
     body.classList.toggle("light");
 }
 
-function setMode(autoLight) {
-
-    if(autoLight){
-        activateLightMode()
-        return;
-    }
-        
-
+function setMode(autoLight) { 
     if (!body.classList.contains("light")){
         activateLightMode();
     }
