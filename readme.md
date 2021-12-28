@@ -28,12 +28,9 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 
 #### Screenshots v0.2.3
 ##### Mobile
-![image](https://user-images.githubusercontent.com/57795443/147496993-a899916c-f75c-4b9c-bdfd-6e27a4ceb6b0.png)
-Dark mode in mobile (Iphone, android)
----
+![mobile](https://user-images.githubusercontent.com/73431750/147580617-986424b6-8d71-4452-8903-0097c3a6d630.png)
 
-![image](https://user-images.githubusercontent.com/57795443/147497096-7aa10111-d3f9-4741-8f99-8bbe87e80eaa.png)
-Dark mode in mobile (Iphone, android)
+Dark & Light mode in mobile (Iphone, android)
 ---
 
 ##### PC, on Wide screens (PC, laptops)
