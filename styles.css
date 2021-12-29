@@ -45,7 +45,7 @@ body {
 }
 
 .mode-row {
-  height: 1em;
+  height: 0.1em;
   position: relative;
   width: 100vw;
 }
@@ -79,8 +79,8 @@ body {
 .toggleMode {
   font-size: 1.4em;
   position: absolute;
-  right: 1rem;
-  top: 1rem;
+  right: 0.8rem;
+  top: 0.3rem;
   width: 1.5em;
   height: 1.5em;
   display: flex;
@@ -160,11 +160,12 @@ body {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: 5vh;
-  gap: 0.5em;
+  gap: 1em;
   width: 100vw;
   height: 20vh;
   align-items: center;
   justify-content: center;
+  border: 2px solid red;
 }
 .subtitle {
   background: linear-gradient(-45deg, #0756b5, #80affa);
