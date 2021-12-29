@@ -176,7 +176,6 @@ body {
   height: 20vh;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 .subtitle {
   background: linear-gradient(-45deg, #0756b5, #80affa);
@@ -188,6 +187,7 @@ body {
   min-width: 16em;
   height: 2.2em;
   margin: 0.2em;
+  position: relative;
 }
 .subtitle::before {
   content: "";
