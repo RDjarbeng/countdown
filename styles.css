@@ -43,12 +43,11 @@ body {
   gap: 3em;
   overflow-x: hidden;
 }
-/* .container > *{
-  width: 100%;
-} */
 
 .mode-row {
   height: 1em;
+  position: relative;
+  width: 100vw;
 }
 
 .mode-info {
@@ -162,6 +161,10 @@ body {
   flex-flow: column nowrap;
   margin-bottom: 5vh;
   gap: 0.5em;
+  width: 100vw;
+  height: 20vh;
+  align-items: center;
+  justify-content: center;
 }
 .subtitle {
   background: linear-gradient(-45deg, #0756b5, #80affa);
@@ -170,6 +173,7 @@ body {
   /* box-shadow:inset 1px 5px 0px 0px #ffffff23; */
   border-top: 1px rgba(7, 85, 181, 0.25) solid;
   animation: bg 3s ease infinite alternate;
+  min-width: 16em;
 }
 .subtitle::before {
   content: "";
