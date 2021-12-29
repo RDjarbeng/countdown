@@ -43,12 +43,11 @@ body {
   gap: 3em;
   overflow-x: hidden;
 }
-/* .container > *{
-  width: 100%;
-} */
 
 .mode-row {
   height: 1em;
+  position: relative;
+  width: 100vw;
 }
 
 .mode-info {
@@ -56,7 +55,8 @@ body {
   border-radius: 0.3rem;
   color: var(--color-text);
   padding: 0.2rem 0.8rem;
-  animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
+  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
+          animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
   position: absolute;
   left: 50%;
   top: -10rem;
@@ -66,9 +66,19 @@ body {
 .light .mode-info {
   background: aliceblue;
 }
+@-webkit-keyframes slide-in {
+  to {
+    top: 2rem;
+  }
+}
 @keyframes slide-in {
   to {
     top: 2rem;
+  }
+}
+@-webkit-keyframes fade-out {
+  to {
+    opacity: 0;
   }
 }
 @keyframes fade-out {
@@ -80,8 +90,8 @@ body {
 .toggleMode {
   font-size: 1.4em;
   position: absolute;
-  right: 1rem;
-  top: 1rem;
+  right: 0.8rem;
+  top: 0.3rem;
   width: 1.5em;
   height: 1.5em;
   display: flex;
@@ -161,15 +171,23 @@ body {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: 5vh;
-  gap: 0.5em;
+  gap: 1em;
+  width: 100vw;
+  height: 20vh;
+  align-items: center;
+  justify-content: center;
 }
 .subtitle {
   background: linear-gradient(-45deg, #0756b5, #80affa);
   padding: 0.5em 1em;
   border-radius: 0.3em;
-  /* box-shadow:inset 1px 5px 0px 0px #ffffff23; */
   border-top: 1px rgba(7, 85, 181, 0.25) solid;
-  animation: bg 3s ease infinite alternate;
+  -webkit-animation: bg 3s ease infinite alternate;
+          animation: bg 3s ease infinite alternate;
+  min-width: 16em;
+  height: 2.2em;
+  margin: 0.2em;
+  position: relative;
 }
 .subtitle::before {
   content: "";
@@ -182,12 +200,25 @@ body {
   border-radius: 54% 46% 69% 31% / 57% 0% 100% 43%;
 }
 
-@keyframes bg {
+@-webkit-keyframes bg {
   from {
-    filter: hue-rotate(-25deg);
+    -webkit-filter: hue-rotate(-25deg);
+            filter: hue-rotate(-25deg);
   }
   to {
-    filter: hue-rotate(80deg);
+    -webkit-filter: hue-rotate(80deg);
+            filter: hue-rotate(80deg);
+  }
+}
+
+@keyframes bg {
+  from {
+    -webkit-filter: hue-rotate(-25deg);
+            filter: hue-rotate(-25deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(80deg);
+            filter: hue-rotate(80deg);
   }
 }
 @media screen and (min-width: 730px) and (orientation: landscape) {

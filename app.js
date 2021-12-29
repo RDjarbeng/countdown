@@ -20,7 +20,7 @@ var clockMovement = false;
 function autoLight() {
     let h = new Date().getHours();
     //between 6 am and 6pm
-    if (h > 5 && h < 17) activateLightMode();
+    if (h > 5 && h < 18) activateLightMode();
 }
 function startClock() {
     t = setInterval(startTime, 500);
