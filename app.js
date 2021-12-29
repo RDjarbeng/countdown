@@ -1,62 +1,64 @@
 // load the countdown clock
 window.onload = startClock();
 
-
 let icon = document.getElementsByClassName("toggleMode")[0];
+let controls = document.getElementsByClassName("subtitle");
 let body = document.body;
-icon.addEventListener("click",setMode);
-icon.addEventListener("click",notifyMode);
+// init events
+icon.addEventListener("click", setMode);
+icon.addEventListener("click", notifyMode);
+controls[0].addEventListener("click", restartTime);
+controls[1].addEventListener("click", stopClock);
 
 //to stop the clock
 var t;
 var clockMovement = false;
 
 /***
-*light mode if after 6am and after 18:00 evening
-*/
-function autoLight(){
+ *light mode if after 6am and after 18:00 evening
+ */
+function autoLight() {
     let h = new Date().getHours();
     //between 6 am and 6pm
-    if(h >5 && h<17 )
-        activateLightMode();
+    if (h > 5 && h < 17) activateLightMode();
 }
-function startClock(){
-    t =setInterval(startTime, 500);
+function startClock() {
+    t = setInterval(startTime, 500);
 }
 function startTime() {
     var today = new Date();
     var h = today.getHours();
-    var m = 60- today.getMinutes();
-    var s = 60-today.getSeconds();
+    var m = 60 - today.getMinutes();
+    var s = 60 - today.getSeconds();
     // console.log(checkHour(h));
-    h= checkHour(h)
+    h = checkHour(h);
     h = checkTime(h);
     // m = checkMin(m,h)
     m = checkTime(m);
     s = checkTime(s);
     // h =2;
-    document.getElementById('clock').innerHTML =
-    h + ":" + m + ":" + s;
-    
+    document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
+
     // t =  setTimeout(startTime, 500);
     clockMovement = true;
-    
 }
-function restartTime(){
-    if(clockMovement){
+function restartTime() {
+    if (clockMovement) {
         return;
-    }else{
-        startClock()
+    } else {
+        startClock();
     }
 }
 // add zero in front of numbers < 10
 function checkTime(i) {
-    if (i < 10) {i = "0" + i};  
+    if (i < 10) {
+        i = "0" + i;
+    }
     return i;
 }
 
-function checkHour(h){
-    return 24-h;
+function checkHour(h) {
+    return 24 - h;
 }
 
 //not necessary, mins in 60 countdown only
@@ -64,7 +66,7 @@ function checkHour(h){
 //     return Math.abs(h*60 -m)
 // }
 
-function stopClock(){
+function stopClock() {
     clearTimeout(t);
     clockMovement = false;
 }
@@ -81,21 +83,20 @@ function displayClock(){
 
 */
 
-function activateLightMode(){
+function activateLightMode() {
     icon.innerHTML = `<i class="fas fa-sun"></i>`;
     body.classList.toggle("light");
 }
 
-function activateDarkMode(){
+function activateDarkMode() {
     icon.innerHTML = `<i class="fas fa-moon"></i>`;
     body.classList.toggle("light");
 }
 
-function setMode(autoLight) { 
-    if (!body.classList.contains("light")){
+function setMode(autoLight) {
+    if (!body.classList.contains("light")) {
         activateLightMode();
-    }
-    else{
+    } else {
         activateDarkMode();
     }
 }
@@ -109,10 +110,15 @@ function notifyMode() {
 
     if (document.getElementsByClassName("mode-info")[0]) {
         document.getElementsByClassName("mode-info")[0].remove();
-        body.insertAdjacentHTML("afterbegin",`<span class="mode-info">${notifyText}</span>`);
-    }
-    else{
-        body.insertAdjacentHTML("afterbegin",`<span class="mode-info">${notifyText}</span>`);
+        body.insertAdjacentHTML(
+            "afterbegin",
+            `<span class="mode-info">${notifyText}</span>`
+        );
+    } else {
+        body.insertAdjacentHTML(
+            "afterbegin",
+            `<span class="mode-info">${notifyText}</span>`
+        );
     }
 }
 window.onload = autoLight();

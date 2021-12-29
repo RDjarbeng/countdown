@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="a countdown app with light and dark mode auto functionality">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link rel="stylesheet" href="styles.css">
     <title>Final Countdown v0.2.4</title>
@@ -11,7 +13,7 @@
 
 <body>
     <main>
-        <div class="container">
+        <section class="container">
             <div class="mode-row">
                 <span class="toggleMode"><i class="fas fa-moon"></i></span>
             </div>
@@ -27,10 +29,10 @@
                 </div>
             </div>
             <div class="controls-row">
-                <div class="subtitle" onclick="restartTime()">Midnight approaches</div>
-                <div class="subtitle" onclick="stopClock()">The end... You cannot stop me</div>
+                <div class="subtitle">Midnight approaches</div>
+                <div class="subtitle">The end... You cannot stop me</div>
             </div>
-        </div>
+        </section>
     </main>
 </body>
 <script src="app.js"></script>
