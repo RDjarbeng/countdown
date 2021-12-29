@@ -176,7 +176,6 @@ body {
   from{filter: hue-rotate(-25deg);}
   to{filter: hue-rotate(80deg);}
 }
-/* and (min-width: 700px)  */
 @media screen and (min-width: 730px) and (orientation: landscape) {
   body{overflow-y: hidden;}
   .banner{
