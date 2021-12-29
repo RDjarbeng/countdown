@@ -1,5 +1,5 @@
 # Countdown app
-Test deployed on netlify at [RcountDown](https://rcountdown.netlify.app/)
+Test deployed on netlify at [Rcountdown](https://rcountdown.netlify.app/)
 
 Application that displays a countdown with clickable features with auto light and dark mode
 
