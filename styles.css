@@ -30,6 +30,25 @@ body {
   transition: background 0.2s ease, color 0.2s ease;
   color: var(--color-text);
   font-family: "Nunito", sans-serif;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 3em;
+  overflow-x: hidden;
+}
+/* .container > *{
+  width: 100%;
+} */
+
+.mode-row{
+  height: 1em;
 }
 
 .mode-info{
@@ -54,9 +73,6 @@ body {
   to{opacity: 0;}
 }
 
-.mode-row{
-  height: 1em;
-}
 .toggleMode{
   font-size: 1.4em;
   position: absolute;
@@ -70,16 +86,6 @@ body {
   border-radius: 50%;
   background: rgb(255, 244, 124);
   color: black;
-}
-
-.container {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 3em;
-  overflow-x: hidden;
 }
 
 .banner-row {

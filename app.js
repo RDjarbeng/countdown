@@ -3,9 +3,13 @@ window.onload = startClock();
 
 
 let icon = document.getElementsByClassName("toggleMode")[0];
+let controls = document.getElementsByClassName("subtitle");
 let body = document.body;
+// init events
 icon.addEventListener("click",setMode);
 icon.addEventListener("click",notifyMode);
+controls[0].addEventListener("click",restartTime);
+controls[1].addEventListener("click",stopClock);
 
 //to stop the clock
 var t;
