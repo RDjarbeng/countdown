@@ -25,7 +25,7 @@ body {
   background: url("img/bg.svg") var(--color-bg) center no-repeat;
   background-size: cover;
   background-blend-mode: soft-light;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   color: var(--color-text);
   font-family: "Nunito", sans-serif;
   width: 100vw;
