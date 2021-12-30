@@ -1,36 +1,21 @@
-// load the countdown clock
-window.onload = startClock();
-
+// DOM nodes
 let icon = document.getElementsByClassName("toggleMode")[0];
-let controls = document.getElementsByClassName("subtitle");
+let controls = document.getElementsByClassName("button");
 let body = document.body;
-// init events
-icon.addEventListener("click", setMode);
-icon.addEventListener("click", notifyMode);
-controls[0].addEventListener("click", restartTime);
-controls[1].addEventListener("click", stopClock);
-
 //to stop the clock
-var t;
-var clockMovement = false;
+let intervalID;
+let clockMovement = false;
 
-/***
- *light mode if after 6am and after 18:00 evening
- */
-function autoLight() {
-    let h = new Date().getHours();
-    //between 6 am and 6pm
-    if (h > 5 && h < 18) activateLightMode();
-}
+
 function startClock() {
-    t = setInterval(startTime, 500);
+    intervalID = setInterval(startTime, 500);
 }
+
 function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = 60 - today.getMinutes();
-    var s = 60 - today.getSeconds();
-    // console.log(checkHour(h));
+    let today = new Date();
+    let h = today.getHours();
+    let m = 60 - today.getMinutes();
+    let s = 60 - today.getSeconds();
     h = checkHour(h);
     h = checkTime(h);
     // m = checkMin(m,h)
@@ -39,9 +24,9 @@ function startTime() {
     // h =2;
     document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
 
-    // t =  setTimeout(startTime, 500);
     clockMovement = true;
 }
+
 function restartTime() {
     if (clockMovement) {
         return;
@@ -67,21 +52,16 @@ function checkHour(h) {
 // }
 
 function stopClock() {
-    clearTimeout(t);
+    clearTimeout(intervalID);
     clockMovement = false;
 }
 
-/*
-function displayClock(){
-    const clock =document.getElementById('clock')
-    let d = new Date();
-    clock.innerHTML= d.toLocaleTimeString();
-//   var display = new Date().toLocaleTimeString();
-//   console.log(display);
-  setTimeout(displayClock, 1000); 
+//light mode if after 6am and after 18:00 evening
+function autoLight() {
+    let h = new Date().getHours();
+    //between 6 am and 6pm
+    if (h > 5 && h < 18) activateLightMode();
 }
-
-*/
 
 function activateLightMode() {
     icon.innerHTML = `<i class="fas fa-sun"></i>`;
@@ -121,4 +101,12 @@ function notifyMode() {
         );
     }
 }
-window.onload = autoLight();
+
+// init countdown and autoMode
+startClock();
+autoLight();
+// init events
+icon.addEventListener("click", setMode);
+icon.addEventListener("click", notifyMode);
+controls[0].addEventListener("click", restartTime);
+controls[1].addEventListener("click", stopClock);
