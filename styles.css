@@ -14,17 +14,15 @@
   --color-muted: rgba(255, 255, 255, 0.15);
   --color-banner: #2f8bfc;
   --color-text: hsl(0deg, 0%, 100%);
-  --body-bg: url("img/bg.svg") var(--color-bg) center no-repeat;
 }
 .light {
   --color-bg: #bddaff;
   --color-text: rgb(255, 255, 255);
   --color-text: rgb(7, 3, 46);
-  --body-bg: url("img/bg-dark.svg") var(--color-bg) center no-repeat;
 }
 
 body {
-  background: var(--body-bg);
+  background: url("img/bg.svg") var(--color-bg) center no-repeat;
   background-size: cover;
   background-blend-mode: soft-light;
   transition: background 0.2s ease, color 0.2s ease;
