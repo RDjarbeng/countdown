@@ -1,4 +1,4 @@
- class Clock{
+export default class Clock{
     //  hour, min, second;
     constructor(endDate){
         this.endDate = endDate;

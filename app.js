@@ -1,3 +1,6 @@
+// require('./clock')
+import Clock from './clock.js'
+
 // DOM nodes
 let icon = document.getElementsByClassName("toggleMode")[0];
 let controls = document.getElementsByClassName("button");
@@ -6,23 +9,26 @@ let body = document.body;
 let intervalID;
 let clockMovement = false;
 
+// Initialize Clock class
+var myclock = new Clock(new Date(`Jan 1, ${new Date().getFullYear()+1} 00:00:00`));
 
 function startClock() {
     intervalID = setInterval(startTime, 500);
 }
 
 function startTime() {
-    let today = new Date();
-    let h = today.getHours();
-    let m = 60 - today.getMinutes();
-    let s = 60 - today.getSeconds();
-    h = checkHour(h);
-    h = checkTime(h);
+    myclock.countDown();
+    // console.log(myclock.hours);
+    let d = myclock.days
+    let h = myclock.hours
+    let m = myclock.minutes
+    let s = myclock.seconds
+    h = addZeros(h);
     // m = checkMin(m,h)
-    m = checkTime(m);
-    s = checkTime(s);
+    m = addZeros(m);
+    s = addZeros(s);
     // h =2;
-    document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
+    document.getElementById("clock").innerHTML = d+`day${d>1? 's':''} `+h + ":" + m + ":" + s;
 
     clockMovement = true;
 }
@@ -35,16 +41,13 @@ function restartTime() {
     }
 }
 // add zero in front of numbers < 10
-function checkTime(i) {
-    if (i < 10) {
-        i = "0" + i;
+function addZeros(time) {
+    if (time < 10) {
+        time = "0" + time;
     }
-    return i;
+    return time;
 }
 
-function checkHour(h) {
-    return 24 - h;
-}
 
 //not necessary, mins in 60 countdown only
 // function checkMin(m, h){
@@ -103,6 +106,11 @@ function notifyMode() {
 }
 
 // init countdown and autoMode
+//Initialize counter for beginning of next year
+
+
+// setInterval(checkClock, 500);
+
 startClock();
 autoLight();
 // init events
