@@ -175,7 +175,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-.subtitle {
+.button {
   background: linear-gradient(-45deg, #0756b5, #80affa);
   padding: 0.5em 1em;
   border-radius: 0.3em;
@@ -186,8 +186,9 @@ body {
   height: 2.2em;
   margin: 0.2em;
   position: relative;
+  cursor: pointer;
 }
-.subtitle::before {
+.button::before {
   content: "";
   position: absolute;
   height: 10px;
