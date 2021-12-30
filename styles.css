@@ -14,62 +14,22 @@
   --color-muted: rgba(255, 255, 255, 0.15);
   --color-banner: #2f8bfc;
   --color-text: hsl(0deg, 0%, 100%);
-  --body-bg: url("img/bg.svg") var(--color-bg) center no-repeat;
 }
-.light{
+.light {
   --color-bg: #bddaff;
-  --color-text: rgb(255, 255, 255); 
-  --color-text: rgb(7, 3, 46); 
-  --body-bg: url("img/bg-dark.svg") var(--color-bg) center no-repeat;
+  --color-text: rgb(255, 255, 255);
+  --color-text: rgb(7, 3, 46);
 }
 
 body {
-  background: var(--body-bg);
+  background: url("img/bg.svg") var(--color-bg) center no-repeat;
   background-size: cover;
   background-blend-mode: soft-light;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
   color: var(--color-text);
   font-family: "Nunito", sans-serif;
-}
-
-.mode-info{
-  background: #05172b;
-  border-radius: .3rem;
-  color: var(--color-text);
-  padding: 0.2rem .8rem;
-  animation: slide-in .2s ease-in forwards, fade-out .5s ease .9s forwards;
-  position: absolute;
-  left: 50%;
-  top: -10rem;
-  transform: translateX(-50%);
-}
-
-.light .mode-info{
-  background: aliceblue;
-}
-@keyframes slide-in {
-  to{top: 2rem;}
-}
-@keyframes fade-out {
-  to{opacity: 0;}
-}
-
-.mode-row{
-  height: 1em;
-}
-.toggleMode{
-  font-size: 1.4em;
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  width: 1.5em;
-  height: 1.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background: rgb(255, 244, 124);
-  color: black;
+  width: 100vw;
+  height: 100vh;
 }
 
 .container {
@@ -80,6 +40,64 @@ body {
   flex-direction: column;
   gap: 3em;
   overflow-x: hidden;
+}
+
+.mode-row {
+  height: 1em;
+  position: relative;
+  width: 100vw;
+}
+
+.mode-info {
+  background: #05172b;
+  border-radius: 0.3rem;
+  color: var(--color-text);
+  padding: 0.2rem 0.8rem;
+  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
+          animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
+  position: absolute;
+  left: 50%;
+  top: -10rem;
+  transform: translateX(-50%);
+}
+
+.light .mode-info {
+  background: aliceblue;
+}
+@-webkit-keyframes slide-in {
+  to {
+    top: 2rem;
+  }
+}
+@keyframes slide-in {
+  to {
+    top: 2rem;
+  }
+}
+@-webkit-keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.toggleMode {
+  font-size: 1.4em;
+  position: absolute;
+  right: 0.8rem;
+  top: 0.3rem;
+  width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: rgb(255, 244, 124);
+  color: black;
 }
 
 .banner-row {
@@ -147,43 +165,70 @@ body {
   font-size: 0.2em;
 }
 
-.controls-row{
+.controls-row {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: 5vh;
-  gap: .5em;
+  gap: 1em;
+  width: 100vw;
+  height: 20vh;
+  align-items: center;
+  justify-content: center;
 }
-.subtitle{
+.button {
   background: linear-gradient(-45deg, #0756b5, #80affa);
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   border-radius: 0.3em;
-  /* box-shadow:inset 1px 5px 0px 0px #ffffff23; */
   border-top: 1px rgba(7, 85, 181, 0.25) solid;
-  animation: bg 3s ease infinite alternate;
+  -webkit-animation: bg 3s ease infinite alternate;
+          animation: bg 3s ease infinite alternate;
+  min-width: 16em;
+  height: 2.2em;
+  margin: 0.2em;
+  position: relative;
+  cursor: pointer;
 }
-.subtitle::before{
+.button::before {
   content: "";
   position: absolute;
   height: 10px;
   width: 10%;
   top: 0;
   left: 2%;
-  background: linear-gradient(45deg,rgba(255, 255, 255, 0.15), transparent);
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.15), transparent);
   border-radius: 54% 46% 69% 31% / 57% 0% 100% 43%;
 }
 
-@keyframes bg {
-  from{filter: hue-rotate(-25deg);}
-  to{filter: hue-rotate(80deg);}
+@-webkit-keyframes bg {
+  from {
+    -webkit-filter: hue-rotate(-25deg);
+            filter: hue-rotate(-25deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(80deg);
+            filter: hue-rotate(80deg);
+  }
 }
-/* and (min-width: 700px)  */
+
+@keyframes bg {
+  from {
+    -webkit-filter: hue-rotate(-25deg);
+            filter: hue-rotate(-25deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(80deg);
+            filter: hue-rotate(80deg);
+  }
+}
 @media screen and (min-width: 730px) and (orientation: landscape) {
-  body{overflow-y: hidden;}
-  .banner{
+  body {
+    overflow-y: hidden;
+  }
+  .banner {
     width: 20em;
     padding: 1em 5rem;
   }
-  .clock-row{
+  .clock-row {
     font-size: 25vmin;
   }
   .clock-row::after,
@@ -191,7 +236,7 @@ body {
     width: 1.8em;
     height: 1.8em;
   }
-  .controls-row{
+  .controls-row {
     flex-flow: row nowrap;
     gap: 4em;
   }
