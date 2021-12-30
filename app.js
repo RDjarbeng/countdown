@@ -3,6 +3,7 @@ import Clock from './clock.js'
 
 // DOM nodes
 let icon = document.getElementsByClassName("toggleMode")[0];
+let dayOfYear = document.getElementsByClassName("day")[0];
 let controls = document.getElementsByClassName("button");
 let body = document.body;
 //to stop the clock
