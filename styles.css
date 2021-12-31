@@ -210,9 +210,12 @@ main{
   bottom: 15px;
   left: 20px;
   font-size: 0.7em;
-  color: white;
+  color: var(--color-text)
 }
 
+.author:hover{
+  color: var(--color-banner)
+}
 @-webkit-keyframes bg {
   from {
     -webkit-filter: hue-rotate(-25deg);
