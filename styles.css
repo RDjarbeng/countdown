@@ -17,7 +17,7 @@
   --timer-bg: #6a7682;
 }
 .light {
-  --color-bg: #bddaff;
+  --color-bg: #a4ccff;
   --color-text: rgb(255, 255, 255);
   --color-text: rgb(7, 3, 46);
   --timer-bg: whitesmoke;
@@ -133,7 +133,7 @@ body {
   /* background-color: var(--color-muted); */
   border-radius: 0.2em;
   padding: 10px;
-  gap: 3rem;
+  gap: 1rem;
   /* border: 2px solid rgba(255, 255, 255, 0.2); */
 }
 
@@ -149,7 +149,7 @@ body {
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: .7em;
   background: linear-gradient(90deg,var(--color-muted) 50%,rgba(255, 255, 255, 0.35) 50%);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .timer-num{
   font-size: 15vmin;
@@ -229,7 +229,7 @@ body {
   }
   .banner {
     width: 21em;
-    padding: 1em 5rem;
+    /* padding: 1em 5rem; */
   }
   .clock-row {
     font-size: 25vmin;
