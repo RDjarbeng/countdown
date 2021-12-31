@@ -14,11 +14,13 @@
   --color-muted: rgba(255, 255, 255, 0.15);
   --color-banner: #2f8bfc;
   --color-text: hsl(0deg, 0%, 100%);
+  --timer-bg: #6a7682;
 }
 .light {
   --color-bg: #bddaff;
   --color-text: rgb(255, 255, 255);
   --color-text: rgb(7, 3, 46);
+  --timer-bg: whitesmoke;
 }
 
 body {
@@ -122,48 +124,48 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  font-size: 5em;
+  /* font-size: 1rem; */
   text-align: center;
-  width: 4.5em;
-  height: 4em;
+  width: 100vw;
+  /* height: 30vh; */
   align-items: center;
   justify-content: center;
-  background-color: var(--color-muted);
+  /* background-color: var(--color-muted); */
   border-radius: 0.2em;
   padding: 10px;
-  box-shadow: 4, 4;
+  gap: 2rem;
+  /* border: 2px solid rgba(255, 255, 255, 0.2); */
+}
+
+.timer{
+  font-size: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25vmin;
+  height: 25vmin;
+  background-color: var(--color-muted);
   border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: .7em;
+  background: linear-gradient(90deg,var(--color-muted) 50%,rgba(255, 255, 255, 0.25) 50%);
 }
-/* the background circles */
-.clock-row::after,
-.clock-row::before {
-  position: absolute;
+.timer-num{
+  font-size: 15vmin;
+}
+.timer-text{
   content: "";
-  border-radius: 50%;
-  width: 2.2em;
-  height: 2.2em;
-  z-index: -3;
-}
-.clock-row::before {
-  top: -10%;
-  right: -10%;
-  background: linear-gradient(-45deg, #b507a7, #fa80f0);
-}
-.clock-row::after {
-  bottom: -10%;
-  left: -10%;
-  background: linear-gradient(-45deg, #0756b5, #80affa);
+  position: absolute;
+  bottom: -1em;
+  background: var(--timer-bg);
+  border-radius: 0.3em;
+  padding: .5em;
+  text-align: center;
+  width: 18vmin;
+  /* height: 1rem; */
+  overflow: clip;
 }
 
-.clock {
-  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
-  overflow-wrap: break-word;
-  width: 100%;
-}
-
-.clock-help {
-  font-size: 0.2em;
-}
 
 .controls-row {
   display: flex;
@@ -220,16 +222,17 @@ body {
             filter: hue-rotate(80deg);
   }
 }
-@media screen and (min-width: 730px) and (orientation: landscape) {
+@media screen and (min-width: 750px) and (orientation: landscape) {
   body {
     overflow-y: hidden;
   }
   .banner {
-    width: 20em;
+    width: 21em;
     padding: 1em 5rem;
   }
   .clock-row {
     font-size: 25vmin;
+    flex-direction: row;
   }
   .clock-row::after,
   .clock-row::before {
@@ -239,5 +242,10 @@ body {
   .controls-row {
     flex-flow: row nowrap;
     gap: 4em;
+  }
+}
+@media screen and (max-width: 415px) {
+  .timer-text{
+    font-size: 0.75rem;
   }
 }

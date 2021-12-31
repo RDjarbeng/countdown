@@ -29,7 +29,10 @@ function startTime() {
     m = addZeros(m);
     s = addZeros(s);
     // h =2;
-    document.getElementById("clock").innerHTML = d+`day${d>1? 's':''} `+h + ":" + m + ":" + s;
+    document.getElementsByClassName("timer-num")[0].innerHTML = `${d}`;
+    document.getElementsByClassName("timer-num")[1].innerHTML = `${h}`;
+    document.getElementsByClassName("timer-num")[2].innerHTML = `${m}`;
+    document.getElementsByClassName("timer-num")[3].innerHTML = `${s}`;
 
     clockMovement = true;
 }
@@ -68,12 +71,12 @@ function autoLight() {
 }
 
 function activateLightMode() {
-    icon.innerHTML = `<i class="fas fa-sun"></i>`;
+    icon.innerHTML = `<i class="fas fa-moon"></i>`;
     body.classList.toggle("light");
 }
 
 function activateDarkMode() {
-    icon.innerHTML = `<i class="fas fa-moon"></i>`;
+    icon.innerHTML = `<i class="fas fa-sun"></i>`;
     body.classList.toggle("light");
 }
 
