@@ -4,7 +4,7 @@ import Clock from './clock.js'
 // DOM nodes
 // let icon = document.getElementsByClassName("toggleMode")[0];
 let icon = document.getElementById('themeToggle');
-let dayOfYear = document.getElementById("countDay");
+let dayCount = document.getElementById("countDay");
 // let controls = document.getElementsByClassName("button");
 let startButton = document.getElementById('startButton');
 let stopButton = document.getElementById('stopButton');
@@ -38,6 +38,7 @@ function startTime() {
     hourNumber.innerHTML = `${h}`;
     minNumber.innerHTML = `${m}`;
     secNumber.innerHTML = `${s}`;
+    dayCount.innerHTML= myclock.countDays();
     clockMovement = true;
 }
 
