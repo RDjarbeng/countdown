@@ -54,3 +54,7 @@ Light mode on PC
 #### v0.4.2
 ---
 ![image](https://user-images.githubusercontent.com/57795443/147827728-7286b68b-e175-4a1d-b320-a80966306fe5.png)
+
+#### v1.0.0
+---
+![image](https://user-images.githubusercontent.com/57795443/147838941-ff513dd4-6dd3-416f-a970-193a67f088c5.png)
