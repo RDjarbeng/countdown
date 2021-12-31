@@ -14,11 +14,13 @@
   --color-muted: rgba(255, 255, 255, 0.15);
   --color-banner: #2f8bfc;
   --color-text: hsl(0deg, 0%, 100%);
+  --timer-bg: #6a7682;
 }
 .light {
-  --color-bg: #bddaff;
+  --color-bg: #a4ccff;
   --color-text: rgb(255, 255, 255);
   --color-text: rgb(7, 3, 46);
+  --timer-bg: whitesmoke;
 }
 
 body {
@@ -31,19 +33,21 @@ body {
   width: 100vw;
   height: 100vh;
 }
-
+main{
+  width: 100vw;
+  height: 100vh;
+}
 .container {
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 3em;
+  gap: 2.5em;
   overflow-x: hidden;
 }
 
 .mode-row {
-  height: 1em;
   position: relative;
   width: 100vw;
 }
@@ -108,62 +112,63 @@ body {
   font-size: 1.7em;
   text-align: center;
   width: 100%;
-  height: 20vh;
 }
 
 .banner {
   text-transform: uppercase;
   background-color: var(--color-banner);
-  padding: 0.5em 5rem;
+  padding: 0.5em 1rem;
   border-radius: 0.3em;
+}
+
+.day{
+  font-size: 1.77em;
 }
 
 .clock-row {
   position: relative;
   display: flex;
   flex-direction: column;
-  font-size: 5em;
   text-align: center;
-  width: 4.5em;
-  height: 4em;
+  width: 100vw;
+  /* height: 30vh; */
   align-items: center;
   justify-content: center;
-  background-color: var(--color-muted);
   border-radius: 0.2em;
   padding: 10px;
-  box-shadow: 4, 4;
+  gap: 1rem;
+}
+
+.timer{
+  font-size: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25vmin;
+  height: 25vmin;
+  background-color: var(--color-muted);
   border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: .7em;
+  background: linear-gradient(90deg,var(--color-muted) 50%,rgba(255, 255, 255, 0.35) 50%);
+  margin-bottom: 1rem;
 }
-/* the background circles */
-.clock-row::after,
-.clock-row::before {
-  position: absolute;
+.timer-num{
+  font-size: 15vmin;
+}
+.timer-text{
   content: "";
-  border-radius: 50%;
-  width: 2.2em;
-  height: 2.2em;
-  z-index: -3;
-}
-.clock-row::before {
-  top: -10%;
-  right: -10%;
-  background: linear-gradient(-45deg, #b507a7, #fa80f0);
-}
-.clock-row::after {
-  bottom: -10%;
-  left: -10%;
-  background: linear-gradient(-45deg, #0756b5, #80affa);
+  position: absolute;
+  bottom: -1em;
+  background: var(--timer-bg);
+  border-radius: 0.3em;
+  padding: .5em;
+  text-align: center;
+  width: 18vmin;
+  overflow: clip;
+  transition: background-color 0.2s ease;
 }
 
-.clock {
-  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
-  overflow-wrap: break-word;
-  width: 100%;
-}
-
-.clock-help {
-  font-size: 0.2em;
-}
 
 .controls-row {
   display: flex;
@@ -199,6 +204,17 @@ body {
   border-radius: 54% 46% 69% 31% / 57% 0% 100% 43%;
 }
 
+.author{
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  font-size: 0.7em;
+  color: var(--color-text)
+}
+
+.author:hover{
+  color: var(--color-banner)
+}
 @-webkit-keyframes bg {
   from {
     -webkit-filter: hue-rotate(-25deg);
@@ -220,16 +236,19 @@ body {
             filter: hue-rotate(80deg);
   }
 }
-@media screen and (min-width: 730px) and (orientation: landscape) {
+@media screen and (min-width: 750px) and (orientation: landscape) {
   body {
     overflow-y: hidden;
   }
+  
   .banner {
-    width: 20em;
-    padding: 1em 5rem;
+    width: 21em;
+    /* padding: 1em 5rem; */
   }
   .clock-row {
     font-size: 25vmin;
+    flex-direction: row;
+    gap: 2rem;
   }
   .clock-row::after,
   .clock-row::before {
@@ -239,5 +258,20 @@ body {
   .controls-row {
     flex-flow: row nowrap;
     gap: 4em;
+  }
+}
+@media screen and (max-width: 415px) {
+  .banner{
+    font-size: 1.1rem;
+    width: 100%;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .container {
+    /* gap: 0.1em */
+    gap: 0;
+  }
+  .timer-text{
+    font-size: 0.75rem;
   }
 }

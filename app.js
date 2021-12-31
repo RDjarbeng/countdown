@@ -1,29 +1,44 @@
+// require('./clock')
+import Clock from './clock.js'
+
 // DOM nodes
-let icon = document.getElementsByClassName("toggleMode")[0];
-let controls = document.getElementsByClassName("button");
+// let icon = document.getElementsByClassName("toggleMode")[0];
+let icon = document.getElementById('themeToggle');
+let dayCount = document.getElementById("countDay");
+// let controls = document.getElementsByClassName("button");
+let startButton = document.getElementById('startButton');
+let stopButton = document.getElementById('stopButton');
 let body = document.body;
+let dayNumber =document.getElementById('day-num');
+let hourNumber =document.getElementById("hour-num");
+let minNumber =document.getElementById("min-num");
+let secNumber =document.getElementById("sec-num");
 //to stop the clock
 let intervalID;
 let clockMovement = false;
 
+// Initialize Clock class
+var myclock = new Clock(new Date(`Jan 1, ${new Date().getFullYear()+1} 00:00:00`));
 
 function startClock() {
     intervalID = setInterval(startTime, 500);
 }
 
 function startTime() {
-    let today = new Date();
-    let h = today.getHours();
-    let m = 60 - today.getMinutes();
-    let s = 60 - today.getSeconds();
-    h = checkHour(h);
-    h = checkTime(h);
-    // m = checkMin(m,h)
-    m = checkTime(m);
-    s = checkTime(s);
-    // h =2;
-    document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
-
+    myclock.countDown();
+    let d = myclock.days
+    let h = myclock.hours
+    let m = myclock.minutes
+    let s = myclock.seconds
+    d= addZeros(d);
+    h = addZeros(h);
+    m = addZeros(m);
+    s = addZeros(s);
+    dayNumber.innerHTML = `${d}`;
+    hourNumber.innerHTML = `${h}`;
+    minNumber.innerHTML = `${m}`;
+    secNumber.innerHTML = `${s}`;
+    dayCount.innerHTML= myclock.countDays();
     clockMovement = true;
 }
 
@@ -35,21 +50,13 @@ function restartTime() {
     }
 }
 // add zero in front of numbers < 10
-function checkTime(i) {
-    if (i < 10) {
-        i = "0" + i;
+function addZeros(time) {
+    if (time < 10) {
+        time = "0" + time;
     }
-    return i;
+    return time;
 }
 
-function checkHour(h) {
-    return 24 - h;
-}
-
-//not necessary, mins in 60 countdown only
-// function checkMin(m, h){
-//     return Math.abs(h*60 -m)
-// }
 
 function stopClock() {
     clearTimeout(intervalID);
@@ -64,16 +71,16 @@ function autoLight() {
 }
 
 function activateLightMode() {
-    icon.innerHTML = `<i class="fas fa-sun"></i>`;
-    body.classList.toggle("light");
-}
-
-function activateDarkMode() {
     icon.innerHTML = `<i class="fas fa-moon"></i>`;
     body.classList.toggle("light");
 }
 
-function setMode(autoLight) {
+function activateDarkMode() {
+    icon.innerHTML = `<i class="fas fa-sun"></i>`;
+    body.classList.toggle("light");
+}
+
+function setMode() {
     if (!body.classList.contains("light")) {
         activateLightMode();
     } else {
@@ -102,11 +109,14 @@ function notifyMode() {
     }
 }
 
-// init countdown and autoMode
 startClock();
 autoLight();
 // init events
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
-controls[0].addEventListener("click", restartTime);
-controls[1].addEventListener("click", stopClock);
+// console.log(365-myclock.days);
+// controls[0].addEventListener("click", restartTime);
+// controls[1].addEventListener("click", stopClock);
+//Prefer this 
+// startButton.addEventListener("click", restartTime);
+// endButton.addEventListener("click", stopClock);

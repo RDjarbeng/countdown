@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="a countdown app with light and dark mode auto functionality">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <meta name="description" content="Countdown application with light and dark mode auto functionality">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="styles.css">
-    <title>Final Countdown v0.2.4</title>
+    <title>Final Countdown</title>
 </head>
 
 <body>
     <main>
         <section class="container">
             <div class="mode-row">
-                <span class="toggleMode"><i class="fas fa-moon"></i></span>
+                <span class="toggleMode" id='themeToggle'><i class="fas fa-sun"></i></span>
             </div>
             <div class="banner-row">
-                <div class="banner">Coming soon</div>
+
+                <div class="banner">
+                    <div class=""> Day <span class="day" id ='countDay'>X</span> / 365</div>
+                    CountDown to New Year <i class="fas fa-snowman"></i>
+                    
+                </div>
             </div>
             <div class="clock-row">
-                <div class="clock" id='clock'>
-                    00:00:00
+                <div class="timer">
+                    <span class="timer-num" id="day-num">00</span>
+                    <span class="timer-text">Days</span>
                 </div>
-                <div class="clock-help">
-                    (hr: min: sec)
+                <div class="timer">
+                    <span class="timer-num" id="hour-num">00</span>
+                    <span class="timer-text">Hours</span>
+                </div>
+                <div class="timer">
+                    <span class="timer-num" id="min-num">00</span>
+                    <span class="timer-text">Minutes</span>
+                </div>
+                <div class="timer">
+                    <span class="timer-num" id="sec-num">00</span>
+                    <span class="timer-text">Seconds</span>
                 </div>
             </div>
-            <div class="controls-row">
-                <div class="button">Midnight approaches</div>
-                <div class="button">The end... You cannot stop me</div>
-            </div>
+            <!-- <div class="controls-row">
+                <div class="button" id ='startButton'>Midnight approaches</div>
+                <div class="button" id='stopButton'>The end... You cannot stop me</div>
+            </div> -->
         </section>
     </main>
+    <a href="/authors.html">
+    <div class="author">
+        <span><i class="fas fa-heart"></i> RD | Nat </span>
+    </div>
+</a>
 </body>
-<script src="app.js"></script>
+<script type="module" src="app.js"></script>
+<!-- <script src="clock.js"></script> -->
 
 </html>
