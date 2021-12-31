@@ -1,7 +1,7 @@
 # Countdown app
 Test deployed on netlify at [Rcountdown](https://rcountdown.netlify.app/)
 
-Application that displays a countdown with clickable features with auto light and dark mode
+Application that displays a countdown to a given date (currently end of year) with clickable features with auto light and dark mode
 
 https://rcountdown.netlify.app/
 
@@ -28,7 +28,13 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 ## Countdown v0.2.3
 * Added auto light and dark mode
 
-#### Screenshots of current app (v0.2.3)
+## Countdown v0.4.2
+* Redesign UI
+* Add countdown to end of year
+* Add day count
+
+### Screenshots of app 
+#### v0.2.3
 ##### Mobile
 ![mobile](https://user-images.githubusercontent.com/73431750/147591678-5b72d187-91a4-453e-bf5e-e13989782adb.png)
 
@@ -45,3 +51,6 @@ Light mode on PC
 ---
 ![lightpc](https://user-images.githubusercontent.com/73431750/147591915-d0a48f8d-c104-4fef-85bb-1467fffdcc53.png)
 
+#### v0.4.2
+---
+![image](https://user-images.githubusercontent.com/57795443/147827728-7286b68b-e175-4a1d-b320-a80966306fe5.png)
