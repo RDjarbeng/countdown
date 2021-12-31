@@ -163,8 +163,8 @@ body {
   padding: .5em;
   text-align: center;
   width: 18vmin;
-  /* height: 1rem; */
   overflow: clip;
+  transition: background-color 0.2s ease;
 }
 
 
