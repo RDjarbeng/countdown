@@ -253,6 +253,9 @@ main{
 @media screen and (max-width: 415px) {
   .banner{
     font-size: 1.1rem;
+    width: 100%;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
   }
   .container {
     /* gap: 0.1em */
