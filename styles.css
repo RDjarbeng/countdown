@@ -133,7 +133,7 @@ body {
   /* background-color: var(--color-muted); */
   border-radius: 0.2em;
   padding: 10px;
-  gap: 2rem;
+  gap: 3rem;
   /* border: 2px solid rgba(255, 255, 255, 0.2); */
 }
 
@@ -148,7 +148,8 @@ body {
   background-color: var(--color-muted);
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: .7em;
-  background: linear-gradient(90deg,var(--color-muted) 50%,rgba(255, 255, 255, 0.25) 50%);
+  background: linear-gradient(90deg,var(--color-muted) 50%,rgba(255, 255, 255, 0.35) 50%);
+  margin-bottom: 2rem;
 }
 .timer-num{
   font-size: 15vmin;
