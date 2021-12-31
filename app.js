@@ -2,10 +2,17 @@
 import Clock from './clock.js'
 
 // DOM nodes
-let icon = document.getElementsByClassName("toggleMode")[0];
-let dayOfYear = document.getElementsByClassName("day")[0];
-let controls = document.getElementsByClassName("button");
+// let icon = document.getElementsByClassName("toggleMode")[0];
+let icon = document.getElementById('themeToggle');
+let dayOfYear = document.getElementById("countDay");
+// let controls = document.getElementsByClassName("button");
+let startButton = document.getElementById('startButton');
+let stopButton = document.getElementById('stopButton');
 let body = document.body;
+let dayNumber =document.getElementById('day-num');
+let hourNumber =document.getElementById("hour-num");
+let minNumber =document.getElementById("min-num");
+let secNumber =document.getElementById("sec-num");
 //to stop the clock
 let intervalID;
 let clockMovement = false;
@@ -19,21 +26,18 @@ function startClock() {
 
 function startTime() {
     myclock.countDown();
-    // console.log(myclock.hours);
     let d = myclock.days
     let h = myclock.hours
     let m = myclock.minutes
     let s = myclock.seconds
+    d= addZeros(d);
     h = addZeros(h);
-    // m = checkMin(m,h)
     m = addZeros(m);
     s = addZeros(s);
-    // h =2;
-    document.getElementsByClassName("timer-num")[0].innerHTML = `${d}`;
-    document.getElementsByClassName("timer-num")[1].innerHTML = `${h}`;
-    document.getElementsByClassName("timer-num")[2].innerHTML = `${m}`;
-    document.getElementsByClassName("timer-num")[3].innerHTML = `${s}`;
-
+    dayNumber.innerHTML = `${d}`;
+    hourNumber.innerHTML = `${h}`;
+    minNumber.innerHTML = `${m}`;
+    secNumber.innerHTML = `${s}`;
     clockMovement = true;
 }
 
@@ -52,11 +56,6 @@ function addZeros(time) {
     return time;
 }
 
-
-//not necessary, mins in 60 countdown only
-// function checkMin(m, h){
-//     return Math.abs(h*60 -m)
-// }
 
 function stopClock() {
     clearTimeout(intervalID);
@@ -80,7 +79,7 @@ function activateDarkMode() {
     body.classList.toggle("light");
 }
 
-function setMode(autoLight) {
+function setMode() {
     if (!body.classList.contains("light")) {
         activateLightMode();
     } else {
@@ -109,16 +108,14 @@ function notifyMode() {
     }
 }
 
-// init countdown and autoMode
-//Initialize counter for beginning of next year
-
-
-// setInterval(checkClock, 500);
-
 startClock();
 autoLight();
 // init events
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
-controls[0].addEventListener("click", restartTime);
-controls[1].addEventListener("click", stopClock);
+// console.log(365-myclock.days);
+// controls[0].addEventListener("click", restartTime);
+// controls[1].addEventListener("click", stopClock);
+//Prefer this 
+// startButton.addEventListener("click", restartTime);
+// endButton.addEventListener("click", stopClock);
