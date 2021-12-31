@@ -205,6 +205,14 @@ main{
   border-radius: 54% 46% 69% 31% / 57% 0% 100% 43%;
 }
 
+.author{
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  font-size: 0.7em;
+  color: white;
+}
+
 @-webkit-keyframes bg {
   from {
     -webkit-filter: hue-rotate(-25deg);
