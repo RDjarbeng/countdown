@@ -7,7 +7,7 @@ https://rcountdown.netlify.app/
 
 ## Countdown v0.1.0 (How it began)
 Counts down to midnight with clickable features (dark mode)
-![b4](https://user-images.githubusercontent.com/73431750/147851451-903e0263-8b02-4f1c-947b-6c59b29e504e.png)
+![before](https://user-images.githubusercontent.com/73431750/147592275-2123d01f-a49a-40c4-afa5-6e563450da5c.png)
 
 
 ## Countdown v0.2.1
@@ -36,8 +36,7 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 ### Screenshots of app 
 #### v0.2.3
 ##### Mobile
-![mobile](https://user-images.githubusercontent.com/73431750/147851475-eeb15346-d9e6-47e0-96e4-8569b6d05dcb.png)
-
+![mobile](https://user-images.githubusercontent.com/73431750/147591678-5b72d187-91a4-453e-bf5e-e13989782adb.png)
 
 Dark & Light mode in mobile (Iphone, android)
 ---
@@ -54,11 +53,8 @@ Light mode on PC
 
 #### v0.4.2
 ---
-![pc](https://user-images.githubusercontent.com/73431750/147852093-1d202d02-aa5b-438c-a38d-d53bf95c683c.png)
-
+![image](https://user-images.githubusercontent.com/57795443/147827728-7286b68b-e175-4a1d-b320-a80966306fe5.png)
 
 #### v1.0.0
 ---
-![v1](https://user-images.githubusercontent.com/73431750/147851842-2f43cefe-26ef-4a38-8e80-2369a8af5842.png)
-
-
+![image](https://user-images.githubusercontent.com/57795443/147838941-ff513dd4-6dd3-416f-a970-193a67f088c5.png)
