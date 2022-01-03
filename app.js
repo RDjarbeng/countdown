@@ -18,7 +18,7 @@ let intervalID;
 let clockMovement = false;
 
 // Initialize Clock class
-var myclock = new Clock(new Date(`Jan 1, ${new Date().getFullYear()+1} 00:00:00`));
+var myclock = new Clock();
 
 function startClock() {
     intervalID = setInterval(startTime, 500);
@@ -56,7 +56,6 @@ function addZeros(time) {
     }
     return time;
 }
-
 
 function stopClock() {
     clearTimeout(intervalID);
@@ -108,15 +107,12 @@ function notifyMode() {
         );
     }
 }
-
 startClock();
 autoLight();
 // init events
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
-// console.log(365-myclock.days);
-// controls[0].addEventListener("click", restartTime);
-// controls[1].addEventListener("click", stopClock);
+console.log(myclock);
 //Prefer this 
 // startButton.addEventListener("click", restartTime);
 // endButton.addEventListener("click", stopClock);
