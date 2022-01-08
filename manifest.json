@@ -4,8 +4,8 @@
     "id": "/index.html",
     "start_url": "/index.html",
     "display": "standalone",
-    "background_color": "#FFE902",
-    "theme_color": "#FFE1C4",
+    "background_color": "#182635",
+    "theme_color": "#2f8bfc",
     "orientation": "portrait-primary",
     "icons" : [
         {
