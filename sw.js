@@ -1,8 +1,10 @@
-const staticCacheName = 'site-static-av1'
+const staticCacheName = 'site-static-av2'
+// caching
 //assets to cache
 const assets =[
     '/',
     '/index.html',
+    // 'index.html',
     '/authors.html',
     '/app.js',
     '/clock.js',
@@ -11,6 +13,9 @@ const assets =[
     'img/icons/favicon.png',
     "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css",
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
+    'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css.map',
+    "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap",
+    'https://fonts.gstatic.com/s/nunito/v20/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2',
 
 ]
 self.addEventListener('install', evt=>{
@@ -25,6 +30,16 @@ self.addEventListener('install', evt=>{
 })
 
 self.addEventListener('activate', evt=>{
+    //delete old cache
+    evt.waitUntil(
+        caches.keys().then(keys=>{
+            // console.log(keys);
+            return Promise.all(
+                keys.filter(key=> key !== staticCacheName)
+                .map(key => caches.delete(key))
+            )
+        })
+    )
 
 })
 
