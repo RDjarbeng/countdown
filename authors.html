@@ -15,6 +15,9 @@
     <link rel="manifest" href="/manifest.json">
     <title>Final Countdown </title>
     <link href="img/icons/favicon.png" rel="icon">
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="/img/icons/favicon.png">
+    <meta name="apple-mobile-web-app-status-bar" content="#2f8bfc">
 </head>
 
 <body>
@@ -28,8 +31,9 @@
                 <div class="banner">
                     <div class=""> 
                         <span class="day" id='countDay'>
-                            <i class="fas fa-code"></i>
+                            <a href="/index.html" style="text-decoration: none; color: inherit;"><i class="fas fa-home"></i></a>
                             Who did this?
+                            <i class="fas fa-code"></i>
                         </span> </div>
                 </div>
             </div>
@@ -59,7 +63,9 @@
         </section>
         <a href="/index.html">
             <div class="author">
-                <span><i class="fas fa-heart"></i> Back to clock </span>
+                <span>
+                    <i class="far fa-clock"></i>
+                     Back to clock </span>
             </div>
         </a>
     </main>
