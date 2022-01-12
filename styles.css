@@ -15,16 +15,22 @@
   --color-banner: #2f8bfc;
   --color-text: hsl(0deg, 0%, 100%);
   --timer-bg: #6a7682;
+  --timer-grad: rgba(255, 255, 255, 0.5);
+  --bg-url: url("img/bg-light.svg");
 }
 .light {
-  --color-bg: #a4ccff;
-  --color-text: rgb(255, 255, 255);
-  --color-text: rgb(7, 3, 46);
+  --color-bg: #dfdfdf;
+  --color-muted: rgba(255, 255, 255, 0.3);
+  --color-text: rgb(0, 23, 53);
+  --color-text: var(--color-banner);
   --timer-bg: whitesmoke;
+  --timer-grad: rgba(255, 255, 255, 0.8);
+  --timer-box: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+  /* --bg-url: url("img/bg-light.svg"); */
 }
 
 body {
-  background: url("img/bg.svg") var(--color-bg) center no-repeat;
+  background: var(--bg-url) var(--color-bg) center no-repeat;
   background-size: cover;
   background-blend-mode: soft-light;
   transition: background-color 0.2s ease, color 0.2s ease;
@@ -100,8 +106,8 @@ main{
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: rgb(255, 244, 124);
-  color: black;
+  background: #3971b7;
+  color: #f2e7ac;
 }
 
 .banner-row {
@@ -115,12 +121,18 @@ main{
 }
 
 .banner {
-  text-transform: uppercase;
   background-color: var(--color-banner);
   padding: 0.5em 1rem;
   border-radius: 0.3em;
+  min-width: 80vmin;
+  color: white;
 }
-
+.banner-h2{
+  /* font-style: italic; */
+  font-size: 0.7em;
+  font-weight: lighter;
+  letter-spacing: 0.3em;
+}
 .day{
   font-size: 1.77em;
 }
@@ -147,14 +159,17 @@ main{
   align-items: center;
   width: 25vmin;
   height: 25vmin;
-  background-color: var(--color-muted);
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: .7em;
-  background: linear-gradient(90deg,var(--color-muted) 50%,rgba(255, 255, 255, 0.35) 50%);
+  background: linear-gradient(90deg,var(--color-muted) 50%, var(--timer-grad) 50%);
   margin-bottom: 1rem;
 }
+.light .timer{
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: var(--timer-box);
+}
 .timer-num{
-  font-size: 15vmin;
+  font-size: 13vmin;
 }
 .timer-text{
   content: "";
@@ -168,7 +183,9 @@ main{
   overflow: clip;
   transition: background-color 0.2s ease;
 }
-
+.light .timer-text{
+  box-shadow: var(--timer-box);
+}
 
 .controls-row {
   display: flex;
@@ -236,6 +253,7 @@ main{
             filter: hue-rotate(80deg);
   }
 }
+/* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
   body {
     overflow-y: hidden;
@@ -260,6 +278,13 @@ main{
     gap: 4em;
   }
 }
+/* mid-range */
+/* @media screen and (min-width: 415px) {
+  .banner{
+    width: 90vmin;
+  }
+} */
+/* mobile and small screens */
 @media screen and (max-width: 415px) {
   .banner{
     font-size: 1.1rem;
@@ -268,7 +293,6 @@ main{
     border-top-left-radius: 0;
   }
   .container {
-    /* gap: 0.1em */
     gap: 0;
   }
   .timer-text{
