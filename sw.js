@@ -40,7 +40,7 @@ self.addEventListener('activate', evt => {
             console.log('deleting caches');
             return Promise.all(
                 keys
-                    .filter(key => key !== staticCacheName)
+                    .filter(key => key !== staticCacheName && key !== dynamicCache)
                     .map(key => caches.delete(key))
             )
         })
@@ -59,6 +59,6 @@ self.addEventListener('fetch', evt => {
                     return fetchRes;
                 })
             });
-        })
+        }).catch(()=>caches.match('/fallback.html'))
     );
 })
