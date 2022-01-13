@@ -1,4 +1,4 @@
-const staticCacheName = 'site-static-av22';
+const staticCacheName = 'site-static-av23';
 const dynamicCache = 'site-dynamic-av5';
 // caching
 //assets to cache
@@ -6,7 +6,7 @@ const assets = [
     '/',
     '/index.html',
     '/authors.html',
-    // '/app.js',
+    '/fallback.html',
     '/clock.js',
     '/img/bg.svg',
     '/styles.css',
