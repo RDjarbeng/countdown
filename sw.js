@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-av23';
-const dynamicCache = 'site-dynamic-av5';
+const staticCacheName = 'site-static-v1';
+const dynamicCache = 'site-dynamic-v1';
 // caching
 //assets to cache
 const assets = [
@@ -20,6 +20,16 @@ const assets = [
     // 'https://fonts.gstatic.com/s/nunito/v20/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2'
 
 ]
+
+const limitCacheSize = (name, size)=>{
+    caches.open(name).then(cache=>{
+        cache.keys().then(keys=>{
+            if(keys.length >size){
+                cache.delete(keys[0]).then(limitCacheSize(name, size));
+            }
+        })
+    })
+}
 self.addEventListener('install', evt => {
     // console.log('service worker installed');
     evt.waitUntil(
@@ -56,6 +66,7 @@ self.addEventListener('fetch', evt => {
             return cacheRes || fetch(evt.request).then(fetchRes => {
                 return caches.open(dynamicCache).then(cache => {
                     cache.put(evt.request.url, fetchRes.clone())
+                    limitCacheSize(dynamicCache, 15)
                     return fetchRes;
                 })
             });
