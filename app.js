@@ -112,7 +112,16 @@ autoLight();
 // init events
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
-console.log(myclock);
 //Prefer this 
 // startButton.addEventListener("click", restartTime);
 // endButton.addEventListener("click", stopClock);
+
+// service worker
+if('serviceWorker' in navigator){
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+    .then( (reg)=> console.log('service worker registered', reg))
+        .catch((err)=> console.log('Service worker not registered', err));
+  });
+        
+}
