@@ -59,3 +59,9 @@ Light mode on PC
 #### v1.0.0
 ---
 ![v1-mobile](https://user-images.githubusercontent.com/73431750/147856514-f3d1df37-6967-4685-8527-131a43215b1f.png)
+
+#### v1.1.0
+---
+* Implement offline functionality
+* Add PWA functionality
+
