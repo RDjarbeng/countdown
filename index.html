@@ -9,18 +9,18 @@
     <meta name="Keywords" content="Countdown, Midnight countdown">
     <title>Final Countdown</title>
     <link href="img/icons/favicon.png" rel="icon">
-  <meta name="Author" content="R.Djarbeng| A.Nyakotey">
+    <meta name="Author" content="R.Djarbeng| A.Nyakotey">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="styles.css">
-    
+
     <link rel="manifest" href="manifest.json">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="img/icons/favicon.png">
     <meta name="apple-mobile-web-app-status-bar" content="#2f8bfc">
     <meta name="theme-color" content="#2f8bfc">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="grey">
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2f8bfc">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2f8bfc">
 </head>
 
 <body>
@@ -32,9 +32,9 @@
             <div class="banner-row">
 
                 <div class="banner">
-                    <div class=""> Day <span class="day" id ='countDay'>X</span> / 365</div>
+                    <div class=""> Day <span class="day" id='countDay'>X</span> / 365</div>
                     CountDown to New Year <i class="fas fa-snowman"></i>
-                    
+
                 </div>
             </div>
             <div class="clock-row">
@@ -55,17 +55,23 @@
                     <span class="timer-text">Seconds</span>
                 </div>
             </div>
-            <!-- <div class="controls-row">
-                <div class="button" id ='startButton'>Midnight approaches</div>
-                <div class="button" id='stopButton'>The end... You cannot stop me</div>
-            </div> -->
+            <div class="controls-row">
+                <div class="button" id='startButton'>Select a new Date</div>
+                <form action="" id="customDate">
+                    <div>
+                        <input type="date" id="start" name="deadline" value="2022-12-31" min="2022-01-17">
+                </form>
+
+            </div>
+            <!-- <div class="button" id='stopButton'>The end... You cannot stop me</div> -->
+            </div>
         </section>
     </main>
     <a href="/authors.html">
-    <div class="author">
-        <span><i class="fas fa-heart"></i> RD | Nat </span>
-    </div>
-</a>
+        <div class="author">
+            <span><i class="fas fa-heart"></i> RD | Nat </span>
+        </div>
+    </a>
 </body>
 <script type="module" src="app.js"></script>
 

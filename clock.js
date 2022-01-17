@@ -1,12 +1,14 @@
 export default class Clock {
-    constructor() {
-        this.setEndDate()
+    constructor(endDate) {
+        this.setEndDate(endDate)
         this.countDown();
     }
-    setEndDate() {
-        this.endDate = new Date(`Jan 1, ${new Date().getFullYear() + 1} 00:00:00`)
-        //account for leap year
-        this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
+
+    setEndDate(endDate) {
+        //set endDate to end of year
+        this.endDate = endDate ||new Date(`Jan 1, ${new Date().getFullYear() + 1} 00:00:00`)
+        
+        
     }
     countDown() {
         // Set the date we're counting down to
@@ -25,6 +27,8 @@ export default class Clock {
         }
     }
     countDays() {
+        //account for leap year
+        this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
         return this.dayLength - this.days
     }
 }
