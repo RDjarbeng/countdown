@@ -55,16 +55,37 @@
                     <span class="timer-text">Seconds</span>
                 </div>
             </div>
+
             <div class="controls-row">
                 <div class="button" id='startButton'>Select a new Date</div>
-                <form action="" id="customDate">
+                <form action="" id="customDateForm">
                     <div>
-                        <input type="date" id="start" name="deadline" value="2022-12-31" min="2022-01-17">
+                        <input type="date" id="customDate" name="deadline" value="2022-12-31" min="2022-01-17">
                 </form>
-
             </div>
-            <!-- <div class="button" id='stopButton'>The end... You cannot stop me</div> -->
             </div>
+            <div id="customDisplay" 
+                
+                >
+                    <div class="clock-row">
+                        <div class="timer">
+                            <span class="timer-num" id="day-custom">00</span>
+                            <span class="timer-text">Days</span>
+                        </div>
+                        <div class="timer">
+                            <span class="timer-num" id="hour-custom">00</span>
+                            <span class="timer-text">Hours</span>
+                        </div>
+                        <div class="timer">
+                            <span class="timer-num" id="min-custom">00</span>
+                            <span class="timer-text">Minutes</span>
+                        </div>
+                        <div class="timer">
+                            <span class="timer-num" id="sec-custom">00</span>
+                            <span class="timer-text">Seconds</span>
+                        </div>
+                    </div>
+                </div>
         </section>
     </main>
     <a href="/authors.html">
