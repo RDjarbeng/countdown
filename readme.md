@@ -59,3 +59,11 @@ Light mode on PC
 #### v1.0.0
 ---
 ![v1-mobile](https://user-images.githubusercontent.com/73431750/147856514-f3d1df37-6967-4685-8527-131a43215b1f.png)
+
+#### v1.djarbeng come do your versioning work :)
+---
+![mobilev1](https://user-images.githubusercontent.com/73431750/149920295-20edf313-7736-45b7-9451-02949f64593c.png)
+
+![pcv1](https://user-images.githubusercontent.com/73431750/149921160-cb97133b-84c5-4c72-8084-5dcbc574a532.png)
+
+
