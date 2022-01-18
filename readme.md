@@ -28,13 +28,7 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 ## Countdown v0.2.3
 * Added auto light and dark mode
 
-## Countdown v0.4.2
-* Redesign UI
-* Add countdown to end of year
-* Add day count
-
-### Screenshots of app 
-#### v0.2.3
+#### v0.2.3 screenshots
 ##### Mobile
 ![mobile](https://user-images.githubusercontent.com/73431750/147591678-5b72d187-91a4-453e-bf5e-e13989782adb.png)
 
@@ -51,19 +45,36 @@ Light mode on PC
 ---
 ![lightpc](https://user-images.githubusercontent.com/73431750/147591915-d0a48f8d-c104-4fef-85bb-1467fffdcc53.png)
 
+
+## Countdown v0.4.2
+* Redesign UI
+* Add countdown to end of year
+* Add day count
+
 #### v0.4.2
 ---
 ![pc](https://user-images.githubusercontent.com/73431750/147855844-e87ce479-6e63-4ee5-9e73-53b29cdfb2bb.png)
 
+### Screenshots of app 
+
+
 
 #### v1.0.0
+* Added authors page
+* Added link with names at bottom of main page to authors page
 ---
 ![v1-mobile](https://user-images.githubusercontent.com/73431750/147856514-f3d1df37-6967-4685-8527-131a43215b1f.png)
+![v1-authors](https://user-images.githubusercontent.com/57795443/150028426-b77f34eb-dcd5-4a31-854d-da57fcb9f21e.png)
 
-#### v1.djarbeng come do your versioning work :)
+
+#### v1.2.0
+* Used service workers to cache site static resources
+* Site now works without internet connection
+* Added PWA functionality for users to install app
+* UI updates to light and dark mode
 ---
-![mobilev1](https://user-images.githubusercontent.com/73431750/149920295-20edf313-7736-45b7-9451-02949f64593c.png)
+![mobilev1.2](https://user-images.githubusercontent.com/73431750/149920295-20edf313-7736-45b7-9451-02949f64593c.png)
 
-![pcv1](https://user-images.githubusercontent.com/73431750/149921160-cb97133b-84c5-4c72-8084-5dcbc574a532.png)
+![pcv1.2](https://user-images.githubusercontent.com/73431750/149921160-cb97133b-84c5-4c72-8084-5dcbc574a532.png)
 
 
