@@ -28,29 +28,11 @@ function startClock() {
 
 function startTime() {
     myclock.countDown();
-    let d = myclock.days
-    let h = myclock.hours
-    let m = myclock.minutes
-    let s = myclock.seconds
-    d= addZeros(d);
-    h = addZeros(h);
-    m = addZeros(m);
-    s = addZeros(s);
-    dayNumber.innerHTML = `${d}`;
-    hourNumber.innerHTML = `${h}`;
-    minNumber.innerHTML = `${m}`;
-    secNumber.innerHTML = `${s}`;
+    displayClock(myclock, dayNumber, hourNumber, minNumber, secNumber);
     dayCount.innerHTML= myclock.countDays();
     clockMovement = true;
 }
 
-// function restartTime() {
-//     if (clockMovement) {
-//         return;
-//     } else {
-//         startClock();
-//     }
-// }
 // add zero in front of numbers < 10
 function addZeros(time) {
     if (time < 10) {
@@ -58,6 +40,72 @@ function addZeros(time) {
     }
     return time;
 }
+
+function displayClock(counter, dayDisplay, hourDisplay, minDisplay, secDisplay){
+    let d = counter.days
+    let h = counter.hours
+    let m = counter.minutes
+    let s = counter.seconds
+    d= addZeros(d);
+    h = addZeros(h);
+    m = addZeros(m);
+    s = addZeros(s);
+
+    dayDisplay.innerHTML = `${d}`;
+    hourDisplay.innerHTML = `${h}`;
+    minDisplay.innerHTML = `${m}`;
+    secDisplay.innerHTML = `${s}`;
+}
+
+
+
+//todo: find a better way of checking for a valid date
+/**
+ * Listens for a user input for date element
+ */
+function listenForDate(){
+    const input = this.value;
+    // console.log(input, 'run');
+    if(input != ''){
+        customClock = new Clock(new Date(input));
+        // console.log(customClock);
+        const dayNumber =document.getElementById('day-custom');
+        const hourNumber =document.getElementById("hour-custom");
+        const minNumber =document.getElementById("min-custom");
+        const secNumber =document.getElementById("sec-custom");
+        
+        // let customRow =document.getElementById("customDisplay");
+        // show row
+        // customRow.style.display= 'block';
+        displayClock(customClock, dayNumber, hourNumber, minNumber, secNumber);
+        console.log('problem');
+        // let d = customClock.days
+        // let h = customClock.hours
+        // let m = customClock.minutes
+        // let s = customClock.seconds
+        // console.log(d, h, m, s);
+        // d= addZeros(d);
+        // h = addZeros(h);
+        // m = addZeros(m);
+        // s = addZeros(s);
+        // console.log(d, h, m, s);
+        // dayNumber.innerHTML = `${d}`;
+        // hourNumber.innerHTML = `${h}`;
+        // minNumber.innerHTML = `${m}`;
+        // secNumber.innerHTML = `${s}`;
+    }
+}
+/* restart the clock
+function restartTime() {
+    if (clockMovement) {
+        return;
+    } else {
+        startClock();
+    }
+}
+*/
+
+
 
 function stopClock() {
     clearTimeout(intervalID);
@@ -110,39 +158,7 @@ function notifyMode() {
     }
 }
 
-//todo: find a better way of checking for a valid date
-function listenForDate(){
-    const input = this.value;
-    // console.log(input, 'run');
-    if(input != ''){
-        customClock = new Clock(new Date(input));
-        console.log(customClock);
-        let dayNumber =document.getElementById('day-custom');
-        let hourNumber =document.getElementById("hour-custom");
-        let minNumber =document.getElementById("min-custom");
-        let secNumber =document.getElementById("sec-custom");
-        let customRow =document.getElementById("customDisplay");
-        customRow.style.display= 'block';
-    
-        let d = customClock.days
-        let h = customClock.hours
-        let m = customClock.minutes
-        let s = customClock.seconds
-        console.log(d, h, m, s);
-        d= addZeros(d);
-        h = addZeros(h);
-        m = addZeros(m);
-        s = addZeros(s);
-        console.log(d, h, m, s);
-        dayNumber.innerHTML = `${d}`;
-        hourNumber.innerHTML = `${h}`;
-        minNumber.innerHTML = `${m}`;
-        secNumber.innerHTML = `${s}`;
-}
-    
-
         // console.log();
-}
 startClock();
 autoLight();
 // listenForDate();
