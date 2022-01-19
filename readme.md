@@ -74,8 +74,8 @@ Light mode on PC
 #### v1.2.0
 * Used service workers to cache site static resources
 * Site now works without internet connection
-* Added PWA functionality for users to install app
-* UI updates to light and dark mode
+* Added PWA functionality for (android) users to install app
+* UI updates to light and dark mode 👀
 ---
 ![mobilev1.2](https://user-images.githubusercontent.com/73431750/149920295-20edf313-7736-45b7-9451-02949f64593c.png)
 
