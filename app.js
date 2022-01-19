@@ -2,10 +2,8 @@
 import Clock from './clock.js'
 
 // DOM nodes
-// let icon = document.getElementsByClassName("toggleMode")[0];
 let icon = document.getElementById('themeToggle');
 let dayCount = document.getElementById("countDay");
-// let controls = document.getElementsByClassName("button");
 let startButton = document.getElementById('startButton');
 let stopButton = document.getElementById('stopButton');
 let body = document.body;
@@ -71,12 +69,14 @@ function autoLight() {
 
 function activateLightMode() {
     icon.innerHTML = `<i class="fas fa-moon"></i>`;
-    body.classList.toggle("light");
+    if(body.classList.contains("dark")){
+    body.classList.replace("dark","light");}else{body.classList.add("light");}
 }
 
 function activateDarkMode() {
     icon.innerHTML = `<i class="fas fa-sun"></i>`;
-    body.classList.toggle("light");
+    if(body.classList.contains("light")){
+        body.classList.replace("light","dark");}else{body.classList.add("dark");}
 }
 
 function setMode() {
@@ -112,10 +112,6 @@ autoLight();
 // init events
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
-//Prefer this 
-// startButton.addEventListener("click", restartTime);
-// endButton.addEventListener("click", stopClock);
-
 // service worker
 if('serviceWorker' in navigator){
     window.addEventListener('load', () => {
