@@ -29,6 +29,9 @@
   /* --bg-url: url("img/bg-light.svg"); */
 }
 
+#customDisplay{
+  display: none;
+}
 body {
   background: var(--bg-url) var(--color-bg) center no-repeat;
   background-size: cover;

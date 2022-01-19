@@ -1,4 +1,3 @@
-// require('./clock')
 import Clock from './clock.js'
 
 // DOM nodes
@@ -22,7 +21,7 @@ const customSecNumber =document.getElementById("sec-custom");
 let intervalID;
 let customClockMovement = false;
 
-// Initialize Clock class
+// Initialize default Clock class
 var myclock = new Clock();
 var customClock;
 
@@ -75,28 +74,13 @@ function listenForDate(){
     if(input != ''){
         customClock = new Clock(new Date(input));
         
-        // let customRow =document.getElementById("customDisplay");
+        let customRow =document.getElementById("customDisplay");
         // show row
-        // customRow.style.display= 'block';
+        customRow.style.display= 'block';
         customClockMovement = true;
-        
-        // let d = customClock.days
-        // let h = customClock.hours
-        // let m = customClock.minutes
-        // let s = customClock.seconds
-        // console.log(d, h, m, s);
-        // d= addZeros(d);
-        // h = addZeros(h);
-        // m = addZeros(m);
-        // s = addZeros(s);
-        // console.log(d, h, m, s);
-        // dayNumber.innerHTML = `${d}`;
-        // hourNumber.innerHTML = `${h}`;
-        // minNumber.innerHTML = `${m}`;
-        // secNumber.innerHTML = `${s}`;
     }
 }
-/* restart the clock
+/* //restart the clock
 function restartTime() {
     if (customClockMovement) {
         return;
@@ -104,15 +88,13 @@ function restartTime() {
         startClock();
     }
 }
-*/
 
-
-
+//stop the clock
 function stopClock() {
     clearTimeout(intervalID);
     customClockMovement = false;
 }
-
+*/
 //light mode if after 6am and after 18:00 evening
 function autoLight() {
     let h = new Date().getHours();
