@@ -2,18 +2,17 @@
 import Clock from './clock.js'
 
 // DOM nodes
-// let icon = document.getElementsByClassName("toggleMode")[0];
 let icon = document.getElementById('themeToggle');
 let dayCount = document.getElementById("countDay");
 // let controls = document.getElementsByClassName("button");
 // let startButton = document.getElementById('startButton');
 // let stopButton = document.getElementById('stopButton');
-let body = document.body;
-let dayNumber =document.getElementById('day-num');
-let hourNumber =document.getElementById("hour-num");
-let minNumber =document.getElementById("min-num");
-let secNumber =document.getElementById("sec-num");
-let dateInput = document.getElementById('customDate')
+const body = document.body;
+const dayNumber =document.getElementById('day-num');
+const hourNumber =document.getElementById("hour-num");
+const minNumber =document.getElementById("min-num");
+const secNumber =document.getElementById("sec-num");
+const dateInput = document.getElementById('customDate')
 
 const customDayNumber =document.getElementById('day-custom');
 const customHourNumber =document.getElementById("hour-custom");
@@ -32,15 +31,11 @@ function startClock() {
 }
 
 function startTime() {
-    // myclock.countDown();
-    
     displayClock(myclock, dayNumber, hourNumber, minNumber, secNumber);
     dayCount.innerHTML= myclock.countDays();
     if(customClockMovement){
-        // customClock.countDown();
         displayClock(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
-    
 }
 
 // add zero in front of numbers < 10
