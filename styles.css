@@ -28,7 +28,7 @@
   --timer-box: 0 0 5px 1px rgba(0, 0, 0, 0.1);
   /* --bg-url: url("img/bg-light.svg"); */
 }
-
+/* hide the custom clock at start */
 #customDisplay{
   display: none;
 }
