@@ -110,43 +110,46 @@ function notifyMode() {
     }
 }
 
+//todo: find a better way of checking for a valid date
 function listenForDate(){
-    dateInput.addEventListener('change', function(){
     const input = this.value;
-    console.log(input);
-    customClock = new Clock(new Date(input));
-    console.log(customClock);
-    let dayNumber =document.getElementById('day-custom');
-    let hourNumber =document.getElementById("hour-custom");
-    let minNumber =document.getElementById("min-custom");
-    let secNumber =document.getElementById("sec-custom");
-    let customRow =document.getElementById("customDisplay");
-    customRow.style.display= 'block';
-
-    let d = customClock.days
-    let h = customClock.hours
-    let m = customClock.minutes
-    let s = customClock.seconds
-    console.log(d, h, m, s);
-    d= addZeros(d);
-    h = addZeros(h);
-    m = addZeros(m);
-    s = addZeros(s);
-    console.log(d, h, m, s);
-    dayNumber.innerHTML = `${d}`;
-    hourNumber.innerHTML = `${h}`;
-    minNumber.innerHTML = `${m}`;
-    secNumber.innerHTML = `${s}`;
+    // console.log(input, 'run');
+    if(input != ''){
+        customClock = new Clock(new Date(input));
+        console.log(customClock);
+        let dayNumber =document.getElementById('day-custom');
+        let hourNumber =document.getElementById("hour-custom");
+        let minNumber =document.getElementById("min-custom");
+        let secNumber =document.getElementById("sec-custom");
+        let customRow =document.getElementById("customDisplay");
+        customRow.style.display= 'block';
+    
+        let d = customClock.days
+        let h = customClock.hours
+        let m = customClock.minutes
+        let s = customClock.seconds
+        console.log(d, h, m, s);
+        d= addZeros(d);
+        h = addZeros(h);
+        m = addZeros(m);
+        s = addZeros(s);
+        console.log(d, h, m, s);
+        dayNumber.innerHTML = `${d}`;
+        hourNumber.innerHTML = `${h}`;
+        minNumber.innerHTML = `${m}`;
+        secNumber.innerHTML = `${s}`;
+}
+    
 
         // console.log();
-    })    
 }
 startClock();
 autoLight();
-listenForDate();
+// listenForDate();
 // init events
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
+dateInput.addEventListener('change', listenForDate);
 //Prefer this 
 // startButton.addEventListener("click", restartTime);
 // endButton.addEventListener("click", stopClock);
