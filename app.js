@@ -14,9 +14,14 @@ let hourNumber =document.getElementById("hour-num");
 let minNumber =document.getElementById("min-num");
 let secNumber =document.getElementById("sec-num");
 let dateInput = document.getElementById('customDate')
+
+const customDayNumber =document.getElementById('day-custom');
+const customHourNumber =document.getElementById("hour-custom");
+const customMinNumber =document.getElementById("min-custom");
+const customSecNumber =document.getElementById("sec-custom");
 //to stop the clock
 let intervalID;
-let clockMovement = false;
+let customClockMovement = false;
 
 // Initialize Clock class
 var myclock = new Clock();
@@ -27,10 +32,15 @@ function startClock() {
 }
 
 function startTime() {
-    myclock.countDown();
+    // myclock.countDown();
+    
     displayClock(myclock, dayNumber, hourNumber, minNumber, secNumber);
     dayCount.innerHTML= myclock.countDays();
-    clockMovement = true;
+    if(customClockMovement){
+        // customClock.countDown();
+        displayClock(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
+    }
+    
 }
 
 // add zero in front of numbers < 10
@@ -42,6 +52,7 @@ function addZeros(time) {
 }
 
 function displayClock(counter, dayDisplay, hourDisplay, minDisplay, secDisplay){
+    counter.countDown();
     let d = counter.days
     let h = counter.hours
     let m = counter.minutes
@@ -68,17 +79,12 @@ function listenForDate(){
     // console.log(input, 'run');
     if(input != ''){
         customClock = new Clock(new Date(input));
-        // console.log(customClock);
-        const dayNumber =document.getElementById('day-custom');
-        const hourNumber =document.getElementById("hour-custom");
-        const minNumber =document.getElementById("min-custom");
-        const secNumber =document.getElementById("sec-custom");
         
         // let customRow =document.getElementById("customDisplay");
         // show row
         // customRow.style.display= 'block';
-        displayClock(customClock, dayNumber, hourNumber, minNumber, secNumber);
-        console.log('problem');
+        customClockMovement = true;
+        
         // let d = customClock.days
         // let h = customClock.hours
         // let m = customClock.minutes
@@ -97,7 +103,7 @@ function listenForDate(){
 }
 /* restart the clock
 function restartTime() {
-    if (clockMovement) {
+    if (customClockMovement) {
         return;
     } else {
         startClock();
@@ -109,7 +115,7 @@ function restartTime() {
 
 function stopClock() {
     clearTimeout(intervalID);
-    clockMovement = false;
+    customClockMovement = false;
 }
 
 //light mode if after 6am and after 18:00 evening
