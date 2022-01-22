@@ -141,6 +141,17 @@ function notifyMode() {
     }
 }
 
+function increaseInSteps(max, speed =50, start_num =0, domElement){
+    let timer = setInterval(() => {
+        if(start_num < max){
+            start_num++;
+            domElement.innerHTML = start_num;
+        }else{
+            clearInterval(timer)
+        }
+    }, speed);
+}
+
         // console.log();
 startClock();
 autoLight();
