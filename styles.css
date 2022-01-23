@@ -364,10 +364,30 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
 .show-color{
   display: inline-flex;
 }
+
+.new-item{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10vmin;
+  height: 10vmin;
+  border-radius: 50%;
+  right: 7vmin;
+  bottom: 7vmin;
+  background-color: white;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+}
+.new-item i{
+  color: var(--color-banner);
+}
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
   body {
     overflow-y: hidden;
+  }
+  .container{
+    gap: 4em;
   }
   .banner {
     width: 21em;
@@ -389,6 +409,9 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
 }
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
+  .container{
+    gap: 1.6em;
+  }
   .banner-row{
     font-size: 1.3rem;
   }
