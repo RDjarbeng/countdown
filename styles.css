@@ -78,6 +78,11 @@ main{
 .light .mode-info {
   background: aliceblue;
 }
+
+.link{
+  color: var(--color-text);
+  text-decoration: none;
+}
 @-webkit-keyframes slide-in {
   to {
     top: 2rem;
