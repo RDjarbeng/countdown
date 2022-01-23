@@ -48,7 +48,7 @@
 .dark[data-theme="purple"] {
   --bg-color: #1b182c;
   --color-text: white;
-  --bg-timer: #816a82;
+  --bg-timer: #474650;
 }
 [data-theme="yellow"] {
   --color-banner: #ffc000;
