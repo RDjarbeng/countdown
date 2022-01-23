@@ -122,15 +122,14 @@ main{
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 1.7em;
+  font-size: 1.7rem;
   text-align: center;
   width: 100%;
 }
 
 .banner {
-  /* background-color: var(--color-banner); */
   padding: 0.5em 1rem;
-  border-radius: 0.3em;
+  border-radius: 0.1em;
   min-width: 80vmin;
   color: var(--color-text);
   border-bottom: 0.5rem solid var(--color-banner);
@@ -370,6 +369,7 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
 .sidebar-list-items{
   padding: 2.5vmin 0vmin 2.5vmin 4vmin;
   border-radius: 2.5vmin;
+  margin: 0.5rem auto;
 }
 .sidebar-list-items:hover{
   background: var(--bg-sidebarListHover);
@@ -386,22 +386,33 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   width: 1.8rem;
   height: 1.8rem;
   border-radius: 50%;
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.205);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.15);
+  border: white solid 2px;
+  
+
+
+
+
 }
 .pick-color-ico:nth-child(1){
-  background: crimson;
-}
-.pick-color-ico:nth-child(2){
-  background: rgb(255, 141, 160);
-}
-.pick-color-ico:nth-child(3){
-  background: rgb(47, 255, 99);
-}
-.pick-color-ico:nth-child(4){
-  background: midnightblue;
+  background: #fe2164;
+  outline: #fe2164 solid 2px;
 }
 .pick-color-ico:nth-child(5){
-  background: yellow;
+  background: #7b68ee;
+  outline: #7b68ee solid 2px;
+}
+.pick-color-ico:nth-child(3){
+  background: #1cb65d;
+  outline: #1cb65d solid 2px;
+}
+.pick-color-ico:nth-child(4){
+  background: #2f8bfc;
+  outline: #2f8bfc solid 2px;
+}
+.pick-color-ico:nth-child(2){
+  background: #ffc000;
+  outline: #ffc000 solid 2px;
 }
 .show-color{
   display: inline-flex;
@@ -411,7 +422,6 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   body {
     overflow-y: hidden;
   }
-  
   .banner {
     width: 21em;
     /* padding: 1em 5rem; */
@@ -432,7 +442,7 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   }
 }
 /* mobile and small screens */
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 427px) {
   /* .banner{
     font-size: 1.1rem;
     width: 100%;
@@ -442,6 +452,9 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   .container {
     gap: 0;
   } */
+  .banner-row{
+    font-size: 1.3rem;
+  }
   .logo-name{
     display: none;
   }
