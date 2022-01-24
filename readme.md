@@ -63,7 +63,8 @@ Light mode on PC
 * Added authors page
 * Added link with names at bottom of main page to authors page
 ---
-![v100b](https://user-images.githubusercontent.com/73431750/150095230-daefce5e-aa61-4138-9373-c589eba8e021.png)
+![v100update](https://user-images.githubusercontent.com/73431750/150794436-9998eed7-c0a2-4621-8c62-19119b7ad679.png)
+
 
 #### v1.1.0
 ---
