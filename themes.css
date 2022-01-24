@@ -63,3 +63,16 @@
   --color-text: white;
   --bg-timer: #80826a;
 }
+[data-theme="pink"] {
+  --color-banner: #e685b5;
+  --color-text: rgb(42, 0, 53);
+  --color-text: var(--color-banner);
+  --bg-modeToggle: rgba(0, 0, 0, 0.2);
+  --bg-sidebar: rgba(230, 132, 181, 0.95);
+  --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+}
+.dark[data-theme="pink"] {
+  --bg-color: #472a39;
+  --color-text: white;
+  --bg-timer: #8b7982;
+}

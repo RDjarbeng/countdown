@@ -38,7 +38,6 @@ nav.addEventListener("click",(e)=>{
 });
 
 const closeSideBarListener = (event)=> {
-    console.log(event.target);
     sidebar.classList.add("sidebar-hide");
     event.currentTarget.removeEventListener("click",closeSideBarListener);
 }
