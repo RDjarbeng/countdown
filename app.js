@@ -30,10 +30,11 @@ function startClock() {
 }
 
 function startTime() {
-    displayClock(myclock, dayNumber, hourNumber, minNumber, secNumber);
+    updateDisplay(myclock, dayNumber, hourNumber, minNumber, secNumber);
     dayCount.innerHTML= myclock.countDays();
     if(customClockMovement){
-        displayClock(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
+        
+        updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
 }
 
@@ -45,7 +46,7 @@ function addZeros(time) {
     return time;
 }
 
-function displayClock(counter, dayDisplay, hourDisplay, minDisplay, secDisplay){
+function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay){
     counter.countDown();
     let d = counter.days
     let h = counter.hours
@@ -73,12 +74,18 @@ function listenForDate(){
     // console.log(input, 'run');
     if(input != ''){
         customClock = new Clock(new Date(input));
-        
-        let customRow =document.getElementById("customDisplay");
-        // show row
-        customRow.style.display= 'block';
-        customClockMovement = true;
+        displayClockRow();
+        // do the fast countdown
+        // set speed faster when day of the year is greater
+        stepIncreseAndStart(customClock, {customDayNumber,customHourNumber, customMinNumber, customSecNumber} ,365-customClock.days );
     }
+}
+
+function displayClockRow(){
+    
+    let customRow =document.getElementById("customDisplay");
+    // show row
+    customRow.style.display= 'block';
 }
 /* //restart the clock
 function restartTime() {
@@ -141,28 +148,49 @@ function notifyMode() {
     }
 }
 
-function increaseInSteps(max, speed =50, start_num =0, domElement){
+function stepIncreseAndStart(clockElement, domElements, speed =50, start_num =0){
+    let days=0, hours=0, minutes=0, seconds =0;
+    let done = true;
+    console.log(days);
+    // console.log(domElements);
     let timer = setInterval(() => {
-        if(start_num < max){
-            start_num++;
-            domElement.innerHTML = start_num;
-        }else{
+        done=true;
+        if(days < clockElement.days){
+            done =false;
+            days+=7;
+            domElements.customDayNumber.innerHTML = days;
+        }
+        if(hours< clockElement.hours){
+            done =false;
+            console.log('hours', hours, done);
+            hours++;
+            domElements.customHourNumber.innerHTML = hours;
+        }
+
+        if(minutes< clockElement.minutes){
+            done =false;
+            minutes++;
+            domElements.customMinNumber.innerHTML = minutes;
+        }
+
+        if(seconds< clockElement.seconds){
+            done =false;
+            seconds++;
+            domElements.customSecNumber.innerHTML = seconds;
+        }
+        if(done){
+            customClockMovement = true;
             clearInterval(timer)
         }
     }, speed);
 }
 
-        // console.log();
 startClock();
 autoLight();
-// listenForDate();
 // init events
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
 dateInput.addEventListener('change', listenForDate);
-//Prefer this 
-// startButton.addEventListener("click", restartTime);
-// endButton.addEventListener("click", stopClock);
 
 // service worker
 /*
