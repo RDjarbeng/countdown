@@ -77,7 +77,7 @@ function listenForDate(){
         displayClockRow();
         // do the fast countdown
         // set speed faster when day of the year is greater
-        stepIncreseAndStart(customClock, {customDayNumber,customHourNumber, customMinNumber, customSecNumber} ,365-customClock.days );
+        stepIncreaseAndStart(customClock, {customDayNumber,customHourNumber, customMinNumber, customSecNumber} ,365-customClock.days );
     }
 }
 
@@ -148,7 +148,7 @@ function notifyMode() {
     }
 }
 
-function stepIncreseAndStart(clockElement, domElements, speed =50, start_num =0){
+function stepIncreaseAndStart(clockElement, domElements, speed =50, start_num =0){
     let days=0, hours=0, minutes=0, seconds =0;
     let done = true;
     console.log(days);
