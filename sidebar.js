@@ -20,6 +20,7 @@ sidebarItems[3].onclick = () => {
 
 function setTheme(event) {
     document.body.dataset.theme = event.currentTarget.dataset.settheme;
+    localStorage.setItem("theme",`${event.currentTarget.dataset.settheme}`);
 }
 
 function openColorPicker() {
