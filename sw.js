@@ -11,7 +11,7 @@ const assets = [
     '/clock.js',
     '/app.js',
     '/img/bg.svg',
-    '/img/bg-light.svg',
+    // '/img/bg-light.svg',
     '/styles.css',
     'img/icons/favicon.png',
     'img/icons/chrome192.png',
