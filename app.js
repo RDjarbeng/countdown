@@ -33,7 +33,6 @@ function startTime() {
     updateDisplay(myclock, dayNumber, hourNumber, minNumber, secNumber);
     dayCount.innerHTML= myclock.countDays();
     if(customClockMovement){
-        
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
 }
@@ -77,7 +76,7 @@ function listenForDate(){
         displayClockRow();
         // do the fast countdown
         // set speed faster when day of the year is greater
-        stepIncreaseAndStart(customClock, {customDayNumber,customHourNumber, customMinNumber, customSecNumber} ,365-customClock.days );
+        stepIncreaseAndStart(customClock, {customDayNumber,customHourNumber, customMinNumber, customSecNumber} ,(365-customClock.days<100)?365-customClock.days: 70);
     }
 }
 
@@ -150,33 +149,37 @@ function notifyMode() {
 
 function stepIncreaseAndStart(clockElement, domElements, speed =50, start_num =0){
     let days=0, hours=0, minutes=0, seconds =0;
+    const interval=7;
     let done = true;
-    console.log(days);
+    customClockMovement=false;
+    console.log(speed);
     // console.log(domElements);
     let timer = setInterval(() => {
         done=true;
-        if(days < clockElement.days){
+        domElements.customDayNumber.innerHTML = days;
+        domElements.customHourNumber.innerHTML = hours;
+        domElements.customMinNumber.innerHTML = minutes;
+        domElements.customSecNumber.innerHTML = seconds;
+
+        if(days < clockElement.days && clockElement.days> interval){
             done =false;
-            days+=7;
-            domElements.customDayNumber.innerHTML = days;
+            days+=interval;
+            
         }
         if(hours< clockElement.hours){
             done =false;
             console.log('hours', hours, done);
             hours++;
-            domElements.customHourNumber.innerHTML = hours;
         }
 
         if(minutes< clockElement.minutes){
             done =false;
             minutes++;
-            domElements.customMinNumber.innerHTML = minutes;
         }
 
         if(seconds< clockElement.seconds){
             done =false;
             seconds++;
-            domElements.customSecNumber.innerHTML = seconds;
         }
         if(done){
             customClockMovement = true;
