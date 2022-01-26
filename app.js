@@ -4,8 +4,6 @@ import Clock from './clock.js'
 // DOM nodes
 let icon = document.getElementById('themeToggle');
 let dayCount = document.getElementById("countDay");
-let startButton = document.getElementById('startButton');
-let stopButton = document.getElementById('stopButton');
 let body = document.body;
 let dayNumber =document.getElementById('day-num');
 let hourNumber =document.getElementById("hour-num");
@@ -107,6 +105,7 @@ function notifyMode() {
         );
     }
 }
+
 startClock();
 autoLight();
 // init events
