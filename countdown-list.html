@@ -10,10 +10,8 @@
     <title>Final Countdown</title>
     <link href="img/icons/favicon.png" rel="icon">
     <meta name="Author" content="R.Djarbeng| A.Nyakotey">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="styles.css">
-
     <link rel="manifest" href="manifest.json">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="img/icons/favicon.png">
@@ -75,29 +73,10 @@
         <section class="container">
             <div class="banner-row">
                 <div class="banner">
-                    <div class="banner-h1"> DAY <span class="day" id='countDay'>X</span> / 365</div>
-                    <div class="banner-h2"> CountDown to New Year <i class="fas fa-snowman"></i></div>
+                    <div class="banner-h1">My CountDowns</div>
                 </div>
             </div>
-            <div class="clock-row">
-                <div class="timer">
-                    <span class="timer-num" id="day-num">00</span>
-                    <span class="timer-text">Days</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="hour-num">00</span>
-                    <span class="timer-text">Hours</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="min-num">00</span>
-                    <span class="timer-text">Minutes</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="sec-num">00</span>
-                    <span class="timer-text">Seconds</span>
-                </div>
-            </div>
-
+            <div class="countdown-list">{{note, date}}</div>
         </section>
     </main>
     <div class="new-item"><i class="fas fa-pencil-alt fa-lg"></i></div>
@@ -105,6 +84,5 @@
     <script src="sidebar.js"></script>
     <script src="theme.js"></script>
     <script src="form.js"></script>
-
 </body>
 </html>

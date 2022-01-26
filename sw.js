@@ -1,5 +1,7 @@
-const staticCacheName = 'site-static-v2';
-const dynamicCache = 'site-dynamic-v2';
+// #3
+const staticCacheName = 'site-static-v3';
+const dynamicCache = 'site-dynamic-v3';
+
 // caching
 //assets to cache
 const assets = [
@@ -8,7 +10,9 @@ const assets = [
     '/authors.html',
     '/fallback.html',
     '/clock.js',
+    '/app.js',
     '/img/bg.svg',
+    // '/img/bg-light.svg',
     '/styles.css',
     'img/icons/favicon.png',
     'img/icons/chrome192.png',

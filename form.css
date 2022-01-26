@@ -1,0 +1,65 @@
+.pop-up-container{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    z-index: 10;
+}
+.pop-up-form{
+    position: relative;
+    width: 80vmin;
+    height: 80vmin;        
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+    background: #f0f0f0;
+    box-shadow: var(--timer-box);
+    border-radius: 0.2rem;
+    gap: 3vmin;
+    color: var(--color-banner);
+}
+input[type="text"],input[type="date"]{
+    width: 50vmin;
+    padding: 2vmin;
+    border-radius: 2vmin;
+    border: var(--color-banner) solid 1px;
+    outline: none;
+}
+input[type="submit"]{
+    padding: 1.5vmin 3vmin;
+    border-radius: .3rem;
+    border: none;  
+    background: var(--color-banner); 
+    color: white;
+}
+input[type="submit"]:hover{
+    background: var(--color-banner);
+    filter:saturate(1.5);
+}
+.form-header{
+    position: absolute;
+    top: 5vmin;
+    font-size: 6vmin;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.pop-up-form > *:not(div:nth-child(1)){
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2vmin;
+}
+.close-form{
+    position: absolute;
+    bottom: 3vmin;
+}
+.close-form button{
+    padding: 1.5vmin 3vmin;
+    border-radius: .3rem;
+    border: solid 1px var(--color-banner); 
+    color: var(--color-banner);
+}

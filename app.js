@@ -3,6 +3,7 @@ import Clock from './clock.js'
 // DOM nodes
 let icon = document.getElementById('themeToggle');
 let dayCount = document.getElementById("countDay");
+
 // let controls = document.getElementsByClassName("button");
 // let startButton = document.getElementById('startButton');
 // let stopButton = document.getElementById('stopButton');
@@ -17,6 +18,7 @@ const customDayNumber =document.getElementById('day-custom');
 const customHourNumber =document.getElementById("hour-custom");
 const customMinNumber =document.getElementById("min-custom");
 const customSecNumber =document.getElementById("sec-custom");
+
 //to stop the clock
 let intervalID;
 let customClockMovement = false;
@@ -110,12 +112,14 @@ function autoLight() {
 
 function activateLightMode() {
     icon.innerHTML = `<i class="fas fa-moon"></i>`;
-    body.classList.toggle("light");
+    if(body.classList.contains("dark")){
+    body.classList.replace("dark","light");}else{body.classList.add("light");}
 }
 
 function activateDarkMode() {
     icon.innerHTML = `<i class="fas fa-sun"></i>`;
-    body.classList.toggle("light");
+    if(body.classList.contains("light")){
+        body.classList.replace("light","dark");}else{body.classList.add("dark");}
 }
 
 function setMode() {
@@ -146,6 +150,7 @@ function notifyMode() {
         );
     }
 }
+
 
 function stepIncreaseAndStart(clockElement, domElements, speed =50, start_num =0){
     let days=0, hours=0, minutes=0, seconds =0;
@@ -188,11 +193,14 @@ function stepIncreaseAndStart(clockElement, domElements, speed =50, start_num =0
     }, speed);
 }
 
+
+
 startClock();
 autoLight();
 // init events
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
+
 dateInput.addEventListener('change', listenForDate);
 
 // service worker

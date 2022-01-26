@@ -1,0 +1,78 @@
+[data-theme="blue"] {
+  --color-banner: #2f8bfc;
+  --color-text: rgb(0, 23, 53);
+  --color-text: var(--color-banner);
+  --bg-modeToggle: rgba(0, 0, 0, 0.2);
+  --bg-sidebar: rgba(47, 139, 252, 0.95);
+  --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+}
+.dark[data-theme="blue"] {
+  --bg-color: #182635;
+  --color-text: white;
+  --bg-timer: #6a7682;
+}
+[data-theme="green"] {
+  --color-banner: #1cb65d;
+  --color-text: rgb(9, 53, 0);
+  --color-text: var(--color-banner);
+  --bg-modeToggle: rgba(0, 0, 0, 0.2);
+  --bg-sidebar: rgba(28, 182, 92, 0.95);
+  --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+}
+.dark[data-theme="green"] {
+  --bg-color: #18351e;
+  --color-text: white;
+  --bg-timer: #6a826b;
+}
+[data-theme="red"] {
+  --color-banner: #fe2164;
+  --color-text: rgb(53, 0, 0);
+  --color-text: var(--color-banner);
+  --bg-modeToggle: rgba(0, 0, 0, 0.2);
+  --bg-sidebar: rgba(254, 33, 99, 0.95);
+  --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+}
+.dark[data-theme="red"] {
+  --bg-color: #35181d;
+  --color-text: white;
+  --bg-timer: #826a6a;
+}
+[data-theme="purple"] {
+  --color-banner: #7b68ee;
+  --color-text: rgb(53, 0, 31);
+  --color-text: var(--color-banner);
+  --bg-modeToggle: rgba(0, 0, 0, 0.2);
+  --bg-sidebar: #7b68ee;
+  --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+}
+.dark[data-theme="purple"] {
+  --bg-color: #1b182c;
+  --color-text: white;
+  --bg-timer: #474650;
+}
+[data-theme="yellow"] {
+  --color-banner: #ffc000;
+  --color-text: rgb(53, 48, 0);
+  --color-text: var(--color-banner);
+  --bg-modeToggle: rgba(0, 0, 0, 0.2);
+  --bg-sidebar: rgba(255, 191, 0, 0.95);
+  --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+}
+.dark[data-theme="yellow"] {
+  --bg-color: #352e19;
+  --color-text: white;
+  --bg-timer: #80826a;
+}
+[data-theme="pink"] {
+  --color-banner: #e685b5;
+  --color-text: rgb(42, 0, 53);
+  --color-text: var(--color-banner);
+  --bg-modeToggle: rgba(0, 0, 0, 0.2);
+  --bg-sidebar: rgba(230, 132, 181, 0.95);
+  --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+}
+.dark[data-theme="pink"] {
+  --bg-color: #472a39;
+  --color-text: white;
+  --bg-timer: #8b7982;
+}
