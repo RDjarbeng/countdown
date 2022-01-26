@@ -18,17 +18,32 @@ export default class Clock {
         // account for case of the countdown being reached, reset
         if (distance >= 0) {
             // Time calculations for days, hours, minutes and seconds
-            this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            this.calculateTimeValues(distance)
+        } else {
+            //reset to end of year
+            // this.setEndDate()
+            //todo: Countup from the deadline date
+            // this.calculateTimeValues(Math.abs(distance));
+
+            // clear date values
+            this.clearCounter();
+
+        }
+    }
+
+    calculateTimeValues(distance){
+        this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
             this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        } else {
-            this.setEndDate()
-        }
     }
     countDays() {
         //account for leap year
         this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
         return this.dayLength - this.days
+    }
+
+    clearCounter(){
+        this.days=this.hours=this.minutes=this.seconds=0;
     }
 }
