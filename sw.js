@@ -1,6 +1,7 @@
 // #3
 const staticCacheName = 'site-static-v3';
 const dynamicCache = 'site-dynamic-v3';
+
 // caching
 //assets to cache
 const assets = [

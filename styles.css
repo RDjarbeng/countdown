@@ -35,7 +35,10 @@
   --timer-grad: rgba(255, 255, 255, 0.8);
   --timer-box: 0 0 5px 1px rgba(0, 0, 0, 0.1);
 }
-
+/* hide the custom clock at start */
+#customDisplay{
+  display: none;
+}
 body {
   background: var(--bg-url) var(--bg-color) center no-repeat;
   background-size: cover;
