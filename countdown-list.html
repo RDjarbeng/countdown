@@ -73,28 +73,10 @@
         <section class="container">
             <div class="banner-row">
                 <div class="banner">
-                    <div class="banner-h1"> DAY <span class="day" id ='countDay'>X</span> / 365</div>
-                    <div class="banner-h2"> CountDown to New Year <i class="fas fa-snowman"></i></div>                    
+                    <div class="banner-h1">My CountDowns</div>
                 </div>
             </div>
-            <div class="clock-row">
-                <div class="timer">
-                    <span class="timer-num" id="day-num">00</span>
-                    <span class="timer-text">Days</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="hour-num">00</span>
-                    <span class="timer-text">Hours</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="min-num">00</span>
-                    <span class="timer-text">Minutes</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="sec-num">00</span>
-                    <span class="timer-text">Seconds</span>
-                </div>
-            </div>
+            <div class="countdown-list">{{note, date}}</div>
         </section>
     </main>
     <div class="new-item"><i class="fas fa-pencil-alt fa-lg"></i></div>

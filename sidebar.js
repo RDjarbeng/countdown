@@ -11,10 +11,15 @@ nav.addEventListener("click", () => {
         sidebar.classList.replace("sidebar-hide", "sidebar-show");
     }
 });
-sidebarItems[0].onclick = featureNotReady;
-sidebarItems[1].onclick = featureNotReady;
-sidebarItems[2].onclick = openColorPicker;
-sidebarItems[3].onclick = () => {
+sidebarItems[0].onclick = () => {
+    window.location.href = "./index.html";
+};
+sidebarItems[1].onclick = () => {
+    window.location.href = "./countdown-list.html";
+};
+sidebarItems[2].onclick = featureNotReady;
+sidebarItems[3].onclick = openColorPicker;
+sidebarItems[4].onclick = () => {
     window.location.href = "./authors.html";
 };
 
