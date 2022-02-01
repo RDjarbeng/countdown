@@ -27,7 +27,7 @@
   --bg-timer: #474650;
 }
 .light {
-  --bg-color: #dfdfdf;
+  --bg-color: #dbdbdb;
   --color-muted: rgba(255, 255, 255, 0.3);
   --color-text: rgb(0, 23, 53);
   --color-text: var(--color-banner);
@@ -37,9 +37,9 @@
 }
 
 body {
-  background: var(--bg-url) var(--bg-color) center no-repeat;
+  background: var(--bg-url) var(--bg-color) center no-repeat fixed;
   background-size: cover;
-  background-blend-mode: soft-light;
+  background-blend-mode: overlay;
   transition: background-color 0.2s ease, color 0.2s ease;
   color: var(--color-text);
   font-family: "Nunito", sans-serif;

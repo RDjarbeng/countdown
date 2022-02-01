@@ -1,3 +1,4 @@
+/* generic */
 .pop-up-container{
     position: absolute;
     top: 0;
@@ -23,6 +24,25 @@
     gap: 3vmin;
     color: var(--color-banner);
 }
+.form-header{
+    position: absolute;
+    top: 5vmin;
+    font-size: 6vmin;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.close-form{
+    position: absolute;
+    bottom: 3vmin;
+}
+.close-form button{
+    padding: 1.5vmin 3vmin;
+    border-radius: .3rem;
+    border: solid 1px var(--color-banner); 
+    color: var(--color-banner);
+}
+
+/* create countdown form */
 input[type="text"],input[type="date"]{
     width: 50vmin;
     padding: 2vmin;
@@ -41,25 +61,50 @@ input[type="submit"]:hover{
     background: var(--color-banner);
     filter:saturate(1.5);
 }
-.form-header{
-    position: absolute;
-    top: 5vmin;
-    font-size: 6vmin;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-.pop-up-form > *:not(div:nth-child(1)){
+.form-sections{
     display: inline-flex;
     flex-direction: column;
     gap: 2vmin;
 }
-.close-form{
-    position: absolute;
-    bottom: 3vmin;
+
+/* upload image form */
+.bg-presets {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+    overflow: hidden;
+    gap: 1vmin;
 }
-.close-form button{
-    padding: 1.5vmin 3vmin;
-    border-radius: .3rem;
-    border: solid 1px var(--color-banner); 
-    color: var(--color-banner);
+.bg-presets-preview {
+    width: 15vmin;
+    height: 15vmin;
+}
+.bg-presets-preview img {
+    width: 15vmin;
+    height: 15vmin;
+}
+label[for="upload"] {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+label[for="upload-info"] {
+    font-size: 0.7rem;
+    font-style: italic;
+}
+input[type="file"] {
+    display: none;
+    appearance: none;
+}
+
+/* mobile and small screens */
+@media screen and (max-width: 427px) {
+    .pop-up-form {
+        height: 90vmin;
+    }
 }

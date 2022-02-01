@@ -1,7 +1,5 @@
 const $ = (selector) => document.querySelectorAll(selector);
-const featureNotReady = () => {
-    window.location.href = "./fallback.html";
-};
+const setLink = (link) => window.location.href = link;
 const nav = $(".nav")[0];
 const sidebar = $(".sidebar")[0];
 const sidebarItems = $(".sidebar-list-items");
@@ -11,17 +9,11 @@ nav.addEventListener("click", () => {
         sidebar.classList.replace("sidebar-hide", "sidebar-show");
     }
 });
-sidebarItems[0].onclick = () => {
-    window.location.href = "./index.html";
-};
-sidebarItems[1].onclick = () => {
-    window.location.href = "./countdown-list.html";
-};
-sidebarItems[2].onclick = featureNotReady;
-sidebarItems[3].onclick = openColorPicker;
-sidebarItems[4].onclick = () => {
-    window.location.href = "./authors.html";
-};
+sidebarItems[0].addEventListener("click",()=>setLink("./index.html"));  
+sidebarItems[1].addEventListener("click",()=>setLink("./countdown-list.html"));  
+sidebarItems[2].addEventListener("click",openBgPicker);
+sidebarItems[3].addEventListener("click",openColorPicker);
+sidebarItems[4].addEventListener("click",()=>setLink("./authors.html"));  
 
 function setTheme(event) {
     document.body.dataset.theme = event.currentTarget.dataset.settheme;
@@ -34,7 +26,6 @@ function openColorPicker() {
 
 colorIcons.forEach((e) => {
     e.addEventListener("click", function (e) {
-        // alert(e);
         setTheme(e);
     });
 });
@@ -46,4 +37,50 @@ nav.addEventListener("click",(e)=>{
 const closeSideBarListener = (event)=> {
     sidebar.classList.add("sidebar-hide");
     event.currentTarget.removeEventListener("click",closeSideBarListener);
+}
+
+function openBgPicker() {
+    if (!document.querySelector("[href='form.css']")) {
+        document.head.insertAdjacentHTML(
+            "beforeend",
+            `<link rel="stylesheet" href="form.css">`
+        );
+    }
+    const loadForm = async () => {
+        let file = await fetch("./form-upload.html");
+        let ft = await file.text();
+        document.body.insertAdjacentHTML("afterbegin", ft);
+        document.body.style.position = "fixed";
+        const filePicker = document.querySelector("input[type='file']");
+        const reading =(uploadedPic)=> {
+            let reader = new FileReader();
+            reader.readAsDataURL(uploadedPic);
+
+            reader.onload = function () {
+                let uploadedPic64 = reader.result;
+                localStorage.setItem("userBg", `${uploadedPic64}`);
+                document.body.style.backgroundImage = `url(${uploadedPic64})`;
+            };
+            reader.onerror = function () {
+                console.log(reader.error);
+            };
+        }
+        filePicker.onchange = () => {
+            reading(filePicker.files[0]);
+        };
+        document.getElementsByClassName("close-form")[0].onclick = () => {
+            document.getElementsByClassName("pop-up-container")[0].remove();
+            document.body.style.position = "";
+        };
+        $(".bg-presets-preview:not(.p10) img").forEach((e)=>{
+            e.addEventListener("click",()=>{  
+                const sbg = async ()=>{ let img = await fetch(e.src);
+                    let imgblob = await img.blob();
+                reading(imgblob);  
+                }
+                sbg();             
+            });
+        })
+    };
+    loadForm();
 }
