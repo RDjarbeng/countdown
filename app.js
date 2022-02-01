@@ -1,50 +1,44 @@
-// require('./clock')
 import Clock from './clock.js'
 
 // DOM nodes
 let icon = document.getElementById('themeToggle');
 let dayCount = document.getElementById("countDay");
-let body = document.body;
-let dayNumber =document.getElementById('day-num');
-let hourNumber =document.getElementById("hour-num");
-let minNumber =document.getElementById("min-num");
-let secNumber =document.getElementById("sec-num");
+
+// let controls = document.getElementsByClassName("button");
+// let startButton = document.getElementById('startButton');
+// let stopButton = document.getElementById('stopButton');
+const body = document.body;
+const dayNumber =document.getElementById('day-num');
+const hourNumber =document.getElementById("hour-num");
+const minNumber =document.getElementById("min-num");
+const secNumber =document.getElementById("sec-num");
+const dateInput = document.getElementById('customDate')
+
+const customDayNumber =document.getElementById('day-custom');
+const customHourNumber =document.getElementById("hour-custom");
+const customMinNumber =document.getElementById("min-custom");
+const customSecNumber =document.getElementById("sec-custom");
+
 //to stop the clock
 let intervalID;
-let clockMovement = false;
+let customClockMovement = false;
 
-// Initialize Clock class
+// Initialize default Clock class
 var myclock = new Clock();
+var customClock;
 
 function startClock() {
     intervalID = setInterval(startTime, 500);
 }
 
 function startTime() {
-    myclock.countDown();
-    let d = myclock.days
-    let h = myclock.hours
-    let m = myclock.minutes
-    let s = myclock.seconds
-    d= addZeros(d);
-    h = addZeros(h);
-    m = addZeros(m);
-    s = addZeros(s);
-    dayNumber.innerHTML = `${d}`;
-    hourNumber.innerHTML = `${h}`;
-    minNumber.innerHTML = `${m}`;
-    secNumber.innerHTML = `${s}`;
+    updateDisplay(myclock, dayNumber, hourNumber, minNumber, secNumber);
     dayCount.innerHTML= myclock.countDays();
-    clockMovement = true;
-}
-
-function restartTime() {
-    if (clockMovement) {
-        return;
-    } else {
-        startClock();
+    if(customClockMovement){
+        updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
 }
+
 // add zero in front of numbers < 10
 function addZeros(time) {
     if (time < 10) {
@@ -53,11 +47,62 @@ function addZeros(time) {
     return time;
 }
 
-function stopClock() {
-    clearTimeout(intervalID);
-    clockMovement = false;
+function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay){
+    counter.countDown();
+    let d = counter.days
+    let h = counter.hours
+    let m = counter.minutes
+    let s = counter.seconds
+    d= addZeros(d);
+    h = addZeros(h);
+    m = addZeros(m);
+    s = addZeros(s);
+
+    dayDisplay.innerHTML = `${d}`;
+    hourDisplay.innerHTML = `${h}`;
+    minDisplay.innerHTML = `${m}`;
+    secDisplay.innerHTML = `${s}`;
 }
 
+
+
+//todo: find a better way of checking for a valid date
+/**
+ * Listens for a user input for date element
+ */
+function listenForDate(){
+    const input = this.value;
+    // console.log(input, 'run');
+    if(input != ''){
+        customClock = new Clock(new Date(input));
+        displayClockRow();
+        // do the fast countdown
+        // set speed faster when day of the year is greater
+        stepIncreaseAndStart(customClock, {customDayNumber,customHourNumber, customMinNumber, customSecNumber} ,(365-customClock.days<100)?365-customClock.days: 70);
+    }
+}
+
+function displayClockRow(){
+    
+    let customRow =document.getElementById("customDisplay");
+    // show row
+    customRow.style.display= 'block';
+}
+/* //restart the clock
+function restartTime() {
+    if (customClockMovement) {
+        return;
+    } else {
+        startClock();
+    }
+}
+
+//stop the clock
+function stopClock() {
+    clearTimeout(intervalID);
+    customClockMovement = false;
+}
+*/
 //light mode if after 6am and after 18:00 evening
 function autoLight() {
     let h = new Date().getHours();
@@ -106,17 +151,66 @@ function notifyMode() {
     }
 }
 
+
+function stepIncreaseAndStart(clockElement, domElements, speed =50, start_num =0){
+    let days=0, hours=0, minutes=0, seconds =0;
+    const interval=7;
+    let done = true;
+    customClockMovement=false;
+    console.log(speed);
+    // console.log(domElements);
+    let timer = setInterval(() => {
+        done=true;
+        domElements.customDayNumber.innerHTML = days;
+        domElements.customHourNumber.innerHTML = hours;
+        domElements.customMinNumber.innerHTML = minutes;
+        domElements.customSecNumber.innerHTML = seconds;
+
+        if(days < clockElement.days && clockElement.days> interval){
+            done =false;
+            days+=interval;
+            
+        }
+        if(hours< clockElement.hours){
+            done =false;
+            console.log('hours', hours, done);
+            hours++;
+        }
+
+        if(minutes< clockElement.minutes){
+            done =false;
+            minutes++;
+        }
+
+        if(seconds< clockElement.seconds){
+            done =false;
+            seconds++;
+        }
+        if(done){
+            customClockMovement = true;
+            clearInterval(timer)
+        }
+    }, speed);
+}
+
+
+
 startClock();
 autoLight();
 // init events
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
+
+dateInput.addEventListener('change', listenForDate);
+
 // service worker
-// if('serviceWorker' in navigator){
-//     window.addEventListener('load', () => {
-//     navigator.serviceWorker.register('/sw.js')
-//     .then( (reg)=> console.log('service worker registered', reg))
-//         .catch((err)=> console.log('Service worker not registered', err));
-//   });
+/*
+if('serviceWorker' in navigator){
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+    .then( (reg)=> console.log('service worker registered', reg))
+        .catch((err)=> console.log('Service worker not registered', err));
+  });
         
-// }
+}
+*/
