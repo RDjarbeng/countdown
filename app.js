@@ -22,6 +22,7 @@ const customSecNumber =document.getElementById("sec-custom");
 
 //to stop the clock
 let intervalID;
+let animationComplete=false;
 let customClockMovement = false;
 
 // Initialize default Clock class
@@ -29,7 +30,17 @@ var myclock = new Clock();
 var customClock;
 
 function startClock() {
+    stepIncreaseAndStart(myclock, {dayNumber, hourNumber, minNumber, secNumber}, animatedCountDuration)
+    // begin animated countdown and wait for it to complete
+    intervalID = setInterval(waitForAnimation, animatedCountDuration+200);
+}
+
+function waitForAnimation(){
+    //upon completion begin countdown
+    if(animationComplete){
+    clearTimeout(intervalID);
     intervalID = setInterval(startTime, 500);
+}
 }
 
 function startTime() {
@@ -163,53 +174,21 @@ function animateValue(obj, start, end, duration) {
       obj.innerHTML = Math.floor(progress * (end - start) + start);
       if (progress < 1) {
         window.requestAnimationFrame(step);
+        animationComplete =false;
+      }else{
+          animationComplete=true;
       }
     };
     window.requestAnimationFrame(step);
   }
 
 function stepIncreaseAndStart(clockElement, domElements, speed =50, start_num =0){
-    let days=0, hours=0, minutes=0, seconds =0;
-    const interval=7;
-    let done = true;
-    customClockMovement=false;
-    animateValue(domElements.dayNumber, 0, clockElement.days, speed);
-    animateValue(domElements.hourNumber, 0, clockElement.hours, speed);
-    animateValue(domElements.minNumber, 0, clockElement.minutes, speed);
-    animateValue(domElements.secNumber, 0, clockElement.seconds, speed);
-    // console.log(domElements);
-    // let timer = setInterval(() => {
-    //     done=true;
-    //     domElements.customDayNumber.innerHTML = days;
-    //     domElements.customHourNumber.innerHTML = hours;
-    //     domElements.customMinNumber.innerHTML = minutes;
-    //     domElements.customSecNumber.innerHTML = seconds;
-
-    //     if(days < clockElement.days && clockElement.days> interval){
-    //         done =false;
-    //         days+=interval;
-            
-    //     }
-    //     if(hours< clockElement.hours){
-    //         done =false;
-    //         console.log('hours', hours, done);
-    //         hours++;
-    //     }
-
-    //     if(minutes< clockElement.minutes){
-    //         done =false;
-    //         minutes++;
-    //     }
-
-    //     if(seconds< clockElement.seconds){
-    //         done =false;
-    //         seconds++;
-    //     }
-    //     if(done){
-    //         customClockMovement = true;
-    //         clearInterval(timer)
-    //     }
-    // }, speed);
+    
+    animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
+    animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
+    animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
+    animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
+    
 }
 
 
@@ -217,7 +196,7 @@ function stepIncreaseAndStart(clockElement, domElements, speed =50, start_num =0
 // startClock();
 
 startClock();
-stepIncreaseAndStart(myclock, {dayNumber, hourNumber, minNumber, secNumber}, animatedCountDuration)
+
 setTimeout(startClock, 3000);
 // startTime();
 autoLight();
