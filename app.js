@@ -201,7 +201,7 @@ autoLight();
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
 
-dateInput.addEventListener('change', listenForDate);
+// dateInput.addEventListener('change', listenForDate);
 
 // service worker
 /*
