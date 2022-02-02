@@ -49,14 +49,21 @@ function openBgPicker() {
              <link rel="stylesheet" href="loader.css">`
         );
     }
-    const showLoader = async () => {
+    const showLoader = () => {
         document.body.insertAdjacentHTML(
             "afterbegin",
-            await (await fetch("./loader.html")).text()
+            `<aside class="pop-up-container loader-container">
+                <section class="loader">
+                    <span>Loading</span>
+                    <span>.</span>
+                    <span>.</span>
+                    <span>.</span>
+                </section>
+            </aside>`
         );
     };
+    showLoader();
     const loadForm = async () => {
-        showLoader();
         let file = await fetch("./form-upload.html");
         let ft = await file.text();
         document.getElementsByClassName("loader-container")[0].remove();
