@@ -3,6 +3,7 @@ import Clock from './clock.js'
 // DOM nodes
 let icon = document.getElementById('themeToggle');
 let dayCount = document.getElementById("countDay");
+const animatedCountDuration = 800;
 
 // let controls = document.getElementsByClassName("button");
 // let startButton = document.getElementById('startButton');
@@ -59,6 +60,7 @@ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay)
     s = addZeros(s);
 
     dayDisplay.innerHTML = `${d}`;
+    
     hourDisplay.innerHTML = `${h}`;
     minDisplay.innerHTML = `${m}`;
     secDisplay.innerHTML = `${s}`;
@@ -151,51 +153,73 @@ function notifyMode() {
     }
 }
 
+function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    //   console.log('start timestamp',startTimestamp, 'tstamp',timestamp, 'progress', progress, 'result to floor', progress * (end - start) + start);
+      obj.innerHTML = Math.floor(progress * (end - start) + start);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
 
 function stepIncreaseAndStart(clockElement, domElements, speed =50, start_num =0){
     let days=0, hours=0, minutes=0, seconds =0;
     const interval=7;
     let done = true;
     customClockMovement=false;
-    console.log(speed);
+    animateValue(domElements.dayNumber, 0, clockElement.days, speed);
+    animateValue(domElements.hourNumber, 0, clockElement.hours, speed);
+    animateValue(domElements.minNumber, 0, clockElement.minutes, speed);
+    animateValue(domElements.secNumber, 0, clockElement.seconds, speed);
     // console.log(domElements);
-    let timer = setInterval(() => {
-        done=true;
-        domElements.customDayNumber.innerHTML = days;
-        domElements.customHourNumber.innerHTML = hours;
-        domElements.customMinNumber.innerHTML = minutes;
-        domElements.customSecNumber.innerHTML = seconds;
+    // let timer = setInterval(() => {
+    //     done=true;
+    //     domElements.customDayNumber.innerHTML = days;
+    //     domElements.customHourNumber.innerHTML = hours;
+    //     domElements.customMinNumber.innerHTML = minutes;
+    //     domElements.customSecNumber.innerHTML = seconds;
 
-        if(days < clockElement.days && clockElement.days> interval){
-            done =false;
-            days+=interval;
+    //     if(days < clockElement.days && clockElement.days> interval){
+    //         done =false;
+    //         days+=interval;
             
-        }
-        if(hours< clockElement.hours){
-            done =false;
-            console.log('hours', hours, done);
-            hours++;
-        }
+    //     }
+    //     if(hours< clockElement.hours){
+    //         done =false;
+    //         console.log('hours', hours, done);
+    //         hours++;
+    //     }
 
-        if(minutes< clockElement.minutes){
-            done =false;
-            minutes++;
-        }
+    //     if(minutes< clockElement.minutes){
+    //         done =false;
+    //         minutes++;
+    //     }
 
-        if(seconds< clockElement.seconds){
-            done =false;
-            seconds++;
-        }
-        if(done){
-            customClockMovement = true;
-            clearInterval(timer)
-        }
-    }, speed);
+    //     if(seconds< clockElement.seconds){
+    //         done =false;
+    //         seconds++;
+    //     }
+    //     if(done){
+    //         customClockMovement = true;
+    //         clearInterval(timer)
+    //     }
+    // }, speed);
 }
 
 
 
+// startClock();
+
 startClock();
+stepIncreaseAndStart(myclock, {dayNumber, hourNumber, minNumber, secNumber}, animatedCountDuration)
+setTimeout(startClock, 3000);
+// startTime();
 autoLight();
 // init events
 icon.addEventListener("click", setMode);
