@@ -66,9 +66,9 @@ function openBgPicker() {
     const loadForm = async () => {
         let file = await fetch("./form-upload.html");
         let ft = await file.text();
-        document.getElementsByClassName("loader-container")[0].remove();
         document.body.insertAdjacentHTML("afterbegin", ft);
         document.body.style.position = "fixed";
+        document.getElementsByClassName("loader-container")[0].remove();
         const filePicker = document.querySelector("input[type='file']");
         const reading = (uploadedPic) => {
             let reader = new FileReader();
