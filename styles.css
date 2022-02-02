@@ -431,7 +431,7 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
     font-size: 0.75rem;
   }
   .sidebar{
-    width: 85vmin;
+    width: 75vmin;
   }
   .new-item{
     bottom: 10vh;

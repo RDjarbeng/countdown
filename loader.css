@@ -1,0 +1,29 @@
+.loader{
+    background-color: var(--color-sidebar);
+    padding: 0 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.5em;
+}
+.loader span:nth-child(n+2){
+    font-size: 1.5em;
+    animation-duration:2.5s;
+    animation-iteration-count:infinite;    
+}
+.loader span:nth-child(2){animation-name:l1;}
+.loader span:nth-child(3){animation-name:l2;}
+.loader span:nth-child(4){animation-name:l3;}
+@keyframes l1{
+    from{opacity:0;}
+    15%{opacity:0;}
+    25%{opacity:1;}
+}
+@keyframes l2{
+    from{opacity:0;}
+    40%{opacity:0;}
+    50%{opacity:1;}
+}
+@keyframes l3{
+    from{opacity:0;}
+    65%{opacity:0;}
+    75%{opacity:1;}
+}

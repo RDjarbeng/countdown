@@ -50,14 +50,14 @@ input[type="text"],input[type="date"]{
     border: var(--color-banner) solid 1px;
     outline: none;
 }
-input[type="submit"]{
+input[type="submit"],.reset button{
     padding: 1.5vmin 3vmin;
     border-radius: .3rem;
     border: none;  
     background: var(--color-banner); 
     color: white;
 }
-input[type="submit"]:hover{
+input[type="submit"]:hover,.reset button:hover{
     background: var(--color-banner);
     filter:saturate(1.5);
 }
@@ -78,12 +78,12 @@ input[type="submit"]:hover{
     gap: 1vmin;
 }
 .bg-presets-preview {
-    width: 15vmin;
-    height: 15vmin;
+    width: 16vmin;
+    height: 16vmin;
 }
 .bg-presets-preview img {
-    width: 15vmin;
-    height: 15vmin;
+    width: 16vmin;
+    height: 16vmin;
 }
 label[for="upload"] {
     display: flex;
@@ -94,7 +94,7 @@ label[for="upload"] {
     background-color: rgba(0, 0, 0, 0.1);
 }
 label[for="upload-info"] {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-style: italic;
 }
 input[type="file"] {
