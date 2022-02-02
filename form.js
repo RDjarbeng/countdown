@@ -29,10 +29,7 @@ function popForm() {
     document.body.insertAdjacentHTML("afterbegin", popFormHtml);
     document.body.style.position = "fixed";
     setDateAttributes();
-    document.getElementsByClassName("close-form")[0].onclick = (e)=> {
-        document.getElementsByClassName("pop-up-container")[0].remove();
-        document.body.style.position = "";
-    }
+    document.getElementsByClassName("close-form")[0].onclick = (e)=> {closeFormPopUp();}
 }
 
 function setDateAttributes(){
@@ -52,7 +49,11 @@ document.getElementById("dateInput").setAttribute("min", todayString);
 let customDateInput =document.getElementById("customDate");
 customDateInput.addEventListener('submit', (e)=>{
     e.preventDefault();
+    closeFormPopUp();
+})
+}
+
+function closeFormPopUp(){
     document.getElementsByClassName("pop-up-container")[0].remove();
         document.body.style.position = "";
-})
 }
