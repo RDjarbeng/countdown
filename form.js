@@ -6,7 +6,7 @@ if (!document.querySelector("[href='form.css']")) {
     );
 }
 const popFormHtml = `<section class="pop-up-container">
-<form action="/countdown-list.html" method="get" class="pop-up-form">
+<form action="/countdown-list.html" method="get" id='customDate' class="pop-up-form">
     <div class="form-header">Set Countdown</div>
     <div class="form-sections">
         <label for="">Note &nbsp;</label>
@@ -49,4 +49,10 @@ if(mm<10){
 
 let todayString = yyyy+'-'+mm+'-'+dd;
 document.getElementById("dateInput").setAttribute("min", todayString);
+let customDateInput =document.getElementById("customDate");
+customDateInput.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    document.getElementsByClassName("pop-up-container")[0].remove();
+        document.body.style.position = "";
+})
 }
