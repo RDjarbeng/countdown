@@ -8,6 +8,14 @@ function loadTheme() {
         document.body.classList.add("light");
     }
 }
+
+function loadAppStatusBarTheme() {
+    let primaryColor = localStorage.getItem("primaryColor");
+    if(!["",null,undefined].includes(primaryColor)){
+        $("[content='#7b68ee']").forEach(e=>e.setAttribute("content",primaryColor));  
+    }
+}
+
 function loadBg() {
     let savedBg = localStorage.getItem("userBg");
     if( !["",null,undefined].includes(savedBg)){
@@ -16,4 +24,5 @@ function loadBg() {
 }
 
 loadTheme();
+loadAppStatusBarTheme();
 loadBg();

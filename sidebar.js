@@ -18,8 +18,22 @@ sidebarItems[3].addEventListener("click", openColorPicker);
 sidebarItems[4].addEventListener("click", () => setLink("./authors.html"));
 
 function setTheme(event) {
+    let prevTheme = getComputedStyle(document.body).getPropertyValue(
+        "--color-banner"
+    );
     document.body.dataset.theme = event.currentTarget.dataset.settheme;
     localStorage.setItem("theme", `${event.currentTarget.dataset.settheme}`);
+    
+    function setAppStatusBarTheme() {
+        let primaryColor = getComputedStyle(document.body).getPropertyValue(
+            "--color-banner"
+        );
+        $(`[content="${prevTheme}"]`).forEach((e) =>
+            e.setAttribute("content", primaryColor)
+        );
+        localStorage.setItem("primaryColor", primaryColor);
+    }
+    setAppStatusBarTheme();
 }
 
 function openColorPicker() {
