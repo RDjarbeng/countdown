@@ -1,6 +1,5 @@
 [data-theme="blue"] {
   --color-banner: #2f8bfc;
-  --color-text: rgb(0, 23, 53);
   --color-text: var(--color-banner);
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: rgba(47, 139, 252, 0.95);
@@ -13,7 +12,6 @@
 }
 [data-theme="green"] {
   --color-banner: #1cb65d;
-  --color-text: rgb(9, 53, 0);
   --color-text: var(--color-banner);
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: rgba(28, 182, 92, 0.95);
@@ -26,7 +24,6 @@
 }
 [data-theme="red"] {
   --color-banner: #fe2164;
-  --color-text: rgb(53, 0, 0);
   --color-text: var(--color-banner);
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: rgba(254, 33, 99, 0.95);
@@ -39,7 +36,6 @@
 }
 [data-theme="purple"] {
   --color-banner: #7b68ee;
-  --color-text: rgb(53, 0, 31);
   --color-text: var(--color-banner);
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: hsla(249, 80%, 67%, 0.95);
@@ -52,7 +48,6 @@
 }
 [data-theme="yellow"] {
   --color-banner: #ffc000;
-  --color-text: rgb(53, 48, 0);
   --color-text: var(--color-banner);
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: rgba(255, 191, 0, 0.95);
@@ -65,7 +60,6 @@
 }
 [data-theme="pink"] {
   --color-banner: #e685b5;
-  --color-text: rgb(42, 0, 53);
   --color-text: var(--color-banner);
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: rgba(230, 132, 181, 0.95);

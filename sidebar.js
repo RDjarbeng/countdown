@@ -42,7 +42,7 @@ const closeSideBarListener = (event) => {
 };
 
 function openBgPicker() {
-    if (!document.querySelector("[href='form.css']")) {
+    if (!($("[href='form.css']")[0] && $("[href='loader.css']")[0])) {
         document.head.insertAdjacentHTML(
             "beforeend",
             `<link rel="stylesheet" href="form.css">
