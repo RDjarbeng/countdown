@@ -12,7 +12,7 @@ function loadTheme() {
 function loadAppStatusBarTheme() {
     let primaryColor = localStorage.getItem("primaryColor");
     if(!["",null,undefined].includes(primaryColor)){
-        $("[content='#7b68ee']").forEach(e=>e.setAttribute("content",primaryColor));  
+        document.querySelectorAll("[content='#7b68ee']").forEach(e=>e.setAttribute("content",primaryColor));  
     }
 }
 
