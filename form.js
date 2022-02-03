@@ -63,7 +63,6 @@ function closeFormPopUp() {
 
 function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
-    console.log('runniing');
     countdownForm.addEventListener('submit', (e) => {
         
         e.preventDefault();
@@ -82,12 +81,7 @@ function handleFormSubmission() {
         }else{
             // create first countdown
             localStorage.setItem('countdown', JSON.stringify([countItem]) );
-            console.log('added item to count');
-
         }
-        
-        console.log(userText, userDate, countdown);
-
         closeFormPopUp();
     })
 }
