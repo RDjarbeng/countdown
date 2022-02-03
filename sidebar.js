@@ -42,11 +42,16 @@ const closeSideBarListener = (event) => {
 };
 
 function openBgPicker() {
-    if (!($("[href='form.css']")[0] && $("[href='loader.css']")[0])) {
+    if (!$("[href='form.css']")[0]) {
         document.head.insertAdjacentHTML(
             "beforeend",
-            `<link rel="stylesheet" href="form.css">
-             <link rel="stylesheet" href="loader.css">`
+            `<link rel="stylesheet" href="form.css">`
+        );
+    }
+    if (!$("[href='loader.css']")[0]) {
+        document.head.insertAdjacentHTML(
+            "beforeend",
+            `<link rel="stylesheet" href="loader.css">`
         );
     }
     const showLoader = () => {
