@@ -72,7 +72,7 @@ function openBgPicker() {
         document.body.insertAdjacentHTML(
             "afterbegin",
             `<aside class="pop-up-container loader-container">
-                <section class="loader">
+                <section class="loader" style="--color-banner: ${getComputedStyle($("body")[0]).getPropertyValue("--color-banner")}">
                     <span>Loading</span>
                     <span>.</span>
                     <span>.</span>
@@ -85,9 +85,9 @@ function openBgPicker() {
     const loadForm = async () => {
         let file = await fetch("./form-upload.html");
         let ft = await file.text();
+        document.getElementsByClassName("loader-container")[0].remove();
         document.body.insertAdjacentHTML("afterbegin", ft);
         document.body.style.position = "fixed";
-        document.getElementsByClassName("loader-container")[0].remove();
         const filePicker = document.querySelector("input[type='file']");
         const reading = (uploadedPic) => {
             let reader = new FileReader();
@@ -115,7 +115,7 @@ function openBgPicker() {
             localStorage.removeItem("userBg");
             document.body.style.backgroundImage = "";
         });
-        $(".bg-presets-preview:not(.p5) img").forEach((e) => {
+        $(".bg-presets-preview:not(.upload-preview) img").forEach((e) => {
             e.addEventListener("click", () => {
                 const sbg = async () => {
                     let img = await fetch(e.src);
