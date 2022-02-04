@@ -26,26 +26,29 @@ let animationComplete = false;
 let customClockMovement = false;
 
 // Initialize default Clock class
-var myclock = new Clock();
+export var myclock = new Clock();
 var customClock;
 
-function waitForAnimation() {
-    stepIncreaseAndStart(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration)
+export function waitForAnimation(clock, domElements) {
+    stepIncreaseAndStart(clock||myclock, domElements, animatedCountDuration)
     // begin animated countdown and wait for it to complete
-    intervalID = setInterval(startClock, animatedCountDuration + 100);
+    console.log('day', dayNumber);
+    intervalID = setInterval(()=>{ startClock(clock||myclock, domElements)}, animatedCountDuration + 100);
 }
 
-function startClock() {
+function startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
+    
     //upon completion begin countdown
     if (animationComplete) {
         clearTimeout(intervalID);
-        intervalID = setInterval(startTime, 500);
+        intervalID = setInterval(()=>{ startTime(clock, { dayNumber, hourNumber, minNumber, secNumber } )}, 500);
     }
 }
 
-function startTime() {
-    updateDisplay(myclock, dayNumber, hourNumber, minNumber, secNumber);
-    dayCount.innerHTML = myclock.countDays();
+function startTime(clock, {dayNumber, hourNumber, minNumber, secNumber} ) {
+    // console.log( clock);
+    updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
+    if(dayCount)dayCount.innerHTML = myclock.countDays();
     if (customClockMovement) {
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
@@ -59,7 +62,8 @@ function addZeros(time) {
     return time;
 }
 
-function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
+export function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
+    
     counter.countDown();
     let d = counter.days
     let h = counter.hours
@@ -109,13 +113,13 @@ function restartTime() {
         startClock();
     }
 }
-
+*/
 //stop the clock
-function stopClock() {
+export function stopClock() {
     clearTimeout(intervalID);
     customClockMovement = false;
 }
-*/
+
 //light mode if after 6am and after 18:00 evening
 function autoLight() {
     let h = new Date().getHours();
@@ -197,8 +201,8 @@ function addEventListeners() {
 }
 
 //show day value before animation runs
-startTime();
-waitForAnimation();
+// startTime();
+waitForAnimation(myclock, {dayNumber, hourNumber, minNumber, secNumber});
 addEventListeners();
 autoLight();
 // init events

@@ -1,3 +1,10 @@
+import { stopClock, waitForAnimation } from "./app.js";
+import Clock from "./clock.js";
+
+const dayNumber = document.getElementById('day-num');
+const hourNumber = document.getElementById("hour-num");
+const minNumber = document.getElementById("min-num");
+const secNumber = document.getElementById("sec-num");
 // todo: sort by modified time
 function displayCountdowns(){
     let countdownList =document.getElementById('countdown-list');
@@ -14,6 +21,13 @@ function displayCountdowns(){
         </div>`
     });
     countdownList.innerHTML = listItems;
+    let clock = new Clock(new Date(arrayOfCountdowns[0].date));
+    // waitForAnimation(new Clock(new Date(arrayOfCountdowns[0].date)));
+    // myclock.endDate = new Date(arrayOfCountdowns[0].date)
+    stopClock();
+    waitForAnimation(clock, {dayNumber, hourNumber, minNumber, secNumber })
+    
+    // console.log(myClock);
 }
 
 displayCountdowns();
