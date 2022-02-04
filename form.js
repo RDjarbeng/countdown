@@ -9,6 +9,8 @@ if (!document.querySelector("[href='form.css']")) {
         `<link rel="stylesheet" href="form.css">`
     );
 }
+
+// todo: set variable countdown value
 const popFormHtml = `<section class="pop-up-container">
 <form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
     <div class="form-header">Set Countdown</div>
