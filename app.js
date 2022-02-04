@@ -26,7 +26,7 @@ let animationComplete = false;
 let customClockMovement = false;
 
 // Initialize default Clock class
-export var myclock = new Clock();
+var myclock = new Clock();
 var customClock;
 
 export function waitForAnimation(clock, domElements) {
@@ -62,7 +62,7 @@ function addZeros(time) {
     return time;
 }
 
-export function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
+function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
     
     counter.countDown();
     let d = counter.days
