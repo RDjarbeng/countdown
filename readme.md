@@ -83,7 +83,15 @@ Light mode on PC
 ![pcv1.2](https://user-images.githubusercontent.com/73431750/149921160-cb97133b-84c5-4c72-8084-5dcbc574a532.png)
 
 
+#### v2.0.0 (beta) 
+The development process
+---
+![Screenshot (93)](https://user-images.githubusercontent.com/57795443/152831390-203499a1-8920-4c2e-aaf2-593e2ae701a7.png)
+![Screenshot (86)](https://user-images.githubusercontent.com/57795443/152831413-b1d81f03-9b83-43f3-a641-25b571105df4.png)
+![Screenshot (87)](https://user-images.githubusercontent.com/57795443/152831420-0fcb0bfa-7f76-4d22-8cae-77bccb2f0bff.png)
 
+![Screenshot (88)](https://user-images.githubusercontent.com/57795443/152831371-efc23107-f44e-4a3d-b9d9-43e44a8a9c13.png)
+![Screenshot (92)](https://user-images.githubusercontent.com/57795443/152831384-8e1086f9-43c8-4f35-8a0c-f06244edd482.png)
 
-
+todo: crop out taskbar and unnecessary stuff
 
