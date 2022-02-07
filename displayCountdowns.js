@@ -8,6 +8,7 @@ const secNumber = document.getElementById("sec-num");
 // todo: sort by modified time
 function displayCountdowns() {
     let countdownList = document.getElementById('countdown-list');
+    let coundownTextDisplay = document.getElementById('countdown-text')
     let JsonListOfCountdowns = localStorage.getItem('countdown');
     if (JsonListOfCountdowns) {
         let arrayOfCountdowns = JSON.parse(JsonListOfCountdowns).reverse();
@@ -28,6 +29,7 @@ function displayCountdowns() {
         });
         countdownList.innerHTML = listItems;
         let clock = new Clock(new Date(arrayOfCountdowns[0].date));
+        coundownTextDisplay.innerHTML = arrayOfCountdowns[0].text;
         // waitForAnimation(new Clock(new Date(arrayOfCountdowns[0].date)));
         // myclock.endDate = new Date(arrayOfCountdowns[0].date)
         stopClock();

@@ -32,7 +32,6 @@ var customClock;
 export function waitForAnimation(clock, domElements) {
     stepIncreaseAndStart(clock||myclock, domElements, animatedCountDuration)
     // begin animated countdown and wait for it to complete
-    console.log('day', dayNumber);
     intervalID = setInterval(()=>{ startClock(clock||myclock, domElements)}, animatedCountDuration + 100);
 }
 
