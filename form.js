@@ -1,5 +1,6 @@
 // DOM Elements
 const createButton = document.getElementsByClassName("new-item")[0];
+let countNumber = 1;
 
 // let dateInput, textInput;
 
@@ -18,27 +19,28 @@ createButton.addEventListener("click", popForm);
 
 
 function popForm() {
-    let countNumber =localStorage.getItem('countNumber');
-if(!countNumber)
-const popFormHtml = `<section class="pop-up-container">
-<form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
-    <div class="form-header">Set Countdown</div>
-    <div class="form-sections">
-        <label for="">Note &nbsp;</label>
-        <input type="text" placeholder="countdown #${countNumber}" id='countdownText'>
-    </div>
-    <div class="form-sections">
-        <label for="">Date &nbsp;</label>
-        <input type="date" id ="dateInput" min="" required>
-    </div>
-    <div class="form-sections">
-        <label for=""></label>
-        <input type="submit" value="Submit">
-    </div>    
-    <div class="close-form"><button>Close</button></div>
-</form>
-</section>`;
-countNumber =1;
+    countNumber = localStorage.getItem('countNumber');
+    if (!countNumber)
+        countNumber = 1;
+    const popFormHtml = `<section class="pop-up-container">
+    <form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
+        <div class="form-header">Set Countdown</div>
+        <div class="form-sections">
+            <label for="">Note &nbsp;</label>
+            <input type="text" placeholder="countdown #${countNumber}" id='countdownText'>
+        </div>
+        <div class="form-sections">
+            <label for="">Date &nbsp;</label>
+            <input type="date" id ="dateInput" min="" required>
+        </div>
+        <div class="form-sections">
+            <label for=""></label>
+            <input type="submit" value="Submit">
+        </div>    
+        <div class="close-form"><button>Close</button></div>
+    </form>
+    </section>`;
+
     document.body.insertAdjacentHTML("afterbegin", popFormHtml);
     document.body.style.position = "fixed";
     setDateAttributes();
@@ -71,36 +73,33 @@ function closeFormPopUp() {
 function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
     countdownForm.addEventListener('submit', (e) => {
-        
-        e.preventDefault();
+
+        // e.preventDefault();
+        // get text field values, with auto values
         let userTextField = document.getElementById('countdownText');
         let userText = userTextField.value;
-        
-        if(!userText){
+
+        if (!userText) {
             userText = userTextField.placeholder;
             countNumber++;
-            localStorage.setItem('countNumber',countNumber)
-            console.log( localStorage.getItem('countNumber'));
-            
-            // if(!countNumber){
-            //     countNumber
-            // }
+            localStorage.setItem('countNumber', countNumber)
         }
-        // userText = document.getElementById('countdownText').value||`countdown ${countNumber|| 1}`;
-        // let userDate = document.getElementById("dateInput").value;
-        // userDate = new Date(userDate);
-        // let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        // let countdown = localStorage.getItem('countdown');
-        // if(countdown !== null){ //countdowns already exist
-        //  countdown = JSON.parse(countdown);//array
-        
-        // countdown.push(countItem);
-        // // console.log(countdown);
-        // localStorage.setItem('countdown', JSON.stringify(countdown))
-        // }else{
-        //     // create first countdown
-        //     localStorage.setItem('countdown', JSON.stringify([countItem]) );
-        // }
+        let userDate = document.getElementById("dateInput").value;
+        userDate = new Date(userDate);
+        let countItem = { text: userText, date: userDate, dateModified: new Date() };
+        let countdown = localStorage.getItem('countdown');
+        if(countdown !== null){ //countdowns already exist
+         countdown = JSON.parse(countdown);//array
+
+        countdown.push(countItem);
+        // console.log(countdown);
+        localStorage.setItem('countdown', JSON.stringify(countdown))
+        }else{
+            // create first countdown
+            localStorage.setItem('countdown', JSON.stringify([countItem]) );
+        }
+
+        // testing
         // closeFormPopUp();
     })
 }
