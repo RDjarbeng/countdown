@@ -171,6 +171,7 @@ function notifyMode() {
 
 //for the animated Countdown
 function animateValue(obj, start, end, duration) {
+    console.log('counting down');
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
@@ -186,11 +187,14 @@ function animateValue(obj, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
-    animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
-    animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
-    animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
-    animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
+async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
+    console.log('going');
+     await animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
+     await animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
+     await animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
+     await animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
+
+    console.log('Done baby');
 
 }
 
