@@ -91,7 +91,6 @@ function listenForDate() {
 }
 
 function displayClockRow() {
-
     let customRow = document.getElementById("customDisplay");
     // show row
     customRow.style.display = 'block';
