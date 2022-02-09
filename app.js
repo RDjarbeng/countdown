@@ -29,23 +29,16 @@ let customClockMovement = false;
 var myclock = new Clock();
 var customClock;
 
-export function waitForAnimation(clock, domElements) {
-    stepIncreaseAndStart(clock||myclock, domElements, animatedCountDuration)
-    // begin animated countdown and wait for it to complete
-    intervalID = setInterval(()=>{ startClock(clock||myclock, domElements)}, animatedCountDuration + 100);
+export async function waitForAnimation(clock, domElements)  {
+    await stepIncreaseAndStart(clock||myclock, domElements, animatedCountDuration)
+    startClock(clock||myclock, domElements);
 }
 
 function startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
-    
-    //upon completion begin countdown
-    if (animationComplete) {
-        clearTimeout(intervalID);
-        intervalID = setInterval(()=>{ startTime(clock, { dayNumber, hourNumber, minNumber, secNumber } )}, 500);
-    }
+    intervalID = setInterval(()=>{ startTime(clock, { dayNumber, hourNumber, minNumber, secNumber } )}, 500);
 }
 
 function startTime(clock, {dayNumber, hourNumber, minNumber, secNumber} ) {
-    // console.log( clock);
     updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
     if(dayCount)dayCount.innerHTML = myclock.countDays();
     if (customClockMovement) {
@@ -62,7 +55,6 @@ function addZeros(time) {
 }
 
 function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
-    
     counter.countDown();
     let d = counter.days
     let h = counter.hours
@@ -171,7 +163,6 @@ function notifyMode() {
 
 //for the animated Countdown
 function animateValue(obj, start, end, duration) {
-    console.log('counting down');
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
@@ -188,13 +179,10 @@ function animateValue(obj, start, end, duration) {
 }
 
 async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
-    console.log('going');
      await animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
      await animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
      await animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
      await animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
-
-    console.log('Done baby');
 
 }
 
@@ -204,6 +192,7 @@ function addEventListeners() {
 }
 
 //show day value before animation runs
+if(dayCount)dayCount.innerHTML = myclock.countDays();
 // startTime();
 waitForAnimation(myclock, {dayNumber, hourNumber, minNumber, secNumber});
 addEventListeners();
