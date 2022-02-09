@@ -22,7 +22,6 @@ const customSecNumber = document.getElementById("sec-custom");
 
 //to stop the clock
 let intervalID;
-let animationComplete = false;
 let customClockMovement = false;
 
 // Initialize default Clock class
@@ -169,10 +168,8 @@ function animateValue(obj, start, end, duration) {
         obj.innerHTML = Math.floor(progress * (end - start) + start);
         if (progress < 1) {
             window.requestAnimationFrame(step);
-            animationComplete = false;
-        } else {
-            animationComplete = true;
-        }
+            // animationComplete = false;
+        } 
     };
     window.requestAnimationFrame(step);
 }
