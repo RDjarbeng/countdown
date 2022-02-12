@@ -26,9 +26,14 @@ export default class Clock {
             // this.calculateTimeValues(Math.abs(distance));
 
             // clear date values
-            this.clearCounter();
+            this.resetMethod();
+            
 
         }
+    }
+
+    resetMethod(){
+        this.clearCounter();
     }
 
     calculateTimeValues(distance){
@@ -45,5 +50,13 @@ export default class Clock {
 
     clearCounter(){
         this.days=this.hours=this.minutes=this.seconds=0;
+    }
+}
+
+export class NewYearClock extends Clock{
+    resetMethod(){
+        //reset to New Year's for default 
+        this.setEndDate()
+        console.log(this.endDate)
     }
 }

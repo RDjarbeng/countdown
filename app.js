@@ -1,4 +1,5 @@
-import Clock from './clock.js'
+import Clock, { NewYearClock } from './clock.js'
+// import { NewYearClock } from './clock.js'
 
 // DOM nodes
 let icon = document.getElementById('themeToggle');
@@ -25,21 +26,21 @@ let intervalID;
 let customClockMovement = false;
 
 // Initialize default Clock class
-var myclock = new Clock();
+var myclock = new NewYearClock();
 var customClock;
 
-export async function waitForAnimation(clock, domElements)  {
-    await stepIncreaseAndStart(clock||myclock, domElements, animatedCountDuration)
-    startClock(clock||myclock, domElements);
+export async function waitForAnimation(clock, domElements) {
+    await stepIncreaseAndStart(clock || myclock, domElements, animatedCountDuration)
+    startClock(clock || myclock, domElements);
 }
 
 function startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
-    intervalID = setInterval(()=>{ startTime(clock, { dayNumber, hourNumber, minNumber, secNumber } )}, 500);
+    intervalID = setInterval(() => { startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) }, 500);
 }
 
-function startTime(clock, {dayNumber, hourNumber, minNumber, secNumber} ) {
+function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
     updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
-    if(dayCount)dayCount.innerHTML = myclock.countDays();
+    if (dayCount) dayCount.innerHTML = myclock.countDays();
     if (customClockMovement) {
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
@@ -169,16 +170,16 @@ function animateValue(obj, start, end, duration) {
         if (progress < 1) {
             window.requestAnimationFrame(step);
             // animationComplete = false;
-        } 
+        }
     };
     window.requestAnimationFrame(step);
 }
 
 async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
-     await animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
-     await animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
-     await animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
-     await animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
+    await animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
+    await animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
+    await animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
+    await animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
 
 }
 
@@ -188,9 +189,9 @@ function addEventListeners() {
 }
 
 //show day value before animation runs
-if(dayCount)dayCount.innerHTML = myclock.countDays();
+if (dayCount) dayCount.innerHTML = myclock.countDays();
 // startTime();
-waitForAnimation(myclock, {dayNumber, hourNumber, minNumber, secNumber});
+waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber });
 addEventListeners();
 autoLight();
 // init events
