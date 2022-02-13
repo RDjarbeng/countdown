@@ -6,17 +6,17 @@ const hourNumber = document.getElementById("hour-num");
 const minNumber = document.getElementById("min-num");
 const secNumber = document.getElementById("sec-num");
 // todo: sort by modified time
-function displayCountdowns() {
+async function displayCountdowns() {
     let countdownList = document.getElementById('countdown-list');
     let coundownTextDisplay = document.getElementById('countdown-text')
-    let JsonListOfCountdowns = localStorage.getItem('countdown');
+    let JsonListOfCountdowns = await localStorage.getItem('countdown');
     if (JsonListOfCountdowns) {
         let arrayOfCountdowns = JSON.parse(JsonListOfCountdowns).reverse();
         let listItems = '';
-        arrayOfCountdowns.forEach(countdown => {
+        arrayOfCountdowns.forEach((countdown, index) => {
             let date = new Date(countdown.date);
             let dateModified = new Date(countdown.dateModified)
-            listItems += `<div class="countdown-list-item" style ="border-bottom: 0.1em solid blue; padding: 0.6em;">
+            listItems += `<div class="countdown-list-item"  data-index="${index}" style ="border-bottom: 0.1em solid blue; padding: 0.6em;">
         <div class="countdown-list-text">
          <span>Text: </span> ${countdown.text} </div>
         <div>
@@ -40,4 +40,11 @@ function displayCountdowns() {
     // console.log(myClock);
 }
 
-displayCountdowns();
+
+
+await displayCountdowns();
+document.querySelectorAll('.countdown-list-item').forEach(item => {
+    item.addEventListener('click', event => {
+      console.log('running');
+    })
+  })
