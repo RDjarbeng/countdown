@@ -438,6 +438,6 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   }
 }
 
-.count-item{
-  
+.countdown-list-item:hover{
+  background-color: #130752;
 }
