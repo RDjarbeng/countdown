@@ -70,13 +70,18 @@
         </div>
     </header>
     <main>
-        <section class="container">
+        <div class="container">
+        <section>
             <div class="banner-row">
                 <div class="banner">
                     <div class="banner-h1">My CountDowns</div>
                     <div class="banner-h2" id ='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i></div>
                 </div>
             </div>
+            </section>
+            <section>
+            <div style="display: flex; align-content: space-between;">
+            <div class="countdown-list" id = "countdown-list" style="float: right;">Loading ...</div>
             <div class="clock-row">
                 <div class="timer">
                     <span class="timer-num" id="day-num">00</span>
@@ -95,9 +100,10 @@
                     <span class="timer-text">Seconds</span>
                 </div>
             </div>
-            <div class="countdown-list" id = "countdown-list" style="float: right;">Loading ...</div>
             
+        </div>
         </section>
+    </div>
     </main>
     <div class="new-item"><i class="fas fa-pencil-alt fa-lg"></i></div>
     <script type="module" src="app.js"></script>

@@ -16,8 +16,8 @@ function displayCountdowns() {
         arrayOfCountdowns.forEach(countdown => {
             let date = new Date(countdown.date);
             let dateModified = new Date(countdown.dateModified)
-            listItems += `<div class="list-item" style ="border-bottom: 0.1em solid blue; padding: 0.6em;">
-        <div class="list-text">
+            listItems += `<div class="countdown-list-item" style ="border-bottom: 0.1em solid blue; padding: 0.6em;">
+        <div class="countdown-list-text">
          <span>Text: </span> ${countdown.text} </div>
         <div>
         <span>Date: </span>${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
