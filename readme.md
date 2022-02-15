@@ -102,4 +102,8 @@ The development process
 ![v2b3](https://user-images.githubusercontent.com/73431750/154068153-b87fa7a2-e855-4dd9-bfff-20487f7898e7.png)
 ![v2b4](https://user-images.githubusercontent.com/73431750/154068156-19e978cd-bc66-4d76-bc92-3ff101d543bb.png)
 
-
+---
+todo: 
+* crop out taskbar and unnecessary stuff
+* make use of notifications api
+* "on this day" feature
