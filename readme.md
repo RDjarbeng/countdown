@@ -95,12 +95,11 @@ The development process
 * Added custom backgrounds
 ---
 
-![Screenshot (86)](https://user-images.githubusercontent.com/57795443/152831413-b1d81f03-9b83-43f3-a641-25b571105df4.png)
-![Screenshot (87)](https://user-images.githubusercontent.com/57795443/152831420-0fcb0bfa-7f76-4d22-8cae-77bccb2f0bff.png)
 
-![Screenshot (88)](https://user-images.githubusercontent.com/57795443/152831371-efc23107-f44e-4a3d-b9d9-43e44a8a9c13.png)
-![Screenshot (92)](https://user-images.githubusercontent.com/57795443/152831384-8e1086f9-43c8-4f35-8a0c-f06244edd482.png)
-![Screenshot (93)](https://user-images.githubusercontent.com/57795443/152831390-203499a1-8920-4c2e-aaf2-593e2ae701a7.png)
+![v2b](https://user-images.githubusercontent.com/73431750/154068140-a8650180-7427-4816-8ca2-d5f8907d34b2.png)
+![v2b1](https://user-images.githubusercontent.com/73431750/154068146-33bf9280-15fc-4c12-9142-4470208705d9.png)
+![v2b2](https://user-images.githubusercontent.com/73431750/154068151-24b3fb27-7835-4efa-a0d3-73205015f560.png)
+![v2b3](https://user-images.githubusercontent.com/73431750/154068153-b87fa7a2-e855-4dd9-bfff-20487f7898e7.png)
+![v2b4](https://user-images.githubusercontent.com/73431750/154068156-19e978cd-bc66-4d76-bc92-3ff101d543bb.png)
 
-todo: crop out taskbar and unnecessary stuff
 
