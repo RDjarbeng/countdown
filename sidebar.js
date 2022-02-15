@@ -72,7 +72,7 @@ function openBgPicker() {
         document.body.insertAdjacentHTML(
             "afterbegin",
             `<aside class="pop-up-container loader-container">
-                <section class="loader" style="--color-banner: ${getComputedStyle($("body")[0]).getPropertyValue("--color-banner")}">
+                <section class="loader" style="color: ${getComputedStyle($("body")[0]).getPropertyValue("--color-banner")}">
                     <span>Loading</span>
                     <span>.</span>
                     <span>.</span>
@@ -82,6 +82,7 @@ function openBgPicker() {
         );
     };
     showLoader();
+
     const loadForm = async () => {
         let file = await fetch("./form-upload.html");
         let ft = await file.text();
@@ -126,5 +127,5 @@ function openBgPicker() {
             });
         });
     };
-    loadForm();
+    // loadForm();
 }
