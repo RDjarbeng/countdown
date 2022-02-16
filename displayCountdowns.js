@@ -15,7 +15,7 @@ async function displayCountdowns() {
         let arrayOfCountdowns = JSON.parse(JsonListOfCountdowns).reverse();
         let listItems = populateList(arrayOfCountdowns);
         countdownList.innerHTML = listItems;
-        updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
+        // updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
         document.querySelectorAll('.countdown-list-item').forEach(item => {
             item.addEventListener('click', event => {
                 // todo: find a bettwer way of accessing element in countdown array
@@ -52,7 +52,7 @@ function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
     coundownTextDisplay.innerHTML = text;
     stopClock();
-    waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber })
+    waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber },500)
 }
 
 
