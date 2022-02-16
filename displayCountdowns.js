@@ -15,8 +15,6 @@ async function displayCountdowns() {
         let listItems = populateList(arrayOfCountdowns);
         
         countdownList.innerHTML = listItems;
-
-
         let clock = new Clock(new Date(arrayOfCountdowns[0].date));
         coundownTextDisplay.innerHTML = arrayOfCountdowns[0].text;
         // waitForAnimation(new Clock(new Date(arrayOfCountdowns[0].date)));
@@ -28,9 +26,12 @@ async function displayCountdowns() {
             console.log(item, this);
             
             item.addEventListener('click', event => {
-                
-              console.log('running' ,item,item.getAttribute('data-index'), event.target);
-              console.log( arrayOfCountdowns);
+            // todo: find a bettwer way of accessing element in countdown array
+                console.log('running' ,item,item.getAttribute('data-index'), event.target);
+              let clock = new Clock(new Date(arrayOfCountdowns[item.getAttribute('data-index')].date));
+        coundownTextDisplay.innerHTML = arrayOfCountdowns[item.getAttribute('data-index')].text;
+        stopClock();
+        waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber })
             })
           })
     } else {
