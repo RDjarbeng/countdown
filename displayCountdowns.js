@@ -20,7 +20,7 @@ async function displayCountdowns() {
             item.addEventListener('click', event => {
                 // todo: find a bettwer way of accessing element in countdown array
                 updateClockAndText(arrayOfCountdowns[item.getAttribute('data-index')].date, arrayOfCountdowns[item.getAttribute('data-index')].text)
-                console.log('running', item, item.getAttribute('data-index'), event.target);
+                // console.log('running', item, item.getAttribute('data-index'), event.target);
             })
         })
     } else {
