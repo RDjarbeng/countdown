@@ -5,42 +5,31 @@ const dayNumber = document.getElementById('day-num');
 const hourNumber = document.getElementById("hour-num");
 const minNumber = document.getElementById("min-num");
 const secNumber = document.getElementById("sec-num");
+const coundownTextDisplay = document.getElementById('countdown-text')
 // todo: sort by modified time
 async function displayCountdowns() {
     let countdownList = document.getElementById('countdown-list');
-    let coundownTextDisplay = document.getElementById('countdown-text')
+
     let JsonListOfCountdowns = await localStorage.getItem('countdown');
     if (JsonListOfCountdowns) {
         let arrayOfCountdowns = JSON.parse(JsonListOfCountdowns).reverse();
         let listItems = populateList(arrayOfCountdowns);
-        
         countdownList.innerHTML = listItems;
-        let clock = new Clock(new Date(arrayOfCountdowns[0].date));
-        coundownTextDisplay.innerHTML = arrayOfCountdowns[0].text;
-        // waitForAnimation(new Clock(new Date(arrayOfCountdowns[0].date)));
-        // myclock.endDate = new Date(arrayOfCountdowns[0].date)
-        stopClock();
-        waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber })
-
+        updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
         document.querySelectorAll('.countdown-list-item').forEach(item => {
-            console.log(item, this);
-            
             item.addEventListener('click', event => {
-            // todo: find a bettwer way of accessing element in countdown array
-                console.log('running' ,item,item.getAttribute('data-index'), event.target);
-              let clock = new Clock(new Date(arrayOfCountdowns[item.getAttribute('data-index')].date));
-        coundownTextDisplay.innerHTML = arrayOfCountdowns[item.getAttribute('data-index')].text;
-        stopClock();
-        waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber })
+                // todo: find a bettwer way of accessing element in countdown array
+                updateClockAndText(arrayOfCountdowns[item.getAttribute('data-index')].date, arrayOfCountdowns[item.getAttribute('data-index')].text)
+                console.log('running', item, item.getAttribute('data-index'), event.target);
             })
-          })
+        })
     } else {
         countdownList.innerHTML = 'Found no countdowns to display';
     }
     // console.log(myClock);
 }
 
-function populateList(arrayOfCountdowns){
+function populateList(arrayOfCountdowns) {
     let listItems = '';
     arrayOfCountdowns.forEach((countdown, index) => {
         let date = new Date(countdown.date);
@@ -59,11 +48,17 @@ function populateList(arrayOfCountdowns){
     return listItems;
 }
 
+function updateClockAndText(date, text, animation = true) {
+    let clock = new Clock(new Date(date));
+    coundownTextDisplay.innerHTML = text;
+    stopClock();
+    waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber })
+}
 
 
 await displayCountdowns();
 
 
-  function test (){
-      console.log(this);
-  }
+function test() {
+    console.log(this);
+}
