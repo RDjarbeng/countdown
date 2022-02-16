@@ -29,8 +29,8 @@ let customClockMovement = false;
 var myclock = new NewYearClock();
 var customClock;
 
-export async function waitForAnimation(clock, domElements) {
-    await stepIncreaseAndStart(clock || myclock, domElements, animatedCountDuration)
+export async function waitForAnimation(clock, domElements, duration) {
+    await stepIncreaseAndStart(clock || myclock, domElements, duration||animatedCountDuration)
     startClock(clock || myclock, domElements);
 }
 
@@ -191,7 +191,7 @@ function addEventListeners() {
 //show day value before animation runs
 if (dayCount) dayCount.innerHTML = myclock.countDays();
 // startTime();
-waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber });
+waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 addEventListeners();
 autoLight();
 // init events
