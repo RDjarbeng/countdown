@@ -35,7 +35,7 @@ function popForm() {
         </div>
         <div class="form-sections">
             <label for=""></label>
-            <input type="submit" value="Submit">
+            <input type="submit" id ="countdown-submit"value="Submit">
         </div>    
         <div class="close-form"><button>Close</button></div>
     </form>
@@ -72,9 +72,13 @@ function closeFormPopUp() {
 
 function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
+    const submitbutton = document.getElementById('countdown-submit');
+    
+    
     countdownForm.addEventListener('submit', (e) => {
-
+        
         // e.preventDefault();
+        submitbutton.disabled = true;
         // get text field values, with auto values
         let userTextField = document.getElementById('countdownText');
         let userText = userTextField.value;
