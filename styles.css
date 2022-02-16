@@ -436,6 +436,10 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   .new-item{
     bottom: 10vh;
   }
+/* temporary fix */
+  .clock-row{
+    justify-content: normal;
+  }
 }
 
 .countdown-list-item:hover{

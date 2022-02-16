@@ -18,7 +18,7 @@ async function displayCountdowns() {
         // updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
         document.querySelectorAll('.countdown-list-item').forEach(item => {
             item.addEventListener('click', event => {
-                // todo: find a bettwer way of accessing element in countdown array
+                // todo: find a better way of accessing element in countdown array
                 updateClockAndText(arrayOfCountdowns[item.getAttribute('data-index')].date, arrayOfCountdowns[item.getAttribute('data-index')].text)
                 // console.log('running', item, item.getAttribute('data-index'), event.target);
             })
