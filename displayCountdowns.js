@@ -16,7 +16,7 @@ async function displayCountdowns() {
         arrayOfCountdowns.forEach((countdown, index) => {
             let date = new Date(countdown.date);
             let dateModified = new Date(countdown.dateModified)
-            listItems += `<div class="countdown-list-item"  data-index="${index}" style ="border-bottom: 0.1em solid blue; padding: 0.6em;">
+            listItems += `<div class="countdown-list-item"  data-index="${index}" data-id ="${countdown.dateModified}"style ="border-bottom: 0.1em solid blue; padding: 0.6em;">
         <div class="countdown-list-text">
          <span>Text: </span> ${countdown.text} </div>
         <div>
@@ -44,7 +44,14 @@ async function displayCountdowns() {
 
 await displayCountdowns();
 document.querySelectorAll('.countdown-list-item').forEach(item => {
+    console.log(item, this);
+    
     item.addEventListener('click', event => {
-      console.log('running');
+        
+      console.log('running' ,item,item.getAttribute('data-index'), event.target);
     })
   })
+
+  function test (){
+      console.log(this);
+  }
