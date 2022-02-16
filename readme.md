@@ -104,6 +104,16 @@ The development process
 
 ---
 todo: 
-* crop out taskbar and unnecessary stuff
-* make use of notifications api
+* Provide proper error messages when app/function crashes
+* Add proper formatting for countdown page on mobile
+* Add repeating countdowns, Eg: birthdays
+* add option to change the main clock countdown
+* Shareable day of the year for mobile (Whatsapp)
+* Make use of notifications api to provide alert/notifications when countdown is complete
+* Add time selection for user
+* Provide a custom sort of countdowns by due time or date modified
+
+todo v3:
+* authentication (firebase)
+* Shareable links
 * "on this day" feature
