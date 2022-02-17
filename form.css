@@ -70,7 +70,7 @@ input[type="submit"]:hover,.reset button:hover{
 /* upload image form */
 .bg-presets {
     display: flex;
-    width: 100%;
+    width: 82%;
     align-items: center;
     justify-content: center;
     flex-flow: row wrap;

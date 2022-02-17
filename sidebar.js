@@ -18,8 +18,22 @@ sidebarItems[3].addEventListener("click", openColorPicker);
 sidebarItems[4].addEventListener("click", () => setLink("./authors.html"));
 
 function setTheme(event) {
+    let prevTheme = getComputedStyle(document.body).getPropertyValue(
+        "--color-banner"
+    );
     document.body.dataset.theme = event.currentTarget.dataset.settheme;
     localStorage.setItem("theme", `${event.currentTarget.dataset.settheme}`);
+    
+    function setAppStatusBarTheme() {
+        let primaryColor = getComputedStyle(document.body).getPropertyValue(
+            "--color-banner"
+        );
+        $(`[content="${prevTheme}"]`).forEach((e) =>
+            e.setAttribute("content", primaryColor)
+        );
+        localStorage.setItem("primaryColor", primaryColor);
+    }
+    setAppStatusBarTheme();
 }
 
 function openColorPicker() {
@@ -42,18 +56,23 @@ const closeSideBarListener = (event) => {
 };
 
 function openBgPicker() {
-    if (!document.querySelector("[href='form.css']")) {
+    if (!$("[href='form.css']")[0]) {
         document.head.insertAdjacentHTML(
             "beforeend",
-            `<link rel="stylesheet" href="form.css">
-             <link rel="stylesheet" href="loader.css">`
+            `<link rel="stylesheet" href="form.css">`
+        );
+    }
+    if (!$("[href='loader.css']")[0]) {
+        document.head.insertAdjacentHTML(
+            "beforeend",
+            `<link rel="stylesheet" href="loader.css">`
         );
     }
     const showLoader = () => {
         document.body.insertAdjacentHTML(
             "afterbegin",
             `<aside class="pop-up-container loader-container">
-                <section class="loader">
+                <section class="loader" style="color: ${getComputedStyle($("body")[0]).getPropertyValue("--color-banner")}">
                     <span>Loading</span>
                     <span>.</span>
                     <span>.</span>
@@ -63,12 +82,13 @@ function openBgPicker() {
         );
     };
     showLoader();
+
     const loadForm = async () => {
         let file = await fetch("./form-upload.html");
         let ft = await file.text();
+        document.getElementsByClassName("loader-container")[0].remove();
         document.body.insertAdjacentHTML("afterbegin", ft);
         document.body.style.position = "fixed";
-        document.getElementsByClassName("loader-container")[0].remove();
         const filePicker = document.querySelector("input[type='file']");
         const reading = (uploadedPic) => {
             let reader = new FileReader();
@@ -96,7 +116,7 @@ function openBgPicker() {
             localStorage.removeItem("userBg");
             document.body.style.backgroundImage = "";
         });
-        $(".bg-presets-preview:not(.p5) img").forEach((e) => {
+        $(".bg-presets-preview:not(.upload-preview) img").forEach((e) => {
             e.addEventListener("click", () => {
                 const sbg = async () => {
                     let img = await fetch(e.src);
@@ -107,5 +127,5 @@ function openBgPicker() {
             });
         });
     };
-    loadForm();
+    // loadForm();
 }
