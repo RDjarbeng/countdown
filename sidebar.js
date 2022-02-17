@@ -127,5 +127,5 @@ function openBgPicker() {
             });
         });
     };
-    // loadForm();
+    loadForm();
 }
