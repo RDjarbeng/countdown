@@ -16,10 +16,15 @@ async function displayCountdowns() {
         let listItems = populateList(arrayOfCountdowns);
         countdownList.innerHTML = listItems;
         // updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
-        document.querySelectorAll('.countdown-list-item').forEach(item => {
+        document.querySelectorAll('.countdown-list-text').forEach(item => {
             item.addEventListener('click', event => {
                 // todo: find a better way of accessing element in countdown array
-                updateClockAndText(arrayOfCountdowns[item.getAttribute('data-index')].date, arrayOfCountdowns[item.getAttribute('data-index')].text)
+                if([null,"",undefined].includes(document.querySelector(".clock-row").style.display)){
+                    document.getElementsByClassName("clock-row")[0].style.display="flex";
+                    document.getElementsByClassName("clock-row")[0].style.animationPlayState="running";
+                    
+                }
+                updateClockAndText(arrayOfCountdowns[item.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[item.parentElement.getAttribute('data-index')].text)
                 // console.log('running', item, item.getAttribute('data-index'), event.target);
             })
         })
@@ -34,16 +39,17 @@ function populateList(arrayOfCountdowns) {
     arrayOfCountdowns.forEach((countdown, index) => {
         let date = new Date(countdown.date);
         let dateModified = new Date(countdown.dateModified)
-        listItems += `<div class="countdown-list-item"  data-index="${index}" data-id ="${countdown.dateModified}"style ="border-bottom: 0.1em solid blue; padding: 0.6em;">
-    <div class="countdown-list-text">
-     <span>Text: </span> ${countdown.text} </div>
-    <div>
-    <span>Date: </span>${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
-    </div>
-    <div>
-    <span>Date Modified: </span>${dateModified.getDate() + ' ' + dateModified.toLocaleString('default', { month: 'long' }) + ', ' + dateModified.getFullYear()}
-    </div>
-    </div>`
+        listItems += `
+        <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
+            <div class="countdown-list-text"> ${countdown.text} </div>
+            <div class="countdown-list-options"><i class="fas fa-chevron-circle-down fa-lg"></i><div class="menu" style="display:none">
+            <div class="menu-opts">Set as main</div>
+            <div class="menu-opts">Delete</div>
+        </div></div>
+            <div class="countdown-list-date"> 
+                Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
+            </div>    
+        </div>`
     });
     return listItems;
 }
@@ -62,3 +68,17 @@ await displayCountdowns();
 function test() {
     console.log(this);
 }
+
+const ContextMenu=(event)=>{
+    if(event.currentTarget.querySelector(".menu").style.display == "block"){
+        event.currentTarget.querySelector(".menu").style.display = "none";
+        console.log("context-menu: hide");
+    }
+    else{
+        event.currentTarget.querySelector(".menu").style.display = "block";
+        console.log("context-menu: show");
+    }
+}
+document.querySelectorAll(".countdown-list-options").forEach((option)=>{
+    option.addEventListener("click",ContextMenu);
+});

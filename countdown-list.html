@@ -11,7 +11,7 @@
     <link href="img/icons/favicon.png" rel="icon">
     <meta name="Author" content="R.Djarbeng| A.Nyakotey">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="countdown-list.css">
     <link rel="stylesheet" href="themes.css">
     <link rel="manifest" href="manifest.json">
     <!-- ios support -->
@@ -22,7 +22,7 @@
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#7b68ee">
 </head>
 
-<body class="dark" data-theme="purple" style="overflow-y: visible;">
+<body class="dark" data-theme="purple">
     <aside class="sidebar sidebar-hide">
         <section class="sidebar-content">
             <div class="brand">
@@ -58,7 +58,7 @@
             </div>
         </section>
     </aside>
-    <header class="header">        
+    <header class="header">
         <div class="nav">
             <i class="fas fa-bars fa-lg"></i>
         </div>
@@ -72,18 +72,14 @@
     </header>
     <main>
         <div class="container">
-        <section>
-            <div class="banner-row">
+            <section class="banner-row">
                 <div class="banner">
                     <div class="banner-h1">My CountDowns</div>
-                    <div class="banner-h2" id ='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i></div>
+                    <div class="banner-h2" id='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i>
+                    </div>
                 </div>
-            </div>
             </section>
-            <section>
-            <div style="display: flex; align-content: space-between;">
-            <div class="countdown-list" id = "countdown-list" style="padding-left: 1%; display: flex; width: 35%; flex-direction: column;">Loading ...</div>
-            <div class="clock-row" style="width: 70vw;">
+            <section class="clock-row" >
                 <div class="timer">
                     <span class="timer-num" id="day-num">00</span>
                     <span class="timer-text">Days</span>
@@ -100,17 +96,18 @@
                     <span class="timer-num" id="sec-num">00</span>
                     <span class="timer-text">Seconds</span>
                 </div>
-            </div>
+            </section>
+            <section class="countdown-list" id="countdown-list">Loading ...</section>
             
         </div>
-        </section>
-    </div>
     </main>
-    <div class="new-item"><i class="fas fa-pencil-alt fa-lg"></i></div>
+    <div class="new-item"><i class="fas fa-plus fa-lg"></i></div>
+
     <script type="module" src="app.js"></script>
     <script src="sidebar.js"></script>
     <script src="loadCustomUI.js"></script>
     <script src="form.js"></script>
     <script type="module" src="displayCountdowns.js"></script>
 </body>
+
 </html>
