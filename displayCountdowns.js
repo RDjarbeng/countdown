@@ -8,6 +8,7 @@ const secNumber = document.getElementById("sec-num");
 const coundownTextDisplay = document.getElementById('countdown-text')
 // todo: sort by modified time
 async function displayCountdowns() {
+    
     let countdownList = document.getElementById('countdown-list');
 
     let JsonListOfCountdowns = await localStorage.getItem('countdown');
@@ -15,7 +16,7 @@ async function displayCountdowns() {
         let arrayOfCountdowns = JSON.parse(JsonListOfCountdowns).reverse();
         let listItems = populateList(arrayOfCountdowns);
         countdownList.innerHTML = listItems;
-        // updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
+        updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
         document.querySelectorAll('.countdown-list-text').forEach(item => {
             item.addEventListener('click', event => {
                 // todo: find a better way of accessing element in countdown array
@@ -63,11 +64,6 @@ function updateClockAndText(date, text, animation = true) {
 
 
 await displayCountdowns();
-
-
-function test() {
-    console.log(this);
-}
 
 const ContextMenu=(event)=>{
     if(event.currentTarget.querySelector(".menu").style.display == "block"){
