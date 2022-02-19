@@ -92,7 +92,6 @@ a{
   align-items: center;
   border-radius: 50%;
   background: var(--bg-modeToggle);
-  color: #f2e7ac;
   z-index: 1;
   margin-right: 5vmin;
 }
@@ -102,7 +101,7 @@ a{
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 1.7rem;
+  font-size: 5vmin;
   text-align: center;
   width: 100%;
 }
@@ -201,9 +200,6 @@ a{
 @media screen and (max-width: 427px) {
   .container{
     gap: 1.6em;
-  }
-  .banner-row{
-    font-size: 1.3rem;
   }
   .logo-name{
     display: none;
