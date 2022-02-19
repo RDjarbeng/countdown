@@ -74,7 +74,8 @@ function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
     const submitbutton = document.getElementById('countdown-submit');
     
-    
+    const event = document.createEvent('Event');
+    console.log(event);
     countdownForm.addEventListener('submit', (e) => {
         
         // e.preventDefault();
@@ -98,6 +99,7 @@ function handleFormSubmission() {
         countdown.push(countItem);
         // console.log(countdown);
         localStorage.setItem('countdown', JSON.stringify(countdown))
+
         }else{
             // create first countdown
             localStorage.setItem('countdown', JSON.stringify([countItem]) );

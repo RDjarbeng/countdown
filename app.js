@@ -176,10 +176,10 @@ function animateValue(obj, start, end, duration) {
 }
 
 async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
-    await animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
-    await animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
-    await animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
-    await animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
+    animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
+    animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
+    animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
+    animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
 
 }
 
