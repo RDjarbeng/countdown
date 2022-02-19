@@ -25,8 +25,19 @@ const customSecNumber = document.getElementById("sec-custom");
 let intervalID;
 let customClockMovement = false;
 
+// let countItem = { text: 'test', date: '03-03-2022', dateModified: new Date() };
+// localStorage.setItem('mainClock', JSON.stringify(countItem))
 // Initialize default Clock class
-var myclock = new NewYearClock();
+console.log(new Clock());
+let mainclock = localStorage.getItem('mainClock');
+var myclock;
+        if(mainclock !== null){ //countdowns already exist
+         mainclock = JSON.parse(mainclock)
+         let mainClockDate = new Date(mainclock.date)
+         console.log(mainclock, mainclock.date);
+         myclock = new Clock(mainClockDate);
+        }
+myclock =myclock|| new NewYearClock();
 var customClock;
 
 export async function waitForAnimation(clock, domElements, duration) {
