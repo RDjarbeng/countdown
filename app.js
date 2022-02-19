@@ -24,17 +24,16 @@ const customSecNumber = document.getElementById("sec-custom");
 //to stop the clock
 let intervalID;
 let customClockMovement = false;
-
+let dayClock = new NewYearClock();
 // let countItem = { text: 'test', date: '03-03-2022', dateModified: new Date() };
 // localStorage.setItem('mainClock', JSON.stringify(countItem))
 // Initialize default Clock class
-console.log(new Clock());
+
+var myclock = new NewYearClock();
 let mainclock = localStorage.getItem('mainClock');
-var myclock;
-        if(mainclock !== null){ //countdowns already exist
+        if(mainclock !== null){ //countdown set to main
          mainclock = JSON.parse(mainclock)
          let mainClockDate = new Date(mainclock.date)
-         console.log(mainclock, mainclock.date);
          myclock = new Clock(mainClockDate);
         }
 myclock =myclock|| new NewYearClock();
@@ -51,7 +50,7 @@ function startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
 
 function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
     updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
-    if (dayCount) dayCount.innerHTML = myclock.countDays();
+    if (dayCount) dayCount.innerHTML = dayClock.countDays();
     if (customClockMovement) {
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
@@ -200,7 +199,9 @@ function addEventListeners() {
 }
 
 //show day value before animation runs
-if (dayCount) dayCount.innerHTML = myclock.countDays();
+if (dayCount)
+  dayCount.innerHTML = dayClock.countDays();
+
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 addEventListeners();
