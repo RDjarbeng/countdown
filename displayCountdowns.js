@@ -35,8 +35,8 @@ function populateList(arrayOfCountdowns) {
         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
             <div class="countdown-list-text"> ${countdown.text} </div>
             <div class="countdown-list-options"><i class="fas fa-chevron-circle-down fa-lg"></i><div class="menu" style="display:none">
-            <div class="menu-opts">Set as main</div>
-            <div class="menu-opts">Delete</div>
+            <div class="menu-opts main">Set as main</div>
+            <div class="menu-opts del">Delete</div>
         </div></div>
             <div class="countdown-list-date"> 
                 Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
@@ -60,13 +60,17 @@ const triggerContextMenu = (element) => {
         console.log("context-menu: hide");
     }
     else {
+        
         element.querySelector(".menu").style.display = "block";
+        
         console.log("context-menu: show");
     }
 }
 
 function addListEventListener(){
     document.querySelector('.countdown-list').addEventListener('click', event => {
+        //hide all context menus
+        document.querySelectorAll('.menu').forEach(contextMenu=> contextMenu.style.display = "none")
         const targetElement = event.target;
 
         // if event is fired on text or date

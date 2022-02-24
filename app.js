@@ -29,15 +29,20 @@ let dayClock = new NewYearClock();
 // localStorage.setItem('mainClock', JSON.stringify(countItem))
 // Initialize default Clock class
 
-var myclock = new NewYearClock();
-let mainclock = localStorage.getItem('mainClock');
-        if(mainclock !== null){ //countdown set to main
-         mainclock = JSON.parse(mainclock)
-         let mainClockDate = new Date(mainclock.date)
-         myclock = new Clock(mainClockDate);
-        }
-myclock =myclock|| new NewYearClock();
+// var myclock = new NewYearClock();
+var myclock = await setMainClock();
 var customClock;
+
+async function setMainClock(){
+    let mainclock = localStorage.getItem('mainClock');
+    if(mainclock !== null){ //countdown set to main
+     mainclock = JSON.parse(mainclock)
+     myclock = new Clock(new Date(mainclock.date));
+    }
+
+    return myclock|| new NewYearClock();
+
+}
 
 export async function waitForAnimation(clock, domElements, duration) {
     await stepIncreaseAndStart(clock || myclock, domElements, duration||animatedCountDuration)
