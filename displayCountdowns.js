@@ -6,6 +6,7 @@ const hourNumber = document.getElementById("hour-num");
 const minNumber = document.getElementById("min-num");
 const secNumber = document.getElementById("sec-num");
 const coundownTextDisplay = document.getElementById('countdown-text')
+let arrayOfCountdowns;
 // todo: sort by modified time
 async function displayCountdowns() {
 
@@ -13,32 +14,12 @@ async function displayCountdowns() {
 
     let JsonListOfCountdowns = await localStorage.getItem('countdown');
     if (JsonListOfCountdowns) {
-        let arrayOfCountdowns = JSON.parse(JsonListOfCountdowns).reverse();
+        arrayOfCountdowns = JSON.parse(JsonListOfCountdowns).reverse();
         let listItems = populateList(arrayOfCountdowns);
         countdownList.innerHTML = listItems;
         updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
-        document.querySelectorAll('.countdown-list').forEach(item => {
-            item.addEventListener('click', event => {
-                const targetElement = event.target;
-                console.log(targetElement.className);
-                // if event is fired on text or date
-                if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
-                    console.log('clicking within the text');
-                    // todo: find a better way of accessing element in countdown array
-                    updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
-                    
-                    if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
-                        document.querySelector(".clock-row").style.display = "flex";
-                        document.querySelector(".clock-row").style.animationPlayState = "running";
+        addListEventListener()
 
-                    }
-
-                }
-
-                // updateClockAndText(arrayOfCountdowns[item.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[item.parentElement.getAttribute('data-index')].text)
-                // console.log('running', item, item.getAttribute('data-index'), event.target);
-            })
-        })
     } else {
         countdownList.innerHTML = 'Found no countdowns to display';
     }
@@ -72,21 +53,45 @@ function updateClockAndText(date, text, animation = true) {
     waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500)
 }
 
-
-
-
-const ContextMenu = (event) => {
-    if (event.currentTarget.querySelector(".menu").style.display == "block") {
-        event.currentTarget.querySelector(".menu").style.display = "none";
+const triggerContextMenu = (element) => {
+    // console.log(element.querySelector('.menu'));
+    if (element.querySelector(".menu").style.display == "block") {
+        element.querySelector(".menu").style.display = "none";
         console.log("context-menu: hide");
     }
     else {
-        event.currentTarget.querySelector(".menu").style.display = "block";
+        element.querySelector(".menu").style.display = "block";
         console.log("context-menu: show");
     }
 }
-document.querySelectorAll(".countdown-list-options").forEach((option) => {
-    option.addEventListener("click", ContextMenu);
-});
+
+function addListEventListener(){
+    document.querySelector('.countdown-list').addEventListener('click', event => {
+        const targetElement = event.target;
+
+        // if event is fired on text or date
+        if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
+            console.log('clicking within the text');
+            // todo: find a better way of accessing element in countdown array
+            updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
+
+            if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
+                document.querySelector(".clock-row").style.display = "flex";
+                document.querySelector(".clock-row").style.animationPlayState = "running";
+
+            }
+
+        }
+        //if the area for context menu is clicked
+        if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
+            //get the countdown list item and pass to function, search for list class .menu
+            //in case of directly clicking on icon, parent element is .countdown-list-options div
+                triggerContextMenu(targetElement.parentElement);
+
+        }
+
+        
+    })
+}
 
 await displayCountdowns();
