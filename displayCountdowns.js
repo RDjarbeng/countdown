@@ -11,7 +11,6 @@ let arrayOfCountdowns;
 async function displayCountdowns() {
 
     let countdownList = document.getElementById('countdown-list');
-
     let JsonListOfCountdowns = await localStorage.getItem('countdown');
     if (JsonListOfCountdowns) {
         arrayOfCountdowns = JSON.parse(JsonListOfCountdowns).reverse();
@@ -34,7 +33,8 @@ function populateList(arrayOfCountdowns) {
         listItems += `
         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
             <div class="countdown-list-text"> ${countdown.text} </div>
-            <div class="countdown-list-options"><i class="fas fa-chevron-circle-down fa-lg"></i><div class="menu" style="display:none">
+            <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
+            <div class="menu" data-index="${index}" style="display:none">
             <div class="menu-opts main">Set as main</div>
             <div class="menu-opts del">Delete</div>
         </div></div>
@@ -55,46 +55,57 @@ function updateClockAndText(date, text, animation = true) {
 
 const triggerContextMenu = (element) => {
     // console.log(element.querySelector('.menu'));
+    
     if (element.querySelector(".menu").style.display == "block") {
-        element.querySelector(".menu").style.display = "none";
+        hideContextMenus();    
+        // element.querySelector(".menu").style.display = "none";
         console.log("context-menu: hide");
     }
     else {
-        
+        hideContextMenus();
         element.querySelector(".menu").style.display = "block";
-        
         console.log("context-menu: show");
     }
 }
 
+function hideContextMenus(){
+    document.querySelectorAll('.menu').forEach(contextMenu=> contextMenu.style.display = "none");
+}
 function addListEventListener(){
     document.querySelector('.countdown-list').addEventListener('click', event => {
         //hide all context menus
-        document.querySelectorAll('.menu').forEach(contextMenu=> contextMenu.style.display = "none")
+        
         const targetElement = event.target;
+        // console.log(targetElement.className, targetElement.className.search('menu-opts'));
 
         // if event is fired on text or date
         if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
             console.log('clicking within the text');
+            hideContextMenus()
             // todo: find a better way of accessing element in countdown array
             updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
 
             if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
                 document.querySelector(".clock-row").style.display = "flex";
                 document.querySelector(".clock-row").style.animationPlayState = "running";
-
             }
-
         }
         //if the area for context menu is clicked
-        if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
+        else if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
             //get the countdown list item and pass to function, search for list class .menu
             //in case of directly clicking on icon, parent element is .countdown-list-options div
                 triggerContextMenu(targetElement.parentElement);
 
+        }else if (targetElement.className.search('menu-opts')>-1) {
+            console.log('clicking in menu');
+            if(targetElement.className.search('main')>-1){
+                // set as main clicked
+                console.log('main clicked', targetElement.parentElement);
+            }else if(targetElement.className.search('del')>-1){
+                // delete item clicked
+                console.log('delete clicked', targetElement.parentElement);
+            }
         }
-
-        
     })
 }
 
