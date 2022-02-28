@@ -31,7 +31,7 @@ function popForm() {
         </div>
         <div class="form-sections">
             <label for="">Date &nbsp;</label>
-            <input type="date" id ="dateInput" min="" required>
+            <input type="datetime-local" id ="dateInput" min="" required>
         </div>
         <div class="form-sections">
             <label for=""></label>
@@ -51,7 +51,7 @@ function popForm() {
 function setDateAttributes() {
     const dateInput = document.getElementById("dateInput");
     const today = new Date();
-    let dd = today.getDate() + 1;//add 1 to the date so date starts from tomorrow
+    let dd = today.getDate() ;//add 1 to the date so date starts from tomorrow
     let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
     let yyyy = today.getFullYear();
     if (dd < 10) {
@@ -61,7 +61,7 @@ function setDateAttributes() {
         mm = '0' + mm
     }
 
-    let todayString = yyyy + '-' + mm + '-' + dd;
+    let todayString = yyyy + '-' + mm + '-' + dd+'T00:00';
     dateInput.setAttribute("min", todayString);
 }
 
@@ -74,8 +74,8 @@ function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
     const submitbutton = document.getElementById('countdown-submit');
     
-    const event = document.createEvent('Event');
-    console.log(event);
+    // const event = document.createEvent('Event');
+    // console.log(event);
     countdownForm.addEventListener('submit', (e) => {
         
         // e.preventDefault();
