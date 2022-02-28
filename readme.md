@@ -110,7 +110,6 @@ todo:
 * add option to change the main clock countdown
 * Shareable day of the year for mobile (Whatsapp)
 * Make use of notifications api to provide alert/notifications when countdown is complete
-* Add time selection for user
 * Provide a custom sort of countdowns by due time or date modified
 
 todo v3:
