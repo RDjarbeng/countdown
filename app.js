@@ -38,13 +38,17 @@ async function setMainClock(){
     if(mainclock !== null && mainclock != undefined){ //countdown set to main
      mainclock = JSON.parse(mainclock)
      myclock = new Clock(new Date(mainclock.date));
+     setMainText(mainclock.text)
     }
 
     return myclock|| new NewYearClock();
 
 }
 
-// function setMainText()
+function setMainText(countdownText){
+    const textDisplay = document.getElementById('countdown-text');
+    textDisplay.innerText = countdownText;
+}
 
 export async function waitForAnimation(clock, domElements, duration) {
     await stepIncreaseAndStart(clock || myclock, domElements, duration||animatedCountDuration)
