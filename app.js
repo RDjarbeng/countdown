@@ -14,7 +14,7 @@ const dayNumber = document.getElementById('day-num');
 const hourNumber = document.getElementById("hour-num");
 const minNumber = document.getElementById("min-num");
 const secNumber = document.getElementById("sec-num");
-const dateInput = document.getElementById('customDate')
+// const dateInput = document.getElementById('customDate')
 
 const customDayNumber = document.getElementById('day-custom');
 const customHourNumber = document.getElementById("hour-custom");
@@ -27,15 +27,15 @@ let customClockMovement = false;
 let dayClock = new NewYearClock();
 // let countItem = { text: 'test', date: '03-03-2022', dateModified: new Date() };
 // localStorage.setItem('mainClock', JSON.stringify(countItem))
-// Initialize default Clock class
 
+// Initialize default Clock class
 // var myclock = new NewYearClock();
 var myclock = await setMainClock();
 var customClock;
 
 async function setMainClock(){
     let mainclock = localStorage.getItem('mainClock');
-    if(mainclock !== null){ //countdown set to main
+    if(mainclock !== null && mainclock != undefined){ //countdown set to main
      mainclock = JSON.parse(mainclock)
      myclock = new Clock(new Date(mainclock.date));
     }
