@@ -98,14 +98,18 @@ function handleFormSubmission() {
 
         countdown.push(countItem);
         // console.log(countdown);
-        localStorage.setItem('countdown', JSON.stringify(countdown))
+        localStorage.setItem('countdown', setCountDownList(countdown))
 
         }else{
             // create first countdown
-            localStorage.setItem('countdown', JSON.stringify([countItem]) );
+            localStorage.setItem('countdown', setCountDownList([countItem]) );
         }
 
         // testing
         // closeFormPopUp();
     })
+}
+
+export function setCountDownList(ArrayOfJSONCountdowns){
+    localStorage.setItem('countdown', JSON.stringify(ArrayOfJSONCountdowns))   
 }

@@ -6,14 +6,16 @@ const hourNumber = document.getElementById("hour-num");
 const minNumber = document.getElementById("min-num");
 const secNumber = document.getElementById("sec-num");
 const coundownTextDisplay = document.getElementById('countdown-text');
+const countdownList = document.getElementById('countdown-list');
+let test = false;
 let arrayOfCountdowns;
 // todo: sort by modified time
 async function displayCountdowns() {
 
-    let countdownList = document.getElementById('countdown-list');
+    
     let JsonListOfCountdowns = await localStorage.getItem('countdown');
     if (JsonListOfCountdowns) {
-        arrayOfCountdowns = JSON.parse(JsonListOfCountdowns);
+        arrayOfCountdowns = (test)? arrayOfCountdowns:JSON.parse(JsonListOfCountdowns);
         let listItems = populateList(arrayOfCountdowns);
         countdownList.innerHTML = listItems;
         updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
@@ -34,7 +36,7 @@ function populateList(arrayOfCountdowns) {
         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
             <div class="countdown-list-text"> ${countdown.text} </div>
             <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
-            <div class="menu" data-index="${index}" style="display:none">
+            <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
             <div class="menu-opts main">Set as main</div>
             <div class="menu-opts del">Delete</div>
         </div></div>
@@ -103,14 +105,25 @@ function addListEventListener(){
                 triggerContextMenu(targetElement.parentElement);
 
         }else if (targetElement.className.search('menu-opts')>-1) {
-            console.log('clicking in menu');
+            let count_index = targetElement.parentElement.getAttribute('data-index');
+            let count_modified = targetElement.parentElement.getAttribute('data-id');
             if(targetElement.className.search('main')>-1){
                 // set as main clicked
-                console.log('main clicked')
-                localStorage.setItem('mainClock', JSON.stringify(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]))
+                // find the element convert to JSON and place it as the main clock
+                const mainCount =JSON.stringify(arrayOfCountdowns.find((countdown)=>countdown.dateModified== count_modified));
+                
+                localStorage.setItem('mainClock', mainCount);
+                console.log('main clicked, item set as main', mainCount);
             }else if(targetElement.className.search('del')>-1){
                 // delete item clicked
-                console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
+                console.log( count_index, count_modified,arrayOfCountdowns, 
+                    arrayOfCountdowns.filter((countdown, index)=> countdown.dateModified!= count_modified)
+                    );
+                arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index)=> countdown.dateModified!= count_modified);
+                test= true;
+                localStorage.setItem('countdown', JSON.parse(arrayOfCountdowns));
+                countdownList.innerHTML = populateList(arrayOfCountdowns)
+                // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
             }
         }
     })
