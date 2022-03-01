@@ -44,6 +44,8 @@ async function setMainClock(){
 
 }
 
+// function setMainText()
+
 export async function waitForAnimation(clock, domElements, duration) {
     await stepIncreaseAndStart(clock || myclock, domElements, duration||animatedCountDuration)
     startClock(clock || myclock, domElements);

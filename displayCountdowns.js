@@ -1,4 +1,5 @@
 import { stopClock, waitForAnimation } from "./app.js";
+import { setCountDownList } from "./form.js";
 import Clock from "./clock.js";
 
 const dayNumber = document.getElementById('day-num');
@@ -15,7 +16,7 @@ async function displayCountdowns() {
     
     let JsonListOfCountdowns = await localStorage.getItem('countdown');
     if (JsonListOfCountdowns) {
-        arrayOfCountdowns = (test)? arrayOfCountdowns:JSON.parse(JsonListOfCountdowns);
+        arrayOfCountdowns = JSON.parse(JsonListOfCountdowns);
         let listItems = populateList(arrayOfCountdowns);
         countdownList.innerHTML = listItems;
         updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
@@ -121,7 +122,7 @@ function addListEventListener(){
                     );
                 arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index)=> countdown.dateModified!= count_modified);
                 test= true;
-                localStorage.setItem('countdown', JSON.parse(arrayOfCountdowns));
+                setCountDownList(arrayOfCountdowns);
                 countdownList.innerHTML = populateList(arrayOfCountdowns)
                 // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
             }

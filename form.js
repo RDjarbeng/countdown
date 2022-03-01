@@ -1,23 +1,3 @@
-// DOM Elements
-const createButton = document.getElementsByClassName("new-item")[0];
-let countNumber = 1;
-
-// let dateInput, textInput;
-
-
-if (!document.querySelector("[href='form.css']")) {
-    document.head.insertAdjacentHTML(
-        "beforeend",
-        `<link rel="stylesheet" href="form.css">`
-    );
-}
-
-// todo: set variable countdown value
-
-
-createButton.addEventListener("click", popForm);
-
-
 function popForm() {
     countNumber = localStorage.getItem('countNumber');
     if (!countNumber)
@@ -98,11 +78,11 @@ function handleFormSubmission() {
 
         countdown.push(countItem);
         // console.log(countdown);
-        localStorage.setItem('countdown', setCountDownList(countdown))
+        setCountDownList(countdown)
 
         }else{
             // create first countdown
-            localStorage.setItem('countdown', setCountDownList([countItem]) );
+             setCountDownList([countItem]);
         }
 
         // testing
@@ -110,6 +90,24 @@ function handleFormSubmission() {
     })
 }
 
-export function setCountDownList(ArrayOfJSONCountdowns){
-    localStorage.setItem('countdown', JSON.stringify(ArrayOfJSONCountdowns))   
+export function setCountDownList(arrayOfJSONCountdowns){
+    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
 }
+
+// DOM Elements
+const createButton = document.getElementsByClassName("new-item")[0];
+let countNumber = 1;
+
+// let dateInput, textInput;
+
+
+if (!document.querySelector("[href='form.css']")) {
+    document.head.insertAdjacentHTML(
+        "beforeend",
+        `<link rel="stylesheet" href="form.css">`
+    );
+}
+
+
+
+createButton.addEventListener("click", popForm);
