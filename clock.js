@@ -1,11 +1,13 @@
 export default class Clock {
     constructor(endDate) {
+        // expecting a date object
         this.setEndDate(endDate)
         this.countDown();
     }
 
     setEndDate(endDate) {
         //set endDate to end of year
+        // todo: check endDate for validity as date
         this.endDate = endDate ||new Date(`Jan 1, ${new Date().getFullYear() + 1} 00:00:00`)
         
         

@@ -13,7 +13,7 @@ async function displayCountdowns() {
     let countdownList = document.getElementById('countdown-list');
     let JsonListOfCountdowns = await localStorage.getItem('countdown');
     if (JsonListOfCountdowns) {
-        arrayOfCountdowns = JSON.parse(JsonListOfCountdowns).reverse();
+        arrayOfCountdowns = JSON.parse(JsonListOfCountdowns);
         let listItems = populateList(arrayOfCountdowns);
         countdownList.innerHTML = listItems;
         updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
@@ -106,10 +106,11 @@ function addListEventListener(){
             console.log('clicking in menu');
             if(targetElement.className.search('main')>-1){
                 // set as main clicked
-                console.log('main clicked', targetElement.parentElement);
+                console.log('main clicked')
+                localStorage.setItem('mainClock', JSON.stringify(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]))
             }else if(targetElement.className.search('del')>-1){
                 // delete item clicked
-                console.log('delete clicked', targetElement.parentElement);
+                console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
             }
         }
     })
