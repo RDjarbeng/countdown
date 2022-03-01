@@ -106,7 +106,6 @@ The development process
 todo: 
 * Provide proper error messages when app/function crashes
 * Add repeating countdowns, Eg: birthdays
-* add option to change the main clock countdown
 * Shareable day of the year for mobile (Whatsapp)
 * Make use of notifications api to provide alert/notifications when countdown is complete
 * Provide a custom sort of countdowns by due time or date modified
