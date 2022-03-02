@@ -1,4 +1,4 @@
-import { stopClock, waitForAnimation } from "./app.js";
+import { stopClock, waitForAnimation, notifyUser } from "./app.js";
 import { setCountDownList } from "./form.js";
 import Clock from "./clock.js";
 
@@ -32,7 +32,6 @@ function populateList(arrayOfCountdowns) {
     let listItems = '';
     arrayOfCountdowns.forEach((countdown, index) => {
         let date = new Date(countdown.date);
-        let dateModified = new Date(countdown.dateModified)
         listItems += `
         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
             <div class="countdown-list-text"> ${countdown.text} </div>
@@ -111,15 +110,16 @@ function addListEventListener(){
             if(targetElement.className.search('main')>-1){
                 // set as main clicked
                 // find the element convert to JSON and place it as the main clock
-                const mainCount =JSON.stringify(arrayOfCountdowns.find((countdown)=>countdown.dateModified== count_modified));
-                
+                const countdown =arrayOfCountdowns.find((countdown)=>countdown.dateModified== count_modified);
+                const mainCount =JSON.stringify(countdown);
+                console.log(mainCount, typeof(mainCount), 'type me');
                 localStorage.setItem('mainClock', mainCount);
-                console.log('main clicked, item set as main', mainCount);
+                let date = new Date(countdown.date);
+                notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' }) } ${date.getFullYear()}`);
+                console.log(`main clicked, item set as main ${date.getDate()} ${date.toLocaleString('default', { month: 'long' }) } ${date.getFullYear()}`, mainCount);
             }else if(targetElement.className.search('del')>-1){
                 // delete item clicked
-                console.log( count_index, count_modified,arrayOfCountdowns, 
-                    arrayOfCountdowns.filter((countdown, index)=> countdown.dateModified!= count_modified)
-                    );
+                console.log( count_index, count_modified,arrayOfCountdowns);
                 arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index)=> countdown.dateModified!= count_modified);
                 test= true;
                 setCountDownList(arrayOfCountdowns);

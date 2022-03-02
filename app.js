@@ -33,25 +33,25 @@ let dayClock = new NewYearClock();
 var myclock = await setMainClock();
 var customClock;
 
-async function setMainClock(){
+async function setMainClock() {
     let mainclock = localStorage.getItem('mainClock');
-    if(mainclock !== null && mainclock != undefined){ //countdown set to main
-     mainclock = JSON.parse(mainclock)
-     myclock = new Clock(new Date(mainclock.date));
-     setMainText(mainclock.text)
+    if (mainclock !== null && mainclock != undefined) { //countdown set to main
+        mainclock = JSON.parse(mainclock)
+        myclock = new Clock(new Date(mainclock.date));
+        setMainText(mainclock.text)
     }
 
-    return myclock|| new NewYearClock();
+    return myclock || new NewYearClock();
 
 }
 
-function setMainText(countdownText){
+function setMainText(countdownText) {
     const textDisplay = document.getElementById('countdown-text');
     textDisplay.innerText = countdownText;
 }
 
 export async function waitForAnimation(clock, domElements, duration) {
-    await stepIncreaseAndStart(clock || myclock, domElements, duration||animatedCountDuration)
+    await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
     startClock(clock || myclock, domElements);
 }
 
@@ -182,7 +182,7 @@ function notifyMode() {
 }
 
 export function notifyUser(message) {
-    let notifyText= message;
+    let notifyText = message;
 
     if (document.getElementsByClassName("mode-info")[0]) {
         document.getElementsByClassName("mode-info")[0].remove();
@@ -228,19 +228,21 @@ function addEventListeners() {
     icon.addEventListener("click", setMode);
     icon.addEventListener("click", notifyMode);
     let whatsappIcon = document.getElementById('sendWhatsappButton');
-    whatsappIcon.addEventListener('click', exportToWhatsapp);
-    console.log(whatsappIcon);
+    if (whatsappIcon) {
+        whatsappIcon.addEventListener('click', exportToWhatsapp);
+        console.log(whatsappIcon);
+    }
 
 }
 
-function exportToWhatsapp(){
+function exportToWhatsapp() {
     let dayNum = dayCount.innerText;
-    window.open(`whatsapp://send?text= Day ${dayNum||'rcountdown'}/365`)
-    }
+    window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`)
+}
 
 //show day value before animation runs
 if (dayCount)
-  dayCount.innerHTML = dayClock.countDays();
+    dayCount.innerHTML = dayClock.countDays();
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
