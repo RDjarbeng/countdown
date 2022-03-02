@@ -11,9 +11,6 @@
     <link href="img/icons/favicon.png" rel="icon">
     <meta name="Author" content="R.Djarbeng| A.Nyakotey">
 
-    <!-- temp no cache meta for dev purposes -->
-    <meta http-equiv="pragma" content="no-cache" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="themes.css">
@@ -81,12 +78,10 @@
                 <div class="banner">
                     <div class="banner-h1"> 
                         DAY <span class="day" id='countDay'>X</span> / 365
-                        <span class="banner-h1"> <a href=
-                            "whatsapp://send?text=Day 41/365"
-                                    target="_blank">
-                                    Share to whatsapp
-                                </a> 
-                            </span>
+                        <div class="banner-h1"> 
+                            <span id ="sendWhatsappButton" data-action="share/whatsapp/share"  >
+                             Share to whatsapp</span>
+                        </div>
                     </div>
                     
                     

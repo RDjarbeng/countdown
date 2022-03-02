@@ -200,6 +200,7 @@ export function notifyUser(message) {
 
 
 
+
 //for the animated Countdown
 function animateValue(obj, start, end, duration) {
     let startTimestamp = null;
@@ -226,7 +227,16 @@ async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start
 function addEventListeners() {
     icon.addEventListener("click", setMode);
     icon.addEventListener("click", notifyMode);
+    let whatsappIcon = document.getElementById('sendWhatsappButton');
+    whatsappIcon.addEventListener('click', exportToWhatsapp);
+    console.log(whatsappIcon);
+
 }
+
+function exportToWhatsapp(){
+    let dayNum = dayCount.innerText;
+    window.open(`whatsapp://send?text= Day ${dayNum||'rcountdown'}/365`)
+    }
 
 //show day value before animation runs
 if (dayCount)
