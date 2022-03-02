@@ -181,6 +181,25 @@ function notifyMode() {
     }
 }
 
+export function notifyUser(message) {
+    let notifyText= message;
+
+    if (document.getElementsByClassName("mode-info")[0]) {
+        document.getElementsByClassName("mode-info")[0].remove();
+        body.insertAdjacentHTML(
+            "afterbegin",
+            `<span class="mode-info">${notifyText}</span>`
+        );
+    } else {
+        body.insertAdjacentHTML(
+            "afterbegin",
+            `<span class="mode-info">${notifyText}</span>`
+        );
+    }
+}
+
+
+
 //for the animated Countdown
 function animateValue(obj, start, end, duration) {
     let startTimestamp = null;
