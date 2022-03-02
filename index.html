@@ -11,6 +11,9 @@
     <link href="img/icons/favicon.png" rel="icon">
     <meta name="Author" content="R.Djarbeng| A.Nyakotey">
 
+    <!-- temp no cache meta for dev purposes -->
+    <meta http-equiv="pragma" content="no-cache" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="themes.css">
@@ -76,7 +79,18 @@
         <section class="container">
             <div class="banner-row">
                 <div class="banner">
-                    <div class="banner-h1"> DAY <span class="day" id='countDay'>X</span> / 365</div>
+                    <div class="banner-h1"> 
+                        DAY <span class="day" id='countDay'>X</span> / 365
+                        <span class="banner-h1"> <a href=
+                            "whatsapp://send?text=Day 41/365"
+                                    data-action="share/whatsapp/share"
+                                    target="_blank">
+                                    Share to whatsapp
+                                </a> 
+                            </span>
+                    </div>
+                    
+                    
                     <div class="banner-h2" id ='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i></div>
                 </div>
             </div>
@@ -103,10 +117,11 @@
     </main>
     <div class="new-item"><i class="fas fa-plus fa-lg"></i></div>
     
-    <script type="module" src="app.js"></script>
+    
+
+</body>
+<script type="module" src="app.js"></script>
     <script src="sidebar.js"></script>
     <script src="loadCustomUI.js"></script>
     <script type="module" src="form.js"></script>
-
-</body>
 </html>
