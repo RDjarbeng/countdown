@@ -237,7 +237,12 @@ function addEventListeners() {
 
 function exportToWhatsapp() {
     let dayNum = dayCount.innerText;
-    window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`)
+    if(["android","iphone","ipod","ipad"].includes(navigator.platform.toLowerCase())){
+        window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`)
+    }
+    else{
+        // notifyUser("you are on pc/mac");
+    }
 }
 
 //show day value before animation runs
