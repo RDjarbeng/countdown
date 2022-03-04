@@ -237,7 +237,7 @@ function addEventListeners() {
 
 function exportToWhatsapp() {
     let dayNum = dayCount.innerText;
-    window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`)
+    window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
 }
 
 //show day value before animation runs
