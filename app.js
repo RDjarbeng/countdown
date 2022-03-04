@@ -237,8 +237,14 @@ function addEventListeners() {
 
 function exportToWhatsapp() {
     let dayNum = dayCount.innerText;
-    if( navigator.userAgentData.mobile == true || ["android","iphone","ipod","ipad"].includes(navigator.platform.toLowerCase())){
-        window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`)
+    if( navigator.userAgentData ){
+        if(navigator.userAgentData.mobile == true ){
+            window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
+        }
+    }
+    else if(["android","iphone","ipod","ipad"].includes(navigator.platform.toLowerCase())){ 
+        // browsers not supporting the new navigator.uadata
+        window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
     }
     else{
         notifyUser("sharing available on mobile devices only");
