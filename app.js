@@ -237,11 +237,11 @@ function addEventListeners() {
 
 function exportToWhatsapp() {
     let dayNum = dayCount.innerText;
-    if(["android","iphone","ipod","ipad"].includes(navigator.platform.toLowerCase())){
+    if( navigator.userAgentData.mobile == true || ["android","iphone","ipod","ipad"].includes(navigator.platform.toLowerCase())){
         window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`)
     }
     else{
-        // notifyUser("you are on pc/mac");
+        notifyUser("sharing available on mobile devices only");
     }
 }
 
