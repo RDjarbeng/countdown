@@ -167,18 +167,7 @@ function notifyMode() {
         notifyText = "Dark mode set";
     }
 
-    if (document.getElementsByClassName("mode-info")[0]) {
-        document.getElementsByClassName("mode-info")[0].remove();
-        body.insertAdjacentHTML(
-            "afterbegin",
-            `<span class="mode-info">${notifyText}</span>`
-        );
-    } else {
-        body.insertAdjacentHTML(
-            "afterbegin",
-            `<span class="mode-info">${notifyText}</span>`
-        );
-    }
+    notifyUser(notifyText);
 }
 
 export function notifyUser(message) {
