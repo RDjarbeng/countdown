@@ -93,6 +93,9 @@ The development process
 * Added custom countdowns, allowing users to add their own countdowns
 * Added pink theme
 * Added custom backgrounds
+* Added user custom countdown form
+* Added custom countdowns created by user
+* Added option to set a user countdown as main countdown
 ---
 
 
@@ -101,6 +104,8 @@ The development process
 ![v2b2](https://user-images.githubusercontent.com/73431750/154068151-24b3fb27-7835-4efa-a0d3-73205015f560.png)
 ![v2b3](https://user-images.githubusercontent.com/73431750/154068153-b87fa7a2-e855-4dd9-bfff-20487f7898e7.png)
 ![v2b4](https://user-images.githubusercontent.com/73431750/154068156-19e978cd-bc66-4d76-bc92-3ff101d543bb.png)
+![image](https://user-images.githubusercontent.com/57795443/157711049-26be2f0a-d0b2-4b78-8a53-48a504c3f246.png)
+![image](https://user-images.githubusercontent.com/57795443/157711429-3a3dc955-a21e-41ec-a9ed-c7908b91122a.png)
 
 ---
 todo: 
