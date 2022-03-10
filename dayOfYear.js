@@ -35,12 +35,13 @@ class Clock {
         return this.dayLength - this.days
     }
 }
-// include('clock.js')
+include('clock.js')
 let dayCount = new Clock().countDays();
-// document.querySelector('div').innerText+= dayCount;
+document.querySelector('div').innerText+= 'Day '+dayCount+'/365';
+let url = `whatsapp://send?text=Day ${dayCount || 'X'}/365`;
 console.log('days', dayCount);
+console.log(window.location.protocol + "me //" + window.location.host );
+// window.location.replace(url);
+window.open(url);
 
-window.open(`whatsapp://send?text= Day ${dayCount || 'rcountdown'}/365`);
 // const dayClock = new NewYearClock();
-// const day = dayClock.countDays();
-// console.log(day);
