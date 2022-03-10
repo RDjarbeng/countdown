@@ -14,9 +14,11 @@ let arrayOfCountdowns;
 async function displayCountdowns() {
 
     
-    let JsonListOfCountdowns = await localStorage.getItem('countdown');
-    if (JsonListOfCountdowns) {
-        arrayOfCountdowns = JSON.parse(JsonListOfCountdowns);
+    let jsonListOfCountdowns = await localStorage.getItem('countdown');
+    console.log(jsonListOfCountdowns, jsonListOfCountdowns.length);
+    arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
+    if (arrayOfCountdowns && arrayOfCountdowns.length) {
+        
         let listItems = populateList(arrayOfCountdowns);
         countdownList.innerHTML = listItems;
         updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
