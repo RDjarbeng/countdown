@@ -111,6 +111,7 @@ function setMainClock() {
 
 function setMainText(countdownText) {
     const textDisplay = document.getElementById('countdown-text');
+    if(textDisplay)
     textDisplay.innerText = countdownText;
 }
 
@@ -151,12 +152,11 @@ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay)
     m = addZeros(m);
     s = addZeros(s);
 
-    dayDisplay.innerHTML = `${d}`;
-    hourDisplay.innerHTML = `${h}`;
-    minDisplay.innerHTML = `${m}`;
-    secDisplay.innerHTML = `${s}`;
+    setInnerHtmlForNotNull(dayDisplay, d);
+    setInnerHtmlForNotNull(hourDisplay, h);
+    setInnerHtmlForNotNull(minDisplay, m);
+    setInnerHtmlForNotNull(secDisplay, s);
 }
-
 
 
 //todo: find a better way of checking for a valid date
@@ -293,6 +293,10 @@ function exportToWhatsapp() {
     window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
 }
 
+function setInnerHtmlForNotNull(element, value){
+    if(element)//check for null
+        element.innerHTML = value;
+}
 //show day value before animation runs
 if (dayCount)
     dayCount.innerHTML = dayClock.countDays();
