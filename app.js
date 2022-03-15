@@ -293,6 +293,10 @@ function exportToWhatsapp() {
     window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
 }
 
+function setInnerHtmlForNotNull(element, value){
+    if(element)//check for null
+        element.innerHTML = value;
+}
 //show day value before animation runs
 if (dayCount)
     dayCount.innerHTML = dayClock.countDays();
