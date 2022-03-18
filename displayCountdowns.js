@@ -99,7 +99,8 @@ async function displayCountdowns() {
         
         let listItems = populateList(arrayOfCountdowns);
         countdownList.innerHTML = listItems;
-        updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
+        coundownTextDisplay.innerHTML = "Click a countdown to display it";
+        // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
         addEventListeners();
 
     } else {
