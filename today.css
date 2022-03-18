@@ -133,7 +133,6 @@ main {
     flex-direction: column;
     text-align: center;
     width: 100%;
-    /* border: 0.1rem solid var(--color-banner); */
     gap: 5vmin;
 }
 
@@ -143,7 +142,7 @@ main {
     border-radius: 0.1em;
     color: var(--color-text);
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(7px);
+    backdrop-filter: blur(5px);
     border-radius: 3vmin;
     display: flex;
     justify-content: center;
@@ -171,7 +170,7 @@ main {
 .date {
     width: 53vmin;
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(7px);
+    backdrop-filter: blur(5px);
     display: grid;
     grid-template-areas:
         "month day"
