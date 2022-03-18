@@ -137,7 +137,7 @@ main {
 }
 
 .day-of-year {
-    width: 30vmin;
+    width: 33vmin;
     padding: 0.5em 0;
     border-radius: 0.1em;
     color: var(--color-text);
@@ -149,12 +149,9 @@ main {
     align-items: center;
     flex-direction: column;
 }
-/* .day-of-year >*{
-  border: 1px solid red;
-} */
 .divider {
-    width: 5vmin;
-    height: 1px;
+    width: 6vmin;
+    height: 0.75vmin;
     background: var(--color-text);
 }
 .day-text {
@@ -171,7 +168,7 @@ main {
     font-size: 2rem;
 }
 .date {
-    width: 50vmin;
+    width: 53vmin;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(7px);
     display: grid;
@@ -208,6 +205,31 @@ main {
 .time {
     grid-area: time;
     font-size: 1rem;
+}
+.share-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1vmin;
+}
+.sm {
+    width: 6vmin;
+    height: 6vmin;
+    border-radius: 50%;
+    border: solid var(--share-bg-hover) 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    font-size: 3vmin;
+}
+.sm:hover {
+    background: var(--share-bg-hover);
+    color: var(--share-ico-hover);
+    transform: scale(1.2);
+    transition: transform 0.45s ease;
 }
 .header {
     position: fixed;
@@ -383,46 +405,17 @@ hr {
 }
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
-    body {
-        overflow-y: hidden;
-    }
     .container {
         gap: 4em;
     }
-    .banner {
-        width: 21em;
-    }
-    .clock-row {
-        font-size: 25vmin;
-        flex-direction: row;
-        gap: 2rem;
-    }
-    .clock-row::after,
-    .clock-row::before {
-        width: 1.8em;
-        height: 1.8em;
-    }
-    .controls-row {
-        flex-flow: row nowrap;
-        gap: 4em;
-    }
-    /* #sendWhatsappButton{
-    display: none;
-  } */
 }
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
     .container {
         gap: 1.6em;
     }
-    .banner-row {
-        font-size: 1.3rem;
-    }
     .logo-name {
         display: none;
-    }
-    .timer-text {
-        font-size: 0.75rem;
     }
     .sidebar {
         width: 75vmin;
@@ -430,28 +423,15 @@ hr {
     .new-item {
         bottom: 10vh;
     }
-}
-.share-row {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1vmin;
-}
-.sm {
-    width: 6vmin;
-    height: 6vmin;
-    border-radius: 50%;
-    border: solid var(--share-bg-hover) 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-}
-.sm:hover {
-    background: var(--share-bg-hover);
-    color: var(--share-ico-hover);
-    transform: scale(1.2);
-    transition: transform 0.45s ease;
+    .day-of-year {
+        width: 40vmin;
+    }
+    .date {
+        width: 60vmin;
+    }
+    .sm {
+        width: 9vmin;
+        height: 9vmin;
+        font-size: 4.5vmin;
+    }
 }
