@@ -1,11 +1,9 @@
-'use strict'
 /* 
 import { stopClock, waitForAnimation, notifyUser } from "./app.js";
  import { setCountDownList } from "./form.js";
  import Clock from "./clock.js";
 */
 
-console.log(dayNumber, 'me first');
 // spaghetti code to be cleaned
 // class Clock {
 //     constructor(endDate) {
@@ -83,7 +81,6 @@ async function waitForAnimation(clock, domElements, duration) {
 }
 // begin displaycountdown.js
 // const dayNumber = document.getElementById('day-num');
-console.log(dayNumber);
 var hourNumber = document.getElementById("hour-num");
 var minNumber = document.getElementById("min-num");
 var secNumber = document.getElementById("sec-num");
