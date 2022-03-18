@@ -1,6 +1,6 @@
-import { stopClock, waitForAnimation, notifyUser } from "./app.js";
-import { setCountDownList } from "./form.js";
-import Clock from "./clock.js";
+// import { stopClock, waitForAnimation, notifyUser } from "./app.js";
+// import { setCountDownList } from "./form.js";
+// import Clock from "./clock.js";
 
 const dayNumber = document.getElementById('day-num');
 const hourNumber = document.getElementById("hour-num");
@@ -128,6 +128,9 @@ function addListEventListener(){
             }
         }
     })
+}
+function setCountDownList(arrayOfJSONCountdowns){
+    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
 }
 
 function addEventListeners(){

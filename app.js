@@ -219,7 +219,6 @@ function addEventListeners() {
     let whatsappIcon = document.getElementById('sendWhatsappButton');
     if (whatsappIcon) {
         whatsappIcon.addEventListener('click', exportToWhatsapp);
-        console.log(whatsappIcon);
     }
 
 }
