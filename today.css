@@ -38,7 +38,7 @@
 }
 
 body {
-    background: url(animbg.svg) var(--bg-color) center no-repeat fixed;
+    background: var(--bg-url) var(--bg-color) center no-repeat fixed;
     background-size: cover;
     background-blend-mode: overlay;
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -52,7 +52,8 @@ main {
     width: 100vw;
     height: 90vh;
     margin-top: 10vh;
-    background: url(animbg.svg);
+    background: url(circle-anim-bg.svg);
+    background-size: contain;
 }
 .container {
     width: 100vw;
