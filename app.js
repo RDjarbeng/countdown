@@ -301,7 +301,6 @@ if (dayCount)
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 addEventListeners();
-autoLight();
 
 // init events
 
