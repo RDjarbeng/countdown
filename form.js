@@ -97,7 +97,7 @@ function handleFormSubmission() {
     })
 }
 
-export function setCountDownList(arrayOfJSONCountdowns){
+function setCountDownList(arrayOfJSONCountdowns){
     localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
 }
 

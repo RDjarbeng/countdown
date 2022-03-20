@@ -74,16 +74,16 @@ const animatedCountDuration = 800;
 // let startButton = document.getElementById('startButton');
 // let stopButton = document.getElementById('stopButton');
 const body = document.body;
-const dayNumber = document.getElementById('day-num');
-const hourNumber = document.getElementById("hour-num");
-const minNumber = document.getElementById("min-num");
-const secNumber = document.getElementById("sec-num");
+var dayNumber = document.getElementById('day-num');
+var hourNumber = document.getElementById("hour-num");
+var minNumber = document.getElementById("min-num");
+var secNumber = document.getElementById("sec-num");
 // const dateInput = document.getElementById('customDate')
 
-const customDayNumber = document.getElementById('day-custom');
-const customHourNumber = document.getElementById("hour-custom");
-const customMinNumber = document.getElementById("min-custom");
-const customSecNumber = document.getElementById("sec-custom");
+// const customDayNumber = document.getElementById('day-custom');
+// const customHourNumber = document.getElementById("hour-custom");
+// const customMinNumber = document.getElementById("min-custom");
+// const customSecNumber = document.getElementById("sec-custom");
 
 //to stop the clock
 let intervalID;
