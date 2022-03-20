@@ -22,7 +22,23 @@ function loadBg() {
         document.body.style.backgroundImage = `url(${savedBg})`;
     }
 }
+function loadMode() {
+    let savedMode = localStorage.getItem("userMode");
+    if( !["",null,undefined].includes(savedMode)){
+        console.log("loading: ",savedMode);
+        let modeAlt = (savedMode == "dark") ? "light" : "dark";
+        if(!document.body.classList.contains(savedMode)){
+            if(!document.body.classList.contains(modeAlt)){
+                document.body.classList.add(savedMode);
+            }
+            else{
+                document.body.classList.replace(modeAlt,savedMode);
+            }
+        }
+    }
+}
 
 loadTheme();
 loadAppStatusBarTheme();
 loadBg();
+loadMode();
