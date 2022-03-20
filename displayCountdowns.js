@@ -99,12 +99,13 @@ async function displayCountdowns() {
         
         let listItems = populateList(arrayOfCountdowns);
         countdownList.innerHTML = listItems;
-        coundownTextDisplay.innerHTML = "Click a countdown to display it";
+        coundownTextDisplay.innerHTML = "Click a countdown";
         // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
         addEventListeners();
 
     } else {
-        countdownList.innerHTML = 'Found no countdowns to display';
+        setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
+        setInnerHtmlForNotNull(coundownTextDisplay, '')
     }
     // console.log(myClock);
 }
