@@ -78,6 +78,7 @@ var dayNumber = document.getElementById('day-num');
 var hourNumber = document.getElementById("hour-num");
 var minNumber = document.getElementById("min-num");
 var secNumber = document.getElementById("sec-num");
+var dueDate = document.getElementById('dueDate');
 // const dateInput = document.getElementById('customDate')
 
 // const customDayNumber = document.getElementById('day-custom');
@@ -95,6 +96,8 @@ let dayClock = new NewYearClock();
 // Initialize default Clock class
 // var myclock = new NewYearClock();
 var myclock =  setMainClock();
+var myclock =  setMainClock();
+dueDate.innerText= `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`
 var customClock;
 
 function setMainClock() {
