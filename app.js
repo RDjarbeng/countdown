@@ -97,7 +97,7 @@ let dayClock = new NewYearClock();
 // var myclock = new NewYearClock();
 var myclock =  setMainClock();
 var myclock =  setMainClock();
-dueDate.innerText= `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`
+setInnerHtmlForNotNull(dueDate, `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 var customClock;
 
 function setMainClock() {
@@ -129,7 +129,7 @@ function startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
 function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
     // console.log(clock);
     updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
-    if (dayCount) dayCount.innerHTML = dayClock.countDays();
+    setInnerHtmlForNotNull(dayCount, dayClock.countDays());
     if (customClockMovement) {
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
@@ -153,11 +153,10 @@ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay)
     h = addZeros(h);
     m = addZeros(m);
     s = addZeros(s);
-
-    dayDisplay.innerHTML = `${d}`;
-    hourDisplay.innerHTML = `${h}`;
-    minDisplay.innerHTML = `${m}`;
-    secDisplay.innerHTML = `${s}`;
+    setInnerHtmlForNotNull(dayDisplay, `${d}`);
+    setInnerHtmlForNotNull(hourDisplay, `${h}`);
+    setInnerHtmlForNotNull(minDisplay, `${m}`);
+    setInnerHtmlForNotNull(secDisplay, `${s}`);
 }
 
 
@@ -303,7 +302,6 @@ if (dayCount)
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 addEventListeners();
 autoLight();
-console.log(myclock);
 
 // init events
 

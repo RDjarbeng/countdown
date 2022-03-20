@@ -98,13 +98,14 @@ async function displayCountdowns() {
     if (arrayOfCountdowns && arrayOfCountdowns.length) {
         
         let listItems = populateList(arrayOfCountdowns);
-        countdownList.innerHTML = listItems;
-        coundownTextDisplay.innerHTML = "Click a countdown to display it";
+        setInnerHtmlForNotNull(countdownList, listItems)
+        setInnerHtmlForNotNull(coundownTextDisplay, '')
         // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
         addEventListeners();
 
     } else {
-        countdownList.innerHTML = 'Found no countdowns to display';
+        setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
+        setInnerHtmlForNotNull(coundownTextDisplay, '')
     }
     // console.log(myClock);
 }
@@ -200,7 +201,6 @@ function addListEventListener(){
                 console.log(`main clicked, item set as main ${date.getDate()} ${date.toLocaleString('default', { month: 'long' }) } ${date.getFullYear()}`, mainCount);
             }else if(targetElement.className.search('del')>-1){
                 // delete item clicked
-                console.log( count_index, count_modified,arrayOfCountdowns);
                 arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index)=> countdown.dateModified!= count_modified);
                 test= true;
                 setCountDownList(arrayOfCountdowns);
