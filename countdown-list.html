@@ -10,15 +10,16 @@
     <title>Final Countdown</title>
     <link href="img/icons/favicon.png" rel="icon">
     <meta name="Author" content="R.Djarbeng| A.Nyakotey">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="countdown-list.css">
     <link rel="stylesheet" href="themes.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
     <link rel="manifest" href="manifest.json">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="img/icons/favicon.png">
     <meta name="apple-mobile-web-app-status-bar" content="#7b68ee">
     <meta name="theme-color" content="#7b68ee">
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="grey">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="gray">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#7b68ee">
 </head>
 
@@ -58,7 +59,7 @@
             </div>
         </section>
     </aside>
-    <header class="header">        
+    <header class="header">
         <div class="nav">
             <i class="fas fa-bars fa-lg"></i>
         </div>
@@ -71,19 +72,48 @@
         </div>
     </header>
     <main>
-        <section class="container">
-            <div class="banner-row">
+        <div class="container">
+            <section class="banner-row">
                 <div class="banner">
                     <div class="banner-h1">My CountDowns</div>
+                    <div class="banner-h2" id='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i>
+                    </div>
                 </div>
-            </div>
-            <div class="countdown-list">{{note, date}}</div>
-        </section>
+            </section>
+            <section class="clock-row" >
+                <div class="timer">
+                    <span class="timer-num" id="day-num">00</span>
+                    <span class="timer-text">Days</span>
+                </div>
+                <div class="timer">
+                    <span class="timer-num" id="hour-num">00</span>
+                    <span class="timer-text">Hours</span>
+                </div>
+                <div class="timer">
+                    <span class="timer-num" id="min-num">00</span>
+                    <span class="timer-text">Minutes</span>
+                </div>
+                <div class="timer">
+                    <span class="timer-num" id="sec-num">00</span>
+                    <span class="timer-text">Seconds</span>
+                </div>
+            </section>
+            <section >
+                <div class="countdown-list" id="countdown-list">
+                    Loading ...
+                </div>
+                
+            </section>
+            
+        </div>
     </main>
-    <div class="new-item"><i class="fas fa-pencil-alt fa-lg"></i></div>
-    <script type="module" src="app.js"></script>
+    <div class="new-item"><i class="fas fa-plus fa-lg"></i></div>
+
+    <script  src="app.js"></script>
     <script src="sidebar.js"></script>
     <script src="loadCustomUI.js"></script>
     <script src="form.js"></script>
+    <script src="displayCountdowns.js"></script>
 </body>
+
 </html>

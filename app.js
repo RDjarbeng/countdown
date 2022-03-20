@@ -1,40 +1,136 @@
-import Clock from './clock.js'
+// import Clock, { NewYearClock } from './clock.js'
+// // import { NewYearClock } from './clock.js'
+  class Clock {
+    constructor(endDate) {
+        // expecting a date object
+        this.setEndDate(endDate)
+        this.countDown();
+    }
+
+    setEndDate(endDate) {
+        //set endDate to end of year
+        // todo: check endDate for validity as date
+        this.endDate = endDate ||new Date(`Jan 1, ${new Date().getFullYear() + 1} 00:00:00`)
+        
+        
+    }
+    countDown() {
+        // Set the date we're counting down to
+        let countDownDate = this.endDate.getTime();
+        let now = new Date().getTime();
+        var distance = countDownDate - now;
+        // account for case of the countdown being reached, reset
+        if (distance >= 0) {
+            // Time calculations for days, hours, minutes and seconds
+            this.calculateTimeValues(distance)
+        } else {
+            //reset to end of year
+            // this.setEndDate()
+            //todo: Countup from the deadline date
+            // this.calculateTimeValues(Math.abs(distance));
+
+            // clear date values
+            this.resetMethod();
+            
+
+        }
+    }
+
+    resetMethod(){
+        this.clearCounter();
+    }
+
+    calculateTimeValues(distance){
+        this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    }
+    countDays() {
+        //account for leap year
+        this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
+        return this.dayLength - this.days
+    }
+
+    clearCounter(){
+        this.days=this.hours=this.minutes=this.seconds=0;
+    }
+}
+
+class NewYearClock extends Clock{
+    resetMethod(){
+        //reset to New Year's for default 
+        this.setEndDate()
+        console.log(this.endDate)
+    }
+}
 
 // DOM nodes
 let icon = document.getElementById('themeToggle');
 let dayCount = document.getElementById("countDay");
+const animatedCountDuration = 800;
 
 // let controls = document.getElementsByClassName("button");
 // let startButton = document.getElementById('startButton');
 // let stopButton = document.getElementById('stopButton');
 const body = document.body;
-const dayNumber =document.getElementById('day-num');
-const hourNumber =document.getElementById("hour-num");
-const minNumber =document.getElementById("min-num");
-const secNumber =document.getElementById("sec-num");
-const dateInput = document.getElementById('customDate')
+var dayNumber = document.getElementById('day-num');
+var hourNumber = document.getElementById("hour-num");
+var minNumber = document.getElementById("min-num");
+var secNumber = document.getElementById("sec-num");
+var dueDate = document.getElementById('dueDate');
+// const dateInput = document.getElementById('customDate')
 
-const customDayNumber =document.getElementById('day-custom');
-const customHourNumber =document.getElementById("hour-custom");
-const customMinNumber =document.getElementById("min-custom");
-const customSecNumber =document.getElementById("sec-custom");
+// const customDayNumber = document.getElementById('day-custom');
+// const customHourNumber = document.getElementById("hour-custom");
+// const customMinNumber = document.getElementById("min-custom");
+// const customSecNumber = document.getElementById("sec-custom");
 
 //to stop the clock
 let intervalID;
 let customClockMovement = false;
+let dayClock = new NewYearClock();
+// let countItem = { text: 'test', date: '03-03-2022', dateModified: new Date() };
+// localStorage.setItem('mainClock', JSON.stringify(countItem))
 
 // Initialize default Clock class
-var myclock = new Clock();
+// var myclock = new NewYearClock();
+var myclock =  setMainClock();
+var myclock =  setMainClock();
+dueDate.innerText= `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`
 var customClock;
 
-function startClock() {
-    intervalID = setInterval(startTime, 500);
+function setMainClock() {
+    let mainclock =  localStorage.getItem('mainClock');
+    if (mainclock !== null && mainclock != undefined) { //countdown set to main
+        mainclock = JSON.parse(mainclock)
+        myclock = new Clock(new Date(mainclock.date));
+        setMainText(mainclock.text)
+    }
+
+    return myclock || new NewYearClock();
+
 }
 
-function startTime() {
-    updateDisplay(myclock, dayNumber, hourNumber, minNumber, secNumber);
-    dayCount.innerHTML= myclock.countDays();
-    if(customClockMovement){
+function setMainText(countdownText) {
+    const textDisplay = document.getElementById('countdown-text');
+    textDisplay.innerText = countdownText;
+}
+
+ async function waitForAnimation(clock, domElements, duration) {
+    await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
+    startClock(clock || myclock, domElements);
+}
+
+function startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
+    intervalID = setInterval(() => {  startTime(clock, { dayNumber, hourNumber, minNumber, secNumber });  }, 500);
+}
+
+function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
+    // console.log(clock);
+    updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
+    if (dayCount) dayCount.innerHTML = dayClock.countDays();
+    if (customClockMovement) {
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
 }
@@ -47,13 +143,13 @@ function addZeros(time) {
     return time;
 }
 
-function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay){
+function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
     counter.countDown();
     let d = counter.days
     let h = counter.hours
     let m = counter.minutes
     let s = counter.seconds
-    d= addZeros(d);
+    d = addZeros(d);
     h = addZeros(h);
     m = addZeros(m);
     s = addZeros(s);
@@ -70,23 +166,23 @@ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay)
 /**
  * Listens for a user input for date element
  */
-function listenForDate(){
+function listenForDate() {
     const input = this.value;
     // console.log(input, 'run');
-    if(input != ''){
+    if (input != '') {
         customClock = new Clock(new Date(input));
         displayClockRow();
         // do the fast countdown
         // set speed faster when day of the year is greater
-        stepIncreaseAndStart(customClock, {customDayNumber,customHourNumber, customMinNumber, customSecNumber} ,(365-customClock.days<100)?365-customClock.days: 70);
+        // todo: change to animateValue
+        stepIncreaseAndStart(customClock, { customDayNumber, customHourNumber, customMinNumber, customSecNumber }, (365 - customClock.days < 100) ? 365 - customClock.days : 70);
     }
 }
 
-function displayClockRow(){
-    
-    let customRow =document.getElementById("customDisplay");
+function displayClockRow() {
+    let customRow = document.getElementById("customDisplay");
     // show row
-    customRow.style.display= 'block';
+    customRow.style.display = 'block';
 }
 /* //restart the clock
 function restartTime() {
@@ -96,13 +192,12 @@ function restartTime() {
         startClock();
     }
 }
-
+*/
 //stop the clock
-function stopClock() {
+ function stopClock() {
     clearTimeout(intervalID);
     customClockMovement = false;
 }
-*/
 
 function activateLightMode() {
     icon.innerHTML = `<i class="fas fa-moon"></i>`;
@@ -135,6 +230,12 @@ function notifyMode() {
         notifyText = "Dark mode set";
     }
 
+    notifyUser(notifyText);
+}
+
+ function notifyUser(message) {
+    let notifyText = message;
+
     if (document.getElementsByClassName("mode-info")[0]) {
         document.getElementsByClassName("mode-info")[0].remove();
         body.insertAdjacentHTML(
@@ -150,53 +251,63 @@ function notifyMode() {
 }
 
 
-function stepIncreaseAndStart(clockElement, domElements, speed =50, start_num =0){
-    let days=0, hours=0, minutes=0, seconds =0;
-    const interval=7;
-    let done = true;
-    customClockMovement=false;
-    console.log(speed);
-    // console.log(domElements);
-    let timer = setInterval(() => {
-        done=true;
-        domElements.customDayNumber.innerHTML = days;
-        domElements.customHourNumber.innerHTML = hours;
-        domElements.customMinNumber.innerHTML = minutes;
-        domElements.customSecNumber.innerHTML = seconds;
 
-        if(days < clockElement.days && clockElement.days> interval){
-            done =false;
-            days+=interval;
-            
-        }
-        if(hours< clockElement.hours){
-            done =false;
-            console.log('hours', hours, done);
-            hours++;
-        }
 
-        if(minutes< clockElement.minutes){
-            done =false;
-            minutes++;
+//for the animated Countdown
+function animateValue(obj, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = addZeros(Math.floor(progress * (end - start) + start));
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+            // animationComplete = false;
         }
-
-        if(seconds< clockElement.seconds){
-            done =false;
-            seconds++;
-        }
-        if(done){
-            customClockMovement = true;
-            clearInterval(timer)
-        }
-    }, speed);
+    };
+    window.requestAnimationFrame(step);
 }
 
+async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
+    animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
+    animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
+    animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
+    animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
 
+}
 
-startClock();
+function addEventListeners() {
+    icon.addEventListener("click", setMode);
+    icon.addEventListener("click", notifyMode);
+    let whatsappIcon = document.getElementById('sendWhatsappButton');
+    if (whatsappIcon) {
+        whatsappIcon.addEventListener('click', exportToWhatsapp);
+    }
+
+}
+
+function exportToWhatsapp() {
+    let dayNum = dayCount.innerText;
+    window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
+}
+
+function setInnerHtmlForNotNull(element, value){
+    if(element)//check for null
+        element.innerHTML = value;
+}
+//show day value before animation runs
+if (dayCount)
+    dayCount.innerHTML = dayClock.countDays();
+
+// startTime();
+waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
+addEventListeners();
+autoLight();
+console.log(myclock);
+
 // init events
-icon.addEventListener("click", setMode);
-icon.addEventListener("click", notifyMode);
+
+
 
 // dateInput.addEventListener('change', listenForDate);
 

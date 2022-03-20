@@ -43,7 +43,7 @@
 }
 
 /* create countdown form */
-input[type="text"],input[type="date"]{
+input[type="text"],input[type="datetime-local"]{
     width: 50vmin;
     padding: 2vmin;
     border-radius: 2vmin;
