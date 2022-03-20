@@ -54,15 +54,16 @@ body {
   color: var(--color-text);
   font-family: "Nunito", sans-serif;
   width: 100vw;
-  /* height: 100vh; */
+  height: 100vh;
 }
 main{
   width: 100vw;
-  /* height: 100vh; */
-  margin-top: 10vh;
+  height: 100%;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
 }
 .container {
-  /* height: 100vh; */
+  height: 100%;
   width: 100vw;
   display: flex;
   align-items: center;

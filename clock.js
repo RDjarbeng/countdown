@@ -40,6 +40,8 @@ export default class Clock {
 
     calculateTimeValues(distance){
         this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        this.years = Math.floor(this.days / this.dayLength);
+        this.days = this.days%this.dayLength
             this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             this.seconds = Math.floor((distance % (1000 * 60)) / 1000);

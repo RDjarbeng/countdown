@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,10 +10,12 @@
     <link href="img/icons/favicon.png" rel="icon">
     <meta name="Author" content="R.Djarbeng| A.Nyakotey">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> -->
+    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="themes.css">
-
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
     <link rel="manifest" href="manifest.json">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="img/icons/favicon.png">
@@ -76,7 +77,17 @@
         <section class="container">
             <div class="banner-row">
                 <div class="banner">
-                    <div class="banner-h1"> DAY <span class="day" id='countDay'>X</span> / 365</div>
+                    <div class="banner-h1"> 
+                        DAY <span class="day" id='countDay'>X</span> / 365
+                        &emsp;
+                        <span class="share-whatsapp" 
+                            id ="sendWhatsappButton" 
+                            data-action="share/whatsapp/share"
+                            title="share to Whatsapp"
+                        >
+                            <i class="fab fa-whatsapp"></i>
+                        </span>
+                    </div>
                     <div class="banner-h2" id ='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i></div>
                 </div>
             </div>
@@ -98,15 +109,16 @@
                     <span class="timer-text">Seconds</span>
                 </div>
             </div>
+            <div class="countdown-list-date" id ='dueDate'> 
+            </div>
 
         </section>
     </main>
     <div class="new-item"><i class="fas fa-plus fa-lg"></i></div>
-    
-    <script type="module" src="app.js"></script>
+
+    <script src="app.js"></script>
     <script src="sidebar.js"></script>
     <script src="loadCustomUI.js"></script>
-    <script type="module" src="form.js"></script>
-
+    <script  src="form.js"></script>    
 </body>
 </html>

@@ -28,21 +28,28 @@ function popForm() {
     handleFormSubmission();
 }
 
+function addZeros(time) {
+    if (time < 10) {
+        time = "0" + time;
+    }
+    return time;
+}
+
 function setDateAttributes() {
     const dateInput = document.getElementById("dateInput");
     const today = new Date();
     let dd = today.getDate() ;//add 1 to the date so date starts from tomorrow
     let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
     let yyyy = today.getFullYear();
-    if (dd < 10) {
-        dd = '0' + dd
-    }
-    if (mm < 10) {
-        mm = '0' + mm
-    }
+    let hr = addZeros(today.getHours());
+    let min = addZeros(today.getMinutes());
+    dd = addZeros(dd);
+    mm = addZeros(mm)
 
-    let todayString = yyyy + '-' + mm + '-' + dd+'T00:00';
+    let todayString = yyyy + '-' + mm + '-' + dd+'T'+ hr+':'+min;
+    console.log(todayString);
     dateInput.setAttribute("min", todayString);
+    dateInput.value= todayString;
 }
 
 function closeFormPopUp() {
@@ -90,7 +97,7 @@ function handleFormSubmission() {
     })
 }
 
-export function setCountDownList(arrayOfJSONCountdowns){
+function setCountDownList(arrayOfJSONCountdowns){
     localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
 }
 
