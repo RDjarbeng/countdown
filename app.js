@@ -198,25 +198,20 @@ function restartTime() {
     customClockMovement = false;
 }
 
-//light mode if after 6am and after 18:00 evening
-function autoLight() {
-    let h = new Date().getHours();
-    //between 6 am and 6pm
-    if (h > 5 && h < 18) activateLightMode();
-}
-
 function activateLightMode() {
     icon.innerHTML = `<i class="fas fa-moon"></i>`;
-    if (body.classList.contains("dark")) {
-        body.classList.replace("dark", "light");
-    } else { body.classList.add("light"); }
+    if(body.classList.contains("dark")){
+    body.classList.replace("dark","light");}else{body.classList.add("light");}
+    localStorage.setItem("userMode", "light");
+    console.log("saving: ",  localStorage.getItem("userMode"));
 }
 
 function activateDarkMode() {
     icon.innerHTML = `<i class="fas fa-sun"></i>`;
-    if (body.classList.contains("light")) {
-        body.classList.replace("light", "dark");
-    } else { body.classList.add("dark"); }
+    if(body.classList.contains("light")){
+        body.classList.replace("light","dark");}else{body.classList.add("dark");}
+        localStorage.setItem("userMode", "dark");
+        console.log("saving: ",  localStorage.getItem("userMode"));
 }
 
 function setMode() {
@@ -307,6 +302,7 @@ if (dayCount)
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 addEventListeners();
 autoLight();
+
 // init events
 
 
