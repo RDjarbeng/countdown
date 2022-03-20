@@ -1,66 +1,66 @@
-// import { stopClock, waitForAnimation, notifyUser } from "./app.js";
-// import { setCountDownList } from "./form.js";
-// import Clock from "./clock.js";
-
-
+/* 
+import { stopClock, waitForAnimation, notifyUser } from "./app.js";
+ import { setCountDownList } from "./form.js";
+ import Clock from "./clock.js";
+*/
 
 // spaghetti code to be cleaned
-class Clock {
-    constructor(endDate) {
-        // expecting a date object
-        this.setEndDate(endDate)
-        this.countDown();
-    }
+// class Clock {
+//     constructor(endDate) {
+//         // expecting a date object
+//         this.setEndDate(endDate)
+//         this.countDown();
+//     }
 
-    setEndDate(endDate) {
-        //set endDate to end of year
-        // todo: check endDate for validity as date
-        this.endDate = endDate ||new Date(`Jan 1, ${new Date().getFullYear() + 1} 00:00:00`)
+//     setEndDate(endDate) {
+//         //set endDate to end of year
+//         // todo: check endDate for validity as date
+//         this.endDate = endDate ||new Date(`Jan 1, ${new Date().getFullYear() + 1} 00:00:00`)
         
         
-    }
-    countDown() {
-        // Set the date we're counting down to
-        let countDownDate = this.endDate.getTime();
-        let now = new Date().getTime();
-        var distance = countDownDate - now;
-        // account for case of the countdown being reached, reset
-        if (distance >= 0) {
-            // Time calculations for days, hours, minutes and seconds
-            this.calculateTimeValues(distance)
-        } else {
-            //reset to end of year
-            // this.setEndDate()
-            //todo: Countup from the deadline date
-            // this.calculateTimeValues(Math.abs(distance));
+//     }
+//     countDown() {
+//         // Set the date we're counting down to
+//         let countDownDate = this.endDate.getTime();
+//         let now = new Date().getTime();
+//         var distance = countDownDate - now;
+//         // account for case of the countdown being reached, reset
+//         if (distance >= 0) {
+//             // Time calculations for days, hours, minutes and seconds
+//             this.calculateTimeValues(distance)
+//         } else {
+//             //reset to end of year
+//             // this.setEndDate()
+//             //todo: Countup from the deadline date
+//             // this.calculateTimeValues(Math.abs(distance));
 
-            // clear date values
-            this.resetMethod();
+//             // clear date values
+//             this.resetMethod();
             
 
-        }
-    }
+//         }
+//     }
 
-    resetMethod(){
-        this.clearCounter();
-    }
+//     resetMethod(){
+//         this.clearCounter();
+//     }
 
-    calculateTimeValues(distance){
-        this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    }
-    countDays() {
-        //account for leap year
-        this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
-        return this.dayLength - this.days
-    }
+//     calculateTimeValues(distance){
+//         this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+//             this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+//             this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+//             this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+//     }
+//     countDays() {
+//         //account for leap year
+//         this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
+//         return this.dayLength - this.days
+//     }
 
-    clearCounter(){
-        this.days=this.hours=this.minutes=this.seconds=0;
-    }
-}
+//     clearCounter(){
+//         this.days=this.hours=this.minutes=this.seconds=0;
+//     }
+// }
 
 function stopClock() {
     clearTimeout(intervalID);
@@ -80,12 +80,12 @@ async function waitForAnimation(clock, domElements, duration) {
     startClock(clock || myclock, domElements);
 }
 // begin displaycountdown.js
-const dayNumber = document.getElementById('day-num');
-const hourNumber = document.getElementById("hour-num");
-const minNumber = document.getElementById("min-num");
-const secNumber = document.getElementById("sec-num");
-const coundownTextDisplay = document.getElementById('countdown-text');
-const countdownList = document.getElementById('countdown-list');
+// const dayNumber = document.getElementById('day-num');
+var hourNumber = document.getElementById("hour-num");
+var minNumber = document.getElementById("min-num");
+var secNumber = document.getElementById("sec-num");
+var coundownTextDisplay = document.getElementById('countdown-text');
+var countdownList = document.getElementById('countdown-list');
 let test = false;
 let arrayOfCountdowns;
 
@@ -98,12 +98,14 @@ async function displayCountdowns() {
     if (arrayOfCountdowns && arrayOfCountdowns.length) {
         
         let listItems = populateList(arrayOfCountdowns);
-        countdownList.innerHTML = listItems;
-        updateClockAndText(arrayOfCountdowns[0].date, arrayOfCountdowns[0].text)
+        setInnerHtmlForNotNull(countdownList, listItems)
+        setInnerHtmlForNotNull(coundownTextDisplay, '')
+        // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
         addEventListeners();
 
     } else {
-        countdownList.innerHTML = 'Found no countdowns to display';
+        setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
+        setInnerHtmlForNotNull(coundownTextDisplay, '')
     }
     // console.log(myClock);
 }
@@ -199,7 +201,6 @@ function addListEventListener(){
                 console.log(`main clicked, item set as main ${date.getDate()} ${date.toLocaleString('default', { month: 'long' }) } ${date.getFullYear()}`, mainCount);
             }else if(targetElement.className.search('del')>-1){
                 // delete item clicked
-                console.log( count_index, count_modified,arrayOfCountdowns);
                 arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index)=> countdown.dateModified!= count_modified);
                 test= true;
                 setCountDownList(arrayOfCountdowns);
@@ -209,10 +210,13 @@ function addListEventListener(){
         }
     })
 }
+function setCountDownList(arrayOfJSONCountdowns){
+    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
+}
 
 function addEventListeners(){
     addListEventListener();
     // add context menu event listener
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
-await displayCountdowns();
+displayCountdowns();

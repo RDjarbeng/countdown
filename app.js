@@ -74,16 +74,17 @@ const animatedCountDuration = 800;
 // let startButton = document.getElementById('startButton');
 // let stopButton = document.getElementById('stopButton');
 const body = document.body;
-const dayNumber = document.getElementById('day-num');
-const hourNumber = document.getElementById("hour-num");
-const minNumber = document.getElementById("min-num");
-const secNumber = document.getElementById("sec-num");
+var dayNumber = document.getElementById('day-num');
+var hourNumber = document.getElementById("hour-num");
+var minNumber = document.getElementById("min-num");
+var secNumber = document.getElementById("sec-num");
+var dueDate = document.getElementById('dueDate');
 // const dateInput = document.getElementById('customDate')
 
-const customDayNumber = document.getElementById('day-custom');
-const customHourNumber = document.getElementById("hour-custom");
-const customMinNumber = document.getElementById("min-custom");
-const customSecNumber = document.getElementById("sec-custom");
+// const customDayNumber = document.getElementById('day-custom');
+// const customHourNumber = document.getElementById("hour-custom");
+// const customMinNumber = document.getElementById("min-custom");
+// const customSecNumber = document.getElementById("sec-custom");
 
 //to stop the clock
 let intervalID;
@@ -95,6 +96,8 @@ let dayClock = new NewYearClock();
 // Initialize default Clock class
 // var myclock = new NewYearClock();
 var myclock =  setMainClock();
+var myclock =  setMainClock();
+setInnerHtmlForNotNull(dueDate, `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 var customClock;
 
 function setMainClock() {
@@ -127,7 +130,7 @@ function startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
 function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
     // console.log(clock);
     updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
-    if (dayCount) dayCount.innerHTML = dayClock.countDays();
+    setInnerHtmlForNotNull(dayCount, dayClock.countDays());
     if (customClockMovement) {
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
@@ -151,11 +154,10 @@ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay)
     h = addZeros(h);
     m = addZeros(m);
     s = addZeros(s);
-
-    setInnerHtmlForNotNull(dayDisplay, d);
-    setInnerHtmlForNotNull(hourDisplay, h);
-    setInnerHtmlForNotNull(minDisplay, m);
-    setInnerHtmlForNotNull(secDisplay, s);
+    setInnerHtmlForNotNull(dayDisplay, `${d}`);
+    setInnerHtmlForNotNull(hourDisplay, `${h}`);
+    setInnerHtmlForNotNull(minDisplay, `${m}`);
+    setInnerHtmlForNotNull(secDisplay, `${s}`);
 }
 
 
@@ -196,25 +198,20 @@ function restartTime() {
     customClockMovement = false;
 }
 
-//light mode if after 6am and after 18:00 evening
-function autoLight() {
-    let h = new Date().getHours();
-    //between 6 am and 6pm
-    if (h > 5 && h < 18) activateLightMode();
-}
-
 function activateLightMode() {
     icon.innerHTML = `<i class="fas fa-moon"></i>`;
-    if (body.classList.contains("dark")) {
-        body.classList.replace("dark", "light");
-    } else { body.classList.add("light"); }
+    if(body.classList.contains("dark")){
+    body.classList.replace("dark","light");}else{body.classList.add("light");}
+    localStorage.setItem("userMode", "light");
+    console.log("saving: ",  localStorage.getItem("userMode"));
 }
 
 function activateDarkMode() {
     icon.innerHTML = `<i class="fas fa-sun"></i>`;
-    if (body.classList.contains("light")) {
-        body.classList.replace("light", "dark");
-    } else { body.classList.add("dark"); }
+    if(body.classList.contains("light")){
+        body.classList.replace("light","dark");}else{body.classList.add("dark");}
+        localStorage.setItem("userMode", "dark");
+        console.log("saving: ",  localStorage.getItem("userMode"));
 }
 
 function setMode() {
@@ -304,7 +301,7 @@ if (dayCount)
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 addEventListeners();
-autoLight();
+
 // init events
 
 
