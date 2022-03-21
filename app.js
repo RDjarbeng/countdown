@@ -253,12 +253,12 @@ function notifyMode() {
 
 
 //for the animated Countdown
-function animateValue(obj, start, end, duration) {
+function animateValue(domElement, start, end, duration) {
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        obj.innerHTML = addZeros(Math.floor(progress * (end - start) + start));
+        setInnerHtmlForNotNull(domElement, addZeros(Math.floor(progress * (end - start) + start)))
         if (progress < 1) {
             window.requestAnimationFrame(step);
             // animationComplete = false;
