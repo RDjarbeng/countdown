@@ -128,6 +128,6 @@ function openBgPicker() {
         });
     };
     loadForm().catch(err => {
-        alert("Oops an error occured\nKindly refresh your browser\n",err);
+        errorHandler();
     });
 }
