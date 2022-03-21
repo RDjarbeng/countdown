@@ -114,7 +114,7 @@ function setMainClock() {
 
 function setMainText(countdownText) {
     const textDisplay = document.getElementById('countdown-text');
-    textDisplay.innerText = countdownText;
+    setInnerHtmlForNotNull(textDisplay, countdownText)
 }
 
  async function waitForAnimation(clock, domElements, duration) {
@@ -199,7 +199,7 @@ function restartTime() {
 }
 
 function activateLightMode() {
-    icon.innerHTML = `<i class="fas fa-moon"></i>`;
+    setInnerHtmlForNotNull(icon, `<i class="fas fa-moon"></i>`);
     if(body.classList.contains("dark")){
     body.classList.replace("dark","light");}else{body.classList.add("light");}
     localStorage.setItem("userMode", "light");
@@ -207,7 +207,7 @@ function activateLightMode() {
 }
 
 function activateDarkMode() {
-    icon.innerHTML = `<i class="fas fa-sun"></i>`;
+    setInnerHtmlForNotNull(icon, `<i class="fas fa-sun"></i>`);
     if(body.classList.contains("light")){
         body.classList.replace("light","dark");}else{body.classList.add("dark");}
         localStorage.setItem("userMode", "dark");
@@ -295,8 +295,7 @@ function setInnerHtmlForNotNull(element, value){
         element.innerHTML = value;
 }
 //show day value before animation runs
-if (dayCount)
-    dayCount.innerHTML = dayClock.countDays();
+setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
