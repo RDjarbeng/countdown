@@ -117,6 +117,7 @@ todo:
 * Make use of notifications api to provide alert/notifications when countdown is complete
 * Provide a custom sort of countdowns by due time or date modified
 * Add edit functionality to created countdowns
+* Add animated countdown to day of year page
 
 todo v3:
 * authentication (firebase)
