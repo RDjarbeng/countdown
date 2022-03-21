@@ -64,7 +64,7 @@ main{
 }
 
 .mode-info {
-  background: #05172b;
+  background: var(--bg-color);
   border-radius: 0.3rem;
   color: var(--color-text);
   padding: 0.2rem 0.8rem;
