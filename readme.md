@@ -96,6 +96,9 @@ The development process
 * Added user custom countdown form
 * Added custom countdowns created by user
 * Added option to set a user countdown as main countdown
+* Added night mode consistency across pages
+* Fixed app crashes in UC browser and older versions of Safari
+* Added whatsapp share button and whatsapp share functionality
 ---
 
 
@@ -109,10 +112,11 @@ The development process
 
 ---
 todo: 
-* Provide proper error messages when app/function crashes
+* Provide proper error messages when app/function crashes- in progress
 * Add repeating countdowns, Eg: birthdays
 * Make use of notifications api to provide alert/notifications when countdown is complete
 * Provide a custom sort of countdowns by due time or date modified
+* Add edit functionality to created countdowns
 
 todo v3:
 * authentication (firebase)
