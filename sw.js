@@ -1,6 +1,7 @@
-// #2
-const staticCacheName = 'site-static-v2';
-const dynamicCache = 'site-dynamic-v2';
+// #3
+const staticCacheName = 'site-static-v3';
+const dynamicCache = 'site-dynamic-v3';
+
 // caching
 //assets to cache
 const assets = [
@@ -11,14 +12,11 @@ const assets = [
     '/clock.js',
     '/app.js',
     '/img/bg.svg',
-    '/img/bg-light.svg',
     '/styles.css',
     'img/icons/favicon.png',
     'img/icons/chrome192.png',
     'img/icons/chrome512.png',
-    "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css",
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
-    'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css.map',
     // "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap",
     // 'https://fonts.gstatic.com/s/nunito/v20/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2'
 

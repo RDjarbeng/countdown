@@ -6,6 +6,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  user-select: none;
 }
 
 /* mode variables */
@@ -19,11 +20,15 @@
   --bg-sidebar: #7b68ee;
   --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
   --color-sidebar: white;
+  --color-cdList: white;
+  --bg-cdListHover: #735fe7;
+  overflow-x: hidden;
 }
 .dark{
   --bg-color: #1b182c;
   --color-text: white;
   --bg-timer: #474650;
+  --bg-cdList: var(--color-banner);
 }
 .light {
   --bg-color: #dbdbdb;
@@ -31,7 +36,10 @@
   --color-text: var(--color-banner);
   --bg-timer: whitesmoke;
   --timer-grad: rgba(255, 255, 255, 0.8);
-  --timer-box: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+  --timer-box: 0 0 5px 1px rgba(0, 0, 0, 0.1);  
+  --color-cdList: var(--color-banner);
+  --bg-cdList: #f0f0f0;
+  --bg-cdListHover: #ffffff;
 }
 /* hide the custom clock at start */
 #customDisplay{
@@ -49,16 +57,16 @@ body {
 }
 main{
   width: 100vw;
-  height: 100vh;
-  margin-top: 10vh;
+  height: 100%;
+  padding-top: 10vh;
 }
 .container {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 2.5em;
+  gap: 2em;
   overflow-x: hidden;
 }
 
@@ -151,14 +159,25 @@ main{
 .clock-row {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-align: center;
-  width: 100vw;
+  /* width: 100vw; */
   align-items: center;
   justify-content: center;
   border-radius: 0.2em;
   padding: 10px;
   gap: 1rem;
+  display: none;
+  animation: expand 0.05s forwards ease;
+  animation-play-state: paused;
+}
+@keyframes expand {
+    from{
+        width: 0;
+    }
+    to{
+        width: 100vw;
+    }
 }
 
 .timer{
@@ -167,10 +186,10 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25vmin;
-  height: 25vmin;
+  width: 18vmin;
+  height: 18vmin;
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: .7em;
+  border-radius: .5rem;
   background: linear-gradient(90deg,var(--color-muted) 50%, var(--timer-grad) 50%);
   margin-bottom: 1rem;
   backdrop-filter: blur(1px);
@@ -180,9 +199,10 @@ main{
   box-shadow: var(--timer-box);
 }
 .timer-num{
-  font-size: 13vmin;
+  font-size: 9vmin;
 }
 .timer-text{
+    font-size: 2.5vmin;
   content: "";
   position: absolute;
   bottom: -1em;
@@ -190,35 +210,12 @@ main{
   border-radius: 0.3em;
   padding: .5em;
   text-align: center;
-  width: 18vmin;
+  width: 13vmin;
   overflow: clip;
   transition: background-color 0.2s ease;
 }
 .light .timer-text{
   box-shadow: var(--timer-box);
-}
-
-.controls-row {
-  display: flex;
-  flex-flow: column nowrap;
-  margin-bottom: 5vh;
-  gap: 1em;
-  width: 100vw;
-  height: 20vh;
-  align-items: center;
-  justify-content: center;
-}
-
-.author{
-  /* position: absolute;
-  bottom: 15px;
-  left: 20px; */
-  font-size: 0.7em;
-  color: var(--color-text)
-}
-
-.author:hover{
-  color: var(--color-banner)
 }
 .header{
   position: fixed;
@@ -238,7 +235,7 @@ main{
 }
 .logo-name{
   text-align: center;
-  font-size: 5vh;
+  font-size: 2rem;
   color: var(--color-sidebar);
   /* margin-left: 1rem; incase logo gap doesn't work on mobile browsers */
 }
@@ -390,31 +387,17 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
 }
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
-  body {
-    overflow-y: hidden;
-  }
-  .container{
-    gap: 4em;
-  }
   .banner {
     width: 21em;
   }
   .clock-row {
-    font-size: 25vmin;
-    flex-direction: row;
+    /* font-size: 25vmin; */
     gap: 2rem;
   }
   .clock-row::after,
   .clock-row::before {
     width: 1.8em;
     height: 1.8em;
-  }
-  .controls-row {
-    flex-flow: row nowrap;
-    gap: 4em;
-  }  
-  #sendWhatsappButton{
-    display: none;
   }
 }
 /* mobile and small screens */
@@ -428,21 +411,76 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   .logo-name{
     display: none;
   }
-  .timer-text{
-    font-size: 0.75rem;
-  }
   .sidebar{
     width: 75vmin;
   }
   .new-item{
     bottom: 10vh;
   }
-/* temporary fix */
-  .clock-row{
-    justify-content: normal;
-  }
+}
+/* why?*/
+.countdown-list{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 0.9rem;
+    padding-bottom: 10vh;
+}
+.countdown-list-item:hover{
+  background: var(--bg-cdListHover);
+}
+.countdown-list-item{
+    background: var(--bg-cdList);
+    color: var(--color-cdList);
+    border-radius: .3rem;
+    width: 80vmin;
+    display: grid;
+    grid-template-areas: 
+    'note options'
+    'date options';    
+  grid-template-columns: 6fr 1fr;
+  padding: 0 0 0 1rem;
+}
+.countdown-list-text{
+    grid-area: note;
+    font-size: 1.25rem;
+    padding: 1rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+.countdown-list-options{
+    grid-area: options;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    /* border: #1cb65d solid 2px; */
+    position: relative;
+}
+.countdown-list-date{
+    grid-area: date;
+    font-size: 0.65rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.countdown-list-item:hover{
-  background-color: #130752;
+.menu{
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2); ;
+    position: absolute;
+    right: 0;
+    bottom: 60%;
+    width: 30vmin;
+    border-radius: 0.2rem;
+    color: var(--color-text);background: var(--bg-timer);
+}
+.menu-opts{
+    padding: .2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.menu-opts:hover{
+    background:rgba(0, 0, 0, 0.1);
+
 }

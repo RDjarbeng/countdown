@@ -8,14 +8,12 @@
     <meta name="Keywords" content="Countdown, Midnight countdown">
     <title>Final Countdown</title>
     <link href="img/icons/favicon.png" rel="icon">
-    <meta name="Author" content="R.Djarbeng| A.Nyakotey">
-
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> -->
-    
-    <link rel="stylesheet" href="styles.css">
+    <meta name="Author" content="R.Djarbeng| A.Nyakotey">    
+    <link rel="stylesheet" href="today.css">
     <link rel="stylesheet" href="themes.css">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
+    <!-- <link rel="stylesheet" href="fa5/css/all.min.css"> -->
     <link rel="manifest" href="manifest.json">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="img/icons/favicon.png">
@@ -66,7 +64,7 @@
             <i class="fas fa-bars fa-lg"></i>
         </div>
         <div class="logo">
-            <a href="/index.html"><div class="logo-ico"><img src="img/icons/chrome192.png" alt="logo"></div></a>
+            <div class="logo-ico"><img src="img/icons/chrome192.png" alt="logo"></div>
             <div class="logo-name">Final CountDown</div>
         </div>
         <div class="mode-row">
@@ -75,51 +73,38 @@
     </header>
     <main>
         <section class="container">
-            <div class="banner-row">
-                <div class="banner">
-                    <div class="banner-h1"> 
-                        DAY <span class="day" id='countDay'>X</span> / 365
-                        &emsp;
-                        <span class="share-whatsapp" 
-                            id ="sendWhatsappButton" 
-                            data-action="share/whatsapp/share"
-                            title="share to Whatsapp"
-                        >
-                            <i class="fab fa-whatsapp"></i>
-                        </span>
-                    </div>
-                    <div class="banner-h2" id ='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i></div>
+            <div class="date-row">
+                <div class="day-of-year">
+                    <div class="day-text">DAY</div> 
+                    <div class="day-count" id='countDay'>X</div>
+                    <div class="divider"></div>
+                    <div class="year-count">365</div>
+                </div>
+                <div class="date">
+                    <div class="day-of-week" id ="dayOfWeek">Monday</div>
+                    <div class="day" id ="dayOfMonth">11</div>
+                    <div class="month" id="month">Mar</div>
+                    <div class="year" id="year">2022</div>
+                    <div class="time" id="time">11:00 pm</div>
                 </div>
             </div>
-            <div class="clock-row">
-                <div class="timer">
-                    <span class="timer-num" id="day-num">00</span>
-                    <span class="timer-text">Days</span>
+            <div class="share-row">
+                <div class="sm share-whatsapp" 
+                    id ="sendWhatsappButton" 
+                    data-action="share/whatsapp/share"
+                    title="share to Whatsapp">
+                    <i class="fab fa-whatsapp"></i>
                 </div>
-                <div class="timer">
-                    <span class="timer-num" id="hour-num">00</span>
-                    <span class="timer-text">Hours</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="min-num">00</span>
-                    <span class="timer-text">Minutes</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="sec-num">00</span>
-                    <span class="timer-text">Seconds</span>
-                </div>
+                <div class="sm" title="copy link"><i class="fas fa-link"></i></div>
             </div>
-            <div class="countdown-list-date" id ='dueDate'> 
-            </div>
-
         </section>
     </main>
-    <div class="new-item"><i class="fas fa-plus fa-lg"></i></div>
+    <!-- <div class="new-item"><i class="fas fa-plus fa-lg"></i></div> -->
 
     <script src="app.js"></script>
     <script src="sidebar.js"></script>
     <script src="loadCustomUI.js"></script>
-    <script  src="form.js"></script>
-    <script src="error.js"></script>    
+    <script src="today.js"></script>
+    <!-- <script type="module" src="form.js"></script>     -->
 </body>
 </html>
