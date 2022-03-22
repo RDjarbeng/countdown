@@ -149,7 +149,7 @@ function addListEventListener() {
                 // todo: custom error messages for components on fail
                 try {
                     displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date));
-                    handleUpdate();
+                    // handleUpdate();
                 } catch (err) {
                     console.log(err, 'err in form display ');
                     errorHandler();
@@ -202,8 +202,8 @@ function handleUpdate() {
 }
 
 
-function displayFormPopUp(text, date) {
-    console.log(date);
+function displayFormPopUp(text, dateTime) {
+    console.log(dateTime);
     const popFormHtml = `<section class="pop-up-container">
     <form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
@@ -213,7 +213,7 @@ function displayFormPopUp(text, date) {
         </div>
         <div class="form-sections">
             <label for="">Date &nbsp;</label>
-            <input type="datetime-local" value= ${date} id ="dateInput" min="" required>
+            <input type="datetime-local" value= ${dateTime} id ="dateInput" min="" required>
         </div>
         <div class="form-sections">
             <label for=""></label>
