@@ -207,7 +207,7 @@ main{
   flex-direction: column;
   gap: 2.5em;
   overflow-x: hidden;
-  padding-top: 10vh;
+  padding-top: 13vh;
 }
 
 .mode-info {
@@ -280,7 +280,7 @@ a{
   justify-content: center;
   border-radius: 0.2em;
   padding: 10px;
-  gap: 1rem;
+  gap: 5vmin;
 }
 
 .timer{
@@ -333,16 +333,7 @@ a{
   .clock-row {
     font-size: 25vmin;
     flex-direction: row;
-    gap: 2rem;
-  }
-  .clock-row::after,
-  .clock-row::before {
-    width: 1.8em;
-    height: 1.8em;
-  }
-  .controls-row {
-    flex-flow: row nowrap;
-    gap: 4em;
+    gap: 10vmin;
   }
 }
 /* mobile and small screens */
