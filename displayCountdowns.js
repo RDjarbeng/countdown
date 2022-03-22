@@ -162,6 +162,7 @@ function addListEventListener() {
 }
 
 function handleUpdate() {
+    // todo: update list without reloading
     const countdownForm = document.getElementById('customDateForm');
     const submitbutton = document.getElementById('countdown-submit');
 
@@ -203,7 +204,6 @@ function handleUpdate() {
 
 
 function displayFormPopUp(text, dateTime) {
-    console.log(dateTime);
     const popFormHtml = `<section class="pop-up-container">
     <form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
