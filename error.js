@@ -46,8 +46,7 @@ const errorHandler =()=> {
 `;
     if (prevErr) {
         let item =$(".error-notification")[0]
-        
-        console.log(item, 'me');
+        if(item)
         item.remove();
         document.body.insertAdjacentHTML("afterbegin", errHtml);
     } else {
