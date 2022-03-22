@@ -28,7 +28,7 @@
   --bg-color: #1b182c;
   --color-text: white;
   --bg-timer: #474650;
-  --bg-cdList: var(--color-banner);
+  --bg-cdList: ;
 }
 .light {
   --bg-color: #dbdbdb;
