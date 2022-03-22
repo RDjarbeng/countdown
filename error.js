@@ -13,7 +13,7 @@ const errorHandler =()=> {
             justify-content: center;
             align-items: center;
             background: transparent;
-            z-index: 5;
+            z-index: 99;
             position: absolute;
             padding-top: 10vmin;
         }
