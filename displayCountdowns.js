@@ -56,8 +56,10 @@ function populateList(arrayOfCountdowns) {
             <div class="countdown-list-text"> ${countdown.text} </div>
             <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
             <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
-            <div class="menu-opts main">Set as main</div>
+            <div class="menu-opts edit">Edit</div>
             <div class="menu-opts del">Delete</div>
+            <div class="menu-opts main">Set as main</div>
+            
         </div></div>
             <div class="countdown-list-date"> 
                 Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
@@ -107,7 +109,6 @@ function addListEventListener(){
 
         // if event is fired on text or date
         if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
-            console.log('clicking within the text');
             // hideContextMenus()
             // todo: find a better way of accessing element in countdown array
             updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
