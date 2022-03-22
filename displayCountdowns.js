@@ -29,11 +29,11 @@ let arrayOfCountdowns;
 // todo: sort by modified time
 async function displayCountdowns() {
 
-    
+
     let jsonListOfCountdowns = await localStorage.getItem('countdown');
     arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
     if (arrayOfCountdowns && arrayOfCountdowns.length) {
-        
+
         let listItems = populateList(arrayOfCountdowns);
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(coundownTextDisplay, '')
@@ -79,7 +79,7 @@ function updateClockAndText(date, text, animation = true) {
 const triggerContextMenu = (element) => {
     // console.log(element.querySelector('.menu'));
     if (element.querySelector(".menu").style.display == "block") {
-        hideContextMenus();    
+        hideContextMenus();
         // element.querySelector(".menu").style.display = "none";
         console.log("context-menu: hide");
     }
@@ -90,20 +90,20 @@ const triggerContextMenu = (element) => {
     }
 }
 
-function hideContextMenus(event){
+function hideContextMenus(event) {
     //if function is not triggered by event listener, event is empty
-    if(!(event != null)){
-        document.querySelectorAll('.menu').forEach(contextMenu=> contextMenu.style.display = "none");
-    }else if(!( event.target.className == 'countdown-list-options' || event.target.tagName == 'I') ){
-    // click is not on context menu icon area or icon   
-        document.querySelectorAll('.menu').forEach(contextMenu=> contextMenu.style.display = "none");
+    if (!(event != null)) {
+        document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
+    } else if (!(event.target.className == 'countdown-list-options' || event.target.tagName == 'I')) {
+        // click is not on context menu icon area or icon   
+        document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
     }
-    
+
 }
-function addListEventListener(){
+function addListEventListener() {
     document.querySelector('.countdown-list').addEventListener('click', event => {
         //hide all context menus
-        
+
         const targetElement = event.target;
         // console.log(targetElement.className, targetElement.className.search('menu-opts'));
 
@@ -122,37 +122,121 @@ function addListEventListener(){
         else if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
             //get the countdown list item and pass to function, search for list class .menu
             //in case of directly clicking on icon, parent element is .countdown-list-options div
-                triggerContextMenu(targetElement.parentElement);
+            triggerContextMenu(targetElement.parentElement);
 
-        }else if (targetElement.className.search('menu-opts')>-1) {
-            let count_index = targetElement.parentElement.getAttribute('data-index');
+        } else if (targetElement.className.search('menu-opts') > -1) {
             let count_modified = targetElement.parentElement.getAttribute('data-id');
-            if(targetElement.className.search('main')>-1){
+            if (targetElement.className.search('main') > -1) {
                 // set as main clicked
                 // find the element convert to JSON and place it as the main clock
-                const countdown =arrayOfCountdowns.find((countdown)=>countdown.dateModified== count_modified);
-                const mainCount =JSON.stringify(countdown);
-                console.log(mainCount, typeof(mainCount), 'type me');
+                const countdown = arrayOfCountdowns.find((countdown) => countdown.dateModified == count_modified);
+                const mainCount = JSON.stringify(countdown);
+                console.log(mainCount, typeof (mainCount), 'type me');
                 localStorage.setItem('mainClock', mainCount);
                 let date = new Date(countdown.date);
-                notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' }) } ${date.getFullYear()}`);
-                console.log(`main clicked, item set as main ${date.getDate()} ${date.toLocaleString('default', { month: 'long' }) } ${date.getFullYear()}`, mainCount);
-            }else if(targetElement.className.search('del')>-1){
+                notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
+            } else if (targetElement.className.search('del') > -1) {
                 // delete item clicked
-                arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index)=> countdown.dateModified!= count_modified);
-                test= true;
+                arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
+                test = true;
                 setCountDownList(arrayOfCountdowns);
                 countdownList.innerHTML = populateList(arrayOfCountdowns)
                 // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
+            } else if (targetElement.className.search('edit') > -1) {
+                console.log('editing ');
+                let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
+                console.log(editItem);
+                // todo: custom error messages for components on fail
+                try {
+                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date));
+                    handleUpdate();
+                } catch (err) {
+                    console.log(err, 'err in form display ');
+                    errorHandler();
+                }
+                
+
             }
         }
     })
 }
-function setCountDownList(arrayOfJSONCountdowns){
-    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
+
+function handleUpdate() {
+    const countdownForm = document.getElementById('customDateForm');
+    const submitbutton = document.getElementById('countdown-submit');
+
+    // const event = document.createEvent('Event');
+    // console.log(event);
+    countdownForm.addEventListener('submit', (e) => {
+
+        // e.preventDefault();
+        submitbutton.disabled = true;
+        // get text field values, with auto values
+        let userTextField = document.getElementById('countdownText');
+        let userText = userTextField.value;
+
+        if (!userText) {
+            userText = userTextField.placeholder;
+            countNumber++;
+            localStorage.setItem('countNumber', countNumber)
+        }
+        let userDate = document.getElementById("dateInput").value;
+        userDate = new Date(userDate);
+        let countItem = { text: userText, date: userDate, dateModified: new Date() };
+        let countdown = localStorage.getItem('countdown');
+        if (countdown !== null) { //countdowns already exist
+            countdown = JSON.parse(countdown);//array
+
+            countdown.push(countItem);
+            // console.log(countdown);
+            setCountDownList(countdown)
+
+        } else {
+            // create first countdown
+            setCountDownList([countItem]);
+        }
+
+        // testing
+        // closeFormPopUp();
+    })
 }
 
-function addEventListeners(){
+
+function displayFormPopUp(text, date) {
+    console.log(date);
+    const popFormHtml = `<section class="pop-up-container">
+    <form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
+        <div class="form-header">Set Countdown</div>
+        <div class="form-sections">
+            <label for="">Note &nbsp;</label>
+            <input type="text" value="${text}" id='countdownText'>
+        </div>
+        <div class="form-sections">
+            <label for="">Date &nbsp;</label>
+            <input type="datetime-local" value= ${date} id ="dateInput" min="" required>
+        </div>
+        <div class="form-sections">
+            <label for=""></label>
+            <input type="submit" id ="countdown-submit"value="Update">
+        </div>    
+        <div class="close-form"><button>Close</button></div>
+    </form>
+    </section>`;
+    document.body.insertAdjacentHTML("afterbegin", popFormHtml);
+    document.body.style.position = "fixed";
+    // setDateAttributes();
+    document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
+}
+function closeFormPopUp() {
+    document.getElementsByClassName("pop-up-container")[0].remove();
+    document.body.style.position = "";
+}
+
+function setCountDownList(arrayOfJSONCountdowns) {
+    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))
+}
+
+function addEventListeners() {
     addListEventListener();
     // add context menu event listener
     document.querySelector('.container').addEventListener("click", hideContextMenus);
