@@ -118,8 +118,13 @@ function openBgPicker() {
         document.body.style.position = "fixed";
         const filePicker = document.querySelector("input[type='file']");
         const reading = (uploadedPic) => {
-            let reader = new FileReader();
-            reader.readAsDataURL(uploadedPic);
+                let reader = new FileReader();
+            if(fileSizeOk(uploadedPic)){
+                reader.readAsDataURL(uploadedPic);
+            }
+            else{
+                notifyUser("Picture is too big");
+            }
 
             reader.onload = function () {
                 let uploadedPic64 = reader.result;
@@ -159,4 +164,8 @@ function openBgPicker() {
     loadForm().catch(err => {
         errorHandler();
     });
+}
+const fileSizeOk = (pic)=>{
+    console.log((pic.size/1048576).toFixed(2)+"MB");
+    return pic.size/1048576 < 4.50 ? true : false;
 }
