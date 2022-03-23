@@ -52,4 +52,4 @@ const errorHandler =()=> {
         prevErr = true;
     }
 };
-// window.onerror = errorHandler;
+window.onerror = errorHandler;
