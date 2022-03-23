@@ -9,8 +9,8 @@
   --bg-color: #182635;
   --color-text: white;
   --bg-timer: #6a7682;
-  --bg-cdList:#6ea8fe;
-  --bg-cdListHover: #3d8bfd;
+  --bg-cdList:#3f4d61;
+  --bg-cdListHover: #384557;
 }
 [data-theme="green"] {
   --color-banner: #1cb65d;
@@ -23,8 +23,8 @@
   --bg-color: #18351e;
   --color-text: white;
   --bg-timer: #6a826b;
-  --bg-cdList:#2fc26c;
-  --bg-cdListHover: #17a753;
+  --bg-cdList:#304e3d;
+  --bg-cdListHover: #284233;
 }
 [data-theme="red"] {
   --color-banner: #fe2164;
@@ -37,8 +37,8 @@
   --bg-color: #35181d;
   --color-text: white;
   --bg-timer: #826a6a;
-  --bg-cdList: #e63f63;
-  --bg-cdListHover: #f71a5c;
+  --bg-cdList: #4e383d;
+  --bg-cdListHover: #462f35;
 }
 [data-theme="purple"] {
   --color-banner: #7b68ee;
@@ -51,8 +51,8 @@
   --bg-color: #1b182c;
   --color-text: white;
   --bg-timer: #474650;
-  --bg-cdList: #8f7cf8;
-  --bg-cdListHover: #735fe7;
+  --bg-cdList: #3b3b50;
+  --bg-cdListHover: #303041;
 }
 [data-theme="yellow"] {
   --color-banner: #ffc000;
@@ -65,8 +65,8 @@
   --bg-color: #352e19;
   --color-text: white;
   --bg-timer: #80826a;
-  --bg-cdList:#ffcd39;
-  --bg-cdListHover: #f3b806;
+  --bg-cdList:#474231;
+  --bg-cdListHover: #3b3729;
 }
 [data-theme="pink"] {
   --color-banner: #e685b5;
@@ -79,6 +79,6 @@
   --bg-color: #472a39;
   --color-text: white;
   --bg-timer: #8b7982;
-  --bg-cdList: #efadce;
-  --bg-cdListHover: #e27caf;
+  --bg-cdList: #644e59;
+  --bg-cdListHover: #58464f;
 }
