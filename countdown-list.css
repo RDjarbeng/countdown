@@ -398,6 +398,8 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
 }
 .countdown-list-item:hover{
 background: var(--bg-cdListHover);
+/* box-shadow:  0 0 0vmin .3vmin var(--color-banner); */
+border: solid .2vmin var(--color-banner);
 }
 .countdown-list-item{
   background: var(--bg-cdList);
@@ -449,7 +451,6 @@ padding: 0 0 0 1rem;
 }
 .menu-opts:hover{
   background:rgba(0, 0, 0, 0.1);
-
 }
 
 /* desktop */
