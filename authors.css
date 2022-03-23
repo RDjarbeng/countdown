@@ -221,7 +221,7 @@ main{
   left: 50%;
   top: -10rem;
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 100;
 }
 
 .light .mode-info {
