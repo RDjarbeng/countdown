@@ -1,5 +1,5 @@
 let prevErr = false;
-const errMessage = "Oops an error occurred 🤧😓😐";
+const errMessage = "Oops an error occurred 🤧😐";
 
 const closeErrorInfo = () => event.currentTarget.parentNode.remove();
 
@@ -20,7 +20,7 @@ const errorHandler =()=> {
 
         .error-message {
             width: 80vmin;
-            height: 8vmin;
+            padding: 2vmin;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -34,6 +34,12 @@ const errorHandler =()=> {
             position: absolute;
             right: 3%;
             padding: 1.2vmin 2.2vmin;
+        }
+        @media screen and (max-width: 427px) {
+            .error-message{
+                width: 90vmin;
+               padding: 3.3vmin;
+            }
         }
     </style>
     <div class="error-message">
