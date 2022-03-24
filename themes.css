@@ -4,6 +4,7 @@
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: rgba(47, 139, 252, 0.95);
   --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+  --bg-newItem: white;
 }
 .dark[data-theme="blue"] {
   --bg-color: #182635;
@@ -11,6 +12,7 @@
   --bg-timer: #6a7682;
   --bg-cdList:#3f4d61;
   --bg-cdListHover: #384557;
+  --bg-newItem: var(--color-banner);
 }
 [data-theme="green"] {
   --color-banner: #1cb65d;
@@ -18,6 +20,7 @@
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: rgba(28, 182, 92, 0.95);
   --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+  --bg-newItem: white;
 }
 .dark[data-theme="green"] {
   --bg-color: #18351e;
@@ -25,6 +28,7 @@
   --bg-timer: #6a826b;
   --bg-cdList:#304e3d;
   --bg-cdListHover: #284233;
+  --bg-newItem: var(--color-banner);
 }
 [data-theme="red"] {
   --color-banner: #fe2164;
@@ -32,6 +36,7 @@
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: rgba(254, 33, 99, 0.95);
   --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+  --bg-newItem: white;
 }
 .dark[data-theme="red"] {
   --bg-color: #35181d;
@@ -39,6 +44,7 @@
   --bg-timer: #826a6a;
   --bg-cdList: #4e383d;
   --bg-cdListHover: #462f35;
+  --bg-newItem: var(--color-banner);
 }
 [data-theme="purple"] {
   --color-banner: #7b68ee;
@@ -46,6 +52,7 @@
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: hsla(249, 80%, 67%, 0.95);
   --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+  --bg-newItem: white;
 }
 .dark[data-theme="purple"] {
   --bg-color: #1b182c;
@@ -53,6 +60,7 @@
   --bg-timer: #474650;
   --bg-cdList: #3b3b50;
   --bg-cdListHover: #303041;
+  --bg-newItem: var(--color-banner);
 }
 [data-theme="yellow"] {
   --color-banner: #ffc000;
@@ -60,6 +68,7 @@
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: rgba(255, 191, 0, 0.95);
   --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+  --bg-newItem: white;
 }
 .dark[data-theme="yellow"] {
   --bg-color: #352e19;
@@ -67,6 +76,7 @@
   --bg-timer: #80826a;
   --bg-cdList:#474231;
   --bg-cdListHover: #3b3729;
+  --bg-newItem: var(--color-banner);
 }
 [data-theme="pink"] {
   --color-banner: #e685b5;
@@ -74,6 +84,7 @@
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: rgba(230, 132, 181, 0.95);
   --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
+  --bg-newItem: white;
 }
 .dark[data-theme="pink"] {
   --bg-color: #472a39;
@@ -81,4 +92,5 @@
   --bg-timer: #8b7982;
   --bg-cdList: #644e59;
   --bg-cdListHover: #58464f;
+  --bg-newItem: var(--color-banner);
 }

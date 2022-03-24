@@ -378,12 +378,10 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   border-radius: 50%;
   right: 10vmin;
   bottom: 10vmin;
-  background-color: white;
+  background-color: var(--bg-newItem);
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
-  z-index: 2;
-}
-.new-item i{
-  color: var(--color-banner);
+  z-index: 2;  
+  color: var(--color-text);
 }
 
 .countdown-list{
