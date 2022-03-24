@@ -206,7 +206,7 @@ function handleUpdate() {
 function displayFormPopUp(text, dateTime) {
     const popFormHtml = `<section class="pop-up-container">
     <form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
-        <div class="form-header">Set Countdown</div>
+        <div class="form-header">Update Countdown</div>
         <div class="form-sections">
             <label for="">Note &nbsp;</label>
             <input type="text" value="${text}" id='countdownText'>
