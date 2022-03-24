@@ -21,14 +21,14 @@
   --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
   --color-sidebar: white;
   --color-cdList: white;
-  --bg-cdListHover: #735fe7;
+  --bg-cdListHover: #303041;
   overflow-x: hidden;
 }
 .dark{
   --bg-color: #1b182c;
   --color-text: white;
   --bg-timer: #474650;
-  --bg-cdList: ;
+  --bg-cdList: #3b3b50;
 }
 .light {
   --bg-color: #dbdbdb;
