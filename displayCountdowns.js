@@ -40,7 +40,7 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(coundownTextDisplay, '')
         // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
-        addEventListeners();
+        
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
@@ -206,11 +206,14 @@ function handleUpdate() {
                 arrayOfCountdowns[pos].date = countItem.date;
                 arrayOfCountdowns[pos].dateModified = countItem.dateModified;
                 console.log(arrayOfCountdowns);
+                setCountDownList(arrayOfCountdowns);
                 displayCountdowns();
+                
                 // let t =JSON.parse(JSON.stringify(countdown));
                 // console.log(t, 'now')
             }else{
-                console.log("Unable to find");
+                console.log("Unable to find item");
+                errorHandler();
             }
             
             // countdown.push(countItem);
@@ -269,4 +272,10 @@ function addEventListeners() {
     // add context menu event listener
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
+try{
 displayCountdowns();
+addEventListeners();
+}catch (err) {
+    console.log(err, 'err in display countdown initialisation');
+    errorHandler();
+}

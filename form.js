@@ -97,8 +97,8 @@ function handleFormSubmission() {
     })
 }
 
-function setCountDownList(arrayOfJSONCountdowns){
-    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
+function setCountDownList(jsArray){
+    localStorage.setItem('countdown', JSON.stringify(jsArray))   
 }
 
 // DOM Elements
@@ -107,7 +107,7 @@ let countNumber = 1;
 
 // let dateInput, textInput;
 
-
+// todo: remove dynamic seting of css
 if (!document.querySelector("[href='form.css']")) {
     document.head.insertAdjacentHTML(
         "beforeend",
