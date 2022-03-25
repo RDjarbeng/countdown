@@ -1,6 +1,5 @@
 // Dom elements
 // begin displaycountdown.js
-// const dayNumber = document.getElementById('day-num');
 var hourNumber = document.getElementById("hour-num");
 var minNumber = document.getElementById("min-num");
 var secNumber = document.getElementById("sec-num");
@@ -46,7 +45,6 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
         setInnerHtmlForNotNull(coundownTextDisplay, '')
     }
-    // console.log(myClock);
 }
 
 function populateList(arrayOfCountdowns) {
@@ -79,7 +77,6 @@ function updateClockAndText(date, text, animation = true) {
 }
 
 const triggerContextMenu = (element) => {
-    // console.log(element.querySelector('.menu'));
     if (element.querySelector(".menu").style.display == "block") {
         hideContextMenus();
         // element.querySelector(".menu").style.display = "none";
@@ -107,7 +104,6 @@ function addListEventListener() {
         //hide all context menus
 
         const targetElement = event.target;
-        // console.log(targetElement.className, targetElement.className.search('menu-opts'));
 
         // if event is fired on text or date
         if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
@@ -133,7 +129,6 @@ function addListEventListener() {
                 // find the element convert to JSON and place it as the main clock
                 const countdown = arrayOfCountdowns.find((countdown) => countdown.dateModified == count_modified);
                 const mainCount = JSON.stringify(countdown);
-                console.log(mainCount, typeof (mainCount), 'type me');
                 localStorage.setItem('mainClock', mainCount);
                 let date = new Date(countdown.date);
                 notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
@@ -146,7 +141,6 @@ function addListEventListener() {
                 // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
             } else if (targetElement.className.search('edit') > -1) {
                 let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
-                // console.log(editItem);
                 // todo: custom error messages for components on fail
                 try {
                     if(editItem){
@@ -170,7 +164,7 @@ function addListEventListener() {
 }
 
 function handleUpdate() {
-    // todo: update list without reloading
+    // todo: update list with custom fired events
     const countdownForm = document.getElementById('customUpDateForm');
     const submitbutton = document.getElementById('countdown-update');
     
@@ -205,25 +199,15 @@ function handleUpdate() {
                 arrayOfCountdowns[pos].text = countItem.text;
                 arrayOfCountdowns[pos].date = countItem.date;
                 arrayOfCountdowns[pos].dateModified = countItem.dateModified;
-                console.log(arrayOfCountdowns);
                 setCountDownList(arrayOfCountdowns);
                 displayCountdowns();
-                
-                // let t =JSON.parse(JSON.stringify(countdown));
-                // console.log(t, 'now')
+                closeFormPopUp();
             }else{
                 console.log("Unable to find item");
                 errorHandler();
             }
-            
-            // countdown.push(countItem);
-            // console.log(countdown);
-            // setCountDownList(arrayOfCountdowns)
 
         }
-
-        // testing
-        // closeFormPopUp();
     })
 }
 
