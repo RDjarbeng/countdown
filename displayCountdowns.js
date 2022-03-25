@@ -217,6 +217,7 @@ function setCountDownList(jsArray){
 
 function displayFormPopUp(text, dateTime, modifiedTime) {
     // todo: Track items without using modifiedTime
+    if(text && dateTime&& modifiedTime){
     const updateFormHtml = `<section class="pop-up-container">
     <form action="/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
         <div class="form-header">Update Countdown</div>
@@ -241,6 +242,7 @@ function displayFormPopUp(text, dateTime, modifiedTime) {
     document.body.style.position = "fixed";
     // setDateAttributes();
     document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
+}
 }
 function closeFormPopUp() {
     document.getElementsByClassName("pop-up-container")[0].remove();
