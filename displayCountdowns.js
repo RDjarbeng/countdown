@@ -1,3 +1,14 @@
+// Dom elements
+// begin displaycountdown.js
+// const dayNumber = document.getElementById('day-num');
+var hourNumber = document.getElementById("hour-num");
+var minNumber = document.getElementById("min-num");
+var secNumber = document.getElementById("sec-num");
+var coundownTextDisplay = document.getElementById('countdown-text');
+var countdownList = document.getElementById('countdown-list');
+let test = false;
+let arrayOfCountdowns;
+
 
 function stopClock() {
     clearTimeout(intervalID);
@@ -16,15 +27,6 @@ async function waitForAnimation(clock, domElements, duration) {
     await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
     startClock(clock || myclock, domElements);
 }
-// begin displaycountdown.js
-// const dayNumber = document.getElementById('day-num');
-var hourNumber = document.getElementById("hour-num");
-var minNumber = document.getElementById("min-num");
-var secNumber = document.getElementById("sec-num");
-var coundownTextDisplay = document.getElementById('countdown-text');
-var countdownList = document.getElementById('countdown-list');
-let test = false;
-let arrayOfCountdowns;
 
 // todo: sort by modified time
 async function displayCountdowns() {
@@ -143,18 +145,24 @@ function addListEventListener() {
                 countdownList.innerHTML = populateList(arrayOfCountdowns)
                 // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
             } else if (targetElement.className.search('edit') > -1) {
-                console.log('editing ');
                 let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
-                console.log(editItem);
+                // console.log(editItem);
                 // todo: custom error messages for components on fail
                 try {
-                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date));
-                    // handleUpdate();
+                    if(editItem){
+                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
+                    handleUpdate();
+                }else{
+                    // something went wrong with the editing
+                    // todo: add custom error message
+                    errorHandler();
+                    console.log(editItem);
+                }
                 } catch (err) {
                     console.log(err, 'err in form display ');
                     errorHandler();
                 }
-                
+
 
             }
         }
@@ -163,38 +171,52 @@ function addListEventListener() {
 
 function handleUpdate() {
     // todo: update list without reloading
-    const countdownForm = document.getElementById('customDateForm');
-    const submitbutton = document.getElementById('countdown-submit');
+    const countdownForm = document.getElementById('customUpDateForm');
+    const submitbutton = document.getElementById('countdown-update');
+    
 
     // const event = document.createEvent('Event');
     // console.log(event);
     countdownForm.addEventListener('submit', (e) => {
 
-        // e.preventDefault();
+        e.preventDefault();
         submitbutton.disabled = true;
         // get text field values, with auto values
-        let userTextField = document.getElementById('countdownText');
-        let userText = userTextField.value;
+        let userText = document.getElementById('countdownText').value;
+        const modifiedTime = document.getElementById('modifiedTime').value;
 
-        if (!userText) {
-            userText = userTextField.placeholder;
-            countNumber++;
-            localStorage.setItem('countNumber', countNumber)
-        }
+        // if (!userText) {
+        //     userText = userTextField.placeholder;
+        //     countNumber++;
+        //     localStorage.setItem('countNumber', countNumber)
+        // }
         let userDate = document.getElementById("dateInput").value;
         userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        let countdown = localStorage.getItem('countdown');
-        if (countdown !== null) { //countdowns already exist
-            countdown = JSON.parse(countdown);//array
-
-            countdown.push(countItem);
+        arrayOfCountdowns = arrayOfCountdowns? arrayOfCountdowns: JSON.parse(localStorage.getItem('countdown'));
+        if (arrayOfCountdowns !== null) { //countdowns already exist
+            
+            
+            let pos = arrayOfCountdowns.findIndex((value) =>
+                value.dateModified == modifiedTime
+            );
+            if(pos>-1){
+                console.log(arrayOfCountdowns[pos]);
+                arrayOfCountdowns[pos].text = countItem.text;
+                arrayOfCountdowns[pos].date = countItem.date;
+                arrayOfCountdowns[pos].dateModified = countItem.dateModified;
+                console.log(arrayOfCountdowns);
+                displayCountdowns();
+                // let t =JSON.parse(JSON.stringify(countdown));
+                // console.log(t, 'now')
+            }else{
+                console.log("Unable to find");
+            }
+            
+            // countdown.push(countItem);
             // console.log(countdown);
-            setCountDownList(countdown)
+            // setCountDownList(arrayOfCountdowns)
 
-        } else {
-            // create first countdown
-            setCountDownList([countItem]);
         }
 
         // testing
@@ -202,10 +224,14 @@ function handleUpdate() {
     })
 }
 
+function setCountDownList(jsArray){
+    localStorage.setItem('countdown', JSON.stringify(jsArray))   
+}
 
-function displayFormPopUp(text, dateTime) {
-    const popFormHtml = `<section class="pop-up-container">
-    <form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
+function displayFormPopUp(text, dateTime, modifiedTime) {
+    // todo: Track items without using modifiedTime
+    const updateFormHtml = `<section class="pop-up-container">
+    <form action="/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
         <div class="form-header">Update Countdown</div>
         <div class="form-sections">
             <label for="">Note &nbsp;</label>
@@ -217,12 +243,14 @@ function displayFormPopUp(text, dateTime) {
         </div>
         <div class="form-sections">
             <label for=""></label>
-            <input type="submit" id ="countdown-submit"value="Update">
+            <input type="hidden" value = ${modifiedTime} id="modifiedTime">
+            <input type="submit" id ="countdown-update" value="Update">
         </div>    
+        
         <div class="close-form"><button>Close</button></div>
     </form>
     </section>`;
-    document.body.insertAdjacentHTML("afterbegin", popFormHtml);
+    document.body.insertAdjacentHTML("afterbegin", updateFormHtml);
     document.body.style.position = "fixed";
     // setDateAttributes();
     document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
