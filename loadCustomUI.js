@@ -39,12 +39,12 @@ function notifyMode() {
 
     if (document.getElementsByClassName("mode-info")[0]) {
         document.getElementsByClassName("mode-info")[0].remove();
-        body.insertAdjacentHTML(
+        $("header")[0].insertAdjacentHTML(
             "afterbegin",
             `<span class="mode-info">${notifyText}</span>`
         );
     } else {
-        body.insertAdjacentHTML(
+        $("header")[0].insertAdjacentHTML(
             "afterbegin",
             `<span class="mode-info">${notifyText}</span>`
         );
