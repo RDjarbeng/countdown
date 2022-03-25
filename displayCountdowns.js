@@ -82,6 +82,7 @@ function removeClockAndText(){
     stopClock();
     setInnerHtmlForNotNull(countdownTextDisplay, '')
     if(countdownClock){
+        // todo: set the display to none instead
         countdownClock.style.display = ''
     }
 }
