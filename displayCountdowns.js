@@ -1,66 +1,15 @@
-/* 
-import { stopClock, waitForAnimation, notifyUser } from "./app.js";
- import { setCountDownList } from "./form.js";
- import Clock from "./clock.js";
-*/
+// Dom elements
+// begin displaycountdown.js
+var hourNumber = document.getElementById("hour-num");
+var minNumber = document.getElementById("min-num");
+var secNumber = document.getElementById("sec-num");
+var countdownTextDisplay = document.getElementById('countdown-text');
+var countdownClock = document.querySelector('.clock-row');
+var countdownList = document.getElementById('countdown-list');
+let test = false;
+let arrayOfCountdowns;
 
-// spaghetti code to be cleaned
-// class Clock {
-//     constructor(endDate) {
-//         // expecting a date object
-//         this.setEndDate(endDate)
-//         this.countDown();
-//     }
 
-//     setEndDate(endDate) {
-//         //set endDate to end of year
-//         // todo: check endDate for validity as date
-//         this.endDate = endDate ||new Date(`Jan 1, ${new Date().getFullYear() + 1} 00:00:00`)
-        
-        
-//     }
-//     countDown() {
-//         // Set the date we're counting down to
-//         let countDownDate = this.endDate.getTime();
-//         let now = new Date().getTime();
-//         var distance = countDownDate - now;
-//         // account for case of the countdown being reached, reset
-//         if (distance >= 0) {
-//             // Time calculations for days, hours, minutes and seconds
-//             this.calculateTimeValues(distance)
-//         } else {
-//             //reset to end of year
-//             // this.setEndDate()
-//             //todo: Countup from the deadline date
-//             // this.calculateTimeValues(Math.abs(distance));
-
-//             // clear date values
-//             this.resetMethod();
-            
-
-//         }
-//     }
-
-//     resetMethod(){
-//         this.clearCounter();
-//     }
-
-//     calculateTimeValues(distance){
-//         this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-//             this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-//             this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-//             this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-//     }
-//     countDays() {
-//         //account for leap year
-//         this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
-//         return this.dayLength - this.days
-//     }
-
-//     clearCounter(){
-//         this.days=this.hours=this.minutes=this.seconds=0;
-//     }
-// }
 
 function stopClock() {
     clearTimeout(intervalID);
@@ -79,34 +28,25 @@ async function waitForAnimation(clock, domElements, duration) {
     await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
     startClock(clock || myclock, domElements);
 }
-// begin displaycountdown.js
-// const dayNumber = document.getElementById('day-num');
-var hourNumber = document.getElementById("hour-num");
-var minNumber = document.getElementById("min-num");
-var secNumber = document.getElementById("sec-num");
-var coundownTextDisplay = document.getElementById('countdown-text');
-var countdownList = document.getElementById('countdown-list');
-let test = false;
-let arrayOfCountdowns;
 
 // todo: sort by modified time
 async function displayCountdowns() {
 
-    
+
     let jsonListOfCountdowns = await localStorage.getItem('countdown');
     arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
     if (arrayOfCountdowns && arrayOfCountdowns.length) {
-        
+
         let listItems = populateList(arrayOfCountdowns);
-        countdownList.innerHTML = listItems;
-        coundownTextDisplay.innerHTML = "Click a countdown to display it";
+        setInnerHtmlForNotNull(countdownList, listItems)
+        setInnerHtmlForNotNull(countdownTextDisplay, '')
         // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
-        addEventListeners();
+        
 
     } else {
-        countdownList.innerHTML = 'Found no countdowns to display';
+        setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
+        setInnerHtmlForNotNull(countdownTextDisplay, '')
     }
-    // console.log(myClock);
 }
 
 function populateList(arrayOfCountdowns) {
@@ -118,8 +58,10 @@ function populateList(arrayOfCountdowns) {
             <div class="countdown-list-text"> ${countdown.text} </div>
             <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
             <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
-            <div class="menu-opts main">Set as main</div>
+            <div class="menu-opts edit">Edit</div>
             <div class="menu-opts del">Delete</div>
+            <div class="menu-opts main">Set as main</div>
+            
         </div></div>
             <div class="countdown-list-date"> 
                 Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
@@ -131,45 +73,51 @@ function populateList(arrayOfCountdowns) {
 
 function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
-    coundownTextDisplay.innerHTML = text;
+    setInnerHtmlForNotNull(countdownTextDisplay, text);
     stopClock();
     waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500)
 }
 
+function removeClockAndText(){
+    stopClock();
+    setInnerHtmlForNotNull(countdownTextDisplay, '')
+    if(countdownClock){
+        // todo: set the display to none instead
+        countdownClock.style.display = ''
+    }
+}
+
 const triggerContextMenu = (element) => {
-    // console.log(element.querySelector('.menu'));
     if (element.querySelector(".menu").style.display == "block") {
-        hideContextMenus();    
+        hideContextMenus();
         // element.querySelector(".menu").style.display = "none";
-        console.log("context-menu: hide");
+        // console.log("context-menu: hide");
     }
     else {
         hideContextMenus();//close all context menus before displaying the clicked one
         element.querySelector(".menu").style.display = "block";
-        console.log("context-menu: show");
+        // console.log("context-menu: show");
     }
 }
 
-function hideContextMenus(event){
+function hideContextMenus(event) {
     //if function is not triggered by event listener, event is empty
-    if(!(event != null)){
-        document.querySelectorAll('.menu').forEach(contextMenu=> contextMenu.style.display = "none");
-    }else if(!( event.target.className == 'countdown-list-options' || event.target.tagName == 'I') ){
-    // click is not on context menu icon area or icon   
-        document.querySelectorAll('.menu').forEach(contextMenu=> contextMenu.style.display = "none");
+    if (!(event != null)) {
+        document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
+    } else if (!(event.target.className == 'countdown-list-options' || event.target.tagName == 'I')) {
+        // click is not on context menu icon area or icon   
+        document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
     }
-    
+
 }
-function addListEventListener(){
+function addListEventListener() {
     document.querySelector('.countdown-list').addEventListener('click', event => {
         //hide all context menus
-        
+
         const targetElement = event.target;
-        // console.log(targetElement.className, targetElement.className.search('menu-opts'));
 
         // if event is fired on text or date
         if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
-            console.log('clicking within the text');
             // hideContextMenus()
             // todo: find a better way of accessing element in countdown array
             updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
@@ -183,40 +131,149 @@ function addListEventListener(){
         else if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
             //get the countdown list item and pass to function, search for list class .menu
             //in case of directly clicking on icon, parent element is .countdown-list-options div
-                triggerContextMenu(targetElement.parentElement);
+            triggerContextMenu(targetElement.parentElement);
 
-        }else if (targetElement.className.search('menu-opts')>-1) {
-            let count_index = targetElement.parentElement.getAttribute('data-index');
+        } else if (targetElement.className.search('menu-opts') > -1) {
             let count_modified = targetElement.parentElement.getAttribute('data-id');
-            if(targetElement.className.search('main')>-1){
+            if (targetElement.className.search('main') > -1) {
                 // set as main clicked
                 // find the element convert to JSON and place it as the main clock
-                const countdown =arrayOfCountdowns.find((countdown)=>countdown.dateModified== count_modified);
-                const mainCount =JSON.stringify(countdown);
-                console.log(mainCount, typeof(mainCount), 'type me');
+                const countdown = arrayOfCountdowns.find((countdown) => countdown.dateModified == count_modified);
+                const mainCount = JSON.stringify(countdown);
                 localStorage.setItem('mainClock', mainCount);
                 let date = new Date(countdown.date);
-                notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' }) } ${date.getFullYear()}`);
-                console.log(`main clicked, item set as main ${date.getDate()} ${date.toLocaleString('default', { month: 'long' }) } ${date.getFullYear()}`, mainCount);
-            }else if(targetElement.className.search('del')>-1){
+                notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
+            } else if (targetElement.className.search('del') > -1) {
                 // delete item clicked
-                console.log( count_index, count_modified,arrayOfCountdowns);
-                arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index)=> countdown.dateModified!= count_modified);
-                test= true;
+                arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
+                test = true;
                 setCountDownList(arrayOfCountdowns);
                 countdownList.innerHTML = populateList(arrayOfCountdowns)
                 // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
+            } else if (targetElement.className.search('edit') > -1) {
+                let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
+                // todo: custom error messages for components on fail
+                try {
+                    if(editItem){
+                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
+                    handleUpdate();
+                }else{
+                    // something went wrong with the editing
+                    // todo: add custom error message
+                    errorHandler();
+                    console.log(editItem);
+                }
+                } catch (err) {
+                    console.log(err, 'err in form display ');
+                    errorHandler();
+                }
+
+
             }
         }
     })
 }
-function setCountDownList(arrayOfJSONCountdowns){
-    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
+
+function handleUpdate() {
+    // todo: update list with custom fired events
+    const countdownForm = document.getElementById('customUpDateForm');
+    const submitbutton = document.getElementById('countdown-update');
+    
+
+    // const event = document.createEvent('Event');
+    // console.log(event);
+    countdownForm.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+        submitbutton.disabled = true;
+        // get text field values, with auto values
+        let userText = document.getElementById('countdownText').value;
+        const modifiedTime = document.getElementById('modifiedTime').value;
+
+        // if (!userText) {
+        //     userText = userTextField.placeholder;
+        //     countNumber++;
+        //     localStorage.setItem('countNumber', countNumber)
+        // }
+        let userDate = document.getElementById("dateInput").value;
+        userDate = new Date(userDate);
+        let countItem = { text: userText, date: userDate, dateModified: new Date() };
+        arrayOfCountdowns = arrayOfCountdowns? arrayOfCountdowns: JSON.parse(localStorage.getItem('countdown'));
+        if (arrayOfCountdowns !== null) { //countdowns already exist
+            
+            
+            let pos = arrayOfCountdowns.findIndex((value) =>
+                value.dateModified == modifiedTime
+            );
+            if(pos>-1){
+                console.log(arrayOfCountdowns[pos]);
+                arrayOfCountdowns[pos].text = countItem.text;
+                arrayOfCountdowns[pos].date = countItem.date;
+                arrayOfCountdowns[pos].dateModified = countItem.dateModified;
+                setCountDownList(arrayOfCountdowns);
+                displayCountdowns();
+                closeFormPopUp();
+                removeClockAndText();
+            }else{
+                console.log("Unable to find item");
+                errorHandler();
+            }
+
+        }
+    })
 }
 
-function addEventListeners(){
+function setCountDownList(jsArray){
+    localStorage.setItem('countdown', JSON.stringify(jsArray))   
+}
+
+function displayFormPopUp(text, dateTime, modifiedTime) {
+    // todo: Track items without using modifiedTime
+    if(text && dateTime&& modifiedTime){
+    const updateFormHtml = `<section class="pop-up-container">
+    <form action="/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
+        <div class="form-header">Update Countdown</div>
+        <div class="form-sections">
+            <label for="">Note &nbsp;</label>
+            <input type="text" value="${text}" id='countdownText'>
+        </div>
+        <div class="form-sections">
+            <label for="">Date &nbsp;</label>
+            <input type="datetime-local" value= ${dateTime} id ="dateInput" min="" required>
+        </div>
+        <div class="form-sections">
+            <label for=""></label>
+            <input type="hidden" value = ${modifiedTime} id="modifiedTime">
+            <input type="submit" id ="countdown-update" value="Update">
+        </div>    
+        
+        <div class="close-form"><button>Close</button></div>
+    </form>
+    </section>`;
+    document.body.insertAdjacentHTML("afterbegin", updateFormHtml);
+    document.body.style.position = "fixed";
+    // setDateAttributes();
+    document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
+}
+}
+function closeFormPopUp() {
+    document.getElementsByClassName("pop-up-container")[0].remove();
+    document.body.style.position = "";
+}
+
+function setCountDownList(arrayOfJSONCountdowns) {
+    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))
+}
+
+function addEventListeners() {
     addListEventListener();
     // add context menu event listener
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
+try{
 displayCountdowns();
+addEventListeners();
+}catch (err) {
+    console.log(err, 'err in display countdown initialisation');
+    errorHandler();
+}

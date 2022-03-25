@@ -78,6 +78,7 @@ var dayNumber = document.getElementById('day-num');
 var hourNumber = document.getElementById("hour-num");
 var minNumber = document.getElementById("min-num");
 var secNumber = document.getElementById("sec-num");
+var dueDate = document.getElementById('dueDate');
 // const dateInput = document.getElementById('customDate')
 
 // const customDayNumber = document.getElementById('day-custom');
@@ -95,6 +96,8 @@ let dayClock = new NewYearClock();
 // Initialize default Clock class
 // var myclock = new NewYearClock();
 var myclock =  setMainClock();
+var myclock =  setMainClock();
+setInnerHtmlForNotNull(dueDate, `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 var customClock;
 
 function setMainClock() {
@@ -111,7 +114,7 @@ function setMainClock() {
 
 function setMainText(countdownText) {
     const textDisplay = document.getElementById('countdown-text');
-    textDisplay.innerText = countdownText;
+    setInnerHtmlForNotNull(textDisplay, countdownText)
 }
 
  async function waitForAnimation(clock, domElements, duration) {
@@ -126,7 +129,7 @@ function startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
 function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
     // console.log(clock);
     updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
-    if (dayCount) dayCount.innerHTML = dayClock.countDays();
+    setInnerHtmlForNotNull(dayCount, dayClock.countDays());
     if (customClockMovement) {
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
@@ -150,11 +153,10 @@ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay)
     h = addZeros(h);
     m = addZeros(m);
     s = addZeros(s);
-
-    dayDisplay.innerHTML = `${d}`;
-    hourDisplay.innerHTML = `${h}`;
-    minDisplay.innerHTML = `${m}`;
-    secDisplay.innerHTML = `${s}`;
+    setInnerHtmlForNotNull(dayDisplay, `${d}`);
+    setInnerHtmlForNotNull(hourDisplay, `${h}`);
+    setInnerHtmlForNotNull(minDisplay, `${m}`);
+    setInnerHtmlForNotNull(secDisplay, `${s}`);
 }
 
 
@@ -196,25 +198,20 @@ function restartTime() {
     customClockMovement = false;
 }
 
-//light mode if after 6am and after 18:00 evening
-function autoLight() {
-    let h = new Date().getHours();
-    //between 6 am and 6pm
-    if (h > 5 && h < 18) activateLightMode();
-}
-
 function activateLightMode() {
-    icon.innerHTML = `<i class="fas fa-moon"></i>`;
-    if (body.classList.contains("dark")) {
-        body.classList.replace("dark", "light");
-    } else { body.classList.add("light"); }
+    setInnerHtmlForNotNull(icon, `<i class="fas fa-moon"></i>`);
+    if(body.classList.contains("dark")){
+    body.classList.replace("dark","light");}else{body.classList.add("light");}
+    localStorage.setItem("userMode", "light");
+    console.log("saving: ",  localStorage.getItem("userMode"));
 }
 
 function activateDarkMode() {
-    icon.innerHTML = `<i class="fas fa-sun"></i>`;
-    if (body.classList.contains("light")) {
-        body.classList.replace("light", "dark");
-    } else { body.classList.add("dark"); }
+    setInnerHtmlForNotNull(icon, `<i class="fas fa-sun"></i>`);
+    if(body.classList.contains("light")){
+        body.classList.replace("light","dark");}else{body.classList.add("dark");}
+        localStorage.setItem("userMode", "dark");
+        console.log("saving: ",  localStorage.getItem("userMode"));
 }
 
 function setMode() {
@@ -256,12 +253,12 @@ function notifyMode() {
 
 
 //for the animated Countdown
-function animateValue(obj, start, end, duration) {
+function animateValue(domElement, start, end, duration) {
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        obj.innerHTML = addZeros(Math.floor(progress * (end - start) + start));
+        setInnerHtmlForNotNull(domElement, addZeros(Math.floor(progress * (end - start) + start)))
         if (progress < 1) {
             window.requestAnimationFrame(step);
             // animationComplete = false;
@@ -298,14 +295,12 @@ function setInnerHtmlForNotNull(element, value){
         element.innerHTML = value;
 }
 //show day value before animation runs
-if (dayCount)
-    dayCount.innerHTML = dayClock.countDays();
+setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 addEventListeners();
-autoLight();
-console.log(myclock);
+
 // init events
 
 
