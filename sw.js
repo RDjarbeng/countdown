@@ -1,6 +1,6 @@
 // #3
-const staticCacheName = 'site-static-v3';
-const dynamicCache = 'site-dynamic-v3';
+const staticCacheName = 'site-static-v4';
+const dynamicCache = 'site-dynamic-v4';
 
 // caching
 //assets to cache
@@ -8,14 +8,24 @@ const assets = [
     '/',
     '/index.html',
     '/authors.html',
+    '/countdown-list.html',
     '/fallback.html',
-    '/clock.js',
-    '/app.js',
-    '/img/bg.svg',
+    '/form-upload.html',
     '/styles.css',
+    '/themes.css',
+    '/authors.css',
+    // '/clock.js',
+    '/app.js',
+    '/sidebar.js',
+    '/loadCustomUI.js',
+    '/displayCountdowns.js',
+    '/formupdate.js',
+    '/error.js',
+    '/form.js',
+    '/img/bg.svg',
+    '/img/goku.jpg',
+    
     'img/icons/favicon.png',
-    'img/icons/chrome192.png',
-    'img/icons/chrome512.png',
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
     // "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap",
     // 'https://fonts.gstatic.com/s/nunito/v20/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2'
