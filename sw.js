@@ -1,6 +1,7 @@
 // #3
 const staticCacheName = 'site-static-v4';
 const dynamicCache = 'site-dynamic-v4';
+const dynamicCacheSize = 20;
 
 // caching
 //assets to cache
@@ -77,7 +78,7 @@ self.addEventListener('fetch', evt => {
             return cacheRes || fetch(evt.request).then(fetchRes => {
                 return caches.open(dynamicCache).then(cache => {
                     cache.put(evt.request.url, fetchRes.clone())
-                    limitCacheSize(dynamicCache, 20)
+                    limitCacheSize(dynamicCache, dynamicCacheSize)
                     return fetchRes;
                 })
             });
