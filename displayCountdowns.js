@@ -3,10 +3,12 @@
 var hourNumber = document.getElementById("hour-num");
 var minNumber = document.getElementById("min-num");
 var secNumber = document.getElementById("sec-num");
-var coundownTextDisplay = document.getElementById('countdown-text');
+var countdownTextDisplay = document.getElementById('countdown-text');
+var countdownClock = document.querySelector('.clock-row');
 var countdownList = document.getElementById('countdown-list');
 let test = false;
 let arrayOfCountdowns;
+
 
 
 function stopClock() {
@@ -37,13 +39,13 @@ async function displayCountdowns() {
 
         let listItems = populateList(arrayOfCountdowns);
         setInnerHtmlForNotNull(countdownList, listItems)
-        setInnerHtmlForNotNull(coundownTextDisplay, '')
+        setInnerHtmlForNotNull(countdownTextDisplay, '')
         // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
         
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
-        setInnerHtmlForNotNull(coundownTextDisplay, '')
+        setInnerHtmlForNotNull(countdownTextDisplay, '')
     }
 }
 
@@ -71,21 +73,29 @@ function populateList(arrayOfCountdowns) {
 
 function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
-    coundownTextDisplay.innerHTML = text;
+    setInnerHtmlForNotNull(countdownTextDisplay, text);
     stopClock();
     waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500)
+}
+
+function removeClockAndText(){
+    stopClock();
+    setInnerHtmlForNotNull(countdownTextDisplay, '')
+    if(countdownClock){
+        countdownClock.style.display = ''
+    }
 }
 
 const triggerContextMenu = (element) => {
     if (element.querySelector(".menu").style.display == "block") {
         hideContextMenus();
         // element.querySelector(".menu").style.display = "none";
-        console.log("context-menu: hide");
+        // console.log("context-menu: hide");
     }
     else {
         hideContextMenus();//close all context menus before displaying the clicked one
         element.querySelector(".menu").style.display = "block";
-        console.log("context-menu: show");
+        // console.log("context-menu: show");
     }
 }
 
@@ -202,6 +212,7 @@ function handleUpdate() {
                 setCountDownList(arrayOfCountdowns);
                 displayCountdowns();
                 closeFormPopUp();
+                removeClockAndText();
             }else{
                 console.log("Unable to find item");
                 errorHandler();
