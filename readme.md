@@ -2,7 +2,7 @@
 Test deployed on netlify at [Rcountdown](https://rcountdown.netlify.app/)
 
 Application that displays a countdown to a given date (currently end of year) with clickable features with auto light and dark mode
-
+Also includes themes, custom backgrounds, user set countdowns 
 https://rcountdown.netlify.app/
 
 ## Countdown v0.1.0 (How it began)
@@ -115,14 +115,16 @@ The development process
 ---
 todo: 
 * Provide proper error messages when app/function crashes- in progress
+* Add custom error messages for each component/function (remove generic error messages) 
 * Add repeating countdowns, Eg: birthdays
 * Make use of notifications api to provide alert/notifications when countdown is complete
 * Provide a custom sort of countdowns by due time or date modified
 * Add countdown without reloading
-* style changes on countdown list
+* UI style changes on countdown list
 
 todo v3:
 * authentication (firebase)
 * Shareable links
 * "on this day" feature
 * "How long since this day/ memorable days" feature
+* Add audio, songs, more animated background 🔉 (experimental) 
