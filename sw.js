@@ -1,7 +1,7 @@
 // #3
-const staticCacheName = 'site-static-v34';
-const dynamicCache = 'site-dynamic-v34';
-const dynamicCacheSize = 20;
+const staticCacheName = 'site-static-v37';
+const dynamicCache = 'site-dynamic-v36';
+const dynamicCacheSize = 30;
 
 // caching
 //assets to cache
