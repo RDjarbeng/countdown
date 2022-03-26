@@ -69,11 +69,11 @@ main{
   padding: 0.2rem 0.8rem;
   -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
           animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: -10rem;
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 100;
 }
 
 .light .mode-info {
@@ -381,13 +381,12 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   border-radius: 50%;
   right: 10vmin;
   bottom: 10vmin;
-  background-color: white;
+  background-color: var(--bg-newItem);
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
   z-index: 2;
+  color: var(--color-text);
 }
-.new-item i{
-  color: var(--color-banner);
-}
+
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
   body {
