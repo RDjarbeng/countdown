@@ -117,7 +117,7 @@ function populateList(arrayOfCountdowns) {
         listItems += `
         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
             <div class="countdown-list-text"> ${countdown.text} </div>
-            <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
+            <div class="countdown-list-options" ><span class="material-icons">expand_circle_down </span>
             <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
             <div class="menu-opts main">Set as main</div>
             <div class="menu-opts del">Delete</div>

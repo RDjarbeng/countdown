@@ -45,7 +45,7 @@ const errorHandler =()=> {
     <div class="error-message">
         <span>${errMessage}</span>
         <div class="error-close" onclick="closeErrorInfo()">
-            <i class="fas fa-times"></i>
+            <span class="material-icons">close</span>
         </div>
     </div>
 </section>

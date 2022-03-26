@@ -1,7 +1,7 @@
 let icon = document.getElementById('themeToggle');
 
 function activateLightMode() {
-    setInnerHtmlForNotNull(icon, `<i class="fas fa-moon"></i>`);
+    setInnerHtmlForNotNull(icon, `<span class="material-icons">dark_mode</span>`);
     if(body.classList.contains("dark")){
     body.classList.replace("dark","light");}else{body.classList.add("light");}
     localStorage.setItem("userMode", "light");
@@ -9,7 +9,7 @@ function activateLightMode() {
 }
 
 function activateDarkMode() {
-    setInnerHtmlForNotNull(icon, `<i class="fas fa-sun"></i>`);
+    setInnerHtmlForNotNull(icon, `<span class="material-icons">light_mode</span>`);
     if(body.classList.contains("light")){
         body.classList.replace("light","dark");}else{body.classList.add("dark");}
         localStorage.setItem("userMode", "dark");
