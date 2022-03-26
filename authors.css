@@ -207,7 +207,7 @@ main{
   flex-direction: column;
   gap: 2.5em;
   overflow-x: hidden;
-  padding-top: 10vh;
+  padding-top: 13vh;
 }
 
 .mode-info {
@@ -217,17 +217,26 @@ main{
   padding: 0.2rem 0.8rem;
   -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
           animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: -10rem;
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 100;
 }
 
 .light .mode-info {
   background: aliceblue;
 }
-
+@keyframes slide-in {
+  to {
+    top: 2rem;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
 a{
     text-decoration: none; color: inherit;
 }
@@ -280,7 +289,7 @@ a{
   justify-content: center;
   border-radius: 0.2em;
   padding: 10px;
-  gap: 1rem;
+  gap: 5vmin;
 }
 
 .timer{
@@ -333,16 +342,7 @@ a{
   .clock-row {
     font-size: 25vmin;
     flex-direction: row;
-    gap: 2rem;
-  }
-  .clock-row::after,
-  .clock-row::before {
-    width: 1.8em;
-    height: 1.8em;
-  }
-  .controls-row {
-    flex-flow: row nowrap;
-    gap: 4em;
+    gap: 10vmin;
   }
 }
 /* mobile and small screens */
