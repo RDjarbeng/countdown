@@ -65,7 +65,7 @@ function handleFormSubmission() {
     // console.log(event);
     countdownForm.addEventListener('submit', (e) => {
         
-        // e.preventDefault();
+        e.preventDefault();
         submitbutton.disabled = true;
         // get text field values, with auto values
         let userTextField = document.getElementById('countdownText');
@@ -85,11 +85,16 @@ function handleFormSubmission() {
 
         countdown.push(countItem);
         // console.log(countdown);
-        setCountDownList(countdown)
+        setCountDownList(countdown);
+        // external function
+        displayCountdowns();
+        closeFormPopUp();
 
         }else{
             // create first countdown
              setCountDownList([countItem]);
+             displayCountdowns();
+             closeFormPopUp();
         }
 
         // testing
