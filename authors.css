@@ -214,27 +214,34 @@ main {
 }
 
 .mode-info {
-    background: var(--bg-color);
-    border-radius: 0.3rem;
-    color: var(--color-text);
-    padding: 0.2rem 0.8rem;
-    -webkit-animation: slide-in 0.2s ease-in forwards,
-        fade-out 0.5s ease 0.9s forwards;
-    animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
-    position: absolute;
-    left: 50%;
-    top: -10rem;
-    transform: translateX(-50%);
-    z-index: 100;
+  background: var(--bg-color);
+  border-radius: 0.3rem;
+  color: var(--color-text);
+  padding: 0.2rem 0.8rem;
+  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
+          animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
+  position: fixed;
+  left: 50%;
+  top: -10rem;
+  transform: translateX(-50%);
+  z-index: 100;
 }
 
 .light .mode-info {
     background: aliceblue;
 }
-
-a {
-    text-decoration: none;
-    color: inherit;
+@keyframes slide-in {
+  to {
+    top: 2rem;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+a{
+    text-decoration: none; color: inherit;
 }
 
 .toggleMode {
