@@ -69,7 +69,7 @@ main{
   padding: 0.2rem 0.8rem;
   -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
           animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: -10rem;
   transform: translateX(-50%);
