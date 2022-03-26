@@ -429,6 +429,7 @@ padding: 0 0 0 1rem;
 .countdown-list-date{
   grid-area: date;
   font-size: 0.65rem;
+  padding-left: 1rem;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
