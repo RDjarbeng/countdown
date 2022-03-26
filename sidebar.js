@@ -62,16 +62,43 @@ function openBgPicker() {
             `<link rel="stylesheet" href="form.css">`
         );
     }
-    if (!$("[href='loader.css']")[0]) {
-        document.head.insertAdjacentHTML(
-            "beforeend",
-            `<link rel="stylesheet" href="loader.css">`
-        );
-    }
     const showLoader = () => {
         document.body.insertAdjacentHTML(
             "afterbegin",
             `<aside class="pop-up-container loader-container">
+            <style>
+            .loader{
+                background-color: #ffffff;
+                color: grey;
+                padding: 0 1rem;
+                border-radius: 0.4rem;
+                font-size: 1.3em;
+                box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.21);
+            }
+            .loader span:nth-child(n+2){
+                font-size: 1.5em;
+                animation-duration:2.5s;
+                animation-iteration-count:infinite;    
+            }
+            .loader span:nth-child(2){animation-name:l1;}
+            .loader span:nth-child(3){animation-name:l2;}
+            .loader span:nth-child(4){animation-name:l3;}
+            @keyframes l1{
+                from{opacity:0;}
+                15%{opacity:0;}
+                25%{opacity:1;}
+            }
+            @keyframes l2{
+                from{opacity:0;}
+                40%{opacity:0;}
+                50%{opacity:1;}
+            }
+            @keyframes l3{
+                from{opacity:0;}
+                65%{opacity:0;}
+                75%{opacity:1;}
+            }
+            </style>
                 <section class="loader" style="color: ${getComputedStyle($("body")[0]).getPropertyValue("--color-banner")}">
                     <span>Loading</span>
                     <span>.</span>
@@ -91,15 +118,22 @@ function openBgPicker() {
         document.body.style.position = "fixed";
         const filePicker = document.querySelector("input[type='file']");
         const reading = (uploadedPic) => {
-            let reader = new FileReader();
-            reader.readAsDataURL(uploadedPic);
+                let reader = new FileReader();
+            if(fileSizeOk(uploadedPic)){
+                reader.readAsDataURL(uploadedPic);
+            }
+            else{
+                notifyUser("Picture is too big");
+            }
 
             reader.onload = function () {
                 let uploadedPic64 = reader.result;
                 localStorage.setItem("userBg", `${uploadedPic64}`);
                 document.body.style.backgroundImage = `url(${uploadedPic64})`;
+                notifyUser("Background is set");
             };
             reader.onerror = function () {
+                errorHandler();
                 console.log(reader.error);
             };
         };
@@ -131,4 +165,8 @@ function openBgPicker() {
         errorHandler();
         console.log(err);
     });
+}
+const fileSizeOk = (pic)=>{
+    console.log((pic.size/1048576).toFixed(2)+"MB");
+    return pic.size/1048576 < 3.00 ? true : false; 
 }

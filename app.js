@@ -66,7 +66,6 @@ class NewYearClock extends Clock{
 }
 
 // DOM nodes
-let icon = document.getElementById('themeToggle');
 let dayCount = document.getElementById("countDay");
 const animatedCountDuration = 800;
 
@@ -198,60 +197,6 @@ function restartTime() {
     customClockMovement = false;
 }
 
-function activateLightMode() {
-    setInnerHtmlForNotNull(icon, `<i class="fas fa-moon"></i>`);
-    if(body.classList.contains("dark")){
-    body.classList.replace("dark","light");}else{body.classList.add("light");}
-    localStorage.setItem("userMode", "light");
-    console.log("saving: ",  localStorage.getItem("userMode"));
-}
-
-function activateDarkMode() {
-    setInnerHtmlForNotNull(icon, `<i class="fas fa-sun"></i>`);
-    if(body.classList.contains("light")){
-        body.classList.replace("light","dark");}else{body.classList.add("dark");}
-        localStorage.setItem("userMode", "dark");
-        console.log("saving: ",  localStorage.getItem("userMode"));
-}
-
-function setMode() {
-    if (!body.classList.contains("light")) {
-        activateLightMode();
-    } else {
-        activateDarkMode();
-    }
-}
-function notifyMode() {
-    let notifyText;
-    if (body.classList.contains("light")) {
-        notifyText = "Light mode set";
-    } else {
-        notifyText = "Dark mode set";
-    }
-
-    notifyUser(notifyText);
-}
-
- function notifyUser(message) {
-    let notifyText = message;
-
-    if (document.getElementsByClassName("mode-info")[0]) {
-        document.getElementsByClassName("mode-info")[0].remove();
-        body.insertAdjacentHTML(
-            "afterbegin",
-            `<span class="mode-info">${notifyText}</span>`
-        );
-    } else {
-        body.insertAdjacentHTML(
-            "afterbegin",
-            `<span class="mode-info">${notifyText}</span>`
-        );
-    }
-}
-
-
-
-
 //for the animated Countdown
 function animateValue(domElement, start, end, duration) {
     let startTimestamp = null;
@@ -276,8 +221,6 @@ async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start
 }
 
 function addEventListeners() {
-    icon.addEventListener("click", setMode);
-    icon.addEventListener("click", notifyMode);
     let whatsappIcon = document.getElementById('sendWhatsappButton');
     if (whatsappIcon) {
         whatsappIcon.addEventListener('click', exportToWhatsapp);
