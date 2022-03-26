@@ -1,6 +1,6 @@
 // #3
-const staticCacheName = 'site-static-v4';
-const dynamicCache = 'site-dynamic-v4';
+const staticCacheName = 'site-static-v34';
+const dynamicCache = 'site-dynamic-v34';
 const dynamicCacheSize = 20;
 
 // caching
@@ -15,7 +15,9 @@ const assets = [
     '/styles.css',
     '/themes.css',
     '/authors.css',
-    // '/clock.js',
+    '/countdown-list.css',
+    '/loader.css',
+    '/form.css',
     '/app.js',
     '/sidebar.js',
     '/loadCustomUI.js',
@@ -23,9 +25,11 @@ const assets = [
     '/formupdate.js',
     '/error.js',
     '/form.js',
+    '/img/icons/chrome192.png',
+    '/img/icons/chrome512.png',
     '/img/bg.svg',
-    '/img/goku.jpg',
-    
+    '/img/bg/goku.jpg',
+    '/img/bg/ship_sky_balloons.jpg',
     'img/icons/favicon.png',
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
     // "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap",
@@ -47,7 +51,7 @@ self.addEventListener('install', evt => {
     evt.waitUntil(
         caches.open(staticCacheName).then(cache => {
             // console.log('caching');
-            cache.add('/app.js');
+            // cache.add('/app.js');
             cache.addAll(assets);
             console.log('caching complete');
         })
