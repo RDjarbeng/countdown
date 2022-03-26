@@ -1,6 +1,6 @@
 // #3
-const staticCacheName = 'site-static-v42';
-const dynamicCache = 'site-dynamic-v42';
+const staticCacheName = 'site-static-t28';
+const dynamicCache = 'site-dynamic-t28';
 const dynamicCacheSize = 30;
 
 // caching
@@ -24,13 +24,13 @@ const assets = [
     '/formupdate.js',
     '/error.js',
     '/form.js',
-    // '/img/icons/chrome192.png',
-    // '/img/icons/chrome512.png',
-    // '/img/bg.svg',
-    // '/img/bg/goku.jpg',
-    // '/img/bg/ship_sky_balloons.jpg',
+    '/img/icons/chrome192.png',
+    '/img/icons/chrome512.png',
+    '/img/bg.svg',
+    '/img/bg/goku.jpg',
+    '/img/bg/ship_sky_balloons.jpg',
     'img/icons/favicon.png',
-    // "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
     // "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap",
     // 'https://fonts.gstatic.com/s/nunito/v20/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2'
 
