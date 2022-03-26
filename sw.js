@@ -16,7 +16,6 @@ const assets = [
     '/themes.css',
     '/authors.css',
     '/countdown-list.css',
-    '/loader.css',
     '/form.css',
     '/app.js',
     '/sidebar.js',
