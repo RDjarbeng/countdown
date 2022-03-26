@@ -1,5 +1,5 @@
 /* generic */
-.pop-up-container{
+.pop-up-container {
     position: absolute;
     top: 0;
     width: 100vw;
@@ -10,10 +10,10 @@
     backdrop-filter: blur(5px);
     z-index: 10;
 }
-.pop-up-form{
+.pop-up-form {
     position: relative;
     width: 80vmin;
-    height: 80vmin;        
+    height: 80vmin;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,44 +24,47 @@
     gap: 3vmin;
     color: var(--color-banner);
 }
-.form-header{
+.form-header {
     position: absolute;
     top: 5vmin;
     font-size: 6vmin;
     text-transform: uppercase;
     font-weight: bold;
 }
-.close-form{
+.close-form {
     position: absolute;
     bottom: 3vmin;
 }
-.close-form button{
+.close-form button {
     padding: 1.5vmin 3vmin;
-    border-radius: .3rem;
-    border: solid 1px var(--color-banner); 
+    border-radius: 0.3rem;
+    border: solid 1px var(--color-banner);
     color: var(--color-banner);
 }
 
 /* create countdown form */
-input[type="text"],input[type="datetime-local"]{
+input[type="text"],
+input[type="datetime-local"] {
     width: 50vmin;
     padding: 2vmin;
     border-radius: 2vmin;
     border: var(--color-banner) solid 1px;
     outline: none;
 }
-input[type="submit"],.reset button{
+input[type="submit"],
+.reset button {
     padding: 1.5vmin 3vmin;
-    border-radius: .3rem;
-    border: none;  
-    background: var(--color-banner); 
+    border-radius: 0.3rem;
+    border: none;
+    background: var(--color-banner);
     color: white;
 }
-input[type="submit"]:hover,.reset button:hover{
+input[type="submit"]:hover,
+.reset button:hover {
     background: var(--color-banner);
-    filter:saturate(1.5);
+    filter: saturate(1.5);
 }
-.form-sections{
+.form-sections {
     display: inline-flex;
     flex-direction: column;
     gap: 2vmin;

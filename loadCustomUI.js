@@ -1,19 +1,21 @@
-let icon = document.getElementById('themeToggle');
+const icon = document.getElementById('themeToggle');
 
 function activateLightMode() {
     setInnerHtmlForNotNull(icon, `<i class="fas fa-moon"></i>`);
-    if(body.classList.contains("dark")){
-    body.classList.replace("dark","light");}else{body.classList.add("light");}
+    if (body.classList.contains("dark")) {
+        body.classList.replace("dark", "light");
+    } else { body.classList.add("light"); }
     localStorage.setItem("userMode", "light");
-    console.log("saving: ",  localStorage.getItem("userMode"));
+    console.log("saving: ", localStorage.getItem("userMode"));
 }
 
 function activateDarkMode() {
     setInnerHtmlForNotNull(icon, `<i class="fas fa-sun"></i>`);
-    if(body.classList.contains("light")){
-        body.classList.replace("light","dark");}else{body.classList.add("dark");}
-        localStorage.setItem("userMode", "dark");
-        console.log("saving: ",  localStorage.getItem("userMode"));
+    if (body.classList.contains("light")) {
+        body.classList.replace("light", "dark");
+    } else { body.classList.add("dark"); }
+    localStorage.setItem("userMode", "dark");
+    console.log("saving: ", localStorage.getItem("userMode"));
 }
 
 function setMode() {
@@ -34,7 +36,7 @@ function notifyMode() {
     notifyUser(notifyText);
 }
 
- function notifyUser(message) {
+function notifyUser(message) {
     let notifyText = message;
 
     if (document.getElementsByClassName("mode-info")[0]) {
@@ -53,54 +55,53 @@ function notifyMode() {
 
 function loadTheme() {
     let savedTheme = localStorage.getItem("theme");
-    if(!["",null,undefined].includes(savedTheme)){
+    if (!["", null, undefined].includes(savedTheme)) {
         document.body.setAttribute("data-theme", savedTheme);
     }
     // set default mode to go with theme if page has none
-    if( !["light","dark"].includes(...document.body.classList)){
+    if (!["light", "dark"].includes(...document.body.classList)) {
         document.body.classList.add("light");
     }
 }
 
 function loadAppStatusBarTheme() {
     let primaryColor = localStorage.getItem("primaryColor");
-    if(!["",null,undefined].includes(primaryColor)){
-        document.querySelectorAll("[content='#7b68ee']").forEach(e=>e.setAttribute("content",primaryColor));  
+    if (!["", null, undefined].includes(primaryColor)) {
+        document.querySelectorAll("[content='#7b68ee']").forEach(e => e.setAttribute("content", primaryColor));
     }
 }
 
 function loadBg() {
     let savedBg = localStorage.getItem("userBg");
-    if( !["",null,undefined].includes(savedBg)){
+    if (!["", null, undefined].includes(savedBg)) {
         document.body.style.backgroundImage = `url(${savedBg})`;
     }
 }
 function loadMode() {
     let savedMode = localStorage.getItem("userMode");
-    if( !["",null,undefined].includes(savedMode)){
-        console.log("loading: ",savedMode);
+    if (!["", null, undefined].includes(savedMode)) {
+        console.log("loading: ", savedMode);
         let modeAlt = (savedMode == "dark") ? "light" : "dark";
-        const setModeIcon = (mode)=> {
+        const setModeIcon = (mode) => {
             if (mode == "dark") {
                 icon.innerHTML = `<i class="fas fa-sun"></i>`;
-            } 
+            }
             else {
                 icon.innerHTML = `<i class="fas fa-moon"></i>`
             }
-            console.log("setting mode icon");
         }
-        
-        if(!document.body.classList.contains(savedMode)){
-            if(!document.body.classList.contains(modeAlt)){
+
+        if (!document.body.classList.contains(savedMode)) {
+            if (!document.body.classList.contains(modeAlt)) {
                 document.body.classList.add(savedMode);
                 setModeIcon(savedMode);
-        }
-            else{
-                document.body.classList.replace(modeAlt,savedMode);
+            }
+            else {
+                document.body.classList.replace(modeAlt, savedMode);
                 setModeIcon(savedMode);
+            }
         }
-        }
-        else{
+        else {
             setModeIcon(savedMode);
         }
     }

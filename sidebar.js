@@ -23,7 +23,7 @@ function setTheme(event) {
     );
     document.body.dataset.theme = event.currentTarget.dataset.settheme;
     localStorage.setItem("theme", `${event.currentTarget.dataset.settheme}`);
-    
+
     function setAppStatusBarTheme() {
         let primaryColor = getComputedStyle(document.body).getPropertyValue(
             "--color-banner"
@@ -118,11 +118,10 @@ function openBgPicker() {
         document.body.style.position = "fixed";
         const filePicker = document.querySelector("input[type='file']");
         const reading = (uploadedPic) => {
-                let reader = new FileReader();
-            if(fileSizeOk(uploadedPic)){
+            let reader = new FileReader();
+            if (fileSizeOk(uploadedPic)) {
                 reader.readAsDataURL(uploadedPic);
-            }
-            else{
+            } else {
                 notifyUser("Picture is too big");
             }
 
@@ -161,11 +160,11 @@ function openBgPicker() {
             });
         });
     };
-    loadForm().catch(err => {
+    loadForm().catch((err) => {
         errorHandler();
     });
 }
-const fileSizeOk = (pic)=>{
-    console.log((pic.size/1048576).toFixed(2)+"MB");
-    return pic.size/1048576 < 4.00 ? true : false; 
-}
+const fileSizeOk = (pic) => {
+    console.log((pic.size / 1048576).toFixed(2) + "MB");
+    return pic.size / 1048576 < 4.0 ? true : false;
+};
