@@ -1,5 +1,5 @@
-// import Clock, { NewYearClock } from './clock.js'
-// // import { NewYearClock } from './clock.js'
+// import Clock, { NewYearClock } from './js/clock.js'
+// // import { NewYearClock } from './js/clock.js'
   class Clock {
     constructor(endDate) {
         // expecting a date object
