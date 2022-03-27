@@ -163,6 +163,7 @@ function openBgPicker() {
     };
     loadForm().catch(err => {
         errorHandler();
+        console.log(err);
     });
 }
 const fileSizeOk = (pic)=>{
