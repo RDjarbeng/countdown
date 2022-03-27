@@ -9,13 +9,13 @@ nav.addEventListener("click", () => {
         sidebar.classList.replace("sidebar-hide", "sidebar-show");
     }
 });
-sidebarItems[0].addEventListener("click", () => setLink("./index.html"));
+sidebarItems[0].addEventListener("click", () => setLink("../index.html"));
 sidebarItems[1].addEventListener("click", () =>
-    setLink("./countdown-list.html")
+    setLink("../html/countdown-list.html")
 );
 sidebarItems[2].addEventListener("click", openBgPicker);
 sidebarItems[3].addEventListener("click", openColorPicker);
-sidebarItems[4].addEventListener("click", () => setLink("./authors.html"));
+sidebarItems[4].addEventListener("click", () => setLink("../html/authors.html"));
 
 function setTheme(event) {
     let prevTheme = getComputedStyle(document.body).getPropertyValue(
@@ -56,10 +56,10 @@ const closeSideBarListener = (event) => {
 };
 
 function openBgPicker() {
-    if (!$("[href='form.css']")[0]) {
+    if (!$("[href='css/form.css']")[0]) {
         document.head.insertAdjacentHTML(
             "beforeend",
-            `<link rel="stylesheet" href="form.css">`
+            `<link rel="stylesheet" href="../css/form.css">`
         );
     }
     const showLoader = () => {
@@ -111,7 +111,7 @@ function openBgPicker() {
     showLoader();
 
     const loadForm = async () => {
-        let file = await fetch("./form-upload.html");
+        let file = await fetch("../html/form-upload.html");
         let ft = await file.text();
         document.getElementsByClassName("loader-container")[0].remove();
         document.body.insertAdjacentHTML("afterbegin", ft);

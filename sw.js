@@ -7,12 +7,12 @@ const dynamicCache = 'site-dynamic-v3';
 const assets = [
     '/',
     '/index.html',
-    '/authors.html',
-    '/fallback.html',
-    '/clock.js',
+    '/html/authors.html',
+    '/html/fallback.html',
+    '/js/clock.js',
     '/app.js',
     '/img/bg.svg',
-    '/styles.css',
+    '/css/styles.css',
     'img/icons/favicon.png',
     'img/icons/chrome192.png',
     'img/icons/chrome512.png',
@@ -73,7 +73,7 @@ self.addEventListener('fetch', evt => {
             });
         }).catch(()=>{
             if(evt.request.url.indexOf('.html')>-1 )
-            return caches.match('/fallback.html')
+            return caches.match('/html/fallback.html')
         })
     );
 })
