@@ -474,7 +474,7 @@ padding: 0 0 0 1rem;
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
   .container{
-    gap: 0.7em;
+    gap: 1em;
   }
   .banner-row{
     font-size: 1.3rem;
