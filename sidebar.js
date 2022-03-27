@@ -167,5 +167,5 @@ function openBgPicker() {
 }
 const fileSizeOk = (pic)=>{
     console.log((pic.size/1048576).toFixed(2)+"MB");
-    return pic.size/1048576 < 4.00 ? true : false; 
+    return pic.size/1048576 < 3.00 ? true : false; 
 }

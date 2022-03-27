@@ -253,6 +253,7 @@ main{
   overflow: hidden;
   transition: left .02s ease-in;
   backdrop-filter: blur(1px);
+  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.2);
 }
 .sidebar-content{
   display: flex;
@@ -484,5 +485,8 @@ padding: 0 0 0 1rem;
   }
 .countdown-list-item{
   grid-template-columns: 5.7fr 1.3fr;
+}
+.menu{
+  width: 38vmin;
 }
 }

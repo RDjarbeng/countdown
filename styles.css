@@ -69,7 +69,7 @@ main{
   padding: 0.2rem 0.8rem;
   -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
           animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: -10rem;
   transform: translateX(-50%);
@@ -260,6 +260,7 @@ main{
   overflow: hidden;
   transition: left .02s ease-in;
   backdrop-filter: blur(1px);
+  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.2);
 }
 .sidebar-content{
   display: flex;
