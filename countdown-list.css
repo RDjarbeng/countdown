@@ -67,7 +67,8 @@ main{
   align-items: center;
   flex-direction: column;
   gap: 2em;
-  overflow-x: hidden;
+  overflow: hidden;
+  position: relative;
 }
 
 .mode-info {
@@ -153,7 +154,7 @@ main{
 }
 
 .clock-row {
-  position: relative;
+  position: sticky;
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -380,14 +381,19 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   color: var(--color-text);
 }
 
+.list-container{
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+}
 .countdown-list{
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
   gap: 0.9rem;
+  overflow: auto;
   padding-bottom: 10vh;
 }
 .countdown-list-item:hover{
