@@ -119,12 +119,10 @@ todo:
 * Add repeating countdowns, Eg: birthdays
 * Make use of notifications api to provide alert/notifications when countdown is complete
 * Provide a custom sort of countdowns by due time or date modified
-* Add countdown without reloading
-* UI style changes on countdown list
 
 todo v3:
 * authentication (firebase)
-* Shareable links
-* "on this day" feature
+* Shareable links, dynamic routing
+* "on this day"/ world... Day feature
 * "How long since this day/ memorable days" feature
 * Add audio, songs, more animated background 🔉 (experimental) 
