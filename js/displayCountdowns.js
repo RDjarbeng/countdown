@@ -58,9 +58,15 @@ function populateList(arrayOfCountdowns) {
             <div class="countdown-list-text"> ${countdown.text} </div>
             <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
             <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
-            <div class="menu-opts edit">Edit</div>
-            <div class="menu-opts del">Delete</div>
-            <div class="menu-opts main">Set as main</div>
+            <div class="menu-opts edit">
+                <i class="fas fa-edit"></i>&nbsp;Edit
+            </div>
+            <div class="menu-opts del">
+                <i class="fas fa-trash-alt"></i> &nbsp;Delete
+            </div>
+            <div class="menu-opts main">
+                <i class="fas fa-clock"></i> &nbsp;Set as main
+            </div>
             
         </div></div>
             <div class="countdown-list-date"> 
@@ -231,7 +237,7 @@ function displayFormPopUp(text, dateTime, modifiedTime) {
     // todo: Track items without using modifiedTime
     if(text && dateTime&& modifiedTime){
     const updateFormHtml = `<section class="pop-up-container">
-    <form action="/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
+    <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
         <div class="form-header">Update Countdown</div>
         <div class="form-sections">
             <label for="">Note &nbsp;</label>

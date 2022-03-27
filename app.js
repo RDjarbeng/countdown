@@ -1,5 +1,5 @@
-// import Clock, { NewYearClock } from './clock.js'
-// // import { NewYearClock } from './clock.js'
+// import Clock, { NewYearClock } from './js/clock.js'
+// // import { NewYearClock } from './js/clock.js'
   class Clock {
     constructor(endDate) {
         // expecting a date object
@@ -252,11 +252,11 @@ addEventListeners();
 
 // service worker
 
-if('serviceWorker' in navigator){
-    window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-    .then( (reg)=> console.log('service worker registered', reg))
-        .catch((err)=> console.log('Service worker not registered', err));
-  });
+// if('serviceWorker' in navigator){
+//     window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/sw.js')
+//     .then( (reg)=> console.log('service worker registered', reg))
+//         .catch((err)=> console.log('Service worker not registered', err));
+//   });
         
-}
+// }

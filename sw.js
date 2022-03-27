@@ -8,28 +8,28 @@ const dynamicCacheSize = 30;
 const assets = [
     '/',
     '/index.html',
-    '/authors.html',
-    '/countdown-list.html',
-    '/fallback.html',
-    '/form-upload.html',
-    '/styles.css',
-    '/themes.css',
-    '/authors.css',
-    '/countdown-list.css',
-    '/form.css',
+    '/html/authors.html',
+    '/html/countdown-list.html',
+    '/html/fallback.html',
+    '/html/form-upload.html',
+    '/css/styles.css',
+    '/css/themes.css',
+    '/css/authors.css',
+    '/css/countdown-list.css',
+    '/css/form.css',
     '/app.js',
-    '/sidebar.js',
-    '/loadCustomUI.js',
-    '/displayCountdowns.js',
-    '/formupdate.js',
-    '/error.js',
-    '/form.js',
+    '/js/sidebar.js',
+    '/js/loadCustomUI.js',
+    '/js/displayCountdowns.js',
+    '/js/formupdate.js',
+    '/js/error.js',
+    '/js/form.js',
     '/img/icons/chrome192.png',
     '/img/icons/chrome512.png',
     '/img/bg.svg',
     '/img/bg/goku.jpg',
     '/img/bg/ship_sky_balloons.jpg',
-    'img/icons/favicon.png',
+    '/img/icons/favicon.png',
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
     // "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap",
     // 'https://fonts.gstatic.com/s/nunito/v20/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2'
@@ -98,7 +98,7 @@ self.addEventListener('fetch', evt => {
             });
         }).catch(()=>{
             if(evt.request.url.indexOf('.html')>-1 )
-            return caches.match('/fallback.html')
+            return caches.match('/html/fallback.html')
         })
     );
 })
