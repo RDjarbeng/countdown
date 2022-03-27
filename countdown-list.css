@@ -485,4 +485,7 @@ padding: 0 0 0 1rem;
 .countdown-list-item{
   grid-template-columns: 5.7fr 1.3fr;
 }
+.menu{
+  width: 38vmin;
+}
 }
