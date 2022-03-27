@@ -162,7 +162,6 @@ main{
   align-items: center;
   justify-content: center;
   border-radius: 0.2em;
-  padding: 10px;
   gap: 1rem;
   display: none;
   animation: expand 0.05s forwards ease;
@@ -475,7 +474,7 @@ padding: 0 0 0 1rem;
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
   .container{
-    gap: 1.6em;
+    gap: 0.7em;
   }
   .banner-row{
     font-size: 1.3rem;
