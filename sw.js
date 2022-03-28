@@ -1,6 +1,7 @@
 // #3
-const staticCacheName = 'site-static-v3';
-const dynamicCache = 'site-dynamic-v3';
+const staticCacheName = 'site-static-t28';
+const dynamicCache = 'site-dynamic-t28';
+const dynamicCacheSize = 30;
 
 // caching
 //assets to cache
@@ -8,14 +9,27 @@ const assets = [
     '/',
     '/index.html',
     '/authors.html',
+    '/countdown-list.html',
     '/fallback.html',
-    '/clock.js',
-    '/app.js',
-    '/img/bg.svg',
+    '/form-upload.html',
     '/styles.css',
+    '/themes.css',
+    '/authors.css',
+    '/countdown-list.css',
+    '/form.css',
+    '/app.js',
+    '/sidebar.js',
+    '/loadCustomUI.js',
+    '/displayCountdowns.js',
+    '/formupdate.js',
+    '/error.js',
+    '/form.js',
+    '/img/icons/chrome192.png',
+    '/img/icons/chrome512.png',
+    '/img/bg.svg',
+    '/img/bg/goku.jpg',
+    '/img/bg/ship_sky_balloons.jpg',
     'img/icons/favicon.png',
-    'img/icons/chrome192.png',
-    'img/icons/chrome512.png',
     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
     // "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap",
     // 'https://fonts.gstatic.com/s/nunito/v20/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2'
@@ -36,8 +50,19 @@ self.addEventListener('install', evt => {
     evt.waitUntil(
         caches.open(staticCacheName).then(cache => {
             // console.log('caching');
-            cache.add('/app.js');
-            cache.addAll(assets);
+            // cache.add('/app.js');
+            cache.addAll(assets).catch((reason)=>{
+                // try caching again
+                console.log(reason);
+                assets.forEach(value=>{
+                    caches.open(staticCacheName).then(cache => {
+                        // console.log('caching');
+                        cache.add(value).catch(err=> console.log(err, value));
+                        console.log('recaching complete');
+                    }).catch(err=> console.log(err))     
+                })
+                
+            });
             console.log('caching complete');
         })
     )
@@ -67,7 +92,7 @@ self.addEventListener('fetch', evt => {
             return cacheRes || fetch(evt.request).then(fetchRes => {
                 return caches.open(dynamicCache).then(cache => {
                     cache.put(evt.request.url, fetchRes.clone())
-                    limitCacheSize(dynamicCache, 15)
+                    limitCacheSize(dynamicCache, dynamicCacheSize)
                     return fetchRes;
                 })
             });
