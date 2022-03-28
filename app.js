@@ -28,7 +28,8 @@
             // this.setEndDate()
             //todo: Countup from the deadline date
             // this.calculateTimeValues(Math.abs(distance));
-
+            notify('testing', 'rd');
+            console.log("yh run");
             // clear date values
             this.resetMethod();
             
@@ -94,7 +95,6 @@ let dayClock = new NewYearClock();
 
 // Initialize default Clock class
 // var myclock = new NewYearClock();
-var myclock =  setMainClock();
 var myclock =  setMainClock();
 setInnerHtmlForNotNull(dueDate, `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 var customClock;
@@ -244,6 +244,19 @@ setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 addEventListeners();
 
+function notify(title, body, icon){
+    Notification.requestPermission()
+    .then((result)=>{
+        if(result=== 'granted'){
+            console.log('Access to notification granted');
+            new Notification(title,{body, icon: icon||`/img/icons/chrome192.png`})
+        }else{
+            console.log('Notification permission denied. ',result);
+        }
+    })
+    .catch((reason)=> console.log('Notification permission denied',reason));
+    
+}
 // init events
 
 
