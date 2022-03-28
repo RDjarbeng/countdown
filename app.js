@@ -23,13 +23,18 @@
         if (distance >= 0) {
             // Time calculations for days, hours, minutes and seconds
             this.calculateTimeValues(distance)
+            
         } else {
             //reset to end of year
             // this.setEndDate()
             //todo: Countup from the deadline date
             // this.calculateTimeValues(Math.abs(distance));
-            notify('testing', 'rd');
-            console.log("yh run");
+            if(notifyStatus){
+                notify('testing', 'rd');
+                notifyStatus=false;
+            }
+                
+            // this.notify=false;
             // clear date values
             this.resetMethod();
             
@@ -98,7 +103,7 @@ let dayClock = new NewYearClock();
 var myclock =  setMainClock();
 setInnerHtmlForNotNull(dueDate, `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 var customClock;
-
+let notifyStatus= true;
 function setMainClock() {
     let mainclock =  localStorage.getItem('mainClock');
     if (mainclock !== null && mainclock != undefined) { //countdown set to main
