@@ -394,7 +394,7 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   align-items: center;
   gap: 0.9rem;
   overflow: auto;
-  padding-bottom: 5vh;
+  padding-bottom: 10vh;
 }
 .countdown-list-item:hover{
 background: var(--bg-cdListHover);
@@ -442,7 +442,7 @@ padding: 0 0 0 1rem;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2); ;
   position: absolute;
   right: 0;
-  bottom: 60%;
+  top: 60%;
   width: 30vmin;
   border-radius: 0.2rem;
   color: var(--color-text);background: var(--bg-timer);
