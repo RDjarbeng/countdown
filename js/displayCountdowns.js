@@ -161,17 +161,16 @@ function addListEventListener() {
                 // todo: custom error messages for components on fail
                 try {
                     if(editItem){
-                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
+                    // displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
                     handleUpdate();
                 }else{
                     // something went wrong with the editing
-                    // todo: add custom error message
-                    errorHandler();
-                    console.log(editItem);
+                    errorHandler('Unable to edit countdown');
+                    // console.log(editItem);
                 }
                 } catch (err) {
-                    console.log(err, 'err in form display ');
-                    errorHandler();
+                    console.log(err, 'Error in form display');
+                    errorHandler('Error in form display');
                 }
 
 
