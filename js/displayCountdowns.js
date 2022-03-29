@@ -50,7 +50,7 @@ async function displayCountdowns() {
 }
 
 function populateList(arrayOfCountdowns) {
-    let listItems = '';
+    // let listItems = '';
     arrayOfCountdowns.forEach((countdown, index) => {
         let date = new Date(countdown.date);
         listItems += `
@@ -161,7 +161,7 @@ function addListEventListener() {
                 // todo: custom error messages for components on fail
                 try {
                     if(editItem){
-                    // displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
+                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
                     handleUpdate();
                 }else{
                     // something went wrong with the editing
@@ -220,8 +220,8 @@ function handleUpdate() {
                 closeFormPopUp();
                 removeClockAndText();
             }else{
-                console.log("Unable to find item");
-                errorHandler();
+                console.log("Unable to update Item in displayCountdown, HandleUpdate");
+                errorHandler('Unable to update Item');
             }
 
         }
@@ -276,9 +276,12 @@ function addEventListeners() {
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
 try{
-displayCountdowns();
+displayCountdowns().catch((err)=>{
+    console.log(err);
+    errorHandler('Unable to fetch your countdowns')
+});
 addEventListeners();
 }catch (err) {
     console.log(err, 'err in display countdown initialisation');
-    errorHandler();
+    errorHandler("Unable to fetch your countdowns");
 }
