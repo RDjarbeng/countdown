@@ -50,7 +50,7 @@ async function displayCountdowns() {
 }
 
 function populateList(arrayOfCountdowns) {
-    // let listItems = '';
+    let listItems = '';
     arrayOfCountdowns.forEach((countdown, index) => {
         let date = new Date(countdown.date);
         listItems += `
