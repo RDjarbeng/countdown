@@ -373,12 +373,13 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  right: 10vmin;
-  bottom: 10vmin;
   background-color: var(--bg-newItem);
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
   z-index: 2;  
   color: var(--color-text);
+  bottom: 6vh;
+  right: 50%;
+  transform: translateX(50%);
 }
 
 .list-container{
@@ -470,6 +471,11 @@ padding: 0 0 0 1rem;
     width: 1.8em;
     height: 1.8em;
   }
+  .new-item{    
+    right: 10vmin;
+    bottom: 10vmin;
+    transform: translateX(0%);
+  }
 }
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
@@ -484,9 +490,6 @@ padding: 0 0 0 1rem;
   }
   .sidebar{
     width: 75vmin;
-  }
-  .new-item{
-    bottom: 10vh;
   }
 .countdown-list-item{
   grid-template-columns: 5.7fr 1.3fr;
