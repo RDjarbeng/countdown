@@ -133,7 +133,7 @@ function openBgPicker() {
                 notifyUser("Background is set");
             };
             reader.onerror = function () {
-                errorHandler();
+                errorHandler("Unable to set background");
                 console.log(reader.error);
             };
         };
@@ -162,7 +162,7 @@ function openBgPicker() {
         });
     };
     loadForm().catch(err => {
-        errorHandler();
+        errorHandler("Unable to set custom background");
         console.log(err);
     });
 }
