@@ -1,5 +1,5 @@
-// import Clock, { NewYearClock } from './clock.js'
-// // import { NewYearClock } from './clock.js'
+// import Clock, { NewYearClock } from './js/clock.js'
+// // import { NewYearClock } from './js/clock.js'
   class Clock {
     constructor(endDate) {
         // expecting a date object
@@ -250,7 +250,7 @@ addEventListeners();
 // dateInput.addEventListener('change', listenForDate);
 
 // service worker
-/*
+
 if('serviceWorker' in navigator){
     window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
@@ -259,4 +259,3 @@ if('serviceWorker' in navigator){
   });
         
 }
-*/
