@@ -96,25 +96,32 @@ function removeClockAndText(){
 const triggerContextMenu = (element) => {
     if (element.querySelector(".menu").style.display == "block") {
         hideContextMenus();
-        // element.querySelector(".menu").style.display = "none";
-        // console.log("context-menu: hide");
     }
     else {
         hideContextMenus();//close all context menus before displaying the clicked one
         element.querySelector(".menu").style.display = "block";
+        switchContextIconUp(element);
         // console.log("context-menu: show");
     }
 }
+function switchContextIconUp(element){
+    element = element.querySelector('.fa-chevron-circle-down')
+    if(element){
+    element.classList.replace('fa-chevron-circle-down', 'fa-chevron-circle-up');
+}
+}
 
+function switchContextIconDown(element){    
+    if(element)
+    element.classList.replace('fa-chevron-circle-up', 'fa-chevron-circle-down');
+}
 function hideContextMenus(event) {
     //if function is not triggered by event listener, event is empty
-    if (!(event != null)) {
+    if ((!(event != null))||!(event.target.className == 'countdown-list-options' || event.target.tagName == 'I')) {
         document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
-    } else if (!(event.target.className == 'countdown-list-options' || event.target.tagName == 'I')) {
-        // click is not on context menu icon area or icon   
-        document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
-    }
-
+        document.querySelectorAll('.fa-chevron-circle-up').forEach(element => switchContextIconDown(element));
+    } 
+    
 }
 function addListEventListener() {
     document.querySelector('.countdown-list').addEventListener('click', event => {
