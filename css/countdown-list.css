@@ -386,6 +386,7 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .countdown-list{
   display: flex;
@@ -394,7 +395,7 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   justify-content: center;
   align-items: center;
   gap: 0.9rem;
-  overflow: auto;
+  overflow-y: auto;
   padding-bottom: 10vh;
 }
 .countdown-list-item:hover{
