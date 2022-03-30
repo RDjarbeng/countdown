@@ -131,6 +131,7 @@ function openBgPicker() {
                 localStorage.setItem("userBg", `${uploadedPic64}`);
                 document.body.style.backgroundImage = `url(${uploadedPic64})`;
                 notifyUser("Background is set");
+                closeFormPopUp();
             };
             reader.onerror = function () {
                 errorHandler("Unable to set background");
@@ -142,10 +143,7 @@ function openBgPicker() {
         };
         document
             .getElementsByClassName("close-form")[0]
-            .addEventListener("click", () => {
-                document.getElementsByClassName("pop-up-container")[0].remove();
-                document.body.style.position = "";
-            });
+            .addEventListener("click", closeFormPopUp);
         $(".reset")[0].addEventListener("click", () => {
             localStorage.removeItem("userBg");
             document.body.style.backgroundImage = "";
