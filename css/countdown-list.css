@@ -76,8 +76,8 @@ main{
   border-radius: 0.3rem;
   color: var(--color-text);
   padding: 0.2rem 0.8rem;
-  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
-          animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
+  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 2s ease 0.9s forwards;
+          animation: slide-in 0.2s ease-in forwards, fade-out 2s ease 0.9s forwards;
   position: fixed;
   left: 50%;
   top: -10rem;
