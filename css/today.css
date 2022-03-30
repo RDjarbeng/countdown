@@ -12,7 +12,7 @@
 :root {
     --color-muted: rgba(255, 255, 255, 0.15);
     --color-banner: #7b68ee;
-    --bg-url: url("img/bg.svg");
+    --bg-url: url("../img/bg.svg");
     --bg-sidebar: var(--color-banner);
     --bg-modeToggle: rgba(0, 0, 0, 0.2);
     --bg-sidebar: #7b68ee;
@@ -52,7 +52,7 @@ main {
     width: 100vw;
     height: 90vh;
     margin-top: 10vh;
-    background: url(circle-anim-bg.svg);
+    background: url("../img/circle-anim-bg.svg");
     background-size: contain;
 }
 .container {
@@ -386,23 +386,6 @@ hr {
     display: inline-flex;
 }
 
-.new-item {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-    right: 10vmin;
-    bottom: 10vmin;
-    background-color: white;
-    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-}
-.new-item i {
-    color: var(--color-banner);
-}
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
     .container {
@@ -419,9 +402,6 @@ hr {
     }
     .sidebar {
         width: 75vmin;
-    }
-    .new-item {
-        bottom: 10vh;
     }
     .day-of-year {
         width: 40vmin;
