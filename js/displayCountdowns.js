@@ -172,13 +172,12 @@ function addListEventListener() {
                     handleUpdate();
                 }else{
                     // something went wrong with the editing
-                    // todo: add custom error message
-                    errorHandler();
-                    console.log(editItem);
+                    errorHandler('Unable to edit countdown');
+                    // console.log(editItem);
                 }
                 } catch (err) {
-                    console.log(err, 'err in form display ');
-                    errorHandler();
+                    console.log(err, 'Error in form display');
+                    errorHandler('Error in form display');
                 }
 
 
@@ -228,8 +227,8 @@ function handleUpdate() {
                 closeFormPopUp();
                 removeClockAndText();
             }else{
-                console.log("Unable to find item");
-                errorHandler();
+                console.log("Unable to update Item in displayCountdown, HandleUpdate");
+                errorHandler('Unable to update Item');
             }
 
         }
@@ -284,9 +283,12 @@ function addEventListeners() {
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
 try{
-displayCountdowns();
+displayCountdowns().catch((err)=>{
+    console.log(err);
+    errorHandler('Unable to fetch your countdowns')
+});
 addEventListeners();
 }catch (err) {
     console.log(err, 'err in display countdown initialisation');
-    errorHandler();
+    errorHandler("Unable to fetch your countdowns");
 }

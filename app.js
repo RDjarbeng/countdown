@@ -237,18 +237,18 @@ function setInnerHtmlForNotNull(element, value){
     if(element)//check for null
         element.innerHTML = value;
 }
-//show day value before animation runs
+try {
+    //show day value before animation runs
 setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 addEventListeners();
-
-// init events
-
-
-
-// dateInput.addEventListener('change', listenForDate);
+// as;
+} catch (error) {
+    errorHandler("Error in clock");
+    console.log(error);
+}
 
 // service worker
 /*
