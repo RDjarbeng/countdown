@@ -220,7 +220,7 @@ async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start
 
 }
 
-function addEventListeners() {
+function addWhatappEventHandler() {
     let whatsappIcon = document.getElementById('sendWhatsappButton');
     if (whatsappIcon) {
         whatsappIcon.addEventListener('click', exportToWhatsapp);
@@ -242,7 +242,7 @@ setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
-addEventListeners();
+addWhatappEventHandler();
 
 // init events
 

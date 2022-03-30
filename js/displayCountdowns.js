@@ -278,14 +278,14 @@ function setCountDownList(arrayOfJSONCountdowns) {
     localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))
 }
 
-function addEventListeners() {
+function addListEventHandlers() {
     addListEventListener();
     // add context menu event listener
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
 try{
 displayCountdowns();
-addEventListeners();
+addListEventHandlers();
 }catch (err) {
     console.log(err, 'err in display countdown initialisation');
     errorHandler();
