@@ -60,6 +60,15 @@ input[type="submit"],.reset button{
 input[type="submit"]:hover,.reset button:hover{
     background: var(--color-banner);
     filter:saturate(1.5);
+    box-shadow: inset 0px 0px 0px 2px var(--color-sidebar),
+        inset 0px 0px 0px 2px var(--color-sidebar), 
+        0 0 0 1px var(--color-banner);
+}
+input[type="submit"]:disabled{
+    background: grey;
+    color: white;
+    cursor: not-allowed;
+    border: 1px solid var(--color-banner);
 }
 .form-sections{
     display: inline-flex;
