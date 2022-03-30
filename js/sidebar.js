@@ -147,6 +147,8 @@ function openBgPicker() {
         $(".reset")[0].addEventListener("click", () => {
             localStorage.removeItem("userBg");
             document.body.style.backgroundImage = "";
+                notifyUser("Default background restored");
+                closeFormPopUp();
         });
         $(".bg-presets-preview:not(.upload-preview) img").forEach((e) => {
             e.addEventListener("click", () => {
