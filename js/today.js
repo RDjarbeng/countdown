@@ -31,4 +31,5 @@ function setDomElements(){
 }
 
 
-getAndSetDomElements()
+getAndSetDomElements();
+let dayIntervaltimer = setInterval(setDomElements, 1000);
