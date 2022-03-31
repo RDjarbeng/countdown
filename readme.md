@@ -125,4 +125,16 @@ todo v3:
 * Shareable links, dynamic routing
 * "on this day"/ world... Day feature
 * "How long since this day/ memorable days" feature
-* Add audio, songs, more animated background 🔉 (experimental) 
+* Add audio, songs, more animated background 🔉 (experimental)
+* Add memories 
+
+ideas v4 (Sync with Me):
+* public, group, readonly and private countdowns/memories. (eg: How long since the last world cup, 3years 7 months and counting, 440 000 viewed this)
+* Realtime Chat/ comments on a countdown/memory, almost social media-like behaviour. 
+* Allow other users to edit another user's countdowns upon request/addition
+* Show who made changes to memory, countdown (report and view changes, logs)
+* Reminder App like behaviour with push notifications
+* Allow more space for user text and images
+* Show countdowns based on local time or given timezone
+* Add ratings to distinguish popular countdowns, allow users to discover popular countdowns.
+* If necessary ... ads
