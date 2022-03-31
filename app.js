@@ -220,7 +220,7 @@ async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start
 
 }
 
-function addEventListeners() {
+function addWhatappEventHandler() {
     let whatsappIcon = document.getElementById('sendWhatsappButton');
     if (whatsappIcon) {
         whatsappIcon.addEventListener('click', exportToWhatsapp);
@@ -237,25 +237,29 @@ function setInnerHtmlForNotNull(element, value){
     if(element)//check for null
         element.innerHTML = value;
 }
-//show day value before animation runs
+try {
+    //show day value before animation runs
 setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
-addEventListeners();
-
-// init events
-
-
-
-// dateInput.addEventListener('change', listenForDate);
+addWhatappEventHandler();
+// as;
+} catch (error) {
+    errorHandler("Error in clock");
+    console.log(error);
+}
 
 // service worker
 /*
 if('serviceWorker' in navigator){
     window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
-    .then( (reg)=> console.log('service worker registered', reg))
+    .then( (reg)=>{ 
+        console.log('service worker registered', reg)
+        reg.unregister()
+            .then((status)=> console.log("Service worker unregistered", status))
+    })
         .catch((err)=> console.log('Service worker not registered', err));
   });
         
