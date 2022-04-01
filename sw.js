@@ -1,4 +1,4 @@
-// #3
+// #4
 
 const staticCacheName = 'site-static-v29';
 const dynamicCache = 'site-dynamic-v29';
