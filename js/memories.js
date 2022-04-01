@@ -23,7 +23,7 @@ class Clock {
         if (distance >= 0) {
             this.resetMethod();
         } else {
-            this.calculateTimeValues(distance)
+            this.calculateTimeValues(Math.abs(distance))
             
             
 

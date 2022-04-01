@@ -23,7 +23,7 @@ function popForm() {
 
     document.body.insertAdjacentHTML("afterbegin", popFormHtml);
     document.body.style.position = "fixed";
-    setDateAttributes();
+    // setDateAttributes();
     document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
     handleFormSubmission();
 }
