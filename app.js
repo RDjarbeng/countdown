@@ -61,7 +61,6 @@ class NewYearClock extends Clock{
     resetMethod(){
         //reset to New Year's for default 
         this.setEndDate()
-        console.log(this.endDate)
     }
 }
 
