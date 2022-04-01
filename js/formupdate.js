@@ -3,7 +3,7 @@ function popForm() {
     if (!countNumber)
         countNumber = 1;
     const popFormHtml = `<section class="pop-up-container">
-    <form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
+    <form action="/html/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
         <div class="form-sections">
             <label for="">Note &nbsp;</label>
@@ -65,7 +65,7 @@ function handleFormSubmission() {
     // console.log(event);
     countdownForm.addEventListener('submit', (e) => {
         
-        // e.preventDefault();
+        e.preventDefault();
         submitbutton.disabled = true;
         // get text field values, with auto values
         let userTextField = document.getElementById('countdownText');
@@ -85,11 +85,16 @@ function handleFormSubmission() {
 
         countdown.push(countItem);
         // console.log(countdown);
-        setCountDownList(countdown)
+        setCountDownList(countdown);
+        // external function
+        displayCountdowns();
+        closeFormPopUp();
 
         }else{
             // create first countdown
              setCountDownList([countItem]);
+             displayCountdowns();
+             closeFormPopUp();
         }
 
         // testing
@@ -97,8 +102,8 @@ function handleFormSubmission() {
     })
 }
 
-function setCountDownList(arrayOfJSONCountdowns){
-    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
+function setCountDownList(jsArray){
+    localStorage.setItem('countdown', JSON.stringify(jsArray))   
 }
 
 // DOM Elements
@@ -107,11 +112,11 @@ let countNumber = 1;
 
 // let dateInput, textInput;
 
-
-if (!document.querySelector("[href='form.css']")) {
+// todo: remove dynamic seting of css
+if (!document.querySelector("[href='css/form.css']")) {
     document.head.insertAdjacentHTML(
         "beforeend",
-        `<link rel="stylesheet" href="form.css">`
+        `<link rel="stylesheet" href="../css/form.css">`
     );
 }
 

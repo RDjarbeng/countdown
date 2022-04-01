@@ -14,21 +14,21 @@
   --color-muted: rgba(255, 255, 255, 0.15);
   --color-banner: #7b68ee;
   --timer-grad: rgba(255, 255, 255, 0.5);
-  --bg-url: url("img/bg.svg");
+  --bg-url: url("../img/bg.svg");
   --bg-sidebar: var(--color-banner);
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: #7b68ee;
   --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
   --color-sidebar: white;
   --color-cdList: white;
-  --bg-cdListHover: #735fe7;
+  --bg-cdListHover: #303041;
   overflow-x: hidden;
 }
 .dark{
   --bg-color: #1b182c;
   --color-text: white;
   --bg-timer: #474650;
-  --bg-cdList: var(--color-banner);
+  --bg-cdList: #3b3b50;
 }
 .light {
   --bg-color: #dbdbdb;
@@ -67,7 +67,8 @@ main{
   align-items: center;
   flex-direction: column;
   gap: 2em;
-  overflow-x: hidden;
+  overflow: hidden;
+  position: relative;
 }
 
 .mode-info {
@@ -75,23 +76,19 @@ main{
   border-radius: 0.3rem;
   color: var(--color-text);
   padding: 0.2rem 0.8rem;
-  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
-          animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
-  position: absolute;
+  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 2s ease 0.9s forwards;
+          animation: slide-in 0.2s ease-in forwards, fade-out 2s ease 0.9s forwards;
+  position: fixed;
   left: 50%;
   top: -10rem;
   transform: translateX(-50%);
-  z-index: 4;
+  z-index: 100;
 }
 
 .light .mode-info {
   background: aliceblue;
 }
 
-.link{
-  color: var(--color-text);
-  text-decoration: none;
-}
 @-webkit-keyframes slide-in {
   to {
     top: 2rem;
@@ -157,7 +154,7 @@ main{
 }
 
 .clock-row {
-  position: relative;
+  position: sticky;
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -165,7 +162,6 @@ main{
   align-items: center;
   justify-content: center;
   border-radius: 0.2em;
-  padding: 10px;
   gap: 1rem;
   display: none;
   animation: expand 0.05s forwards ease;
@@ -257,6 +253,7 @@ main{
   overflow: hidden;
   transition: left .02s ease-in;
   backdrop-filter: blur(1px);
+  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.2);
 }
 .sidebar-content{
   display: flex;
@@ -376,15 +373,91 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  right: 10vmin;
-  bottom: 10vmin;
-  background-color: white;
+  background-color: var(--bg-newItem);
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+  z-index: 2;  
+  color: var(--color-text);
+  bottom: 6vh;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.list-container{
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.countdown-list{
+  display: flex;
+  width: 100vw;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9rem;
+  overflow-y: auto;
+  padding-bottom: 10vh;
+}
+.countdown-list-item:hover{
+background: var(--bg-cdListHover);
+box-shadow: inset 0 0 0vmin .4vmin var(--color-banner);
+/* border: solid .2vmin var(--color-banner); */
+}
+.countdown-list-item{
+  background: var(--bg-cdList);
+  color: var(--color-cdList);
+  border-radius: .3rem;
+  width: 80vmin;
+  display: grid;
+  grid-template-areas: 
+  'note options'
+  'date options';    
+grid-template-columns: 6fr 1fr;
+padding: 0 0 0 1rem;
+}
+.countdown-list-text{
+  grid-area: note;
+  font-size: 1.25rem;
+  padding: 1rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+.countdown-list-options{
+  grid-area: options;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  /* border: #1cb65d solid 2px; */
+  position: relative;
+}
+.countdown-list-date{
+  grid-area: date;
+  font-size: 0.65rem;
+  padding-left: 1rem;
+  padding-bottom: 0.2rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menu{
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2); ;
+  position: absolute;
+  right: 0;
+  top: 60%;
+  width: 30vmin;
+  border-radius: 0.2rem;
+  color: var(--color-text);background: var(--bg-timer);
   z-index: 2;
 }
-.new-item i{
-  color: var(--color-banner);
+.menu-opts{
+  padding: .2rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
+.menu-opts:hover{
+  background:rgba(0, 0, 0, 0.1);
+}
+
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
   .banner {
@@ -399,11 +472,16 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
     width: 1.8em;
     height: 1.8em;
   }
+  .new-item{    
+    right: 10vmin;
+    bottom: 10vmin;
+    transform: translateX(0%);
+  }
 }
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
   .container{
-    gap: 1.6em;
+    gap: 1em;
   }
   .banner-row{
     font-size: 1.3rem;
@@ -414,73 +492,10 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   .sidebar{
     width: 75vmin;
   }
-  .new-item{
-    bottom: 10vh;
-  }
-}
-/* why?*/
-.countdown-list{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
-    gap: 0.9rem;
-    padding-bottom: 10vh;
-}
-.countdown-list-item:hover{
-  background: var(--bg-cdListHover);
-}
 .countdown-list-item{
-    background: var(--bg-cdList);
-    color: var(--color-cdList);
-    border-radius: .3rem;
-    width: 80vmin;
-    display: grid;
-    grid-template-areas: 
-    'note options'
-    'date options';    
-  grid-template-columns: 6fr 1fr;
-  padding: 0 0 0 1rem;
+  grid-template-columns: 5.7fr 1.3fr;
 }
-.countdown-list-text{
-    grid-area: note;
-    font-size: 1.25rem;
-    padding: 1rem;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
-
-}
-.countdown-list-options{
-    grid-area: options;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    /* border: #1cb65d solid 2px; */
-    position: relative;
-}
-.countdown-list-date{
-    grid-area: date;
-    font-size: 0.65rem;
-    border-right: 1px solid rgba(0, 0, 0, 0.1);
-}
-
 .menu{
-    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2); ;
-    position: absolute;
-    right: 0;
-    bottom: 60%;
-    width: 30vmin;
-    border-radius: 0.2rem;
-    color: var(--color-text);background: var(--bg-timer);
+  width: 38vmin;
 }
-.menu-opts{
-    padding: .2rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-.menu-opts:hover{
-    background:rgba(0, 0, 0, 0.1);
-
 }
