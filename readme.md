@@ -83,9 +83,10 @@ Light mode on PC
 ![pcv1.2](https://user-images.githubusercontent.com/73431750/149921160-cb97133b-84c5-4c72-8084-5dcbc574a532.png)
 
 
-#### v2.0.0 (beta) 
+#### v2.0.0 
 The development process
 
+##### Partial changelog
 * Added new themes with different colours
 * Added sidebar
 * Redesigned authors/ about us page
@@ -98,9 +99,13 @@ The development process
 * Added option to set a user countdown as main countdown
 * Added night mode consistency across pages
 * Fixed app crashes in UC browser and older versions of Safari
-* Added whatsapp share button and whatsapp share functionality
+* Added whatsapp share button and whatsapp share functionality to day of year page
 * Add edit functionality to created countdowns
 * Add animated countdown to day of year page
+* Add error handling and error messages to user for a more stable app and less app crashes, fail gracefully
+* UI (Sidebar) improvements
+* UI changes to countdown-list page
+* Organize files into folders
 ---
 
 
