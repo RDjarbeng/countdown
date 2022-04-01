@@ -112,29 +112,3 @@ The development process
 ![image](https://user-images.githubusercontent.com/57795443/157711049-26be2f0a-d0b2-4b78-8a53-48a504c3f246.png)
 ![image](https://user-images.githubusercontent.com/57795443/157711429-3a3dc955-a21e-41ec-a9ed-c7908b91122a.png)
 
----
-todo: 
-* Provide proper error messages when app/function crashes- in progress
-* Add custom error messages for each component/function (remove generic error messages) 
-* Add repeating countdowns, Eg: birthdays
-* Make use of notifications api to provide alert/notifications when countdown is complete
-* Provide a custom sort of countdowns by due time or date modified
-
-todo v3:
-* authentication (firebase)
-* Shareable links, dynamic routing
-* "on this day"/ world... Day feature
-* "How long since this day/ memorable days" feature
-* Add audio, songs, more animated background 🔉 (experimental)
-* Add memories 
-
-ideas v4 (Sync with Me):
-* public, group, readonly and private countdowns/memories. (eg: How long since the last world cup, 3years 7 months and counting, 440 000 viewed this)
-* Realtime Chat/ comments on a countdown/memory, almost social media-like behaviour. 
-* Allow other users to edit another user's countdowns upon request/addition
-* Show who made changes to memory, countdown (report and view changes, logs)
-* Reminder App like behaviour with push notifications
-* Allow more space for user text and images
-* Show countdowns based on local time or given timezone
-* Add ratings to distinguish popular countdowns, allow users to discover popular countdowns.
-* If necessary ... ads
