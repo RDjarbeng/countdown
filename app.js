@@ -248,6 +248,7 @@ setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 addEventListeners();
+getNotificationPermission();
 
 function notify(title, body, icon){
     Notification.requestPermission()
@@ -261,6 +262,18 @@ function notify(title, body, icon){
     })
     .catch((reason)=> console.log('Notification permission denied',reason));
     
+}
+
+function getNotificationPermission(){
+    Notification.requestPermission()
+    .then((result)=>{
+        if(result=== 'granted'){
+            console.log('Access to notification granted');
+        }else{
+            console.log('Notification permission denied. ',result);
+        }
+    })
+    .catch((reason)=> console.log('Notification permission denied',reason));
 }
 // init events
 
