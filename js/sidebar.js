@@ -117,6 +117,10 @@ function openBgPicker() {
         document.body.insertAdjacentHTML("afterbegin", ft);
         document.body.style.position = "fixed";
         const filePicker = document.querySelector("input[type='file']");
+        const closeFormPopUp = () => {
+            document.getElementsByClassName("pop-up-container")[0].remove();
+            document.body.style.position = "";
+        }
         const reading = (uploadedPic) => {
                 let reader = new FileReader();
             if(fileSizeOk(uploadedPic)){
