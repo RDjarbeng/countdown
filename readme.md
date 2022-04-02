@@ -2,12 +2,12 @@
 
 Application that displays a countdown to a given date. It comes with a plethora of features such as custom date entries, theming etc.
 Oh and not forgetting the beloved dark mode! <br>
-Just save the date and have your countdown ready!
+Just save the date and let the countdown begin!
 
 App deployed on netlify at https://rcountdown.netlify.app/
-
+<br><br>
 ## Countdown v0.1.0 (How it began)
-Counts down to midnight with clickable features (dark mode) <br>
+Counts down to midnight with clickable features (dark mode) <br><br>
 ![before](https://user-images.githubusercontent.com/73431750/147592275-2123d01f-a49a-40c4-afa5-6e563450da5c.png)
 
 
@@ -68,6 +68,8 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 * User created countdowns is now possible; can edit, delete and set a countdown to display on homepage
 * Added sharing of the day of year Count to Whatsapp platform
 
+![v2 mobile alt1](https://user-images.githubusercontent.com/73431750/161403556-db26fc75-581e-43e1-8008-f0e3627826a6.png)
+![v2 pc](https://user-images.githubusercontent.com/73431750/161403301-3f0eea81-6edd-49aa-80b9-d90996449af4.png)
 
 ---
-Many more to come, stay tuned!
+#### Many more to come, stay tuned!
