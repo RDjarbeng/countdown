@@ -1,4 +1,4 @@
-  class Clock {
+class Clock {
     constructor(endDate) {
         // expecting a date object
         this.setEndDate(endDate)
@@ -86,7 +86,7 @@ function setMainClock() {
         myclock = new Clock(new Date(mainclock.date));
         setMainText(mainclock.text)
     }
-    return myclock || new NewYearClock();
+    return myclock || new Clock(new Date('2022-04-03'));
 
 }
 
@@ -226,7 +226,7 @@ addWhatappEventHandler();
 }
 
 // service worker
-
+/*
 if('serviceWorker' in navigator){
     window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
@@ -236,4 +236,4 @@ if('serviceWorker' in navigator){
         .catch((err)=> console.log('Service worker not registered', err));
   });
         
-}
+}*/
