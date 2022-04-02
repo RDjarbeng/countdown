@@ -121,9 +121,17 @@
     <!-- <div class="new-item"><i class="fas fa-plus fa-lg"></i></div> -->
 
     <script src="js/error.js"></script>
+    <!-- <script src="js/confetti.js"></script> -->
     <script src="app.js"></script>
     <script src="js/sidebar.js" async></script>
     <script src="js/loadCustomUI.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script>
+        const jsConfetti = new JSConfetti()
+
+
+setInterval(()=> jsConfetti.addConfetti(), 3000)
+    </script>
     <!-- <script  src="js/form.js" async></script> -->
         
 </body>

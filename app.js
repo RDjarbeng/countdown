@@ -218,7 +218,8 @@ setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
-addWhatappEventHandler();
+// addWhatappEventHandler();
+// startConfetti()
 // as;
 } catch (error) {
     errorHandler("Error in clock");
