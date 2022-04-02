@@ -55,6 +55,10 @@ const closeSideBarListener = (event) => {
     event.currentTarget.removeEventListener("click", closeSideBarListener);
 };
 
+function closeFormPopUp() {
+    document.getElementsByClassName("pop-up-container")[0].remove();
+    document.body.style.position = "";
+}
 function openBgPicker() {
     if (!$("[href='css/form.css']")[0]) {
         document.head.insertAdjacentHTML(
