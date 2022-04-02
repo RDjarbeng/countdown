@@ -13,7 +13,7 @@
   --color-muted: rgba(255, 255, 255, 0.15);
   --color-banner: #7b68ee;
   --timer-grad: rgba(255, 255, 255, 0.5);
-  --bg-url: url("../img/bg.svg");
+  --bg-url: url("../img/bg/earth.jpg");
   --bg-sidebar: var(--color-banner);
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: #7b68ee;
@@ -26,7 +26,7 @@
   --bg-timer: #474650;
 }
 .light {
-  --bg-color: #dbdbdb;
+  --bg-color: #dbdbdb1c;
   --color-muted: rgba(255, 255, 255, 0.3);
   --color-text: var(--color-banner);
   --bg-timer: whitesmoke;
