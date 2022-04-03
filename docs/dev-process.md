@@ -89,7 +89,8 @@ The development process
 * UI changes to countdown-list page
 * Organize files into folders
 ---
-
+![v2alp](https://user-images.githubusercontent.com/73431750/161423610-387ca3f4-62da-4c5b-85e2-c3c6f2681815.png)
+![v2alph](https://user-images.githubusercontent.com/73431750/161423612-d2ba818c-f492-44d5-a942-f2f58afe5c28.png)
 ![v2b](https://user-images.githubusercontent.com/73431750/154068140-a8650180-7427-4816-8ca2-d5f8907d34b2.png)
 ![v2b2](https://user-images.githubusercontent.com/73431750/154068151-24b3fb27-7835-4efa-a0d3-73205015f560.png)
 ![v2b3](https://user-images.githubusercontent.com/73431750/154068153-b87fa7a2-e855-4dd9-bfff-20487f7898e7.png)
@@ -99,7 +100,14 @@ The development process
 
 ## Design iterations along the way
 Not all elements made it into the final product, some others also got modified, added and even dropped completely
+![v2 sketches](https://user-images.githubusercontent.com/73431750/161426509-69ab234d-7307-4214-a030-87ed374ee119.png)
+
 <br><br>
+## Timeline
+![v2 timeline@0,3x](https://user-images.githubusercontent.com/73431750/161426297-8676ea0d-5b79-458a-a5b8-47dc1e2f2a62.jpg)
+
+<br><br>
+
 
 ## Countdown V2 currently
 * redesigned UI; sidebar navigation added, multiple themes and backgrounds to choose from
