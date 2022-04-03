@@ -73,3 +73,4 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 
 ---
 #### Many more to come, stay tuned!
+For more details, and live updates, checkout the [dev process](/docs/dev-process.md) readme
