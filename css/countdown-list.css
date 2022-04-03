@@ -362,8 +362,8 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   outline: #e685b5 solid 2px;
 }
 .pick-color-ico:nth-child(7){
-  background: #272628;
-  outline: #272628 solid 2px;
+  background: #1f1f1f;
+  outline: #1f1f1f solid 2px;
 }
 .show-color{
   display: inline-flex;

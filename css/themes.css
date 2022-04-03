@@ -95,18 +95,18 @@
   --bg-newItem: var(--color-banner);
 }
 [data-theme="black"] {
-  --color-banner: #272628;
+  --color-banner: #1f1f1f;
   --color-text: var(--color-banner);
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
-  --bg-sidebar: rgba(27, 26, 27, 0.95);
+  --bg-sidebar: rgba(31, 31, 31, 0.95);
   --bg-sidebarListHover: rgba(0, 0, 0, 0.3);
   --bg-newItem: white;
 }
 .dark[data-theme="black"] {
-  --bg-color: #333333;
+  --bg-color: #3c3c3c;
   --color-text: white;
-  --bg-timer: #2d2d2d;
-  --bg-cdList: #1f1f1f;
-  --bg-cdListHover: #181818;
+  --bg-timer: #353535;
+  --bg-cdList: #252426;
+  --bg-cdListHover: #1f1f1f;
   --bg-newItem: var(--color-banner);
 }
