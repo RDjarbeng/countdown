@@ -8,9 +8,11 @@ App deployed on netlify at https://rcountdown.netlify.app/
 ## Testing
 Feature and version branches can be viewed via https://branchNameHere--rcountdown.netlify.app/
 <br><br>
-## Countdown v0.1.0 (How it began)
+## How it started | how it's going
+![began vs going](https://user-images.githubusercontent.com/73431750/161440763-a2aadb26-b54c-4563-a5d3-68386b0b161b.png)
+
+## Countdown v0.1.0 
 Counts down to midnight with clickable features (dark mode) <br><br>
-![before](https://user-images.githubusercontent.com/73431750/147592275-2123d01f-a49a-40c4-afa5-6e563450da5c.png)
 
 
 ## Countdown v0.2.1
