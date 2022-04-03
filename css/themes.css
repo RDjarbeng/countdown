@@ -94,3 +94,19 @@
   --bg-cdListHover: #58464f;
   --bg-newItem: var(--color-banner);
 }
+[data-theme="black"] {
+  --color-banner: #272628;
+  --color-text: var(--color-banner);
+  --bg-modeToggle: rgba(0, 0, 0, 0.2);
+  --bg-sidebar: rgba(27, 26, 27, 0.95);
+  --bg-sidebarListHover: rgba(0, 0, 0, 0.3);
+  --bg-newItem: white;
+}
+.dark[data-theme="black"] {
+  --bg-color: #333333;
+  --color-text: white;
+  --bg-timer: #2d2d2d;
+  --bg-cdList: #1f1f1f;
+  --bg-cdListHover: #181818;
+  --bg-newItem: var(--color-banner);
+}
