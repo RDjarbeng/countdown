@@ -63,10 +63,10 @@ function addCountdownItem(countdown, index){
     let countdownStatus ="Counting"
     if(difference>0){
         // countdown is still in progress
-        console.log("countdown is still in progress", countdown);
+        // console.log("countdown is still in progress", countdown);
     }else{
         // countdown elapsed
-        console.log("countdown elapsed", countdown);
+        // console.log("countdown elapsed", countdown);
         countdownStatus = "Elapsed"
     }
     let countdownListItem = `
