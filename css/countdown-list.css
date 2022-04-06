@@ -361,6 +361,10 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   background: #e685b5;
   outline: #e685b5 solid 2px;
 }
+.pick-color-ico:nth-child(7){
+  background: #1f1f1f;
+  outline: #1f1f1f solid 2px;
+}
 .show-color{
   display: inline-flex;
 }
@@ -418,7 +422,7 @@ padding: 0 0 0 1rem;
 .countdown-list-text{
   grid-area: note;
   font-size: 1.25rem;
-  padding: 1rem;
+  padding: 1rem 0.5rem 1rem 1rem;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 
 }
