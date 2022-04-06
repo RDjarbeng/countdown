@@ -52,31 +52,42 @@ async function displayCountdowns() {
 function populateList(arrayOfCountdowns) {
     let listItems = '';
     arrayOfCountdowns.forEach((countdown, index) => {
-        let date = new Date(countdown.date);
-        listItems += `
-        <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
-            <div class="countdown-list-text"> ${countdown.text} </div>
-            <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
-            <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
-            <div class="menu-opts edit">
-                <i class="fas fa-edit"></i>&nbsp;Edit
-            </div>
-            <div class="menu-opts del">
-                <i class="fas fa-trash-alt"></i> &nbsp;Delete
-            </div>
-            <div class="menu-opts main">
-                <i class="fas fa-clock"></i> &nbsp;Set as main
-            </div>
-            
-        </div></div>
-            <div class="countdown-list-date"> 
-                Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
-            </div>    
-        </div>`
+        listItems += addCountdownItem(countdown, index)
     });
     return listItems;
 }
 
+function addCountdownItem(countdown, index){
+    let date = new Date(countdown.date);
+    let difference = date.getTime()- new Date().getTime();
+    if(difference>0){
+        console.log("countdown is still in progress", countdown);
+    }else{
+        console.log("countdown elapsed", countdown);
+    }
+    let countdownListItem = `
+    <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
+        <div class="countdown-list-text"> ${countdown.text} </div>
+        <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
+        <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
+        <div class="menu-opts edit">
+            <i class="fas fa-edit"></i>&nbsp;Edit
+        </div>
+        <div class="menu-opts del">
+            <i class="fas fa-trash-alt"></i> &nbsp;Delete
+        </div>
+        <div class="menu-opts main">
+            <i class="fas fa-clock"></i> &nbsp;Set as main
+        </div>
+        
+    </div></div>
+        <div class="countdown-list-date"> 
+            Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
+        </div>    
+    </div>`
+    return countdownListItem;
+
+}
 function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
