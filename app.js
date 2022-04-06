@@ -86,7 +86,7 @@ function setMainClock() {
         myclock = new Clock(new Date(mainclock.date));
         setMainText(mainclock.text)
     }
-    return myclock || new Clock(new Date('2022-04-03'));
+    return myclock || new Clock(new Date('2023-04-03'));
 
 }
 
