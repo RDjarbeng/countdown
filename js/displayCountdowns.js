@@ -56,14 +56,18 @@ function populateList(arrayOfCountdowns) {
     });
     return listItems;
 }
-
+// @nyakotey, all yours
 function addCountdownItem(countdown, index){
     let date = new Date(countdown.date);
     let difference = date.getTime()- new Date().getTime();
+    let countdownStatus ="Counting"
     if(difference>0){
+        // countdown is still in progress
         console.log("countdown is still in progress", countdown);
     }else{
+        // countdown elapsed
         console.log("countdown elapsed", countdown);
+        countdownStatus = "Elapsed"
     }
     let countdownListItem = `
     <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
@@ -82,7 +86,7 @@ function addCountdownItem(countdown, index){
         
     </div></div>
         <div class="countdown-list-date"> 
-            Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
+            Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()+", "+countdownStatus}
         </div>    
     </div>`
     return countdownListItem;
