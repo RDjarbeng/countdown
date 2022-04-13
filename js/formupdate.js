@@ -80,7 +80,9 @@ function handleFormSubmission() {
         submitbutton.disabled = true;
         // get text field values, with auto values
         let userTextField = document.getElementById('countdownText');
-        let userText = userTextField.value;
+        console.log(userTextField.value, 'user input');
+        let userText = sanitize(userTextField.value)
+        console.log(userText, 'sanitized user');
 
         if (!userText) {
             userText = userTextField.placeholder;
