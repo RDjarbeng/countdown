@@ -121,6 +121,44 @@
     <div class="new-item"><i class="fas fa-plus fa-lg"></i></div>
 
     <script src="js/error.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getFirestore, collection , getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyC6GbUIyP21jxR2gPhUGtvsGQpgyZiCy6E",
+          authDomain: "rcountdown-5f0c3.firebaseapp.com",
+          projectId: "rcountdown-5f0c3",
+          storageBucket: "rcountdown-5f0c3.appspot.com",
+          messagingSenderId: "324699011204",
+          appId: "1:324699011204:web:e462fd8b5e02a29d4fead1",
+          measurementId: "G-Y83G4YMZBK"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+//         const todoRef = collection(db, 'countdown');
+// let allTodos = await getDocs(todoRef)
+// console.log(allTodos.data );
+
+        const unsub =onSnapshot(collection(db, "countdown"), (snapshot)=> console.log(snapshot.docChanges()))
+        console.log(unsub);
+
+//         const querySnapshot = await getDocs(collection(db, "countdown"));
+// querySnapshot.forEach((doc) => {
+//   console.log(`${doc.id} => ${doc.data()}`);
+// });
+      </script>
+      <!-- <script type="module" src="/js/db.js"></script> -->
     <script src="app.js"></script>
     <script src="js/sidebar.js" async></script>
     <script src="js/loadCustomUI.js"></script>
