@@ -236,6 +236,8 @@ function handleUpdate() {
 }
 
 function setCountDownList(jsArray){
+    errorHandler('Could not update storage, firebase work in progress at the moment')
+    return;
     localStorage.setItem('countdown', JSON.stringify(jsArray))   
 }
 
