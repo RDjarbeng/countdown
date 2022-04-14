@@ -136,7 +136,56 @@
         const app = initializeApp(firebaseConfig);
         // const analytics = getAnalytics(app);
         const db = getFirestore(app);
+        /**
+         * Display countdown functions
+         * */
+         async function displayCountdowns() {
 
+
+let jsonListOfCountdowns = await localStorage.getItem('countdown');
+arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
+if (arrayOfCountdowns && arrayOfCountdowns.length) {
+
+    let listItems = populateList(arrayOfCountdowns);
+    console.log(countdownList);
+    setInnerHtmlForNotNull(countdownList, listItems)
+    setInnerHtmlForNotNull(countdownTextDisplay, '')
+    // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
+    
+
+} else {
+    setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
+    setInnerHtmlForNotNull(countdownTextDisplay, '')
+}
+}
+
+function populateList(arrayOfCountdowns) {
+let listItems = '';
+arrayOfCountdowns.forEach((countdown, index) => {
+    let date = new Date(countdown.date);
+    listItems += `
+    <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
+        <div class="countdown-list-text"> ${countdown.text} </div>
+        <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
+        <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
+        <div class="menu-opts edit">
+            <i class="fas fa-edit"></i>&nbsp;Edit
+        </div>
+        <div class="menu-opts del">
+            <i class="fas fa-trash-alt"></i> &nbsp;Delete
+        </div>
+        <div class="menu-opts main">
+            <i class="fas fa-clock"></i> &nbsp;Set as main
+        </div>
+        
+    </div></div>
+        <div class="countdown-list-date"> 
+            Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
+        </div>    
+    </div>`
+});
+return listItems;
+}
         function doOnSnapshot(snapshot){
             // console.log(snapshot.docChanges());
             snapshot.docChanges().forEach(change => {
@@ -156,6 +205,7 @@
             });
         }
         const unsub = onSnapshot(collection(db, "countdown"), doOnSnapshot)
+        displayCountdowns()
         // console.log(unsub);
 
     </script>

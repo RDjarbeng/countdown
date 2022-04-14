@@ -29,25 +29,25 @@ async function waitForAnimation(clock, domElements, duration) {
     startClock(clock || myclock, domElements);
 }
 
-// todo: sort by modified time
-async function displayCountdowns() {
+// // todo: sort by modified time
+// async function displayCountdowns() {
 
 
-    let jsonListOfCountdowns = await localStorage.getItem('countdown');
-    arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
-    if (arrayOfCountdowns && arrayOfCountdowns.length) {
+//     let jsonListOfCountdowns = await localStorage.getItem('countdown');
+//     arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
+//     if (arrayOfCountdowns && arrayOfCountdowns.length) {
 
-        let listItems = populateList(arrayOfCountdowns);
-        setInnerHtmlForNotNull(countdownList, listItems)
-        setInnerHtmlForNotNull(countdownTextDisplay, '')
-        // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
+//         let listItems = populateList(arrayOfCountdowns);
+//         setInnerHtmlForNotNull(countdownList, listItems)
+//         setInnerHtmlForNotNull(countdownTextDisplay, '')
+//         // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
         
 
-    } else {
-        setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
-        setInnerHtmlForNotNull(countdownTextDisplay, '')
-    }
-}
+//     } else {
+//         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
+//         setInnerHtmlForNotNull(countdownTextDisplay, '')
+//     }
+// }
 
 function populateList(arrayOfCountdowns) {
     let listItems = '';
@@ -283,10 +283,10 @@ function addListEventHandlers() {
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
 try{
-displayCountdowns().catch((err)=>{
+/*displayCountdowns().catch((err)=>{
     console.log(err);
     errorHandler('Unable to fetch your countdowns')
-});
+});*/
 addListEventHandlers();
 }catch (err) {
     console.log(err, 'err in display countdown initialisation');
