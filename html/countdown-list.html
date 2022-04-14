@@ -120,7 +120,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-        import { getFirestore, collection, getDocs, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot, enableIndexedDbPersistence } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -141,11 +141,23 @@
         const app = initializeApp(firebaseConfig);
         // const analytics = getAnalytics(app);
         const db = getFirestore(app);
-        arrayOfCountdowns=[];
+        arrayOfCountdowns = [];
+
+        enableIndexedDbPersistence(db)
+            .catch((err) => {
+                if (err.code == 'failed-precondition') {
+                    errorHandler('Please close all other tabs of this application');
+                    // Multiple tabs open, persistence can only be enabled
+                    // in one tab at a a time.
+                } else if (err.code == 'unimplemented') {
+                    // The current browser does not support features required to enable persistence
+                    errorHandler('Your browser does not support some features')
+                }
+            });
         /**
          * Display countdown functions
          * */
-        async function displayCountdowns(arrayOfCountdowns) {
+        async function displayCountdowns() {
             console.log(arrayOfCountdowns);
             // return;
             // let jsonListOfCountdowns = await localStorage.getItem('countdown');
@@ -165,14 +177,15 @@
         }
 
         function populateList(arrayOfCountdowns) {
+            console.log(arrayOfCountdowns);
             let listItems = '';
             arrayOfCountdowns.forEach((countdown, index) => {
                 let date = new Date(countdown.date);
                 listItems += `
-    <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
+    <div class="countdown-list-item" data-index="${index}" data-id="${countdown.id}">
         <div class="countdown-list-text"> ${countdown.text} </div>
         <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
-        <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
+        <div class="menu" data-index="${index}" data-id="${countdown.id}" style="display:none">
         <div class="menu-opts edit">
             <i class="fas fa-edit"></i>&nbsp;Edit
         </div>
@@ -197,8 +210,8 @@
                 // document change.type added
                 if (change.type === 'added') {
                     console.log('addition', change, change.doc.id, change.doc.data());
-                    arrayOfCountdowns.push(change.doc.data())
-                    
+                    arrayOfCountdowns.push(addIdToCountdownObject(change, change.doc.id));
+
 
                 } else if (change.type === 'modified') {
                     console.log('modification', change, change.doc.id, change.doc.data());
@@ -210,10 +223,15 @@
                     console.log("Unknown firebase change.type", change);
                 }
             });
-            displayCountdowns(arrayOfCountdowns)
+            displayCountdowns()
         }
+        function addIdToCountdownObject(change, id) {
+            return { id: change.doc.id, ...change.doc.data() }
+        }
+
+
         const unsub = onSnapshot(collection(db, "countdown"), doOnSnapshot)
-        
+        window.displayCountdowns = displayCountdowns;
         // console.log(unsub);
 
     </script>
