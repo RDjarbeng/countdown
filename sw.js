@@ -38,10 +38,10 @@ const assets = [
 
 ]
 
-const limitCacheSize = (name, size)=>{
-    caches.open(name).then(cache=>{
-        cache.keys().then(keys=>{
-            if(keys.length >size){
+const limitCacheSize = (name, size) => {
+    caches.open(name).then(cache => {
+        cache.keys().then(keys => {
+            if (keys.length > size) {
                 cache.delete(keys[0]).then(limitCacheSize(name, size));
             }
         })
@@ -53,17 +53,17 @@ self.addEventListener('install', evt => {
         caches.open(staticCacheName).then(cache => {
             // console.log('caching');
             // cache.add('/app.js');
-            cache.addAll(assets).catch((reason)=>{
+            cache.addAll(assets).catch((reason) => {
                 // try caching again
                 console.log(reason);
-                assets.forEach(value=>{
+                assets.forEach(value => {
                     caches.open(staticCacheName).then(cache => {
                         // console.log('caching');
-                        cache.add(value).catch(err=> console.log(err, value));
+                        cache.add(value).catch(err => console.log(err, value));
                         console.log('recaching complete');
-                    }).catch(err=> console.log(err))     
+                    }).catch(err => console.log(err))
                 })
-                
+
             });
             console.log('caching complete');
         })
@@ -89,18 +89,21 @@ self.addEventListener('activate', evt => {
 //fetch listener
 self.addEventListener('fetch', evt => {
     // console.log('fetch event', evt);
-    evt.respondWith(
-        caches.match(evt.request).then(cacheRes => {
-            return cacheRes || fetch(evt.request).then(fetchRes => {
-                return caches.open(dynamicCache).then(cache => {
-                    cache.put(evt.request.url, fetchRes.clone())
-                    limitCacheSize(dynamicCache, dynamicCacheSize)
-                    return fetchRes;
-                })
-            });
-        }).catch(()=>{
-            if(evt.request.url.indexOf('.html')>-1 )
-            return caches.match('/html/fallback.html')
-        })
-    );
+    // exclude firebase requests from cache
+    if (evt.request.url.indexOf('firestore.googleapis.com') === -1) {
+        evt.respondWith(
+            caches.match(evt.request).then(cacheRes => {
+                return cacheRes || fetch(evt.request).then(fetchRes => {
+                    return caches.open(dynamicCache).then(cache => {
+                        cache.put(evt.request.url, fetchRes.clone())
+                        limitCacheSize(dynamicCache, dynamicCacheSize)
+                        return fetchRes;
+                    })
+                });
+            }).catch(() => {
+                if (evt.request.url.indexOf('.html') > -1)
+                    return caches.match('/html/fallback.html')
+            })
+        );
+    }
 })
