@@ -103,6 +103,9 @@ function handleFormSubmission() {
 }
 
 function setCountDownList(jsArray){
+    errorHandler("firebase in progress, local only");
+    console.log('Running again');
+    return;
     localStorage.setItem('countdown', JSON.stringify(jsArray))   
 }
 

@@ -49,33 +49,33 @@ async function waitForAnimation(clock, domElements, duration) {
 //     }
 // }
 
-function populateList(arrayOfCountdowns) {
-    let listItems = '';
-    arrayOfCountdowns.forEach((countdown, index) => {
-        let date = new Date(countdown.date);
-        listItems += `
-        <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
-            <div class="countdown-list-text"> ${countdown.text} </div>
-            <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
-            <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
-            <div class="menu-opts edit">
-                <i class="fas fa-edit"></i>&nbsp;Edit
-            </div>
-            <div class="menu-opts del">
-                <i class="fas fa-trash-alt"></i> &nbsp;Delete
-            </div>
-            <div class="menu-opts main">
-                <i class="fas fa-clock"></i> &nbsp;Set as main
-            </div>
+// function populateList(arrayOfCountdowns) {
+//     let listItems = '';
+//     arrayOfCountdowns.forEach((countdown, index) => {
+//         let date = new Date(countdown.date);
+//         listItems += `
+//         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
+//             <div class="countdown-list-text"> ${countdown.text} </div>
+//             <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
+//             <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
+//             <div class="menu-opts edit">
+//                 <i class="fas fa-edit"></i>&nbsp;Edit
+//             </div>
+//             <div class="menu-opts del">
+//                 <i class="fas fa-trash-alt"></i> &nbsp;Delete
+//             </div>
+//             <div class="menu-opts main">
+//                 <i class="fas fa-clock"></i> &nbsp;Set as main
+//             </div>
             
-        </div></div>
-            <div class="countdown-list-date"> 
-                Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
-            </div>    
-        </div>`
-    });
-    return listItems;
-}
+//         </div></div>
+//             <div class="countdown-list-date"> 
+//                 Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}
+//             </div>    
+//         </div>`
+//     });
+//     return listItems;
+// }
 
 function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
@@ -147,28 +147,28 @@ function addListEventListener() {
             triggerContextMenu(targetElement.parentElement);
 
         } else if (targetElement.className.search('menu-opts') > -1) {
-            let count_modified = targetElement.parentElement.getAttribute('data-id');
+            let id = targetElement.parentElement.getAttribute('data-id');
             if (targetElement.className.search('main') > -1) {
                 // set as main clicked
                 // find the element convert to JSON and place it as the main clock
-                const countdown = arrayOfCountdowns.find((countdown) => countdown.dateModified == count_modified);
+                const countdown = arrayOfCountdowns.find((countdown) => countdown.id == id);
                 const mainCount = JSON.stringify(countdown);
                 localStorage.setItem('mainClock', mainCount);
                 let date = new Date(countdown.date);
                 notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
             } else if (targetElement.className.search('del') > -1) {
                 // delete item clicked
-                arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
+                arrayOfCountdowns = arrayOfCountdowns.filter((countdown) => countdown.id != id);
                 test = true;
                 setCountDownList(arrayOfCountdowns);
                 countdownList.innerHTML = populateList(arrayOfCountdowns)
                 // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
             } else if (targetElement.className.search('edit') > -1) {
-                let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
+                let editItem = arrayOfCountdowns.find((countdown) => countdown.id == id);
                 // todo: custom error messages for components on fail
                 try {
                     if(editItem){
-                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
+                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), editItem.id);
                     handleUpdate();
                 }else{
                     // something went wrong with the editing
@@ -200,7 +200,7 @@ function handleUpdate() {
         submitbutton.disabled = true;
         // get text field values, with auto values
         let userText = document.getElementById('countdownText').value;
-        const modifiedTime = document.getElementById('modifiedTime').value;
+        const id = document.getElementById('modifiedTime').value;
 
         // if (!userText) {
         //     userText = userTextField.placeholder;
@@ -210,15 +210,15 @@ function handleUpdate() {
         let userDate = document.getElementById("dateInput").value;
         userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        arrayOfCountdowns = arrayOfCountdowns? arrayOfCountdowns: JSON.parse(localStorage.getItem('countdown'));
+        // arrayOfCountdowns = arrayOfCountdowns? arrayOfCountdowns: JSON.parse(localStorage.getItem('countdown'));
         if (arrayOfCountdowns !== null) { //countdowns already exist
             
             
             let pos = arrayOfCountdowns.findIndex((value) =>
-                value.dateModified == modifiedTime
+                value.id == id
             );
             if(pos>-1){
-                console.log(arrayOfCountdowns[pos]);
+                // console.log(arrayOfCountdowns[pos]);
                 arrayOfCountdowns[pos].text = countItem.text;
                 arrayOfCountdowns[pos].date = countItem.date;
                 arrayOfCountdowns[pos].dateModified = countItem.dateModified;
@@ -231,6 +231,9 @@ function handleUpdate() {
                 errorHandler('Unable to update Item');
             }
 
+        }else{
+            console.log("Array of countdowns is null", arrayOfCountdowns);
+            errorHandler('Unable to update Item');
         }
     })
 }
@@ -241,9 +244,9 @@ function setCountDownList(jsArray){
     localStorage.setItem('countdown', JSON.stringify(jsArray))   
 }
 
-function displayFormPopUp(text, dateTime, modifiedTime) {
+function displayFormPopUp(text, dateTime, id) {
     // todo: Track items without using modifiedTime
-    if(text && dateTime&& modifiedTime){
+    if(text && dateTime&& id){
     const updateFormHtml = `<section class="pop-up-container">
     <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
         <div class="form-header">Update Countdown</div>
@@ -257,7 +260,7 @@ function displayFormPopUp(text, dateTime, modifiedTime) {
         </div>
         <div class="form-sections">
             <label for=""></label>
-            <input type="hidden" value = ${modifiedTime} id="modifiedTime">
+            <input type="hidden" value = ${id} id="modifiedTime">
             <input type="submit" id ="countdown-update" value="Update">
         </div>    
         
