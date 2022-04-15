@@ -47,7 +47,7 @@ function setDateAttributes() {
     mm = addZeros(mm)
 
     let todayString = yyyy + '-' + mm + '-' + dd+'T'+ hr+':'+min;
-    console.log(todayString);
+    // console.log(todayString);
     dateInput.setAttribute("min", todayString);
     dateInput.value= todayString;
 }
@@ -77,9 +77,15 @@ function handleFormSubmission() {
             localStorage.setItem('countNumber', countNumber)
         }
         let userDate = document.getElementById("dateInput").value;
-        userDate = new Date(userDate);
-        let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        let countdown = localStorage.getItem('countdown');
+        // userDate = new Date(userDate);
+        let countItem = { text: userText, date: userDate, dateModified: new Date().toISOString() };
+        
+        const docRef =  addDoc(collection(db, "countdown"), countItem).then((res)=>console.log(res))
+        .catch(err=> console.log(err))
+          console.log("Document written with ID: ", docRef);
+        //   console.log('add doc fxn', addDoc,'db obje', db);
+
+        /*let countdown = localStorage.getItem('countdown');
         if(countdown !== null){ //countdowns already exist
          countdown = JSON.parse(countdown);//array
 
@@ -95,7 +101,7 @@ function handleFormSubmission() {
              setCountDownList([countItem]);
              displayCountdowns();
              closeFormPopUp();
-        }
+        }*/
 
         // testing
         // closeFormPopUp();
