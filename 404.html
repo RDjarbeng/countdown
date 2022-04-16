@@ -52,7 +52,9 @@
     <script src="/js/error.js"></script>
     <script src="/js/loadCustomUI.js"></script>
     <script>
-        errorHandler('Your location '+window.location.href)
+        errorHandler('Your location '+window.location.href);
+        if(!(window.location.href.includes('test')))
+        window.location.href= window.location.href+'/test'
     </script>    
 </body>
 
