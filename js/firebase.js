@@ -38,16 +38,19 @@
                     errorHandler('Your browser does not support some features')
                 }
             });
+            function sortByModifiedTime(){
+                arrayOfCountdowns.sort((element1, element2)=> new Date(element1.dateModified).getTime()- new Date(element2.dateModified).getTime() )
+            }
         /**
          * Display countdown functions
          * */
         async function displayCountdowns() {
-            console.log(arrayOfCountdowns);
+            // console.log(arrayOfCountdowns);
             // return;
             // let jsonListOfCountdowns = await localStorage.getItem('countdown');
             // arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
             if (arrayOfCountdowns && arrayOfCountdowns.length) {
-
+                // arrayOfCountdowns.sort()
                 let listItems = populateList(arrayOfCountdowns);
                 setInnerHtmlForNotNull(countdownList, listItems)
                 setInnerHtmlForNotNull(countdownTextDisplay, '')
@@ -61,7 +64,8 @@
         }
 
         function populateList(arrayOfCountdowns) {
-            console.log(arrayOfCountdowns);
+            sortByModifiedTime();
+            console.log(arrayOfCountdowns, 'array of' );
             let listItems = '';
             arrayOfCountdowns.forEach((countdown, index) => {
                 let date = new Date(countdown.date);
