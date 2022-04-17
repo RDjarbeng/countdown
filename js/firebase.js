@@ -39,7 +39,7 @@
                 }
             });
             function sortByModifiedTime(){
-                arrayOfCountdowns.sort((element1, element2)=> new Date(element1.dateModified).getTime()- new Date(element2.dateModified).getTime() )
+                arrayOfCountdowns.sort((element1, element2)=> new Date(element2.dateModified).getTime()- new Date(element1.dateModified).getTime() )
             }
         /**
          * Display countdown functions
