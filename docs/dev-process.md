@@ -120,7 +120,7 @@ Not all elements made it into the final product, some others also got modified, 
 ![v2 mobile alt1](https://user-images.githubusercontent.com/73431750/161403556-db26fc75-581e-43e1-8008-f0e3627826a6.png)
 ![v2 pc](https://user-images.githubusercontent.com/73431750/161403301-3f0eea81-6edd-49aa-80b9-d90996449af4.png)
 ![goku@0,5x](https://user-images.githubusercontent.com/73431750/163831402-05a3a93d-db85-48fb-b35e-96d7f98f3dd1.jpg)
-![black theme](https://user-images.githubusercontent.com/73431750/163833843-9e5c3b5d-de9c-42e4-bdbe-aa89aa58bf8d.png)
+![black theme](https://user-images.githubusercontent.com/73431750/163834582-2b98f0be-af25-4011-a0be-361d01a50d4e.png)
 
 
 ---
