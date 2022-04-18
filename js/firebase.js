@@ -1,6 +1,6 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, enableIndexedDbPersistence, addDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot, enableIndexedDbPersistence, addDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-analytics.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,11 +21,15 @@
         const app = initializeApp(firebaseConfig);
         // const analytics = getAnalytics(app);
         const db = getFirestore(app);
+        let firebaseCollection = 'countdown'
         window.db = db;
         window.collection = collection;
+        window.firebaseCollection = firebaseCollection;
         window.addDoc = addDoc;
-
-        arrayOfCountdowns = [];
+        window.doc = doc;
+        window.deleteDoc =deleteDoc;
+        let arrayOfCountdowns = [];
+        window.arrayOfCountdowns= arrayOfCountdowns;
 
         enableIndexedDbPersistence(db)
             .catch((err) => {
@@ -46,9 +50,6 @@
          * */
         async function displayCountdowns() {
             // console.log(arrayOfCountdowns);
-            // return;
-            // let jsonListOfCountdowns = await localStorage.getItem('countdown');
-            // arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
             if (arrayOfCountdowns && arrayOfCountdowns.length) {
                 // arrayOfCountdowns.sort()
                 let listItems = populateList(arrayOfCountdowns);
@@ -97,7 +98,7 @@
             snapshot.docChanges().forEach(change => {
                 // document change.type added
                 if (change.type === 'added') {
-                    console.log('addition', change, change.doc.id, change.doc.data());
+                    // console.log('addition', change, change.doc.id, change.doc.data());
                     arrayOfCountdowns.push(addIdToCountdownObject(change, change.doc.id));
 
 
@@ -107,6 +108,7 @@
                 } else if (change.type === 'removed') {
                     // document change.type removed
                     console.log('removal', change, change.doc.id, change.doc.data());
+                    removeCountdownByID(change.doc.id);
                 } else {
                     console.log("Unknown firebase change.type", change);
                 }
@@ -117,7 +119,11 @@
             return { id: change.doc.id, ...change.doc.data() }
         }
 
+        function removeCountdownByID(id){
+            arrayOfCountdowns= arrayOfCountdowns.filter((countdown) => countdown.id != id);
+        }
 
-        const unsub = onSnapshot(collection(db, "countdown"), doOnSnapshot)
+
+        const unsub = onSnapshot(collection(db, firebaseCollection), doOnSnapshot)
         window.displayCountdowns = displayCountdowns;
         // console.log(unsub);

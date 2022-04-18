@@ -7,7 +7,7 @@ var countdownTextDisplay = document.getElementById('countdown-text');
 var countdownClock = document.querySelector('.clock-row');
 var countdownList = document.getElementById('countdown-list');
 let test = false;
-let arrayOfCountdowns;
+// let arrayOfCountdowns;
 
 
 
@@ -158,11 +158,14 @@ function addListEventListener() {
                 notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
             } else if (targetElement.className.search('del') > -1) {
                 // delete item clicked
-                arrayOfCountdowns = arrayOfCountdowns.filter((countdown) => countdown.id != id);
+                deleteFirebaseDoc(id);
+                console.log('you clicked',doc(db, window.firebaseCollection, id));
+                // console.log(deleteDoc(collection(db, "countdown")));
+                /*arrayOfCountdowns = arrayOfCountdowns.filter((countdown) => countdown.id != id);
                 test = true;
                 setCountDownList(arrayOfCountdowns);
                 countdownList.innerHTML = populateList(arrayOfCountdowns)
-                // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
+                // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);*/
             } else if (targetElement.className.search('edit') > -1) {
                 let editItem = arrayOfCountdowns.find((countdown) => countdown.id == id);
                 // todo: custom error messages for components on fail
@@ -184,6 +187,10 @@ function addListEventListener() {
             }
         }
     })
+}
+
+async function deleteFirebaseDoc(id){
+    await deleteDoc(doc(db, firebaseCollection, id));
 }
 
 function handleUpdate() {
