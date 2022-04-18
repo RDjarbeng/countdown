@@ -1,4 +1,4 @@
-# Countdown app
+# Countdown App
 
 Application that displays a countdown to a given date. It comes with a plethora of features such as custom date entries, theming etc.
 Oh and not forgetting the beloved dark mode! <br>
@@ -6,10 +6,11 @@ Just save the date and let the countdown begin!
 
 App deployed on netlify at https://rcountdown.netlify.app/
 ## Testing
-Feature and version branches can be viewed via https://branchNameHere--rcountdown.netlify.app/
+Feature and version branches can be previewed via https://branchNameHere--rcountdown.netlify.app/
 <br><br>
 ## How it started | how it's going
-![began vs going](https://user-images.githubusercontent.com/73431750/161440763-a2aadb26-b54c-4563-a5d3-68386b0b161b.png)
+![v 0 - 2 (current)@0,3x](https://user-images.githubusercontent.com/73431750/163826501-9df7f9b3-ed10-4f43-9e77-14af89876bb6.png)
+
 
 ## Countdown v0.1.0 
 Counts down to midnight with clickable features (dark mode) <br><br>
@@ -24,11 +25,13 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 * Changed fonts
 * Simplified css
 
+
 ## Countdown v0.2.2
 * Added Font Awesome icons
 * Fixed light and dark mode styling
 * Fixed light/dark mode toggle button layout
 * Minor text edits
+
 
 ## Countdown v0.2.3
 * Added auto light and dark mode
@@ -62,7 +65,7 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 * UI updates to light and dark mode 👀
 
 ![v1 2](https://user-images.githubusercontent.com/73431750/163797976-658ca351-eec2-4879-960c-a274609be1ce.png)
-
+<br><br>
 
 ## Countdown to v2.0.0 😄😅
 The development process
@@ -97,14 +100,15 @@ The development process
 ![image](https://user-images.githubusercontent.com/57795443/157711049-26be2f0a-d0b2-4b78-8a53-48a504c3f246.png)
 ![image](https://user-images.githubusercontent.com/57795443/157711429-3a3dc955-a21e-41ec-a9ed-c7908b91122a.png)
 
+
 ## Design iterations along the way
 Not all elements made it into the final product, some others also got modified, added and even dropped completely
 ![v2 sketches](https://user-images.githubusercontent.com/73431750/161426509-69ab234d-7307-4214-a030-87ed374ee119.png)
+<br>
 
-<br><br>
-## Timeline
-![v2 timeline@0,3x](https://user-images.githubusercontent.com/73431750/161426297-8676ea0d-5b79-458a-a5b8-47dc1e2f2a62.jpg)
 
+### Timeline
+![v2 timeline@0,25x](https://user-images.githubusercontent.com/73431750/163827141-6d08747d-3af2-4eea-acc3-91b3c2f90dac.jpg)
 <br><br>
 
 
@@ -115,6 +119,9 @@ Not all elements made it into the final product, some others also got modified, 
 
 ![v2 mobile alt1](https://user-images.githubusercontent.com/73431750/161403556-db26fc75-581e-43e1-8008-f0e3627826a6.png)
 ![v2 pc](https://user-images.githubusercontent.com/73431750/161403301-3f0eea81-6edd-49aa-80b9-d90996449af4.png)
+![goku@0,5x](https://user-images.githubusercontent.com/73431750/163831402-05a3a93d-db85-48fb-b35e-96d7f98f3dd1.jpg)
+![black theme](https://user-images.githubusercontent.com/73431750/163833843-9e5c3b5d-de9c-42e4-bdbe-aa89aa58bf8d.png)
+
 
 ---
 #### Many more to come, stay tuned!
