@@ -38,7 +38,7 @@ function addZeros(time) {
 function setDateAttributes() {
     const dateInput = document.getElementById("dateInput");
     const today = new Date();
-    let dd = today.getDate() ;//add 1 to the date so date starts from tomorrow
+    let dd = today.getDate();//add 1 to the date so date starts from tomorrow
     let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
     let yyyy = today.getFullYear();
     let hr = addZeros(today.getHours());
@@ -46,10 +46,10 @@ function setDateAttributes() {
     dd = addZeros(dd);
     mm = addZeros(mm)
 
-    let todayString = yyyy + '-' + mm + '-' + dd+'T'+ hr+':'+min;
+    let todayString = yyyy + '-' + mm + '-' + dd + 'T' + hr + ':' + min;
     // console.log(todayString);
     dateInput.setAttribute("min", todayString);
-    dateInput.value= todayString;
+    dateInput.value = todayString;
 }
 
 function closeFormPopUp() {
@@ -60,11 +60,11 @@ function closeFormPopUp() {
 function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
     const submitbutton = document.getElementById('countdown-submit');
-    
+
     // const event = document.createEvent('Event');
     // console.log(event);
     countdownForm.addEventListener('submit', (e) => {
-        
+
         e.preventDefault();
         submitbutton.disabled = true;
         // get text field values, with auto values
@@ -79,40 +79,19 @@ function handleFormSubmission() {
         let userDate = document.getElementById("dateInput").value;
         // userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date().toISOString() };
-        
-        const docRef =  addDoc(collection(db, "countdown"), countItem).then((res)=>console.log(res))
-        .catch(err=> console.log(err))
-          console.log("Document written with ID: ", docRef);
-        //   console.log('add doc fxn', addDoc,'db obje', db);
 
-        /*let countdown = localStorage.getItem('countdown');
-        if(countdown !== null){ //countdowns already exist
-         countdown = JSON.parse(countdown);//array
-
-        countdown.push(countItem);
-        // console.log(countdown);
-        setCountDownList(countdown);
-        // external function
-        displayCountdowns();
+        const docRef = addDoc(collection(db, "countdown"), countItem).then((res) => console.log(res))
+            .catch(err => console.log(err))
+        console.log("Document written with ID: ", docRef);
         closeFormPopUp();
-
-        }else{
-            // create first countdown
-             setCountDownList([countItem]);
-             displayCountdowns();
-             closeFormPopUp();
-        }*/
-
-        // testing
-        // closeFormPopUp();
     })
 }
 
-function setCountDownList(jsArray){
+function setCountDownList(jsArray) {
     errorHandler("firebase in progress, local only");
     console.log('Running again');
     return;
-    localStorage.setItem('countdown', JSON.stringify(jsArray))   
+    localStorage.setItem('countdown', JSON.stringify(jsArray))
 }
 
 // DOM Elements
