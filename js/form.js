@@ -57,6 +57,19 @@ function closeFormPopUp() {
     document.body.style.position = "";
 }
 
+function sanitize(string) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return string.replace(reg, (match)=>(map[match]));
+  }
+
 function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
     const submitbutton = document.getElementById('countdown-submit');
@@ -69,7 +82,7 @@ function handleFormSubmission() {
         submitbutton.disabled = true;
         // get text field values, with auto values
         let userTextField = document.getElementById('countdownText');
-        let userText = userTextField.value;
+        let userText = sanitize(userTextField.value);
 
         if (!userText) {
             userText = userTextField.placeholder;
