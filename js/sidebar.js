@@ -117,6 +117,10 @@ function openBgPicker() {
         document.body.insertAdjacentHTML("afterbegin", ft);
         document.body.style.position = "fixed";
         const filePicker = document.querySelector("input[type='file']");
+        const closeFormPopUp = () => {
+            document.getElementsByClassName("pop-up-container")[0].remove();
+            document.body.style.position = "";
+        }
         const reading = (uploadedPic) => {
                 let reader = new FileReader();
             if(fileSizeOk(uploadedPic)){
@@ -131,9 +135,10 @@ function openBgPicker() {
                 localStorage.setItem("userBg", `${uploadedPic64}`);
                 document.body.style.backgroundImage = `url(${uploadedPic64})`;
                 notifyUser("Background is set");
+                closeFormPopUp();
             };
             reader.onerror = function () {
-                errorHandler();
+                errorHandler("Unable to set background");
                 console.log(reader.error);
             };
         };
@@ -142,13 +147,12 @@ function openBgPicker() {
         };
         document
             .getElementsByClassName("close-form")[0]
-            .addEventListener("click", () => {
-                document.getElementsByClassName("pop-up-container")[0].remove();
-                document.body.style.position = "";
-            });
+            .addEventListener("click", closeFormPopUp);
         $(".reset")[0].addEventListener("click", () => {
             localStorage.removeItem("userBg");
             document.body.style.backgroundImage = "";
+                notifyUser("Default background restored");
+                closeFormPopUp();
         });
         $(".bg-presets-preview:not(.upload-preview) img").forEach((e) => {
             e.addEventListener("click", () => {
@@ -162,7 +166,7 @@ function openBgPicker() {
         });
     };
     loadForm().catch(err => {
-        errorHandler();
+        errorHandler("Unable to set custom background");
         console.log(err);
     });
 }

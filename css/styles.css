@@ -67,8 +67,8 @@ main{
   border-radius: 0.3rem;
   color: var(--color-text);
   padding: 0.2rem 0.8rem;
-  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
-          animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
+  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 2s ease 0.9s forwards;
+          animation: slide-in 0.2s ease-in forwards, fade-out 2s ease 0.9s forwards;
   position: fixed;
   left: 50%;
   top: -10rem;
@@ -367,6 +367,10 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
 .pick-color-ico:nth-child(2){
   background: #e685b5;
   outline: #e685b5 solid 2px;
+}
+.pick-color-ico:nth-child(7){
+  background: #1f1f1f;
+  outline: #1f1f1f solid 2px;
 }
 .show-color{
   display: inline-flex;

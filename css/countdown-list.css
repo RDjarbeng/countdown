@@ -76,8 +76,8 @@ main{
   border-radius: 0.3rem;
   color: var(--color-text);
   padding: 0.2rem 0.8rem;
-  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
-          animation: slide-in 0.2s ease-in forwards, fade-out 0.5s ease 0.9s forwards;
+  -webkit-animation: slide-in 0.2s ease-in forwards, fade-out 2s ease 0.9s forwards;
+          animation: slide-in 0.2s ease-in forwards, fade-out 2s ease 0.9s forwards;
   position: fixed;
   left: 50%;
   top: -10rem;
@@ -361,6 +361,10 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   background: #e685b5;
   outline: #e685b5 solid 2px;
 }
+.pick-color-ico:nth-child(7){
+  background: #1f1f1f;
+  outline: #1f1f1f solid 2px;
+}
 .show-color{
   display: inline-flex;
 }
@@ -373,18 +377,20 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  right: 10vmin;
-  bottom: 10vmin;
   background-color: var(--bg-newItem);
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
   z-index: 2;  
   color: var(--color-text);
+  bottom: 6vh;
+  right: 50%;
+  transform: translateX(50%);
 }
 
 .list-container{
   width: 100vw;
   height: 100vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .countdown-list{
   display: flex;
@@ -393,8 +399,8 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   justify-content: center;
   align-items: center;
   gap: 0.9rem;
-  overflow: auto;
-  padding-bottom: 5vh;
+  overflow-y: auto;
+  padding-bottom: 10vh;
 }
 .countdown-list-item:hover{
 background: var(--bg-cdListHover);
@@ -416,7 +422,7 @@ padding: 0 0 0 1rem;
 .countdown-list-text{
   grid-area: note;
   font-size: 1.25rem;
-  padding: 1rem;
+  padding: 1rem 0.5rem 1rem 1rem;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 
 }
@@ -442,7 +448,7 @@ padding: 0 0 0 1rem;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2); ;
   position: absolute;
   right: 0;
-  bottom: 60%;
+  top: 60%;
   width: 30vmin;
   border-radius: 0.2rem;
   color: var(--color-text);background: var(--bg-timer);
@@ -470,6 +476,11 @@ padding: 0 0 0 1rem;
     width: 1.8em;
     height: 1.8em;
   }
+  .new-item{    
+    right: 10vmin;
+    bottom: 10vmin;
+    transform: translateX(0%);
+  }
 }
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
@@ -484,9 +495,6 @@ padding: 0 0 0 1rem;
   }
   .sidebar{
     width: 75vmin;
-  }
-  .new-item{
-    bottom: 10vh;
   }
 .countdown-list-item{
   grid-template-columns: 5.7fr 1.3fr;
