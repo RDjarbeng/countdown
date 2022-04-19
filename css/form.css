@@ -36,7 +36,7 @@
     bottom: 3vmin;
 }
 .close-form button{
-    padding: 1.5vmin 3vmin;
+    padding: 2vmin 5vmin;
     border-radius: .3rem;
     border: solid 1px var(--color-banner); 
     color: var(--color-banner);
@@ -44,14 +44,14 @@
 
 /* create countdown form */
 input[type="text"],input[type="datetime-local"]{
-    width: 50vmin;
-    padding: 2vmin;
+    width: 65vmin;
+    padding: 3vmin;
     border-radius: 2vmin;
     border: var(--color-banner) solid 1px;
     outline: none;
 }
 input[type="submit"],.reset button{
-    padding: 1.5vmin 3vmin;
+    padding: 2vmin 6vmin;
     border-radius: .3rem;
     border: none;  
     background: var(--color-banner); 
@@ -60,6 +60,18 @@ input[type="submit"],.reset button{
 input[type="submit"]:hover,.reset button:hover{
     background: var(--color-banner);
     filter:saturate(1.5);
+    box-shadow: inset 0px 0px 0px 2px var(--color-sidebar),
+        inset 0px 0px 0px 2px var(--color-sidebar), 
+        0 0 0 1px var(--color-banner);
+}
+input[type="submit"]:disabled{
+    background: grey;
+    color: white;
+    cursor: not-allowed;
+    /* border: 1px solid grey; */
+    box-shadow: inset 0px 0px 0px 2px var(--color-sidebar),
+        inset 0px 0px 0px 2px var(--color-sidebar), 
+        0 0 0 1px grey;
 }
 .form-sections{
     display: inline-flex;

@@ -1,5 +1,3 @@
-// import Clock, { NewYearClock } from './clock.js'
-// // import { NewYearClock } from './clock.js'
   class Clock {
     constructor(endDate) {
         // expecting a date object
@@ -24,11 +22,6 @@
             // Time calculations for days, hours, minutes and seconds
             this.calculateTimeValues(distance)
         } else {
-            //reset to end of year
-            // this.setEndDate()
-            //todo: Countup from the deadline date
-            // this.calculateTimeValues(Math.abs(distance));
-
             // clear date values
             this.resetMethod();
             
@@ -61,7 +54,6 @@ class NewYearClock extends Clock{
     resetMethod(){
         //reset to New Year's for default 
         this.setEndDate()
-        console.log(this.endDate)
     }
 }
 
@@ -69,29 +61,17 @@ class NewYearClock extends Clock{
 let dayCount = document.getElementById("countDay");
 const animatedCountDuration = 800;
 
-// let controls = document.getElementsByClassName("button");
-// let startButton = document.getElementById('startButton');
-// let stopButton = document.getElementById('stopButton');
 const body = document.body;
 var dayNumber = document.getElementById('day-num');
 var hourNumber = document.getElementById("hour-num");
 var minNumber = document.getElementById("min-num");
 var secNumber = document.getElementById("sec-num");
 var dueDate = document.getElementById('dueDate');
-// const dateInput = document.getElementById('customDate')
-
-// const customDayNumber = document.getElementById('day-custom');
-// const customHourNumber = document.getElementById("hour-custom");
-// const customMinNumber = document.getElementById("min-custom");
-// const customSecNumber = document.getElementById("sec-custom");
 
 //to stop the clock
 let intervalID;
 let customClockMovement = false;
 let dayClock = new NewYearClock();
-// let countItem = { text: 'test', date: '03-03-2022', dateModified: new Date() };
-// localStorage.setItem('mainClock', JSON.stringify(countItem))
-
 // Initialize default Clock class
 // var myclock = new NewYearClock();
 var myclock =  setMainClock();
@@ -106,7 +86,6 @@ function setMainClock() {
         myclock = new Clock(new Date(mainclock.date));
         setMainText(mainclock.text)
     }
-
     return myclock || new NewYearClock();
 
 }
@@ -133,7 +112,6 @@ function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
 }
-
 // add zero in front of numbers < 10
 function addZeros(time) {
     if (time < 10) {
@@ -158,9 +136,6 @@ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay)
     setInnerHtmlForNotNull(secDisplay, `${s}`);
 }
 
-
-
-//todo: find a better way of checking for a valid date
 /**
  * Listens for a user input for date element
  */
@@ -220,7 +195,7 @@ async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start
 
 }
 
-function addEventListeners() {
+function addWhatappEventHandler() {
     let whatsappIcon = document.getElementById('sendWhatsappButton');
     if (whatsappIcon) {
         whatsappIcon.addEventListener('click', exportToWhatsapp);
@@ -237,27 +212,28 @@ function setInnerHtmlForNotNull(element, value){
     if(element)//check for null
         element.innerHTML = value;
 }
-//show day value before animation runs
+try {
+    //show day value before animation runs
 setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
-addEventListeners();
-
-// init events
-
-
-
-// dateInput.addEventListener('change', listenForDate);
+addWhatappEventHandler();
+// as;
+} catch (error) {
+    errorHandler("Error in clock");
+    console.log(error);
+}
 
 // service worker
-/*
+
 if('serviceWorker' in navigator){
     window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
-    .then( (reg)=> console.log('service worker registered', reg))
+    .then( (reg)=>{ 
+        console.log('service worker registered', reg)
+    })
         .catch((err)=> console.log('Service worker not registered', err));
   });
         
 }
-*/
