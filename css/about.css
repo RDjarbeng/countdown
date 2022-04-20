@@ -64,7 +64,6 @@ body {
   text-align: center;
   font-size: 5vh;
   color: var(--color-sidebar);
-  /* margin-left: 1rem; incase logo gap doesn't work on mobile browsers */
 }
 .logo-ico img{
   width: 7vh;
@@ -199,22 +198,33 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
 .show-color{
   display: inline-flex;
 }
-
+.sidebar-app-version{
+  width: 90%;
+  position: absolute;
+  bottom: 1rem;
+  left: 7.5vmin;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
 main{
   width: 100vw;
   height: 100vh;
 }
 .container {
-  height: 100vh;
+  /* height: 100vh; */
   width: 100vw;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  gap: 2.5em;
+  gap: 1rem;
   overflow-x: hidden;
   padding-top: 13vh;
 }
-
+.container > *{
+  /* border: 1px solid lime; */
+  /* width: 90%; */
+}
 .mode-info {
   background: var(--bg-color);
   border-radius: 0.3rem;
@@ -262,7 +272,7 @@ a{
   margin-right: 5vmin;
 }
 
-.banner-row {
+/* .banner-row {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -332,21 +342,71 @@ a{
 }
 .light .timer-text{
   box-shadow: var(--timer-box);
-}
-.testers{
+} */
+/* .testers{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
   border: 2px solid lime;
+} */
+.details{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 90%;
+}
+.details-title{
+  font-weight: bold;
+  border-bottom: solid 2px ;
+  /* width: 80%; */
+}
+.details-info{
+  font-size: 1rem;
+}
+.app-learn{
+  font-style: italic;
+  font-size: 0.8rem;
+  letter-spacing: 0.3vmin;
+}
+.footer{
+  font-size: 0.7rem;
+  opacity: 0.9;
+}
+.ext-link{
+  filter: hue-rotate(90deg);
+}
+.sm-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sm {
+  width: 6vmin;
+  height: 6vmin;
+  border-radius: 50%;
+  border: solid var(--share-bg-hover) 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  font-size: 3vmin;
+}
+.sm:hover {
+  filter: hue-rotate(90deg);
 }
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
   body {
     overflow-y: hidden;
   }
-  .container{
+  .details{
+    width: 100vmin;
+  }
+  /* .container{
     gap: 4em;
   }
   .banner {
@@ -356,13 +416,13 @@ a{
     font-size: 25vmin;
     flex-direction: row;
     gap: 10vmin;
-  }
+  } */
 }
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
-  .container{
+  /* .container{
     gap: 1.6em;
-  }
+  } */
   .logo-name{
     display: none;
   }
