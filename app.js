@@ -13,9 +13,6 @@
         
     }
     countDown() {
-        // Set the date we're counting down to
-        // let countDownDate = this.endDate.getTime();
-        // let now = new Date().getTime();
         var distance = this.getDistance()
         // account for case of the countdown being reached, reset
         if (distance >= 0) {
@@ -24,8 +21,6 @@
         } else {
             // clear date values
             this.resetMethod();
-            
-
         }
     }
 
