@@ -138,18 +138,18 @@ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay)
 /**
  * Listens for a user input for date element
  */
-function listenForDate() {
-    const input = this.value;
-    // console.log(input, 'run');
-    if (input != '') {
-        customClock = new Clock(new Date(input));
-        displayClockRow();
-        // do the fast countdown
-        // set speed faster when day of the year is greater
-        // todo: change to animateValue
-        stepIncreaseAndStart(customClock, { customDayNumber, customHourNumber, customMinNumber, customSecNumber }, (365 - customClock.days < 100) ? 365 - customClock.days : 70);
-    }
-}
+// function listenForDate() {
+//     const input = this.value;
+//     // console.log(input, 'run');
+//     if (input != '') {
+//         customClock = new Clock(new Date(input));
+//         displayClockRow();
+//         // do the fast countdown
+//         // set speed faster when day of the year is greater
+//         // todo: change to animateValue
+//         stepIncreaseAndStart(customClock, { customDayNumber, customHourNumber, customMinNumber, customSecNumber }, (365 - customClock.days < 100) ? 365 - customClock.days : 70);
+//     }
+// }
 
 function displayClockRow() {
     let customRow = document.getElementById("customDisplay");
