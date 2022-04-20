@@ -333,6 +333,14 @@ a{
 .light .timer-text{
   box-shadow: var(--timer-box);
 }
+.testers{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  border: 2px solid lime;
+}
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
   body {
