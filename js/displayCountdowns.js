@@ -307,7 +307,9 @@ function addListEventHandlers() {
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
 try {
+    // stop the clock from app.js
     stopClock()
+    // todo: update time without redisplaying list of countdowns
     displayCountdowns().then(() => {
         if (countItemExists) {
             let interval =setInterval(()=>countItemExists?displayCountdowns():clearInterval(interval), 5000)
