@@ -6,7 +6,7 @@ var secNumber = document.getElementById("sec-num");
 var countdownTextDisplay = document.getElementById('countdown-text');
 var countdownClock = document.querySelector('.clock-row');
 var countdownList = document.getElementById('countdown-list');
-let test = false;
+let countItemExists = false;
 let arrayOfCountdowns;
 
 
@@ -41,7 +41,7 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
         // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
-        
+
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
@@ -50,6 +50,7 @@ async function displayCountdowns() {
 }
 
 function populateList(arrayOfCountdowns) {
+    countItemExists=false;
     let listItems = '';
     arrayOfCountdowns.forEach((countdown, index) => {
         listItems += addCountdownItem(countdown, index)
@@ -57,25 +58,26 @@ function populateList(arrayOfCountdowns) {
     return listItems;
 }
 // @nyakotey, all yours
-function addCountdownItem(countdown, index){
+function addCountdownItem(countdown, index) {
     let listItemClock = new Clock(new Date(countdown.date));
     let difference = listItemClock.getDistance();
-    let countdownStatus ="Counting"
+    let countdownStatus = ""
     let days, hours, minutes, seconds;
-    days=hours= minutes=seconds =0;
-    if(difference>0){
-        listItemClock.countDown();
-         days = listItemClock.days;
-         hours = listItemClock.hours
-    minutes = listItemClock.minutes
-    seconds = listItemClock.seconds
-    countdownStatus = ` ${ days +' days, '+hours+' hours,'+ minutes+' minutes,'+ seconds+' seconds '} more`
+    days = hours = minutes = seconds = 0;
+    if (difference > 0) {
+        countItemExists = true;
+        // listItemClock.countDown();
+        // console.log('Setting ');
+        days = listItemClock.days;
+        hours = listItemClock.hours
+        minutes = listItemClock.minutes
+        seconds = listItemClock.seconds
+        countdownStatus = ` ${days + ' days, ' + hours + ' hours,' + minutes + ' minutes,' + seconds + ' seconds '} more`
         // countdown is still in progress
-        // console.log("countdown is still in progress", countdown);
-    }else{
+    } else {
         // countdown elapsed
         // console.log("countdown elapsed", countdown);
-        countdownStatus = "Elapsed"
+        countdownStatus = "Elapsed "
     }
     let countdownListItem = `
     <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
@@ -94,7 +96,7 @@ function addCountdownItem(countdown, index){
         
     </div></div>
         <div class="countdown-list-date"> 
-        Status: ${ countdownStatus} 
+        Status: ${countdownStatus} 
         </div>    
     </div>`
     return countdownListItem;
@@ -107,10 +109,10 @@ function updateClockAndText(date, text, animation = true) {
     waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500)
 }
 
-function removeClockAndText(){
+function removeClockAndText() {
     stopClock();
     setInnerHtmlForNotNull(countdownTextDisplay, '')
-    if(countdownClock){
+    if (countdownClock) {
         // todo: set the display to none instead
         countdownClock.style.display = ''
     }
@@ -127,24 +129,24 @@ const triggerContextMenu = (element) => {
         // console.log("context-menu: show");
     }
 }
-function switchContextIconUp(element){
+function switchContextIconUp(element) {
     element = element.querySelector('.fa-chevron-circle-down')
-    if(element){
-    element.classList.replace('fa-chevron-circle-down', 'fa-chevron-circle-up');
-}
+    if (element) {
+        element.classList.replace('fa-chevron-circle-down', 'fa-chevron-circle-up');
+    }
 }
 
-function switchContextIconDown(element){    
-    if(element)
-    element.classList.replace('fa-chevron-circle-up', 'fa-chevron-circle-down');
+function switchContextIconDown(element) {
+    if (element)
+        element.classList.replace('fa-chevron-circle-up', 'fa-chevron-circle-down');
 }
 function hideContextMenus(event) {
     //if function is not triggered by event listener, event is empty
-    if ((!(event != null))||!(event.target.className == 'countdown-list-options' || event.target.tagName == 'I')) {
+    if ((!(event != null)) || !(event.target.className == 'countdown-list-options' || event.target.tagName == 'I')) {
         document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
         document.querySelectorAll('.fa-chevron-circle-up').forEach(element => switchContextIconDown(element));
-    } 
-    
+    }
+
 }
 function addListEventListener() {
     document.querySelector('.countdown-list').addEventListener('click', event => {
@@ -182,7 +184,6 @@ function addListEventListener() {
             } else if (targetElement.className.search('del') > -1) {
                 // delete item clicked
                 arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
-                test = true;
                 setCountDownList(arrayOfCountdowns);
                 countdownList.innerHTML = populateList(arrayOfCountdowns)
                 // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
@@ -190,14 +191,14 @@ function addListEventListener() {
                 let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
                 // todo: custom error messages for components on fail
                 try {
-                    if(editItem){
-                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
-                    handleUpdate();
-                }else{
-                    // something went wrong with the editing
-                    errorHandler('Unable to edit countdown');
-                    // console.log(editItem);
-                }
+                    if (editItem) {
+                        displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
+                        handleUpdate();
+                    } else {
+                        // something went wrong with the editing
+                        errorHandler('Unable to edit countdown');
+                        // console.log(editItem);
+                    }
                 } catch (err) {
                     console.log(err, 'Error in form display');
                     errorHandler('Error in form display');
@@ -213,7 +214,7 @@ function handleUpdate() {
     // todo: update list with custom fired events
     const countdownForm = document.getElementById('customUpDateForm');
     const submitbutton = document.getElementById('countdown-update');
-    
+
 
     // const event = document.createEvent('Event');
     // console.log(event);
@@ -233,14 +234,14 @@ function handleUpdate() {
         let userDate = document.getElementById("dateInput").value;
         userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        arrayOfCountdowns = arrayOfCountdowns? arrayOfCountdowns: JSON.parse(localStorage.getItem('countdown'));
+        arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : JSON.parse(localStorage.getItem('countdown'));
         if (arrayOfCountdowns !== null) { //countdowns already exist
-            
-            
+
+
             let pos = arrayOfCountdowns.findIndex((value) =>
                 value.dateModified == modifiedTime
             );
-            if(pos>-1){
+            if (pos > -1) {
                 console.log(arrayOfCountdowns[pos]);
                 arrayOfCountdowns[pos].text = countItem.text;
                 arrayOfCountdowns[pos].date = countItem.date;
@@ -249,7 +250,7 @@ function handleUpdate() {
                 displayCountdowns();
                 closeFormPopUp();
                 removeClockAndText();
-            }else{
+            } else {
                 console.log("Unable to update Item in displayCountdown, HandleUpdate");
                 errorHandler('Unable to update Item');
             }
@@ -258,14 +259,14 @@ function handleUpdate() {
     })
 }
 
-function setCountDownList(jsArray){
-    localStorage.setItem('countdown', JSON.stringify(jsArray))   
+function setCountDownList(jsArray) {
+    localStorage.setItem('countdown', JSON.stringify(jsArray))
 }
 
 function displayFormPopUp(text, dateTime, modifiedTime) {
     // todo: Track items without using modifiedTime
-    if(text && dateTime&& modifiedTime){
-    const updateFormHtml = `<section class="pop-up-container">
+    if (text && dateTime && modifiedTime) {
+        const updateFormHtml = `<section class="pop-up-container">
     <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
         <div class="form-header">Update Countdown</div>
         <div class="form-sections">
@@ -285,11 +286,11 @@ function displayFormPopUp(text, dateTime, modifiedTime) {
         <div class="close-form"><button>Close</button></div>
     </form>
     </section>`;
-    document.body.insertAdjacentHTML("afterbegin", updateFormHtml);
-    document.body.style.position = "fixed";
-    // setDateAttributes();
-    document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
-}
+        document.body.insertAdjacentHTML("afterbegin", updateFormHtml);
+        document.body.style.position = "fixed";
+        // setDateAttributes();
+        document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
+    }
 }
 function closeFormPopUp() {
     document.getElementsByClassName("pop-up-container")[0].remove();
@@ -305,13 +306,22 @@ function addListEventHandlers() {
     // add context menu event listener
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
-try{
-displayCountdowns().catch((err)=>{
-    console.log(err);
-    errorHandler('Unable to fetch your countdowns')
-});
-addListEventHandlers();
-}catch (err) {
+try {
+    stopClock()
+    displayCountdowns().then(() => {
+        if (countItemExists) {
+            let interval =setInterval(()=>countItemExists?displayCountdowns():clearInterval(interval), 5000)
+        }
+    }
+    )
+        .catch((err) => {
+            console.log(err);
+            errorHandler('Unable to fetch your countdowns');
+        });
+
+
+    addListEventHandlers();
+} catch (err) {
     console.log(err, 'err in display countdown initialisation');
     errorHandler("Unable to fetch your countdowns");
 }

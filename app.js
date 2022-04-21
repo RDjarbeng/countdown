@@ -12,7 +12,13 @@
         
         
     }
-    countDown() {
+
+    getDistance(){
+        return this.endDate.getTime() - new Date().getTime();
+    }
+
+    countDown=()=> {
+        console.log(this);
         var distance = this.getDistance()
         // account for case of the countdown being reached, reset
         if (distance >= 0) {
@@ -24,9 +30,6 @@
         }
     }
 
-    getDistance(){
-        return this.endDate.getTime() - new Date().getTime();
-    }
 
     resetMethod(){
         this.clearCounter();
