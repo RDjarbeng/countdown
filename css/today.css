@@ -57,12 +57,10 @@ main {
 }
 .container {
     width: 100vw;
-    height: 100%;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap: 2.5em;
     overflow-x: hidden;
 }
 
@@ -148,6 +146,7 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
 }
 .divider {
     width: 6vmin;
@@ -207,11 +206,15 @@ main {
     font-size: 1rem;
 }
 .share-row {
-    width: 100%;
+    width: 15vmin;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1vmin;
+    gap: 2vmin;
+    flex-direction: column;
+    position: absolute;
+    right: 0%;
+    transform: translateX(80%);
 }
 .sm {
     width: 6vmin;
@@ -390,17 +393,8 @@ hr {
     display: inline-flex;
 }
 
-/* desktop */
-@media screen and (min-width: 750px) and (orientation: landscape) {
-    .container {
-        gap: 4em;
-    }
-}
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
-    .container {
-        gap: 1.6em;
-    }
     .logo-name {
         display: none;
     }
@@ -409,6 +403,9 @@ hr {
     }
     .day-of-year {
         width: 40vmin;
+    }
+    .share-row{
+        right: -6%;
     }
     .date {
         width: 60vmin;
