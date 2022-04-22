@@ -8,6 +8,7 @@ var countdownClock = document.querySelector('.clock-row');
 var countdownList = document.getElementById('countdown-list');
 let countItemExists = false;
 let arrayOfCountdowns;
+let testid = '';
 
 
 
@@ -50,7 +51,7 @@ async function displayCountdowns() {
 }
 
 function populateList(arrayOfCountdowns) {
-    countItemExists=false;
+    countItemExists = false;
     let listItems = '';
     arrayOfCountdowns.forEach((countdown, index) => {
         listItems += addCountdownItem(countdown, index)
@@ -61,24 +62,19 @@ function populateList(arrayOfCountdowns) {
 function addCountdownItem(countdown, index) {
     let listItemClock = new Clock(new Date(countdown.date));
     let difference = listItemClock.getDistance();
-    let countdownStatus = ""
-    let days, hours, minutes, seconds;
-    days = hours = minutes = seconds = 0;
+    let countdownStatus = "";
+    let elapsed = false;
     if (difference > 0) {
         countItemExists = true;
-        // listItemClock.countDown();
-        // console.log('Setting ');
-        days = listItemClock.days;
-        hours = listItemClock.hours
-        minutes = listItemClock.minutes
-        seconds = listItemClock.seconds
-        countdownStatus = ` ${days + ' days, ' + hours + ' hours,' + minutes + ' minutes,' + seconds + ' seconds '} more`
+        countdownStatus = getCountdownString(listItemClock);
         // countdown is still in progress
     } else {
         // countdown elapsed
         // console.log("countdown elapsed", countdown);
+        elapsed = 'true';
         countdownStatus = "Elapsed "
     }
+
     let countdownListItem = `
     <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
         <div class="countdown-list-text"> ${countdown.text} </div>
@@ -94,14 +90,40 @@ function addCountdownItem(countdown, index) {
             <i class="fas fa-clock"></i> &nbsp;Set as main
         </div>
         
-    </div></div>
+    </div>
+    </div>
         <div class="countdown-list-date"> 
-        Status: ${countdownStatus} 
+        Status:<span class="${(!elapsed) ? 'countdown-status' : ''}" > ${countdownStatus}</span> 
         </div>    
-    </div>`
+    </div>`;
+    // alert('test')
+    // let interval =setInterval(() => {
+    //     console.log('calling');
+    //     // updateTimeWithID(`'${countdown.dateModified}'`)    
+    //     clearInterval(interval)
+    // }, 2000);
+
+
     return countdownListItem;
 
 }
+
+function getCountdownString(clock) {
+    return ` ${clock.days + ' days, ' + clock.hours + ' hours,' + clock.minutes + ' minutes,' + clock.seconds + ' seconds '} more`
+}
+async function updateTimeWithID() {
+    // elem =await document.getElementById(id);
+    let activeCountItems = document.querySelectorAll('.countdown-status')
+    console.log('class', activeCountItems);
+    activeCountItems.forEach(element => {
+        element.innerHTML = new Date().toDateString();
+    });
+
+
+}
+// setInterval(() => {
+
+// }, 1);
 function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
@@ -312,7 +334,9 @@ try {
     // todo: update time without redisplaying list of countdowns
     displayCountdowns().then(() => {
         if (countItemExists) {
-            let interval =setInterval(()=>countItemExists?displayCountdowns():clearInterval(interval), 5000)
+            updateTimeWithID()
+            // document.onreadystatechange =updateTimeWithID;
+            // let interval =setInterval(()=>countItemExists?displayCountdowns():clearInterval(interval), 5000)
         }
     }
     )
