@@ -78,6 +78,10 @@ input[type="submit"]:disabled{
     flex-direction: column;
     gap: 2vmin;
 }
+.form-repeat{
+    align-self: flex-start;
+    padding-left: 10%;
+}
 
 /* upload image form */
 .bg-presets {
