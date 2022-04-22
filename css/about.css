@@ -292,9 +292,9 @@ a{
   font-size: 0.7rem;
   opacity: 0.9;
 }
-.ext-link{
+/* .ext-link{
   filter: hue-rotate(90deg);
-}
+} */
 .sm-container{
   display: flex;
   justify-content: space-evenly;
