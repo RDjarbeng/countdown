@@ -33,3 +33,10 @@ function setDomElements(){
 
 getAndSetDomElements();
 let dayIntervaltimer = setInterval(setDomElements, 1000);
+
+async function copyDOY() {
+    await navigator.clipboard.writeText(`Day ${ dayCount.innerText ||'rcountdown'}/365`);
+    notifyUser("Copied to clipboard");
+    // console.log(await navigator.clipboard.readText());
+}
+$(".copy-link")[0].addEventListener("click", copyDOY);
