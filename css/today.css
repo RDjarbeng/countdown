@@ -213,12 +213,12 @@ main {
     gap: 2vmin;
     flex-direction: column;
     position: absolute;
-    right: 0%;
+    right: -5%;
     transform: translateX(80%);
 }
 .sm {
-    width: 6vmin;
-    height: 6vmin;
+    width: 7vmin;
+    height: 7vmin;
     border-radius: 50%;
     border: solid var(--share-bg-hover) 1px;
     display: flex;
@@ -226,7 +226,7 @@ main {
     align-items: center;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(5px);
-    font-size: 3vmin;
+    font-size: 4.5vmin;
 }
 .sm:hover {
     background: var(--share-bg-hover);
@@ -404,15 +404,16 @@ hr {
     .day-of-year {
         width: 40vmin;
     }
-    .share-row{
-        right: -6%;
-    }
     .date {
         width: 60vmin;
     }
+    .share-row{
+        right: -10%;
+        gap: 3vmin;
+    }
     .sm {
-        width: 9vmin;
-        height: 9vmin;
-        font-size: 4.5vmin;
+        width: 11vmin;
+        height: 11vmin;
+        font-size: 6.5vmin;
     }
 }
