@@ -10,19 +10,19 @@
     backdrop-filter: blur(5px);
     z-index: 10;
 }
-.pop-up-form{
-    position: relative;
-    width: 80vmin;
-    height: 80vmin;        
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column nowrap;
-    background: #f0f0f0;
-    box-shadow: var(--timer-box);
-    border-radius: 0.2rem;
-    gap: 3vmin;
-    color: var(--color-banner);
+.pop-up-form {
+	position: relative;
+	width: 80vmin;
+	height: 80vmin;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column nowrap;
+	background: var(--bg-timer);
+	box-shadow: var(--timer-box);
+	border-radius: 0.2rem;
+	gap: 3vmin;
+	color: var(--color-banner);
 }
 .form-header{
     position: absolute;
