@@ -96,14 +96,6 @@ function addCountdownItem(countdown, index) {
         Status:<span class="${(!elapsed) ? 'countdown-status' : ''}" > ${countdownStatus}</span> 
         </div>    
     </div>`;
-    // alert('test')
-    // let interval =setInterval(() => {
-    //     console.log('calling');
-    //     // updateCountdownItems(`'${countdown.dateModified}'`)    
-    //     clearInterval(interval)
-    // }, 2000);
-
-
     return countdownListItem;
 
 }
@@ -116,23 +108,17 @@ function getCountdownString(clock) {
     return ` ${clock.days + ' days, ' + clock.hours + ' hours,' + clock.minutes + ' minutes,' + clock.seconds + ' seconds '} more`
 }
 async function updateCountdownItems() {
-    // elem =await document.getElementById(id);
     let activeCountItems = document.querySelectorAll('.countdown-status')
-    console.log('class', activeCountItems);
     const clock = new Clock();
     
     activeCountItems.forEach(element => {
         let date =new Date(element.parentElement.getAttribute('data-date'));
         clock.setEndDate(date);
-        setInnerHtmlForNotNull(element, getCountdownString())
+        clock.countDown();
+        setInnerHtmlForNotNull(element, getCountdownString(clock))
         // element.innerHTML = new Date().toDateString();
     });
-
-
 }
-// setInterval(() => {
-
-// }, 1);
 function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
@@ -343,9 +329,7 @@ try {
     // todo: update time without redisplaying list of countdowns
     displayCountdowns().then(() => {
         if (countItemExists) {
-            updateCountdownItems()
-            // document.onreadystatechange =updateCountdownItems;
-            // let interval =setInterval(()=>countItemExists?displayCountdowns():clearInterval(interval), 5000)
+            let interval =setInterval(()=>countItemExists?updateCountdownItems():clearInterval(interval), 1000)
         }
     }
     )
