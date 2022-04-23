@@ -4,7 +4,10 @@
         this.setEndDate(endDate)
         this.countDown();
     }
-
+/**
+ * 
+ * @param {Date} endDate 
+ */
     setEndDate(endDate) {
         //set endDate to end of year
         // todo: check endDate for validity as date
@@ -18,7 +21,6 @@
     }
 
     countDown=()=> {
-        console.log(this);
         var distance = this.getDistance()
         // account for case of the countdown being reached, reset
         if (distance >= 0) {
@@ -51,7 +53,6 @@
         this.days=this.hours=this.minutes=this.seconds=0;
     }
 }
-
 class NewYearClock extends Clock{
     resetMethod(){
         //reset to New Year's for default 
