@@ -126,10 +126,9 @@ async function updateCountdownItems() {
     if(activeCountItems.length){
         if(activeCountItems.length===1){
             let lastItem =activeCountItems[0].getAttribute('data-date');
-            console.log(lastItem);
+            // console.log(lastItem);
         }
         await activeCountItems.forEach((element, _, countItems) => {
-            console.log(countItems, countItemExists);
             let date =new Date(element.getAttribute('data-date'));
             clock.setEndDate(date);
             clock.countDown();
@@ -143,6 +142,7 @@ async function updateCountdownItems() {
  */
 function displayAndStartcount(){
     displayCountdowns().then(() => {
+        // console.log('trigerred', countItemExists);
         if (countItemExists) {
             let interval =setInterval(()=>countItemExists?updateCountdownItems():clearInterval(interval), 1000)
         }
@@ -292,12 +292,13 @@ function handleUpdate() {
                 value.dateModified == modifiedTime
             );
             if (pos > -1) {
+                // todo: combine this file and form update.js
                 console.log(arrayOfCountdowns[pos]);
                 arrayOfCountdowns[pos].text = countItem.text;
                 arrayOfCountdowns[pos].date = countItem.date;
                 arrayOfCountdowns[pos].dateModified = countItem.dateModified;
                 setCountDownList(arrayOfCountdowns);
-                displayCountdowns();
+                displayAndStartcount();
                 closeFormPopUp();
                 removeClockAndText();
             } else {
@@ -363,8 +364,6 @@ try {
     stopClock()
     // todo: update time without redisplaying list of countdowns
     displayAndStartcount();
-        
-
 
     addListEventHandlers();
 } catch (err) {
