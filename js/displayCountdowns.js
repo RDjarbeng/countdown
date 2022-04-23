@@ -45,7 +45,11 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownTextDisplay, '')
     }
 }
-
+/**
+ * Returns html string with a list of countdowns
+ * @param {Array.<{text: String, date: String, dateModified: String}>} arrayOfCountdowns | contains array of countdown objects
+ * @returns {string} list of countdownitems to be appended to DOM
+ */
 function populateList(arrayOfCountdowns) {
     countItemExists = false;
     let listItems = '';
@@ -54,19 +58,23 @@ function populateList(arrayOfCountdowns) {
     });
     return listItems;
 }
-// @nyakotey, all yours
+
+/**
+ * 
+ * @param {{text: String, date: String, dateModified: String}} countdown 
+ * @param {Number} index the array index of the current item
+ * @returns 
+ */
 function addCountdownItem(countdown, index) {
     let listItemClock = new Clock(new Date(countdown.date));
-    let difference = listItemClock.getDistance();
+    let timeDifference = listItemClock.getDistance();
     let countdownStatus = "";
     let elapsed = false;
-    if (difference > 0) {
+    if (timeDifference > 0) {
         countItemExists = true;
         countdownStatus = getCountdownString(listItemClock);
-        // countdown is still in progress
     } else {
         // countdown elapsed
-        // console.log("countdown elapsed", countdown);
         elapsed = 'true';
         countdownStatus = "Elapsed "
     }
@@ -88,32 +96,62 @@ function addCountdownItem(countdown, index) {
         
     </div>
     </div>
-        <div class="countdown-list-date" data-date="${countdown.date}"> 
-        Status:<span class="${(!elapsed) ? 'countdown-status' : ''}" > ${countdownStatus}</span> 
+        <div class="countdown-list-date" > 
+        Status:
+        <span 
+            data-date="${countdown.date}" 
+            class="${(!elapsed) ? 'countdown-status' : ''}" >
+             ${countdownStatus}
+        </span> 
         </div>    
     </div>`;
     return countdownListItem;
 
 }
 /**
- * 
- * @param {Clock} clock 
- * @returns {String}
+ * Get string with status of countdowns
+ * @param {Clock} clock clock object for particular countdown
+ * @returns {String} string of countdown status
  */
 function getCountdownString(clock) {
     return ` ${clock.days + ' days, ' + clock.hours + ' hours,' + clock.minutes + ' minutes,' + clock.seconds + ' seconds '} more`
 }
+/**
+ * update countdown status for non elapsed countdowns
+ */
 async function updateCountdownItems() {
     let activeCountItems = document.querySelectorAll('.countdown-status')
     const clock = new Clock();
     
-    await activeCountItems.forEach(element => {
-        let date =new Date(element.parentElement.getAttribute('data-date'));
-        clock.setEndDate(date);
-        clock.countDown();
-        setInnerHtmlForNotNull(element, getCountdownString(clock))
+    if(activeCountItems.length){
+        if(activeCountItems.length===1){
+            let lastItem =activeCountItems[0].getAttribute('data-date');
+            console.log(lastItem);
+        }
+        await activeCountItems.forEach((element, _, countItems) => {
+            console.log(countItems, countItemExists);
+            let date =new Date(element.getAttribute('data-date'));
+            clock.setEndDate(date);
+            clock.countDown();
+            setInnerHtmlForNotNull(element, getCountdownString(clock))
+            countItemExists =(countItems.length<2 && clock.getDistance()<0)?false:countItemExists
+        });
+    }
+}
+/**
+ * display countdowns and start updating display for countdowns in progress
+ */
+function displayAndStartcount(){
+    displayCountdowns().then(() => {
+        if (countItemExists) {
+            let interval =setInterval(()=>countItemExists?updateCountdownItems():clearInterval(interval), 1000)
+        }
+    }).catch((err) => {
+        console.log(err);
+        errorHandler('Unable to display your countdowns');
     });
 }
+
 function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
@@ -318,20 +356,14 @@ function addListEventHandlers() {
     // add context menu event listener
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
+
+
 try {
     // stop the clock from app.js
     stopClock()
     // todo: update time without redisplaying list of countdowns
-    displayCountdowns().then(() => {
-        if (countItemExists) {
-            let interval =setInterval(()=>countItemExists?updateCountdownItems():clearInterval(interval), 1000)
-        }
-    }
-    )
-        .catch((err) => {
-            console.log(err);
-            errorHandler('Unable to fetch your countdowns');
-        });
+    displayAndStartcount();
+        
 
 
     addListEventHandlers();
