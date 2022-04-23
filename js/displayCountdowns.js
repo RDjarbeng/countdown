@@ -100,7 +100,7 @@ function addCountdownItem(countdown, index) {
         Status:
         <span 
             data-date="${countdown.date}" 
-            class="${(!elapsed) ? 'countdown-status' : ''}" >
+            class="${(!elapsed) ? 'countdown-counting' : ''}" >
              ${countdownStatus}
         </span> 
         </div>    
@@ -120,21 +120,25 @@ function getCountdownString(clock) {
  * update countdown status for non elapsed countdowns
  */
 async function updateCountdownItems() {
-    let activeCountItems = document.querySelectorAll('.countdown-status')
+    let activeCountItems = document.querySelectorAll('.countdown-counting')
     const clock = new Clock();
-    
     if(activeCountItems.length){
-        if(activeCountItems.length===1){
-            let lastItem =activeCountItems[0].getAttribute('data-date');
-            // console.log(lastItem);
-        }
         await activeCountItems.forEach((element, _, countItems) => {
             let date =new Date(element.getAttribute('data-date'));
             clock.setEndDate(date);
             clock.countDown();
-            setInnerHtmlForNotNull(element, getCountdownString(clock))
-            countItemExists =(countItems.length<2 && clock.getDistance()<0)?false:countItemExists
+            if(clock.getDistance()>0){
+                setInnerHtmlForNotNull(element, getCountdownString(clock))
+            }else{
+                console.log('elapsing');
+                element.classList.remove('countdown-counting')
+                setInnerHtmlForNotNull(element, 'Elapsed')
+            }
+            
+            // countItemExists =(countItems.length<2 && clock.getDistance()<0)?false:countItemExists
         });
+    }else{
+        countItemExists= false;
     }
 }
 /**
