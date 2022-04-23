@@ -92,14 +92,14 @@ function addCountdownItem(countdown, index) {
         
     </div>
     </div>
-        <div class="countdown-list-date"> 
+        <div class="countdown-list-date" data-date="${countdown.date}"> 
         Status:<span class="${(!elapsed) ? 'countdown-status' : ''}" > ${countdownStatus}</span> 
         </div>    
     </div>`;
     // alert('test')
     // let interval =setInterval(() => {
     //     console.log('calling');
-    //     // updateTimeWithID(`'${countdown.dateModified}'`)    
+    //     // updateCountdownItems(`'${countdown.dateModified}'`)    
     //     clearInterval(interval)
     // }, 2000);
 
@@ -107,16 +107,25 @@ function addCountdownItem(countdown, index) {
     return countdownListItem;
 
 }
-
+/**
+ * 
+ * @param {Clock} clock 
+ * @returns {String}
+ */
 function getCountdownString(clock) {
     return ` ${clock.days + ' days, ' + clock.hours + ' hours,' + clock.minutes + ' minutes,' + clock.seconds + ' seconds '} more`
 }
-async function updateTimeWithID() {
+async function updateCountdownItems() {
     // elem =await document.getElementById(id);
     let activeCountItems = document.querySelectorAll('.countdown-status')
     console.log('class', activeCountItems);
+    const clock = new Clock();
+    
     activeCountItems.forEach(element => {
-        element.innerHTML = new Date().toDateString();
+        let date =new Date(element.parentElement.getAttribute('data-date'));
+        clock.setEndDate(date);
+        setInnerHtmlForNotNull(element, getCountdownString())
+        // element.innerHTML = new Date().toDateString();
     });
 
 
@@ -334,8 +343,8 @@ try {
     // todo: update time without redisplaying list of countdowns
     displayCountdowns().then(() => {
         if (countItemExists) {
-            updateTimeWithID()
-            // document.onreadystatechange =updateTimeWithID;
+            updateCountdownItems()
+            // document.onreadystatechange =updateCountdownItems;
             // let interval =setInterval(()=>countItemExists?displayCountdowns():clearInterval(interval), 5000)
         }
     }
