@@ -32,8 +32,6 @@ async function waitForAnimation(clock, domElements, duration) {
 
 // todo: sort by modified time
 async function displayCountdowns() {
-
-
     let jsonListOfCountdowns = await localStorage.getItem('countdown');
     arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
     if (arrayOfCountdowns && arrayOfCountdowns.length) {
@@ -41,8 +39,6 @@ async function displayCountdowns() {
         let listItems = populateList(arrayOfCountdowns);
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
-        // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
-
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
@@ -111,12 +107,11 @@ async function updateCountdownItems() {
     let activeCountItems = document.querySelectorAll('.countdown-status')
     const clock = new Clock();
     
-    activeCountItems.forEach(element => {
+    await activeCountItems.forEach(element => {
         let date =new Date(element.parentElement.getAttribute('data-date'));
         clock.setEndDate(date);
         clock.countDown();
         setInnerHtmlForNotNull(element, getCountdownString(clock))
-        // element.innerHTML = new Date().toDateString();
     });
 }
 function updateClockAndText(date, text, animation = true) {
@@ -202,7 +197,7 @@ function addListEventListener() {
                 // delete item clicked
                 arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
                 setCountDownList(arrayOfCountdowns);
-                countdownList.innerHTML = populateList(arrayOfCountdowns)
+                setInnerHtmlForNotNull(countdownList,populateList(arrayOfCountdowns));
                 // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
             } else if (targetElement.className.search('edit') > -1) {
                 let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
