@@ -1,7 +1,7 @@
 // #5
 
-const staticCacheName = 'site-static-v33';
-const dynamicCache = 'site-dynamic-v33';
+const staticCacheName = 'site-static-v35';
+const dynamicCache = 'site-dynamic-v35';
 
 const dynamicCacheSize = 30;
 
@@ -10,13 +10,13 @@ const dynamicCacheSize = 30;
 const assets = [
     '/',
     '/index.html',
-    '/html/authors.html',
+    '/html/about.html',
     '/html/countdown-list.html',
     '/html/fallback.html',
     '/html/form-upload.html',
     '/css/styles.css',
     '/css/themes.css',
-    '/css/authors.css',
+    '/css/about.css',
     '/css/countdown-list.css',
     '/css/form.css',
     '/app.js',

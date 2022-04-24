@@ -64,7 +64,6 @@ body {
   text-align: center;
   font-size: 5vh;
   color: var(--color-sidebar);
-  /* margin-left: 1rem; incase logo gap doesn't work on mobile browsers */
 }
 .logo-ico img{
   width: 7vh;
@@ -199,18 +198,26 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
 .show-color{
   display: inline-flex;
 }
-
+/* .sidebar-app-version{
+  width: 90%;
+  position: absolute;
+  bottom: 1rem;
+  left: 7.5vmin;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+} */
 main{
   width: 100vw;
   height: 100vh;
 }
 .container {
-  height: 100vh;
+  /* height: 100vh; */
   width: 100vw;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  gap: 2.5em;
+  gap: 1rem;
   overflow-x: hidden;
   padding-top: 13vh;
 }
@@ -262,109 +269,76 @@ a{
   margin-right: 5vmin;
 }
 
-.banner-row {
+.details{
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 5vmin;
-  text-align: center;
-  width: 100%;
-}
-
-.banner {
-  padding: 0.5em 1rem;
-  border-radius: 0.1em;
-  min-width: 80vmin;
-  color: var(--color-text);
-  border-bottom: 0.5rem solid var(--color-banner);
-}
-.day{
-  font-size: 1.7em;
-  color: var(--color-text);
-}
-
-.clock-row {
-  position: relative;
-  display: flex;
+  align-items: flex-start;
   flex-direction: column;
-  text-align: center;
-  width: 100vw;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.2em;
-  padding: 10px;
-  gap: 5vmin;
+  width: 90%;
 }
-
-.timer{
+.details-title{
+  font-weight: bold;
+  border-bottom: solid 2px;
+}
+.details-info{
   font-size: 1rem;
-  position: relative;
+}
+/* .app-learn{
+  font-style: italic;
+  font-size: 0.8rem;
+  letter-spacing: 0.3vmin;
+} */
+.footer{
+  font-size: 0.7rem;
+  opacity: 0.9;
+}
+/* .ext-link{
+  filter: hue-rotate(90deg);
+} */
+.sm-container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 42%;
+  font-size: 4vmin;
+}
+.sm {
+  width: 6vmin;
+  height: 6vmin;
+  border-radius: 50%;
+  border: solid var(--share-bg-hover) 1px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 36vmin;height: 35vmin;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: .7em;
-  background: linear-gradient(90deg,var(--color-muted) 50%, var(--timer-grad) 50%);
-  margin-bottom: 1rem;
-  backdrop-filter: blur(1px);
-  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
 }
-.light .timer{
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  box-shadow: var(--timer-box);
-}
-.timer-num{
-  font-size: 13vmin;
-}
-.timer-text{
-  content: "";
-  position: absolute;
-  bottom: -1em;
-  background: var(--bg-timer);
-  border-radius: 0.3em;
-  padding: .5em;
-  text-align: center;
-  width: 18vmin;
-  overflow: clip;
-  transition: background-color 0.2s ease;
-}
-.light .timer-text{
-  box-shadow: var(--timer-box);
+.sm:hover {
+  filter: hue-rotate(90deg);
 }
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
   body {
     overflow-y: hidden;
   }
-  .container{
-    gap: 4em;
-  }
-  .banner {
-    width: 21em;
-  }
-  .clock-row {
-    font-size: 25vmin;
-    flex-direction: row;
-    gap: 10vmin;
+  .details{
+    width: 100vmin;
   }
 }
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
-  .container{
-    gap: 1.6em;
+  .sm-container{
+    width: 70%;
+    font-size: 6vmin;
   }
+  .sm {
+    width: 8vmin;
+    height: 8vmin;
+  } 
   .logo-name{
     display: none;
   }
-  .timer-text{
-    font-size: 0.75rem;
-  }
   .sidebar{
     width: 75vmin;
-  }
-  .new-item{
-    bottom: 10vh;
   }
 }
