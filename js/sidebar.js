@@ -16,7 +16,7 @@ sidebarItems[1].addEventListener("click", () =>
 sidebarItems[2].addEventListener("click", openBgPicker);
 sidebarItems[3].addEventListener("click", openColorPicker);
 sidebarItems[4].addEventListener("click", () => setLink("../html/today.html"));
-sidebarItems[5].addEventListener("click", () => setLink("../html/authors.html"));
+sidebarItems[4].addEventListener("click", () => setLink("../html/about.html"));
 
 function setTheme(event) {
     let prevTheme = getComputedStyle(document.body).getPropertyValue(
