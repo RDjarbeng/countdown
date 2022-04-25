@@ -13,7 +13,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         about: resolve(__dirname, 'about.html'),
-        myabout: resolve(__dirname, './myabout/about.html'),
+        myabout: resolve(__dirname, './myabout/myabout.html'),
 
         // aboutjs: resolve(__dirname, 'about.js')
       },
