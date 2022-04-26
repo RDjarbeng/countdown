@@ -13,7 +13,7 @@
 .pop-up-form {
 	position: relative;
 	width: 80vmin;
-	height: 80vmin;
+	height: 75vmin;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -43,14 +43,25 @@
     color: var(--form-close);
     background: var(--bg-sec);
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+    font-size: 0.85rem;
 }
 
 /* create countdown form */
 input[type="text"], input[type="datetime-local"] {
-	width: 65vmin;
-	padding: 3vmin;
+	width: 70vmin;
+	padding: 2.5vmin 1.8vmin;
 	border-radius: 2vmin;
 	border: var(--color-banner) solid 1px;
+	outline: none;
+	color: var(--color-input);
+	background: var(--bg-sec);
+    font-size: 1rem;
+}
+input[type="text"]:focus, input[type="datetime-local"]:focus {
+	box-shadow: inset 0 1px var(--color-banner),
+                inset 0 -1px var(--color-banner),
+                inset 1px 0 var(--color-banner),
+                inset -1px 0 var(--color-banner);
 	outline: none;
 	color: var(--color-input);
 	background: var(--bg-sec);
@@ -62,6 +73,7 @@ input[type="submit"],.reset button{
     background: var(--color-banner); 
     color: white;
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
 }
 input[type="submit"]:hover,.reset button:hover{
     background: var(--color-banner);
@@ -88,7 +100,7 @@ input[type="submit"]:disabled{
 /* upload image form */
 .bg-presets {
     display: flex;
-    width: 82%;
+    width: 74%;
     align-items: center;
     justify-content: center;
     flex-flow: row wrap;
@@ -112,7 +124,7 @@ label[for="upload"] {
     background-color: rgba(0, 0, 0, 0.2);
 }
 label[for="upload-info"] {
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     font-style: italic;
 }
 input[type="file"] {
@@ -124,5 +136,9 @@ input[type="file"] {
 @media screen and (max-width: 427px) {
     .pop-up-form {
         height: 90vmin;
+        width: 90vmin;
+    }
+    input[type="text"], input[type="datetime-local"] {
+        width: 82vmin;
     }
 }
