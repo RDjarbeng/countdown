@@ -246,11 +246,11 @@ function displayFormPopUp(text, dateTime, modifiedTime) {
     <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
         <div class="form-header">Update Countdown</div>
         <div class="form-sections">
-            <label for="">Note &nbsp;</label>
+            <label for="">Title &nbsp;</label>
             <input type="text" value="${text}" id='countdownText'>
         </div>
         <div class="form-sections">
-            <label for="">Date &nbsp;</label>
+            <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" value= ${dateTime} id ="dateInput" min="" required>
         </div>
         <div class="form-sections">
