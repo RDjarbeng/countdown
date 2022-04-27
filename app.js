@@ -226,7 +226,9 @@ addWhatappEventHandler();
 }
 
 const deadline = document.getElementsByClassName("countdown-list-date")[0]; 
-deadline.addEventListener("animationend", ()=> deadline.remove());
+if (deadline) {
+    deadline.addEventListener("animationend", ()=> deadline.remove());
+}
 // service worker
 
 // if('serviceWorker' in navigator){
