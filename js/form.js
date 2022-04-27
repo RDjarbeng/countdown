@@ -6,11 +6,11 @@ function popForm() {
     <form id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
         <div class="form-sections">
-            <label for="">Note &nbsp;</label>
+            <label for="">Title &nbsp;</label>
             <input type="text" placeholder="countdown #${countNumber}" id='countdownText'>
         </div>
         <div class="form-sections">
-            <label for="">Date &nbsp;</label>
+            <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" id ="dateInput" min="" required>
         </div>
         <div class="form-sections">
