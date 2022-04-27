@@ -76,7 +76,7 @@ let dayClock = new NewYearClock();
 // var myclock = new NewYearClock();
 var myclock =  setMainClock();
 var myclock =  setMainClock();
-setInnerHtmlForNotNull(dueDate, `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
+setInnerHtmlForNotNull(dueDate, `${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 var customClock;
 
 function setMainClock() {
@@ -225,15 +225,17 @@ addWhatappEventHandler();
     console.log(error);
 }
 
+const deadline = document.getElementsByClassName("countdown-list-date")[0]; 
+deadline.addEventListener("animationend", ()=> deadline.remove());
 // service worker
 
-if('serviceWorker' in navigator){
-    window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-    .then( (reg)=>{ 
-        console.log('service worker registered', reg)
-    })
-        .catch((err)=> console.log('Service worker not registered', err));
-  });
+// if('serviceWorker' in navigator){
+//     window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/sw.js')
+//     .then( (reg)=>{ 
+//         console.log('service worker registered', reg)
+//     })
+//         .catch((err)=> console.log('Service worker not registered', err));
+//   });
         
-}
+// }
