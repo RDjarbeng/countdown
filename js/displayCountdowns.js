@@ -64,12 +64,12 @@ function addCountdownItem(countdown, index){
     if(difference>0){
         // countdown is still in progress
         console.log("countdown is still in progress", countdown);
-        statusHtml = `<div class="countdown-list-status" style="color:#09df51"> <i class="fas fa-hourglass-start"></i> </div>`;
+        statusHtml = `<div class="countdown-list-status" style="color:#09df51; background: rgba(0,192,0,0.1)"> <i class="fas fa-hourglass-start"></i> </div>`;
     }else{
         // countdown elapsed
         console.log("countdown elapsed", countdown);
         countdownStatus = "Elapsed";
-        statusHtml = `<div class="countdown-list-status" style="color:crimson"> <i class="fas fa-hourglass-end"></i> </div>`;
+        statusHtml = `<div class="countdown-list-status" style="color:crimson; background: rgba(192,0,0,0.1)"> <i class="fas fa-hourglass-end"></i> </div>`;
     }
     let countdownListItem = `
     <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
