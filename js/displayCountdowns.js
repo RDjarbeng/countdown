@@ -60,18 +60,21 @@ function populateList(arrayOfCountdowns) {
 function addCountdownItem(countdown, index){
     let date = new Date(countdown.date);
     let difference = date.getTime()- new Date().getTime();
-    let countdownStatus ="Counting"
+    let countdownStatus ="Counting";
     if(difference>0){
         // countdown is still in progress
         console.log("countdown is still in progress", countdown);
+        statusHtml = `<div class="countdown-list-status" style="color:#09df51"> <i class="fas fa-hourglass-start"></i> </div>`;
     }else{
         // countdown elapsed
         console.log("countdown elapsed", countdown);
-        countdownStatus = "Elapsed"
+        countdownStatus = "Elapsed";
+        statusHtml = `<div class="countdown-list-status" style="color:crimson"> <i class="fas fa-hourglass-end"></i> </div>`;
     }
     let countdownListItem = `
     <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
         <div class="countdown-list-text"> ${countdown.text} </div>
+        ${statusHtml}
         <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
         <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
         <div class="menu-opts edit">
@@ -86,7 +89,8 @@ function addCountdownItem(countdown, index){
         
     </div></div>
         <div class="countdown-list-date"> 
-            Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()+", "+countdownStatus}
+            <span>Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}</span>
+            <span class="status-text">${countdownStatus}</span>
         </div>    
     </div>`
     return countdownListItem;
