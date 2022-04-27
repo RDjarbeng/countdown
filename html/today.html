@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A countdown app and day of year counter with light and dark mode auto functionality">
+    <meta name="description" content="Countdown application with light and dark mode auto functionality">
+    <meta name="Keywords" content="Countdown, Midnight countdown">
+    <title>Final Countdown</title>
     <link href="../img/icons/favicon.png" rel="icon">
-    <link rel="preload stylesheet"  as="style" type="text/css" href="../css/authors.css">
-    <link rel="stylesheet href="../css/authors.css">
-    <link rel="preload stylesheet"  as="style" type="text/css" href="../css/themes.css">
-    <link rel="stylesheet href="../css/themes.css">
+    <meta name="Author" content="R.Djarbeng| A.Nyakotey">    
+    <link rel="stylesheet" href="../css/today.css">
+    <link rel="stylesheet" href="../css/themes.css">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
     <link rel="manifest" href="/manifest.json">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="../img/icons/favicon.png">
@@ -21,7 +22,7 @@
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#7b68ee">
 </head>
 
-<body>
+<body class="dark" data-theme="purple">
     <aside class="sidebar sidebar-hide">
         <section class="sidebar-content">
             <div class="brand">
@@ -53,7 +54,10 @@
                     <span class="pick-color-ico" data-settheme="black"></span>
                 </section>
                 <div class="sidebar-list-items">
-                    <i class="fas fa-address-card"></i> &nbsp;&nbsp;&nbsp;Contact Us
+                    <i class="fas fa-calendar-day"></i> &nbsp;&nbsp;&nbsp;Today
+                </div>
+                <div class="sidebar-list-items">
+                    <i class="fas fa-question-circle"></i> &nbsp;&nbsp;&nbsp;About
                 </div>
             </div>
         </section>
@@ -72,47 +76,37 @@
     </header>
     <main>
         <section class="container">
-            <div class="banner-row">
+            <div class="date-row">
+                <div class="day-of-year">
+                    <div class="day-text">DAY</div> 
+                    <div class="day-count" id='countDay'>X</div>
+                    <div class="divider"></div>
+                    <div class="year-count">365</div>
 
-                <div class="banner">
-                    <div class=""> 
-                        <span class="day">
-                            <a href="../index.html"><i class="fas fa-home"></i></a>
-                            Who did this?
-                            <i class="fas fa-code"></i>
-                        </span> </div>
+                    <div class="share-row">
+                        <div class="sm share-whatsapp" 
+                            id ="sendWhatsappButton" 
+                            data-action="share/whatsapp/share"
+                            title="share to Whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="sm copy-link" title="copy link"><i class="far fa-copy"></i></div>
+                    </div>
+                </div>
+                <div class="date">
+                    <div class="day-of-week" id ="dayOfWeek">Monday</div>
+                    <div class="day" id ="dayOfMonth">11</div>
+                    <div class="month" id="month">Mar</div>
+                    <div class="year" id="year">2022</div>
+                    <div class="time" id="time">11:00 pm</div>
                 </div>
             </div>
-            <div class="clock-row">
-                <a href="https://github.com/RDjarbeng">
-                <div class="timer">
-                    
-                    <span class="timer-num"><i class="fab fa-github"></i>RD</span>
-                    <span class="timer-text">
-                        rdjarbeng
-                        <i class="fas fa-external-link-alt"></i>
-                    </span>
-                
-                </div>
-            </a>
-            <a href="https://github.com/nyakotey">
-                <div class="timer">
-                    
-                    <span class="timer-num"><i class="fab fa-github"></i>Nat</span>
-                    <span class="timer-text">
-                        Nyakotey 
-                        <i class="fas fa-external-link-alt"></i>
-                    </span>
-                
-                </div>
-            </a>
         </section>
     </main>
-    <script src="../js/error.js"></script>
-    <script src="../js/loadCustomUI.js"></script>
+    <script src="../js/error.js"></script>    
     <script src="../app.js"></script>
-    <script src="../js/sidebar.js" async></script>
-    
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/loadCustomUI.js"></script>
+    <script src="../js/today.js"></script>
 </body>
-
 </html>
