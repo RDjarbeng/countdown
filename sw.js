@@ -29,6 +29,7 @@ const assets = [
     '/js/formupdate.js',
     '/js/error.js',
     '/js/form.js',
+    '/js/today.js',
     '/img/icons/chrome192.png',
     '/img/icons/chrome512.png',
     '/img/bg.svg',
