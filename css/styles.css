@@ -55,13 +55,14 @@ main{
   padding-top: 10vh;
 }
 .container {
-  /* height: 90vh; */
+  height: 90vh;
   width: 100vw;
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 2.5em;
+  gap: 2em;
   overflow-x: hidden;
+  padding-bottom: 3vmin;
 }
 
 .mode-info {
@@ -142,9 +143,9 @@ main{
   border-bottom: 0.5rem solid var(--color-banner);
 }
 .banner-h2{
-  font-size: 0.7em;
+  font-size: 0.85em;
   font-weight: lighter;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.15em;
 }
 .day{
   font-size: 1.77em;
@@ -397,15 +398,23 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   box-shadow: var(--timer-box);
   border-radius: 1vmin;
   width: 3.8rem;
+  height: 2.8rem;
   display: grid;
   justify-content: space-between;
   align-items: center;
   grid-template-areas: "icon date";
   grid-template-columns: 1fr 9fr;
   overflow: hidden;
-  visibility: hidden;
-  animation: expand-date 2.4s alternate 2 1s;
-  margin: -2em;
+  animation: expand-date 2.5s alternate 2 2s;
+  margin-top: -0.5em;
+}
+.countdown-list-date:focus, .countdown-list-date:hover{
+  width: 13rem;
+  transition: 1s;
+}
+.countdown-list-date:focus #dueDate, .countdown-list-date:hover #dueDate{
+  padding: 1vmin 0.5vmin 1vmin 1.5vmin;
+  transition: 1s;
 }
 @keyframes expand-date {
   0%{
@@ -444,14 +453,14 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   height: 2.8rem;
   background: var(--bg-timer);
   filter: opacity(0.8);
-  animation: due-padding 2.4s alternate 2 1s;
+  animation: due-padding 2.5s alternate 2 2s;
 }
 @keyframes due-padding {
   0%{
     padding: 0;
   }
   50%,100%{
-      padding: 1vmin 0.5vmin 1vmin 1.5vmin ;
+      padding: 1vmin 0.5vmin 1vmin 1.5vmin;
   }
 }
 
