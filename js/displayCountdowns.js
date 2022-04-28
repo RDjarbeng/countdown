@@ -64,7 +64,7 @@ function addCountdownItem(countdown, index){
     if(difference>0){
         // countdown is still in progress
         console.log("countdown is still in progress", countdown);
-        statusHtml = `<div class="countdown-list-status" style="color:#09df51; background: rgba(0,192,0,0.1)"> <i class="fas fa-hourglass-start"></i> </div>`;
+        statusHtml = `<div class="countdown-list-status" style="color:#03bf42; background: rgba(0,192,53,0.2)"> <i class="fas fa-hourglass-start"></i> </div>`;
     }else{
         // countdown elapsed
         console.log("countdown elapsed", countdown);
