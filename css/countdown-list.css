@@ -416,7 +416,7 @@ box-shadow: inset 0 0 0vmin .4vmin var(--color-banner);
   grid-template-areas: 
   'status note options'
   'status date options';    
-grid-template-columns: 0.5fr 6fr 1fr;
+  grid-template-columns: 0.6fr 6fr 0.75fr;
 }
 .countdown-list-text{
   grid-area: note;
@@ -451,7 +451,8 @@ grid-template-columns: 0.5fr 6fr 1fr;
   align-items: center;
   width: 100%;
   height: 100%;
-  /* background: rgba(251, 255, 0, 0.568); */
+  border-top-left-radius: .3rem;
+  border-bottom-left-radius: .3rem;
 }
 .status-text{
   align-self: flex-end;
@@ -511,7 +512,7 @@ grid-template-columns: 0.5fr 6fr 1fr;
     width: 75vmin;
   }
 .countdown-list-item{
-  grid-template-columns: 0.65fr 5.7fr 1.3fr;
+  grid-template-columns: 0.7fr 5.7fr 1.1fr;
 }
 .menu{
   width: 38vmin;
