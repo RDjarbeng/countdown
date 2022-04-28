@@ -42,6 +42,11 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownTextDisplay, '')
         // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
         
+        document.querySelectorAll(".countdown-list-date").forEach((dateRow)=>{
+            if (dateRow.innerHTML.includes("elapsed")) {
+                dateRow.classList.add("elapsed");
+            }
+        });
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
@@ -60,15 +65,18 @@ function populateList(arrayOfCountdowns) {
 function addCountdownItem(countdown, index){
     let date = new Date(countdown.date);
     let difference = date.getTime()- new Date().getTime();
-    let countdownStatus =`<span style="color:#03bf42;"><i class="fas fa-hourglass-start"></i> active</span>`;
+    let countdownStatus =`<span style="color:#03bf42;"><i class="fas fa-hourglass-start"></i> active</span>
+    <!--<style>.countdown-list-date{background: rgba(0,192,53,0.2)}</style>-->
+    `;
     if(difference>0){
         // countdown is still in progress
         console.log("countdown is still in progress", countdown);
-        statusHtml = `<div class="countdown-list-status" style="color:#03bf42; background: rgba(0,192,53,0.2)"> <i class="fas fa-hourglass-start"></i> </div>`;
     }else{
         // countdown elapsed
         console.log("countdown elapsed", countdown);
-        countdownStatus = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>`;
+        countdownStatus = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>
+        <!--<style>.countdown-list-date{background: rgba(192,0,0,0.1)}</style>-->
+        `;
     }
     let countdownListItem = `
     <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
@@ -178,7 +186,7 @@ function addListEventListener() {
                 arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
                 test = true;
                 setCountDownList(arrayOfCountdowns);
-                countdownList.innerHTML = populateList(arrayOfCountdowns)
+                countdownList.innerHTML = populateList(arrayOfCountdowns);
                 // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
             } else if (targetElement.className.search('edit') > -1) {
                 let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
