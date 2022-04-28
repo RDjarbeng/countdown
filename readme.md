@@ -62,12 +62,28 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 
 
 ## Countdown v2.0.0
-* redesigned UI; sidebar navigation added, multiple themes and backgrounds to choose from
+* Redesigned UI; sidebar navigation added, multiple themes and backgrounds to choose from
 * User created countdowns is now possible; can edit, delete and set a countdown to display on homepage
 * Added sharing of the day of year Count to Whatsapp platform
 
 ![v2 mobile alt1](https://user-images.githubusercontent.com/73431750/161403556-db26fc75-581e-43e1-8008-f0e3627826a6.png)
 ![v2 pc](https://user-images.githubusercontent.com/73431750/161403301-3f0eea81-6edd-49aa-80b9-d90996449af4.png)
+
+
+## Countdown v2.1.0
+* New theme added to the collection 🎉 ; introducing the lovely, black 😎
+* Enhanced app security and integrity by sanitizing form inputs
+* Improved documentation with the addition of the [dev process](/docs/dev-process.md)
+
+![black theme](https://user-images.githubusercontent.com/73431750/163834582-2b98f0be-af25-4011-a0be-361d01a50d4e.png)
+
+
+## Countdown v2.2.0
+* Updated `authors` page to a functional `about` page
+* Added in a special `today` page: <br>
+&emsp; Stay current, share the `dayCount` to Whatsapp and many more to come
+* Provided dark mode styles for form popups, improved responsiveness and styling
+
 
 ---
 #### Many more to come, stay tuned!
