@@ -112,7 +112,7 @@ Not all elements made it into the final product, some others also got modified, 
 <br><br>
 
 
-## Countdown V2 currently
+## Countdown V2
 * redesigned UI; sidebar navigation added, multiple themes and backgrounds to choose from
 * User created countdowns is now possible; can edit, delete and set a countdown to display on homepage
 * Added sharing of the day of year Count to Whatsapp platform
@@ -137,6 +137,14 @@ Not all elements made it into the final product, some others also got modified, 
 * Provided dark mode styles for form popups, improved responsiveness and styling
 
 ![v220@0,5x](https://user-images.githubusercontent.com/73431750/165914344-9e812d54-f5d7-4887-8a70-50253c36f85c.png)
+
+
+### Potential and/or current developments
+* listpage as the homepage with onboarding
+* ui for elapsed countdown and clickless countdown updating
+* styling for deadline on homepage
+
+![elapse ui](https://user-images.githubusercontent.com/73431750/165925181-935d824d-1e5e-410a-ab35-b76d9ff5d32f.png)
 
 
 ---
