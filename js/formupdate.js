@@ -131,7 +131,7 @@ let countNumber = 1;
 if (!document.querySelector("[href='css/form.css']")) {
     document.head.insertAdjacentHTML(
         "beforeend",
-        `<link rel="stylesheet" href="../css/form.css">`
+        `<link rel="stylesheet" href="/css/form.css">`
     );
 }
 
