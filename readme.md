@@ -84,6 +84,8 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 &emsp; Stay current, share the `dayCount` to Whatsapp and many more to come
 * Provided dark mode styles for form popups, improved responsiveness and styling
 
+![v220@0,5x](https://user-images.githubusercontent.com/73431750/165914344-9e812d54-f5d7-4887-8a70-50253c36f85c.png)
+
 
 ---
 #### Many more to come, stay tuned!
