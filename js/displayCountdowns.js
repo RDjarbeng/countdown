@@ -59,13 +59,13 @@ function populateList(arrayOfCountdowns) {
             <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
             <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
             <div class="menu-opts edit">
-                <i class="fas fa-edit"></i>&nbsp;Edit
+                <i class="fas fa-edit fa-fw"></i> Edit
             </div>
             <div class="menu-opts del">
-                <i class="fas fa-trash-alt"></i> &nbsp;Delete
+                <i class="fas fa-trash-alt fa-fw"></i> Delete
             </div>
             <div class="menu-opts main">
-                <i class="fas fa-clock"></i> &nbsp;Set as main
+                <i class="fas fa-clock fa-fw"></i> Set as main
             </div>
             
         </div></div>
