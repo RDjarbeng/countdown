@@ -1,61 +1,5 @@
-  class Clock {
-    constructor(endDate) {
-        // expecting a date object
-        this.setEndDate(endDate)
-        this.countDown();
-    }
+import clock, {NewYearClock} from './js/clock.js'
 
-    setEndDate(endDate) {
-        //set endDate to end of year
-        // todo: check endDate for validity as date
-        this.endDate = endDate ||new Date(`Jan 1, ${new Date().getFullYear() + 1} 00:00:00`)
-        
-        
-    }
-    countDown() {
-        // Set the date we're counting down to
-        let countDownDate = this.endDate.getTime();
-        let now = new Date().getTime();
-        var distance = countDownDate - now;
-        // account for case of the countdown being reached, reset
-        if (distance >= 0) {
-            // Time calculations for days, hours, minutes and seconds
-            this.calculateTimeValues(distance)
-        } else {
-            // clear date values
-            this.resetMethod();
-            
-
-        }
-    }
-
-    resetMethod(){
-        this.clearCounter();
-    }
-
-    calculateTimeValues(distance){
-        this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    }
-    countDays() {
-        //account for leap year
-        this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
-        return this.dayLength - this.days
-    }
-
-    clearCounter(){
-        this.days=this.hours=this.minutes=this.seconds=0;
-    }
-}
-
-class NewYearClock extends Clock{
-    resetMethod(){
-        //reset to New Year's for default 
-        this.setEndDate()
-    }
-}
 
 // DOM nodes
 let dayCount = document.getElementById("countDay");
@@ -94,7 +38,12 @@ function setMainText(countdownText) {
     const textDisplay = document.getElementById('countdown-text');
     setInnerHtmlForNotNull(textDisplay, countdownText)
 }
-
+/**
+ * 
+ * @param {Clock} clock 
+ * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
+ * @param {Number} [duration=800] specifies how long the animation lasts in milliseconds
+ */
  async function waitForAnimation(clock, domElements, duration) {
     await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
     startClock(clock || myclock, domElements);
@@ -112,14 +61,25 @@ function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
 }
-// add zero in front of numbers < 10
-function addZeros(time) {
-    if (time < 10) {
-        time = "0" + time;
+/**
+ * add zero in front of numbers < 10
+ * @param {Number} num 
+ * @returns num number with 0 at the front
+ */
+function addZeros(num) {
+    if (num < 10) {
+        num = "0" + num;
     }
-    return time;
+    return num;
 }
-
+/**
+ * Updates the html dom nodes with the clock values, days, hours, minutes, seconds
+ * @param {Clock} counter 
+ * @param {HTMLElement} dayDisplay 
+ * @param {HTMLElement} hourDisplay 
+ * @param {HTMLElement} minDisplay 
+ * @param {HTMLElement} secDisplay 
+ */
 function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
     counter.countDown();
     let d = counter.days
@@ -139,18 +99,18 @@ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay)
 /**
  * Listens for a user input for date element
  */
-function listenForDate() {
-    const input = this.value;
-    // console.log(input, 'run');
-    if (input != '') {
-        customClock = new Clock(new Date(input));
-        displayClockRow();
-        // do the fast countdown
-        // set speed faster when day of the year is greater
-        // todo: change to animateValue
-        stepIncreaseAndStart(customClock, { customDayNumber, customHourNumber, customMinNumber, customSecNumber }, (365 - customClock.days < 100) ? 365 - customClock.days : 70);
-    }
-}
+// function listenForDate() {
+//     const input = this.value;
+//     // console.log(input, 'run');
+//     if (input != '') {
+//         customClock = new Clock(new Date(input));
+//         displayClockRow();
+//         // do the fast countdown
+//         // set speed faster when day of the year is greater
+//         // todo: change to animateValue
+//         stepIncreaseAndStart(customClock, { customDayNumber, customHourNumber, customMinNumber, customSecNumber }, (365 - customClock.days < 100) ? 365 - customClock.days : 70);
+//     }
+// }
 
 function displayClockRow() {
     let customRow = document.getElementById("customDisplay");
@@ -166,7 +126,9 @@ function restartTime() {
     }
 }
 */
-//stop the clock
+/**
+ * Stop the clock with global var intervalID
+ */
  function stopClock() {
     clearTimeout(intervalID);
     customClockMovement = false;
@@ -207,7 +169,11 @@ function exportToWhatsapp() {
     let dayNum = dayCount.innerText;
     window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
 }
-
+/**
+ * Checks if a DOM element variable is null before setting innerHTML
+ * @param {HTMLElement} element 
+ * @param {String} value 
+ */
 function setInnerHtmlForNotNull(element, value){
     if(element)//check for null
         element.innerHTML = value;

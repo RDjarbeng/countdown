@@ -1,23 +1,22 @@
-// #5
+// #4
 
-const staticCacheName = 'site-static-v37';
-const dynamicCache = 'site-dynamic-v37';
+const staticCacheName = 'site-static-v31';
+const dynamicCache = 'site-dynamic-v31';
 
 const dynamicCacheSize = 30;
 
-console.log("sw version: "+ staticCacheName.split("-")[2]);
 // caching
 //assets to cache
 const assets = [
     '/',
     '/index.html',
-    '/html/about.html',
+    '/html/authors.html',
     '/html/countdown-list.html',
     '/html/fallback.html',
     '/html/form-upload.html',
     '/css/styles.css',
     '/css/themes.css',
-    '/css/about.css',
+    '/css/authors.css',
     '/css/countdown-list.css',
     '/css/form.css',
     '/app.js',

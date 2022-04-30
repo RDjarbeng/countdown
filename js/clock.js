@@ -1,10 +1,18 @@
-export default class Clock {
+  export default class Clock {
+     /**
+      * Create a countdown clock with a Date object
+      * @constructor
+      * @param {Date} endDate 
+      */ 
     constructor(endDate) {
         // expecting a date object
         this.setEndDate(endDate)
         this.countDown();
     }
-
+/**
+ * change the clock's end date, call this.countdown() after
+ * @param {Date} endDate 
+ */
     setEndDate(endDate) {
         //set endDate to end of year
         // todo: check endDate for validity as date
@@ -12,55 +20,62 @@ export default class Clock {
         
         
     }
-    countDown() {
-        // Set the date we're counting down to
-        let countDownDate = this.endDate.getTime();
-        let now = new Date().getTime();
-        var distance = countDownDate - now;
+    /**
+     * Returns the time in seconds between end date and current time
+     * @returns {number} n
+     */
+    getDistance(){
+        return this.endDate.getTime() - new Date().getTime();
+    }
+    /**
+     * Calls the function to populate/refresh the time values in the clock
+     */
+    countDown=()=> {
+        var distance = this.getDistance()
         // account for case of the countdown being reached, reset
         if (distance >= 0) {
             // Time calculations for days, hours, minutes and seconds
             this.calculateTimeValues(distance)
         } else {
-            //reset to end of year
-            // this.setEndDate()
-            //todo: Countup from the deadline date
-            // this.calculateTimeValues(Math.abs(distance));
-
             // clear date values
             this.resetMethod();
-            
-
         }
     }
-
+    /**
+     * Defines what should happen when the countdown is reached
+     */
     resetMethod(){
         this.clearCounter();
     }
 
     calculateTimeValues(distance){
         this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        this.years = Math.floor(this.days / this.dayLength);
-        this.days = this.days%this.dayLength
             this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
     }
+    /**
+     * Return the number of days, account for leap year
+     * @returns {Number} days Number of days in the year
+     */
     countDays() {
         //account for leap year
         this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
         return this.dayLength - this.days
     }
-
+    /**
+     * Sets the clock values, day, hour, year, second to 0, !not a replacement for stop clock 
+     */
     clearCounter(){
         this.days=this.hours=this.minutes=this.seconds=0;
     }
 }
-
+/**
+ * Clock which resets to New year for the next year
+ */
 export class NewYearClock extends Clock{
     resetMethod(){
         //reset to New Year's for default 
         this.setEndDate()
-        console.log(this.endDate)
     }
 }
