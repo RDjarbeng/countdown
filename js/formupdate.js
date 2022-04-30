@@ -1,3 +1,4 @@
+import {addZeros, stopClock} from '../app.js'
 function popForm() {
     countNumber = localStorage.getItem('countNumber');
     if (!countNumber)
@@ -28,12 +29,12 @@ function popForm() {
     handleFormSubmission();
 }
 
-function addZeros(time) {
-    if (time < 10) {
-        time = "0" + time;
-    }
-    return time;
-}
+// function addZeros(time) {
+//     if (time < 10) {
+//         time = "0" + time;
+//     }
+//     return time;
+// }
 
 function setDateAttributes() {
     const dateInput = document.getElementById("dateInput");
