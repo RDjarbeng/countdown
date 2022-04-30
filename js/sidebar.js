@@ -1,3 +1,5 @@
+import {notifyUser} from "../js/loadCustomUI.js";
+
 const $ = (selector) => document.querySelectorAll(selector);
 const setLink = (link) => (window.location.href = link);
 const nav = $(".nav")[0];
