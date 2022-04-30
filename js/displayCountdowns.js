@@ -279,6 +279,7 @@ function handleUpdate() {
 
         e.preventDefault();
         submitbutton.disabled = true;
+        console.log('displayCountdowns trigger');
         // get text field values, with auto values
         let userText = document.getElementById('countdownText').value;
         const modifiedTime = document.getElementById('modifiedTime').value;

@@ -1,4 +1,5 @@
 import Clock, {NewYearClock} from './js/clock.js'
+import {setListenerOnAddIcon} from './js/form.js'
 
 
 // DOM nodes
@@ -184,6 +185,7 @@ setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
+setListenerOnAddIcon();
 addWhatappEventHandler();
 // as;
 } catch (error) {

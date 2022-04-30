@@ -1,5 +1,5 @@
 function popForm() {
-    countNumber = localStorage.getItem('countNumber');
+    let countNumber = localStorage.getItem('countNumber');
     if (!countNumber)
         countNumber = 1;
     const popFormHtml = `<section class="pop-up-container">
@@ -51,7 +51,7 @@ export function setDateAttributes() {
     dateInput.value= todayString;
 }
 
-function closeFormPopUp() {
+export function closeFormPopUp() {
     document.getElementsByClassName("pop-up-container")[0].remove();
     document.body.style.position = "";
 }
@@ -72,6 +72,7 @@ function handleFormSubmission() {
 
         if (!userText) {
             userText = userTextField.placeholder;
+            let countNumber = localStorage.getItem('countNumber');
             countNumber++;
             localStorage.setItem('countNumber', countNumber)
         }
@@ -101,8 +102,8 @@ function setCountDownList(jsArray){
 }
 
 // DOM Elements
-const createButton = document.getElementsByClassName("new-item")[0];
-let countNumber = 1;
+
+// let countNumber = 1;
 
 // let dateInput, textInput;
 
@@ -115,5 +116,7 @@ if (!document.querySelector("[href='css/form.css']")) {
 }
 
 
-
+export function setListenerOnAddIcon(){
+    const createButton = document.getElementsByClassName("new-item")[0];
 createButton.addEventListener("click", popForm);
+}
