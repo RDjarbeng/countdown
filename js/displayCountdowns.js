@@ -1,5 +1,5 @@
+import { stopClock} from "../app.js";
 // Dom elements
-// begin displaycountdown.js
 var hourNumber = document.getElementById("hour-num");
 var minNumber = document.getElementById("min-num");
 var secNumber = document.getElementById("sec-num");
@@ -12,10 +12,10 @@ let testid = '';
 
 
 
-function stopClock() {
-    clearTimeout(intervalID);
-    customClockMovement = false;
-}
+// function stopClock() {
+//     clearTimeout(intervalID);
+//     customClockMovement = false;
+// }
 
 async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
     animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
