@@ -314,10 +314,6 @@ function handleUpdate() {
     })
 }
 
-function setCountDownList(jsArray) {
-    localStorage.setItem('countdown', JSON.stringify(jsArray))
-}
-
 function displayFormPopUp(text, dateTime, modifiedTime) {
     // todo: Track items without using modifiedTime
     if (text && dateTime && modifiedTime) {
