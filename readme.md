@@ -71,7 +71,7 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 
 
 ## Countdown v2.1.0
-* New theme added to the collection 🎉 ; introducing the lovely, black 😎
+* Added black theme
 * Enhanced app security and integrity by sanitizing form inputs
 * Improved documentation with the addition of the [dev process](/docs/dev-process.md)
 
