@@ -123,7 +123,7 @@ Not all elements made it into the final product, some others also got modified, 
 
 
 ## Countdown v2.1.0
-* New theme added to the collection 🎉 ; introducing the lovely, black 😎. Yep, you saw it here 1st.
+* Added black theme
 * Enhanced app security and integrity by sanitizing form inputs
 * Improved documentation with the addition of the [dev process](/docs/dev-process.md)
 
