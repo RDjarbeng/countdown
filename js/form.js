@@ -47,7 +47,6 @@ export function setDateAttributes() {
     mm = addZeros(mm)
 
     let todayString = yyyy + '-' + mm + '-' + dd+'T'+ hr+':'+min;
-    console.log(todayString);
     dateInput.setAttribute("min", todayString);
     dateInput.value= todayString;
 }
