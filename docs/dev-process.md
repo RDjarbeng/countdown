@@ -144,7 +144,7 @@ Not all elements made it into the final product, some others also got modified, 
 * ui for elapsed countdown and clickless countdown updating
 * styling for deadline on homepage
 
-![elapse ui](https://user-images.githubusercontent.com/73431750/165925181-935d824d-1e5e-410a-ab35-b76d9ff5d32f.png)
+![elapse ui](https://user-images.githubusercontent.com/73431750/166104394-9bdf011d-499e-4a14-a81a-af07e7ebfd93.png)
 
 
 ---
