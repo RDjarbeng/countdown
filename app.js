@@ -19,7 +19,6 @@ let dayClock = new NewYearClock();
 // Initialize default Clock class
 // var myclock = new NewYearClock();
 var myclock =  setMainClock();
-var myclock =  setMainClock();
 setInnerHtmlForNotNull(dueDate, `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 var customClock;
 
