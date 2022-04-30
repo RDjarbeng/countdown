@@ -36,7 +36,7 @@ function notifyMode() {
     notifyUser(notifyText);
 }
 
- function notifyUser(message) {
+ export function notifyUser(message) {
     let notifyText = message;
 
     if (document.getElementsByClassName("mode-info")[0]) {

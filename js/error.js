@@ -3,7 +3,7 @@ let prevErr = false;
 
 const closeErrorInfo = () => event.currentTarget.parentNode.remove();
 
-errorHandlerWithoutMessage= (err)=>{
+let errorHandlerWithoutMessage= (err)=>{
     console.log(err);
     errorHandler();
 }

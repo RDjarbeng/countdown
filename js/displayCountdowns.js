@@ -1,5 +1,6 @@
 import { stopClock, setInnerHtmlForNotNull, stepIncreaseAndStart, waitForAnimation} from "../app.js";
 import Clock from "../js/clock.js";
+import {notifyUser} from "../js/loadCustomUI.js";
 // Dom elements
 var dayNumber = document.getElementById("day-num");
 var hourNumber = document.getElementById("hour-num");
