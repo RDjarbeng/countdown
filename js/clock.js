@@ -17,8 +17,6 @@
         //set endDate to end of year
         // todo: check endDate for validity as date
         this.endDate = endDate ||new Date(`Jan 1, ${new Date().getFullYear() + 1} 00:00:00`)
-        
-        
     }
     /**
      * Returns the time in seconds between end date and current time

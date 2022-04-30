@@ -65,7 +65,7 @@ function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
  * @param {Number} num 
  * @returns num number with 0 at the front
  */
-function addZeros(num) {
+export function addZeros(num) {
     if (num < 10) {
         num = "0" + num;
     }
@@ -128,8 +128,8 @@ function restartTime() {
 /**
  * Stop the clock with global var intervalID
  */
- function stopClock() {
-    clearTimeout(intervalID);
+ export function stopClock(id) {
+    clearTimeout(id||intervalID);
     customClockMovement = false;
 }
 
