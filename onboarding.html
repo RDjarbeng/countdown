@@ -1,0 +1,66 @@
+<style>
+    .onboarding{
+        padding-top: 4vmin;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 2vmin;
+        width: 100%;
+        height: 90vh;
+        position: absolute;
+        background: var(--bg-url) var(--bg-color) center no-repeat fixed;
+        background-size: cover;
+        background-blend-mode: overlay;
+        z-index: 3;
+        overflow: hidden;
+    }
+    .msg-l1{
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .msg-l2{
+        margin-top: 0.8rem;
+        font-size: .9rem;
+        opacity: .9;
+    }
+    .onboarding-imgs img{
+        width: 80vmin;
+        height: 50vh;
+    }
+    .get-started{
+        position: absolute;
+        bottom: 3%;
+    }
+    .get-started button{
+        padding: 3vmin;
+        width: 90vmin;
+        background: var(--color-banner);
+        color: white;
+        border-radius: 2vmin;
+        border: none;
+        outline: none;
+        font-size: 1.2rem;
+    }
+    @media screen and (max-width: 427px) {
+        .onboarding{
+            gap: 5vmin;
+        }
+        .onboarding-imgs img{
+            width: 85vmin;
+            height: 85vmin;
+        }
+    }
+</style>
+<section class="onboarding">
+    <div class="onboarding-msg">
+        <div class="msg-l1">Just Save the Date</div>
+        <div class="msg-l2">And let the countdowns Begin!</div>
+        
+    </div>
+    <div class="onboarding-imgs">
+        <img src="onboard/Work time-pana.png" alt="">
+    </div>
+    <div class="get-started">
+        <button onclick="getStartedProcess()" >Get Started <i class="fas fas fa-arrow-right"></i></button>
+    </div>
+</section>

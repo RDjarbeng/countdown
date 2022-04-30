@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,24 +8,20 @@
     <meta name="description" content="Countdown application with light and dark mode auto functionality">
     <meta name="Keywords" content="Countdown, Midnight countdown">
     <title>Final Countdown</title>
-    <link href="img/icons/favicon.png" rel="icon">
+    <link href="../img/icons/favicon.png" rel="icon">
     <meta name="Author" content="R.Djarbeng| A.Nyakotey">
-
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> -->
-    
-    <link rel="preload stylesheet"  as="style" type="text/css" href="css/styles.css">
-    <link rel="stylesheet href="css/styles.css">
-    <link rel="preload stylesheet"  as="style" type="text/css" href="css/themes.css">
-    <link rel="stylesheet href="css/themes.css">
-    <!-- <link rel="stylesheet" href="themes.css"> -->
-    <link rel="preload stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
-    <link rel="manifest" href="manifest.json">
+    <link rel="preload stylesheet"  as="style" type="text/css" href="../css/countdown-list.css">
+    <link rel="stylesheet href="../css/countdown-list.css">
+    <link rel="preload stylesheet"  as="style" type="text/css" href="../css/themes.css">
+    <link rel="stylesheet href="../css/themes.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
+    <link rel="manifest" href="/manifest.json">
     <!-- ios support -->
-    <link rel="apple-touch-icon" href="img/icons/favicon.png">
+    <link rel="apple-touch-icon" href="../img/icons/favicon.png">
     <meta name="apple-mobile-web-app-status-bar" content="#7b68ee">
     <meta name="theme-color" content="#7b68ee">
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="grey">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="gray">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#7b68ee">
 </head>
 
@@ -32,7 +29,7 @@
     <aside class="sidebar sidebar-hide">
         <section class="sidebar-content">
             <div class="brand">
-                <div class="brand-logo"><img src="img/icons/chrome512.png" alt="logo"></div>
+                <div class="brand-logo"><img src="../img/icons/chrome512.png" alt="logo"></div>
                 <div class="brand-name">Final CountDown</div>
             </div>
             <hr>
@@ -40,9 +37,6 @@
             <div class="sidebar-list">
                 <div class="sidebar-list-items">
                     <i class="fas fa-home"></i> &nbsp;&nbsp;&nbsp;Home
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-clock"></i> &nbsp;&nbsp;&nbsp;My CountDowns
                 </div>
                 <div class="sidebar-list-items">
                     <i class="fas fa-upload"></i> &nbsp;&nbsp;&nbsp;Set Custom Background
@@ -68,12 +62,12 @@
             </div>
         </section>
     </aside>
-    <header class="header">        
+    <header class="header">
         <div class="nav">
             <i class="fas fa-bars fa-lg"></i>
         </div>
         <div class="logo">
-            <a href="/index.html"><div class="logo-ico"><img src="img/icons/chrome192.png" alt="logo"></div></a>
+            <a href="../index.html"><div class="logo-ico"><img src="../img/icons/chrome192.png" alt="logo"></div></a>
             <div class="logo-name">Final CountDown</div>
         </div>
         <div class="mode-row">
@@ -81,13 +75,15 @@
         </div>
     </header>
     <main>
-        <section class="container">
-            <div class="banner-row">
+        <div class="container">
+            <section class="banner-row">
                 <div class="banner">
-                    <div class="banner-h2" id ='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i></div>
+                    <div class="banner-h1">My CountDowns</div>
+                    <div class="banner-h2" id='countdown-text'> </i>
+                    </div>
                 </div>
-            </div>
-            <div class="clock-row">
+            </section>
+            <section class="clock-row" >
                 <div class="timer">
                     <span class="timer-num" id="day-num">00</span>
                     <span class="timer-text">Days</span>
@@ -104,19 +100,24 @@
                     <span class="timer-num" id="sec-num">00</span>
                     <span class="timer-text">Seconds</span>
                 </div>
-            </div>
-            <div class="countdown-list-date" id ='dueDate'> 
-            </div>
-
-        </section>
+            </section>
+            <section class="list-container">
+                <div class="countdown-list" id="countdown-list">
+                    You have no countdowns yet
+                </div>
+                
+            </section>
+            
+        </div>
     </main>
     <div class="new-item"><i class="fas fa-plus fa-lg"></i></div>
-
-    <script src="js/error.js"></script>
-    <script src="app.js"></script>
-    <script src="js/sidebar.js" async></script>
-    <script src="js/loadCustomUI.js"></script>
-    <script  src="js/form.js" async></script>
+    <script src="../js/error.js"></script>
+    <script  src="../app.js"></script>
+    <script src="../js/sidebar.js" async></script>
+    <script src="../js/loadCustomUI.js"></script>
+    <script src="../js/formupdate.js" async></script>
+    <script src="../js/displayCountdowns.js"></script>
         
 </body>
+
 </html>

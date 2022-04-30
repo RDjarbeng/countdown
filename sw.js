@@ -12,7 +12,7 @@ const assets = [
     '/',
     '/index.html',
     '/html/about.html',
-    '/html/countdown-list.html',
+    '/index.html',
     '/html/fallback.html',
     '/html/form-upload.html',
     '/css/styles.css',

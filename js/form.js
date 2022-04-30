@@ -106,7 +106,7 @@ function handleFormSubmission() {
         }
 
         // testing
-        window.location.href = "/html/countdown-list.html";
+        window.location.href = "/index.html";
         closeFormPopUp();
     })
 }

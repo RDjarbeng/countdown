@@ -44,7 +44,9 @@ async function displayCountdowns() {
         
 
     } else {
-        setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
+        let file = await fetch("/onboarding.html");
+        let ft = await file.text();
+        document.querySelector("main").insertAdjacentHTML("afterbegin", ft);
         setInnerHtmlForNotNull(countdownTextDisplay, '')
     }
 }
@@ -243,7 +245,7 @@ function displayFormPopUp(text, dateTime, modifiedTime) {
     // todo: Track items without using modifiedTime
     if(text && dateTime&& modifiedTime){
     const updateFormHtml = `<section class="pop-up-container">
-    <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
+    <form action="/html/index.html" method="get" id='customUpDateForm' class="pop-up-form">
         <div class="form-header">Update Countdown</div>
         <div class="form-sections">
             <label for="">Note &nbsp;</label>

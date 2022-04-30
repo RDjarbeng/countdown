@@ -10,13 +10,10 @@ nav.addEventListener("click", () => {
     }
 });
 sidebarItems[0].addEventListener("click", () => setLink("../index.html"));
-sidebarItems[1].addEventListener("click", () =>
-    setLink("../html/countdown-list.html")
-);
-sidebarItems[2].addEventListener("click", openBgPicker);
-sidebarItems[3].addEventListener("click", openColorPicker);
-sidebarItems[4].addEventListener("click", () => setLink("../html/today.html"));
-sidebarItems[5].addEventListener("click", () => setLink("../html/about.html"));
+sidebarItems[1].addEventListener("click", openBgPicker);
+sidebarItems[2].addEventListener("click", openColorPicker);
+sidebarItems[3].addEventListener("click", () => setLink("../html/today.html"));
+sidebarItems[4].addEventListener("click", () => setLink("../html/about.html"));
 
 function setTheme(event) {
     let prevTheme = getComputedStyle(document.body).getPropertyValue(

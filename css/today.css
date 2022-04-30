@@ -265,7 +265,7 @@ main {
     position: fixed;
     top: 0;
     left: -100%;
-    z-index: 3;
+    z-index: 4;
     width: 65vmin;
     height: 100vh;
     background: var(--bg-sidebar);
