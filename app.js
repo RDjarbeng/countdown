@@ -174,7 +174,7 @@ function exportToWhatsapp() {
  * @param {HTMLElement} element 
  * @param {String} value 
  */
-function setInnerHtmlForNotNull(element, value){
+export function setInnerHtmlForNotNull(element, value){
     if(element)//check for null
         element.innerHTML = value;
 }
