@@ -1,4 +1,7 @@
 import {addZeros, stopClock} from '../app.js'
+import {displayAndStartcount} from './displayCountdowns.js'
+import { setDateAttributes } from "./form.js";
+
 function popForm() {
     countNumber = localStorage.getItem('countNumber');
     if (!countNumber)
@@ -36,22 +39,22 @@ function popForm() {
 //     return time;
 // }
 
-function setDateAttributes() {
-    const dateInput = document.getElementById("dateInput");
-    const today = new Date();
-    let dd = today.getDate() ;//add 1 to the date so date starts from tomorrow
-    let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
-    let yyyy = today.getFullYear();
-    let hr = addZeros(today.getHours());
-    let min = addZeros(today.getMinutes());
-    dd = addZeros(dd);
-    mm = addZeros(mm)
+// function setDateAttributes() {
+//     const dateInput = document.getElementById("dateInput");
+//     const today = new Date();
+//     let dd = today.getDate() ;//add 1 to the date so date starts from tomorrow
+//     let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+//     let yyyy = today.getFullYear();
+//     let hr = addZeros(today.getHours());
+//     let min = addZeros(today.getMinutes());
+//     dd = addZeros(dd);
+//     mm = addZeros(mm)
 
-    let todayString = yyyy + '-' + mm + '-' + dd+'T'+ hr+':'+min;
-    console.log(todayString);
-    dateInput.setAttribute("min", todayString);
-    dateInput.value= todayString;
-}
+//     let todayString = yyyy + '-' + mm + '-' + dd+'T'+ hr+':'+min;
+//     console.log(todayString);
+//     dateInput.setAttribute("min", todayString);
+//     dateInput.value= todayString;
+// }
 
 function closeFormPopUp() {
     document.getElementsByClassName("pop-up-container")[0].remove();
@@ -89,7 +92,6 @@ function handleFormSubmission() {
         // external function
         try{
             displayAndStartcount();
-            console.log('we did it', countItemExists);
         } catch (err) {
     console.log(err, 'err in updating countdown initialisation');
     errorHandler("Unable to finish update your countdowns");

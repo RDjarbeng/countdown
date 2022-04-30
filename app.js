@@ -1,4 +1,4 @@
-import clock, {NewYearClock} from './js/clock.js'
+import Clock, {NewYearClock} from './js/clock.js'
 
 
 // DOM nodes
@@ -43,7 +43,7 @@ function setMainText(countdownText) {
  * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
  * @param {Number} [duration=800] specifies how long the animation lasts in milliseconds
  */
- async function waitForAnimation(clock, domElements, duration) {
+ export async function waitForAnimation(clock, domElements, duration) {
     await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
     startClock(clock || myclock, domElements);
 }
@@ -149,7 +149,7 @@ function animateValue(domElement, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
+export async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
     animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
     animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
     animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);

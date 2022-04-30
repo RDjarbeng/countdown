@@ -1,5 +1,7 @@
-import { stopClock, setInnerHtmlForNotNull} from "../app.js";
+import { stopClock, setInnerHtmlForNotNull, stepIncreaseAndStart, waitForAnimation} from "../app.js";
+import Clock from "../js/clock.js";
 // Dom elements
+var dayNumber = document.getElementById("day-num");
 var hourNumber = document.getElementById("hour-num");
 var minNumber = document.getElementById("min-num");
 var secNumber = document.getElementById("sec-num");
@@ -17,18 +19,18 @@ let testid = '';
 //     customClockMovement = false;
 // }
 
-async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
-    animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
-    animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
-    animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
-    animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
+// async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
+//     animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
+//     animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
+//     animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
+//     animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
 
-}
+// }
 
-async function waitForAnimation(clock, domElements, duration) {
-    await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
-    startClock(clock || myclock, domElements);
-}
+// async function waitForAnimation(clock, domElements, duration) {
+//     await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
+//     startClock(clock || myclock, domElements);
+// }
 
 // todo: sort by modified time
 async function displayCountdowns() {
@@ -144,7 +146,7 @@ async function updateCountdownItems() {
 /**
  * display countdowns and start updating display for countdowns in progress
  */
-function displayAndStartcount(){
+export function displayAndStartcount(){
     displayCountdowns().then(() => {
         // console.log('trigerred', countItemExists);
         if (countItemExists) {

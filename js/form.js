@@ -35,7 +35,7 @@ function addZeros(time) {
     return time;
 }
 
-function setDateAttributes() {
+export function setDateAttributes() {
     const dateInput = document.getElementById("dateInput");
     const today = new Date();
     let dd = today.getDate() ;//add 1 to the date so date starts from tomorrow

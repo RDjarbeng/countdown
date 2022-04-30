@@ -1,4 +1,6 @@
+import { setInnerHtmlForNotNull } from "../app.js";
 let icon = document.getElementById('themeToggle');
+let body = document.body;
 
 function activateLightMode() {
     setInnerHtmlForNotNull(icon, `<i class="fas fa-moon"></i>`);
