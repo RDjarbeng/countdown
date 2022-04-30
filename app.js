@@ -66,6 +66,7 @@ function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
  * @returns num number with 0 at the front
  */
 export function addZeros(num) {
+    // todo: move function to functions file
     if (num < 10) {
         num = "0" + num;
     }
