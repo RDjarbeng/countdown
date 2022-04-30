@@ -1,4 +1,4 @@
-import { stopClock} from "../app.js";
+import { stopClock, setInnerHtmlForNotNull} from "../app.js";
 // Dom elements
 var hourNumber = document.getElementById("hour-num");
 var minNumber = document.getElementById("min-num");
