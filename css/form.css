@@ -10,19 +10,19 @@
     backdrop-filter: blur(5px);
     z-index: 10;
 }
-.pop-up-form{
-    position: relative;
-    width: 80vmin;
-    height: 80vmin;        
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column nowrap;
-    background: #f0f0f0;
-    box-shadow: var(--timer-box);
-    border-radius: 0.2rem;
-    gap: 3vmin;
-    color: var(--color-banner);
+.pop-up-form {
+	position: relative;
+	width: 80vmin;
+	height: 80vmin;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column nowrap;
+	background: var(--bg-form);
+	box-shadow: var(--timer-box);
+	border-radius: 0.2rem;
+	gap: 3vmin;
+	color: var(--form-header);
 }
 .form-header{
     position: absolute;
@@ -30,6 +30,7 @@
     font-size: 6vmin;
     text-transform: uppercase;
     font-weight: bold;
+    color: var(--form-header);
 }
 .close-form{
     position: absolute;
@@ -39,16 +40,20 @@
     padding: 2vmin 5vmin;
     border-radius: .3rem;
     border: solid 1px var(--color-banner); 
-    color: var(--color-banner);
+    color: var(--form-close);
+    background: var(--bg-sec);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 /* create countdown form */
-input[type="text"],input[type="datetime-local"]{
-    width: 65vmin;
-    padding: 3vmin;
-    border-radius: 2vmin;
-    border: var(--color-banner) solid 1px;
-    outline: none;
+input[type="text"], input[type="datetime-local"] {
+	width: 65vmin;
+	padding: 3vmin;
+	border-radius: 2vmin;
+	border: var(--color-banner) solid 1px;
+	outline: none;
+	color: var(--color-input);
+	background: var(--bg-sec);
 }
 input[type="submit"],.reset button{
     padding: 2vmin 6vmin;
@@ -56,6 +61,7 @@ input[type="submit"],.reset button{
     border: none;  
     background: var(--color-banner); 
     color: white;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 input[type="submit"]:hover,.reset button:hover{
     background: var(--color-banner);
@@ -103,7 +109,7 @@ label[for="upload"] {
     height: 100%;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 label[for="upload-info"] {
     font-size: 0.6rem;
