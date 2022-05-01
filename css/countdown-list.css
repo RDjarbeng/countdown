@@ -440,37 +440,13 @@ box-shadow: inset 0 0 0vmin .4vmin var(--color-banner);
   padding-left: 1rem;
   padding-bottom: 0.2rem;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 8fr 2fr;
 }
-/* .countdown-list-status{
-  grid-area: status;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-} */
 .status-text{
   align-self: flex-end;
   margin-right: 5%;
   font-style: italic;
-}
-.elapsed{
-  animation: warn 2.5s ease-out 1s;
-}
-@keyframes warn {
-  0%{background: rgba(255,0,0,0.15);}
-  15%{background: rgba(255,0,0,0.0);}
-  30%{background: rgba(255,0,0,0.15);}
-  45%{background: rgba(255,0,0,0.0);}
-  60%{background: rgba(255,0,0,0.15);}
-  75%{background: rgba(255,0,0,0.0);}
-  90%{background: rgba(255,0,0,0.15);}
-  80%{background: rgba(255,0,0,0.0);}
-  95%{background: rgba(255,0,0,0.15);}
-  100%{background: rgba(255,0,0,0.0);}
 }
 .menu{
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
@@ -524,9 +500,12 @@ box-shadow: inset 0 0 0vmin .4vmin var(--color-banner);
   .sidebar{
     width: 75vmin;
   }
-.countdown-list-item{
-  grid-template-columns: 5.7fr 1.3fr;
-}
+  .countdown-list-item{
+    grid-template-columns: 5.7fr 1.3fr;
+  }
+  .countdown-list-date{
+    grid-template-columns: 7fr 2.6fr;
+  }
 .menu{
   width: 38vmin;
 }

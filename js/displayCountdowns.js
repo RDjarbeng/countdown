@@ -41,12 +41,6 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
         // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
-        
-        document.querySelectorAll(".countdown-list-date").forEach((dateRow)=>{
-            if (dateRow.innerHTML.includes("elapsed")) {
-                dateRow.classList.add("elapsed");
-            }
-        });
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
@@ -65,38 +59,34 @@ function populateList(arrayOfCountdowns) {
 function addCountdownItem(countdown, index){
     let date = new Date(countdown.date);
     let difference = date.getTime()- new Date().getTime();
-    let countdownStatus =`<span style="color:#03bf42;"><i class="fas fa-hourglass-start"></i> active</span>
-    <!--<style>.countdown-list-date{background: rgba(0,192,53,0.2)}</style>-->
-    `;
+    let countdownStatus =`<span style="color:#03bf42;"><i class="fas fa-hourglass-start"></i> active</span>`;
     if(difference>0){
         // countdown is still in progress
         console.log("countdown is still in progress", countdown);
     }else{
         // countdown elapsed
         console.log("countdown elapsed", countdown);
-        countdownStatus = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>
-        <!--<style>.countdown-list-date{background: rgba(192,0,0,0.1)}</style>-->
-        `;
+        countdownStatus = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>`;
     }
     let countdownListItem = `
     <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
         <div class="countdown-list-text"> ${countdown.text} </div>
-        <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
-        <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
-        <div class="menu-opts edit">
-            <i class="fas fa-edit"></i>&nbsp;Edit
+        <div class="countdown-list-options"><i class="fas fa-chevron-circle-down fa-lg"></i>
+            <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
+                <div class="menu-opts edit">
+                    <i class="fas fa-edit"></i>&nbsp;Edit
+                </div>
+                <div class="menu-opts del">
+                    <i class="fas fa-trash-alt"></i> &nbsp;Delete
+                </div>
+                <div class="menu-opts main">
+                    <i class="fas fa-clock"></i> &nbsp;Set as main
+                </div>       
+            </div>
         </div>
-        <div class="menu-opts del">
-            <i class="fas fa-trash-alt"></i> &nbsp;Delete
-        </div>
-        <div class="menu-opts main">
-            <i class="fas fa-clock"></i> &nbsp;Set as main
-        </div>
-        
-    </div></div>
         <div class="countdown-list-date"> 
-            <span>Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}</span>
-            <span class="status-text">${countdownStatus}</span>
+            <div>Due: ${date.getDate() + ' ' + date.toLocaleString('default', { month: 'long' }) + ', ' + date.getFullYear()}</div>
+            <div class="status-text">${countdownStatus}</div>
         </div>    
     </div>`
     return countdownListItem;
