@@ -1,7 +1,7 @@
 // #5
 
-const staticCacheName = 'site-static-v37';
-const dynamicCache = 'site-dynamic-v37';
+const staticCacheName = 'site-static-v41';
+const dynamicCache = 'site-dynamic-v41';
 
 const dynamicCacheSize = 30;
 
@@ -15,9 +15,11 @@ const assets = [
     '/html/countdown-list.html',
     '/html/fallback.html',
     '/html/form-upload.html',
+    '/html/today.html',
     '/css/styles.css',
     '/css/themes.css',
     '/css/about.css',
+    '/css/today.css',
     '/css/countdown-list.css',
     '/css/form.css',
     '/app.js',
@@ -27,6 +29,7 @@ const assets = [
     '/js/formupdate.js',
     '/js/error.js',
     '/js/form.js',
+    '/js/today.js',
     '/img/icons/chrome192.png',
     '/img/icons/chrome512.png',
     '/img/bg.svg',
