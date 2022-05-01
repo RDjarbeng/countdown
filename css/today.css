@@ -13,7 +13,7 @@
 :root {
     --color-muted: rgba(255, 255, 255, 0.15);
     --color-banner: #7b68ee;
-    --bg-url: url("../img/bg.svg");
+    --bg-url: url("/img/bg.svg");
     --bg-sidebar: var(--color-banner);
     --bg-modeToggle: rgba(0, 0, 0, 0.2);
     --bg-sidebar: #7b68ee;
@@ -53,7 +53,7 @@ main {
     width: 100vw;
     height: 90vh;
     margin-top: 10vh;
-    background: url("../img/circle-anim-bg.svg");
+    background: url("/img/circle-anim-bg.svg");
     background-size: contain;
 }
 .container {
