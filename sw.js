@@ -1,7 +1,7 @@
 // #5
 
-const staticCacheName = 'site-static-v36';
-const dynamicCache = 'site-dynamic-v36';
+const staticCacheName = 'site-static-v43';
+const dynamicCache = 'site-dynamic-v43';
 
 const dynamicCacheSize = 30;
 
@@ -15,9 +15,11 @@ const assets = [
     '/html/countdown-list.html',
     '/html/fallback.html',
     '/html/form-upload.html',
+    '/html/today.html',
     '/css/styles.css',
     '/css/themes.css',
     '/css/about.css',
+    '/css/today.css',
     '/css/countdown-list.css',
     '/css/form.css',
     '/app.js',
@@ -27,13 +29,14 @@ const assets = [
     '/js/formupdate.js',
     '/js/error.js',
     '/js/form.js',
+    '/js/today.js',
     '/img/icons/chrome192.png',
     '/img/icons/chrome512.png',
     '/img/bg.svg',
     '/img/bg/goku.jpg',
     '/img/bg/ship_sky_balloons.jpg',
     '/img/icons/favicon.png',
-    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
     // "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap",
     // 'https://fonts.gstatic.com/s/nunito/v20/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2'
 
