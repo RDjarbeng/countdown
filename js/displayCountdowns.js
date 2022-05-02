@@ -48,7 +48,7 @@ async function displayCountdowns() {
                 <section class="list-settings">
                     <div class="sort">
                         <div class="sort-options">
-                            <div class="sort-opt">Date modified</div>
+                            <div class="sort-opt ">Date modified</div>
                             <div class="sort-opt">Date created</div>
                         </div>
                         <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
@@ -65,6 +65,10 @@ async function displayCountdowns() {
                         sortOpts.style.display = "block";
                     }
                 });
+
+                document.querySelector(".sort-options").addEventListener("click", (event)=> {
+                    console.log('Clicking in sort menu', event.target);
+                })
             }
         }
         sortUI();
