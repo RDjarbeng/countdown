@@ -71,10 +71,12 @@ async function displayCountdowns() {
                     if(event.target.className.search('due') > -1){
                         localStorage.setItem('sort', 'due') 
                         console.log('due clicked', localStorage.getItem('sort'));
+                        displayCountdowns();
                           
                     }else if(event.target.className.search('modified') > -1){
                         localStorage.setItem('sort', 'modified')
                         console.log('modified clicked', localStorage.getItem('sort'));
+                        displayCountdowns();
                     }
                 })
             }
@@ -86,9 +88,14 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownTextDisplay, '')
     }
 }
-
+/**
+ * 
+ * @param {Array} arrayOfCountdowns 
+ * @returns {String} listItems
+ */
 function populateList(arrayOfCountdowns) {
     let listItems = '';
+    sortArrayIfDueSelected();
     arrayOfCountdowns.forEach((countdown, index) => {
         let date = new Date(countdown.date);
         listItems += `
@@ -115,6 +122,13 @@ function populateList(arrayOfCountdowns) {
     return listItems;
 }
 
+function sortArrayIfDueSelected(){
+    let sortType = localStorage.getItem('sort');
+    if(sortType =="due"){
+        // sort by due date if present
+        arrayOfCountdowns.sort((countItem1, countItem2)=> new Date(countItem2.date).getTime()-new Date(countItem1.date).getTime())
+    }
+}
 function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
