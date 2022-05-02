@@ -40,8 +40,34 @@ async function displayCountdowns() {
         let listItems = populateList(arrayOfCountdowns);
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
-        // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
         
+        const  sortUI = async ()=>  {   
+            if (!document.querySelector(".list-settings")) {
+                const listContainer = document.querySelector(".list-container");
+                let sortHtml = `
+                <section class="list-settings">
+                    <div class="sort">
+                        <div class="sort-options">
+                            <div class="sort-opt">Date modified</div>
+                            <div class="sort-opt">Date created</div>
+                        </div>
+                        <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
+                    </div>
+                </section>`;
+                listContainer.insertAdjacentHTML("afterbegin", sortHtml);
+                
+                const sortOpts = document.querySelector(".sort-options");
+                document.querySelector(".sort-title").addEventListener("click", ()=> {
+                    if (sortOpts.style.display == "block") {
+                        sortOpts.style.display = "none";
+                    }
+                    else{
+                        sortOpts.style.display = "block";
+                    }
+                });
+            }
+        }
+        sortUI();
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
