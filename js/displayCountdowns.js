@@ -148,16 +148,17 @@ function switchContextIconDown(element){
 }
 function hideContextMenus(event) {
     //if function is not triggered by event listener, event is empty
-    if ((!(event != null))||!(event.target.className == 'countdown-list-options' || event.target.tagName == 'I')) {
+    if ((!(event != null))||!(event.target.className == 'countdown-list-options' || event.target.tagName == 'I'|| (event.target.className.search('sort-title') >-1))) {
         document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
         document.querySelectorAll('.fa-chevron-circle-up').forEach(element => switchContextIconDown(element));
+        closeSortMenu();
+    // }
     } 
+
     
 }
 function addListEventListener() {
     document.querySelector('.countdown-list').addEventListener('click', event => {
-        //hide all context menus
-
         const targetElement = event.target;
 
         // if event is fired on text or date
@@ -217,6 +218,13 @@ function addListEventListener() {
     })
 }
 
+const closeSortMenu=()=>{
+    const sortOpts = document.querySelector(".sort-options");
+    if (sortOpts.style.display == "block") {
+        sortOpts.style.display = "none";
+    }
+}
+
 const addSortEventListeners = ()=>{
     const sortOpts = document.querySelector(".sort-options");
     const sortTitle = document.querySelector(".sort-title");
@@ -242,11 +250,9 @@ const addSortEventListeners = ()=>{
                 // console.log('modified clicked', localStorage.getItem('sort'));
                 // displayCountdowns();
             }
-            // close sortOptions menu on selection
-            if (sortOpts.style.display == "block") {
-                sortOpts.style.display = "none";
-                displayCountdowns();
-            }
+            // close sortOptions menu on selection and refresh list
+            closeSortMenu();
+            displayCountdowns();
         })
 }
 
