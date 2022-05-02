@@ -69,9 +69,12 @@ async function displayCountdowns() {
                 document.querySelector(".sort-options").addEventListener("click", (event)=> {
                     console.log('Clicking in sort menu', event.target);
                     if(event.target.className.search('due') > -1){
-                        console.log('created clicked');
+                        localStorage.setItem('sort', 'due') 
+                        console.log('due clicked', localStorage.getItem('sort'));
+                          
                     }else if(event.target.className.search('modified') > -1){
-                        console.log('modified clicked');
+                        localStorage.setItem('sort', 'modified')
+                        console.log('modified clicked', localStorage.getItem('sort'));
                     }
                 })
             }
