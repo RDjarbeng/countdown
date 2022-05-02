@@ -49,7 +49,7 @@ async function displayCountdowns() {
                     <div class="sort">
                         <div class="sort-options">
                             <div class="sort-opt modified">Date modified</div>
-                            <div class="sort-opt created">Date created</div>
+                            <div class="sort-opt due">Due date</div>
                         </div>
                         <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
                     </div>
@@ -68,7 +68,7 @@ async function displayCountdowns() {
 
                 document.querySelector(".sort-options").addEventListener("click", (event)=> {
                     console.log('Clicking in sort menu', event.target);
-                    if(event.target.className.search('created') > -1){
+                    if(event.target.className.search('due') > -1){
                         console.log('created clicked');
                     }else if(event.target.className.search('modified') > -1){
                         console.log('modified clicked');
