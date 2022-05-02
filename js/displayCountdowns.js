@@ -55,32 +55,11 @@ async function displayCountdowns() {
                     </div>
                 </section>`;
                 listContainer.insertAdjacentHTML("afterbegin", sortHtml);
-                
-                const sortOpts = document.querySelector(".sort-options");
-                document.querySelector(".sort-title").addEventListener("click", ()=> {
-                    if (sortOpts.style.display == "block") {
-                        sortOpts.style.display = "none";
-                    }
-                    else{
-                        sortOpts.style.display = "block";
-                    }
-                });
-
-                document.querySelector(".sort-options").addEventListener("click", (event)=> {
-                    console.log('Clicking in sort menu', event.target);
-                    if(event.target.className.search('due') > -1){
-                        localStorage.setItem('sort', 'due') 
-                        console.log('due clicked', localStorage.getItem('sort'));
-                        displayCountdowns();
-                          
-                    }else if(event.target.className.search('modified') > -1){
-                        localStorage.setItem('sort', 'modified')
-                        console.log('modified clicked', localStorage.getItem('sort'));
-                        displayCountdowns();
-                    }
-                })
             }
+            // addSortEventListeners();
         }
+
+        
         sortUI();
 
     } else {
@@ -238,6 +217,39 @@ function addListEventListener() {
     })
 }
 
+const addSortEventListeners = ()=>{
+    const sortOpts = document.querySelector(".sort-options");
+    const sortTitle = document.querySelector(".sort-title");
+        sortTitle.addEventListener("click", ()=> {
+            console.log('clicking in sort title', sortOpts.style.display);
+            if (sortOpts.style.display == "block") {
+                sortOpts.style.display = "none";
+            }
+            else{
+                sortOpts.style.display = "block";
+            }
+        });
+        // sort options menu events
+        sortOpts.addEventListener("click", (event)=> {
+            console.log('Clicking in sort menu', event.target);
+            if(event.target.className.search('due') > -1){
+                localStorage.setItem('sort', 'due') 
+                // console.log('due clicked', localStorage.getItem('sort'));
+                // displayCountdowns();
+                  
+            }else if(event.target.className.search('modified') > -1){
+                localStorage.setItem('sort', 'modified')
+                // console.log('modified clicked', localStorage.getItem('sort'));
+                // displayCountdowns();
+            }
+            // close sortOptions menu on selection
+            if (sortOpts.style.display == "block") {
+                sortOpts.style.display = "none";
+                displayCountdowns();
+            }
+        })
+}
+
 function handleUpdate() {
     // todo: update list with custom fired events
     const countdownForm = document.getElementById('customUpDateForm');
@@ -331,15 +343,21 @@ function setCountDownList(arrayOfJSONCountdowns) {
 
 function addListEventHandlers() {
     addListEventListener();
+    addSortEventListeners();
+
     // add context menu event listener
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
+
+async function displayAndAddListeners(){
+    await displayCountdowns().catch((err)=>{
+        console.log(err);
+        errorHandler('Unable to fetch your countdowns')
+    });
+    addListEventHandlers();
+}
 try{
-displayCountdowns().catch((err)=>{
-    console.log(err);
-    errorHandler('Unable to fetch your countdowns')
-});
-addListEventHandlers();
+    displayAndAddListeners();
 }catch (err) {
     console.log(err, 'err in display countdown initialisation');
     errorHandler("Unable to fetch your countdowns");
