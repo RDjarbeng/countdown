@@ -227,7 +227,7 @@ addWhatappEventHandler();
 
 // service worker
 
-/*if('serviceWorker' in navigator){
+if('serviceWorker' in navigator){
     window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
     .then( (reg)=>{ 
@@ -236,4 +236,4 @@ addWhatappEventHandler();
         .catch((err)=> console.log('Service worker not registered', err));
   });
         
-}*/
+}

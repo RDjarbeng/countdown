@@ -1,7 +1,7 @@
 // #5
 
-const staticCacheName = 'site-static-v39';
-const dynamicCache = 'site-dynamic-v39';
+const staticCacheName = 'site-static-v44';
+const dynamicCache = 'site-dynamic-v44';
 
 const dynamicCacheSize = 30;
 
@@ -36,7 +36,7 @@ const assets = [
     '/img/bg/goku.jpg',
     '/img/bg/ship_sky_balloons.jpg',
     '/img/icons/favicon.png',
-    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
     // "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap",
     // 'https://fonts.gstatic.com/s/nunito/v20/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2'
 

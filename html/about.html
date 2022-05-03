@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A countdown app and day of year counter with light and dark mode auto functionality">
-    <link href="../img/icons/favicon.png" rel="icon">
-    <link rel="preload stylesheet"  as="style" type="text/css" href="../css/about.css">
-    <link rel="stylesheet href="../css/about.css">
-    <link rel="preload stylesheet"  as="style" type="text/css" href="../css/themes.css">
-    <link rel="stylesheet href="../css/themes.css">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style"
+    <link href="/img/icons/favicon.png" rel="icon">
+    <link rel="preload stylesheet"  as="style" type="text/css" href="/css/about.css">
+    <link rel="stylesheet href="/css/about.css">
+    <link rel="preload stylesheet"  as="style" type="text/css" href="/css/themes.css">
+    <link rel="stylesheet href="/css/themes.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" as="style"
         onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     </noscript>
     <link rel="manifest" href="/manifest.json">
     <!-- ios support -->
-    <link rel="apple-touch-icon" href="../img/icons/favicon.png">
+    <link rel="apple-touch-icon" href="/img/icons/favicon.png">
     <meta name="apple-mobile-web-app-status-bar" content="#7b68ee">
     <meta name="theme-color" content="#7b68ee">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="grey">
@@ -30,23 +30,23 @@
     <aside class="sidebar sidebar-hide">
         <section class="sidebar-content">
             <div class="brand">
-                <div class="brand-logo"><img src="../img/icons/chrome512.png" alt="logo"></div>
+                <div class="brand-logo"><img src="/img/icons/chrome512.png" alt="logo"></div>
                 <div class="brand-name">Final CountDown</div>
             </div>
             <hr>
             <div class="opt-group">OPTIONS</div>
             <div class="sidebar-list">
                 <div class="sidebar-list-items">
-                    <i class="fas fa-home"></i> &nbsp;&nbsp;&nbsp;Home
+                    <i class="fas fa-home fa-fw"></i> &nbsp;&nbsp;&nbsp;Home
                 </div>
                 <div class="sidebar-list-items">
-                    <i class="fas fa-clock"></i> &nbsp;&nbsp;&nbsp;My CountDowns
+                    <i class="fas fa-clock fa-fw"></i> &nbsp;&nbsp;&nbsp;My CountDowns
                 </div>
                 <div class="sidebar-list-items">
-                    <i class="fas fa-upload"></i> &nbsp;&nbsp;&nbsp;Set Custom Background
+                    <i class="fas fa-upload fa-fw"></i> &nbsp;&nbsp;&nbsp;Set Custom Background
                 </div>
                 <div class="sidebar-list-items">
-                    <i class="fas fa-adjust"></i> &nbsp;&nbsp;&nbsp;Change Theme
+                    <i class="fas fa-adjust fa-fw"></i> &nbsp;&nbsp;&nbsp;Change Theme
                 </div>
                 <section class="pick-color">
                     <span class="pick-color-ico" data-settheme="red"></span>
@@ -58,10 +58,10 @@
                     <span class="pick-color-ico" data-settheme="black"></span>
                 </section>
                 <div class="sidebar-list-items">
-                    <i class="fas fa-calendar-day"></i> &nbsp;&nbsp;&nbsp;Today
+                    <i class="fas fa-calendar-day fa-fw"></i> &nbsp;&nbsp;&nbsp;Today
                 </div>
                 <div class="sidebar-list-items">
-                    <i class="fas fa-question-circle"></i> &nbsp;&nbsp;&nbsp;About
+                    <i class="fas fa-question-circle fa-fw"></i> &nbsp;&nbsp;&nbsp;About
                 </div>
             </div>
             <!-- <div class="sidebar-app-version">Version 2</div> -->
@@ -72,11 +72,11 @@
             <i class="fas fa-bars fa-lg"></i>
         </div>
         <div class="logo">
-            <a href="../index.html"><div class="logo-ico"><img src="../img/icons/chrome192.png" alt="logo"></div></a>
+            <a href="/index.html"><div class="logo-ico"><img src="/img/icons/chrome192.png" alt="logo"></div></a>
             <div class="logo-name">Final CountDown</div>
         </div>
         <div class="mode-row">
-            <span class="toggleMode" id='themeToggle'><i class="fas fa-sun"></i></span>
+            <span class="toggleMode" id='themeToggle'><i class="fas fa-sun fa-fw"></i></span>
         </div>
     </header>
     <main>
@@ -90,7 +90,7 @@
             </div>
             <div class="details">
                 <div class="details-title">Version</div>
-                <div class="details-info">2.0.0-release-0.2.0rc</div>
+                <div class="details-info">2.2.0</div>
             </div>
             <div class="details">
                 <div class="details-title">Credits</div>
@@ -123,13 +123,13 @@
                 <div class="details-info">Reach out to us via the ff channels</div>
                 <div class="sm-container">
                     <a href="https://wa.me/233561739868?text=Hello Dev">
-                        <div class="sm"><i class="fab fa-whatsapp"></i></div>
+                        <div class="sm"><i class="fab fa-whatsapp fa-fw"></i></div>
                     </a>
                     <a href="https://github.com/RDjarbeng/countdown">
-                        <div class="sm"><i class="fab fa-github"></i></div>
+                        <div class="sm"><i class="fab fa-github fa-fw"></i></div>
                     </a>
                     <a href="mailto:rdjarbeng@gmail.com">
-                        <div class="sm"><i class="fas fa-envelope"></i></div>
+                        <div class="sm"><i class="fas fa-envelope fa-fw"></i></div>
                     </a>
                 </div>
             </div>
@@ -139,10 +139,10 @@
             </footer>
         </section>
     </main>
-    <script src="../js/error.js"></script>
-    <script src="../js/loadCustomUI.js"></script>
-    <script src="../app.js"></script>
-    <script src="../js/sidebar.js" async></script>
+    <script src="/js/error.js"></script>
+    <script src="/js/loadCustomUI.js"></script>
+    <script src="/app.js"></script>
+    <script src="/js/sidebar.js" async></script>
     
 </body>
 
