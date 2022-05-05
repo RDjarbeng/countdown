@@ -493,7 +493,9 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
     gap: 1.6em;
   }
   .container{
-    gap: 0.2em;
+    gap: 0em;
+    padding-bottom: 0px;
+    height: 90vh;
   }
   
   .header{
@@ -503,9 +505,7 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   main{
     padding-top: var(--header-gap);
   }
-  .timer{
-    height: 24vmin;
-  }
+  
   .banner-row{
     font-size: 1.3rem;
   }
