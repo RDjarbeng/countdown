@@ -102,7 +102,7 @@ function handleFormSubmission() {
         // console.log(countdown);
         setCountDownList(countdown);
         // external function
-        displayCountdowns();
+        displayAndAddListeners();
         closeFormPopUp();
 
         }else{
