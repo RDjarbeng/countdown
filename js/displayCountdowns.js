@@ -50,8 +50,13 @@ async function displayCountdowns() {
 }
 
 function populateList(arrayOfCountdowns) {
+    console.log(arrayOfCountdowns);
     let listItems = '';
     arrayOfCountdowns.forEach((countdown, index) => {
+        if(countdown.hasOwnProperty('date')){
+            console.log(arrayOfCountdowns);
+            arrayOfCountdowns[index].date =new Anniversary(new Date(countdown.date)).endDate;
+        }
         let date = new Date(countdown.date);
         listItems += `
         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
