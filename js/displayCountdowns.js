@@ -229,7 +229,6 @@ const addSortEventListeners = ()=>{
     const sortOpts = document.querySelector(".sort-options");
     const sortTitle = document.querySelector(".sort-title");
         sortTitle.addEventListener("click", ()=> {
-            console.log('clicking in sort title', sortOpts.style.display);
             if (sortOpts.style.display == "block") {
                 sortOpts.style.display = "none";
             }
@@ -239,7 +238,6 @@ const addSortEventListeners = ()=>{
         });
         // sort options menu events
         sortOpts.addEventListener("click", (event)=> {
-            console.log('Clicking in sort menu', event.target);
             if(event.target.className.search('due') > -1){
                 localStorage.setItem('sort', 'due') 
                 // console.log('due clicked', localStorage.getItem('sort'));
