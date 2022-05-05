@@ -17,7 +17,7 @@ function popForm() {
             <label for="repeat-cb">
                 <input type="checkbox" id="repeat-cb"> Repeat 
             </label>
-            </div>
+        </div>
         <div class="form-sections">
             <label for=""></label>
             <input type="submit" id ="countdown-submit"value="Submit">
