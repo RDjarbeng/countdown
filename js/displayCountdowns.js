@@ -76,7 +76,7 @@ function populateList(arrayOfCountdowns) {
     let listItems = '';
     sortArrayOnSelection();
     arrayOfCountdowns.forEach((countdown, index) => {
-        let date = new Date(countdown.dateModified);
+        let date = new Date(countdown.date);
         listItems += `
         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
             <div class="countdown-list-text"> ${countdown.text} </div>
@@ -106,6 +106,8 @@ function sortArrayOnSelection(){
     if(sortType =="due"){
         // sort by due date if present
         arrayOfCountdowns.sort((countItem1, countItem2)=> new Date(countItem2.date).getTime()-new Date(countItem1.date).getTime())
+    }else{
+        arrayOfCountdowns.sort((countItem1, countItem2)=> new Date(countItem1.dateModified).getTime()-new Date(countItem2.dateModified).getTime())
     }
 }
 function updateClockAndText(date, text, animation = true) {
