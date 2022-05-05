@@ -253,6 +253,11 @@ function displayFormPopUp(text, dateTime, modifiedTime) {
             <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" value= ${dateTime} id ="dateInput" min="" required>
         </div>
+        <div class="form-sections form-repeat">
+            <label for="repeat-cb">
+                <input type="checkbox" id="repeat-cb"> Repeat 
+            </label>
+        </div>
         <div class="form-sections">
             <label for=""></label>
             <input type="hidden" value = ${modifiedTime} id="modifiedTime">
