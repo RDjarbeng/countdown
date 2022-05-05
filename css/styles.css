@@ -20,6 +20,7 @@
   --bg-sidebar: #7b68ee;
   --bg-sidebarListHover: rgba(0, 0, 0, 0.1);
   --color-sidebar: white;
+  --header-gap: 9.4vh
 }
 .dark{
   --bg-color: #1b182c;
@@ -490,6 +491,20 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
 @media screen and (max-width: 427px) {
   .container{
     gap: 1.6em;
+  }
+  .container{
+    gap: 0.2em;
+  }
+  
+  .header{
+    height: var(--header-gap);
+  }
+
+  main{
+    padding-top: var(--header-gap);
+  }
+  .timer{
+    height: 24vmin;
   }
   .banner-row{
     font-size: 1.3rem;
