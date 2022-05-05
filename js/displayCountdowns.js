@@ -297,7 +297,7 @@ function handleUpdate() {
                 closeFormPopUp();
                 removeClockAndText();
             }else{
-                console.log("Unable to update Item in displayCountdown, HandleUpdate");
+                console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);
                 errorHandler('Unable to update Item');
             }
 
