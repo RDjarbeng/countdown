@@ -74,9 +74,9 @@ async function displayCountdowns() {
  */
 function populateList(arrayOfCountdowns) {
     let listItems = '';
-    sortArrayIfDueSelected();
+    sortArrayOnSelection();
     arrayOfCountdowns.forEach((countdown, index) => {
-        let date = new Date(countdown.date);
+        let date = new Date(countdown.dateModified);
         listItems += `
         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
             <div class="countdown-list-text"> ${countdown.text} </div>
@@ -101,7 +101,7 @@ function populateList(arrayOfCountdowns) {
     return listItems;
 }
 
-function sortArrayIfDueSelected(){
+function sortArrayOnSelection(){
     let sortType = localStorage.getItem('sort');
     if(sortType =="due"){
         // sort by due date if present
