@@ -4,7 +4,10 @@
         this.setEndDate(endDate)
         this.countDown();
     }
-
+    /**
+     * 
+     * @param {Date} endDate 
+     */
     setEndDate(endDate) {
         //set endDate to end of year
         // todo: check endDate for validity as date
@@ -56,6 +59,32 @@ class NewYearClock extends Clock{
         this.setEndDate()
     }
 }
+/**
+ * Clock that resets every year for given date
+ */
+class Anniversary extends Clock{
+    // @ override
+    constructor(endDate){
+        super(endDate);
+        let countDownDate = this.endDate.getTime();
+        let now = new Date().getTime();
+        var distance = countDownDate - now;
+        // account for case of the countdown being reached, reset
+        if (distance < 0) {
+            // Time calculations for days, hours, minutes and seconds
+            this.resetMethod()
+        } 
+    }
+
+    resetMethod(){
+        if(this.endDate.getFullYear()>= new Date().getFullYear()){
+            // this.endDate.
+            this.endDate.setFullYear(new Date().getFullYear()+1)
+            console.log('Anniversary done', this);
+        }
+    }
+
+}
 
 // DOM nodes
 let dayCount = document.getElementById("countDay");
@@ -73,8 +102,7 @@ let intervalID;
 let customClockMovement = false;
 let dayClock = new NewYearClock();
 // Initialize default Clock class
-// var myclock = new NewYearClock();
-var myclock =  setMainClock();
+// var myclock = new Anniversary(new Date('5-5-2022'));
 var myclock =  setMainClock();
 setInnerHtmlForNotNull(dueDate, `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 var customClock;
