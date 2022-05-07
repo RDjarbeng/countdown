@@ -80,7 +80,7 @@ class Anniversary extends Clock{
         if(this.endDate.getFullYear()>= new Date().getFullYear()){
             // this.endDate.
             this.endDate.setFullYear(new Date().getFullYear()+1)
-            console.log('Anniversary done', this);
+            // console.log('Anniversary done', this);
         }
     }
 

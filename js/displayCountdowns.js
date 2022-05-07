@@ -50,13 +50,13 @@ async function displayCountdowns() {
 }
 
 function populateList(arrayOfCountdowns) {
-    console.log(arrayOfCountdowns);
+    // console.log(arrayOfCountdowns);
     let listItems = '';
     arrayOfCountdowns.forEach((countdown, index) => {
-        if(countdown.hasOwnProperty('date')){
-            console.log(arrayOfCountdowns);
-            arrayOfCountdowns[index].date =new Anniversary(new Date(countdown.date)).endDate;
-        }
+        // if(countdown.hasOwnProperty('date')){
+        //     // console.log(arrayOfCountdowns);
+        //     arrayOfCountdowns[index].date =new Anniversary(new Date(countdown.date)).endDate;
+        // }
         let date = new Date(countdown.date);
         listItems += `
         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
@@ -173,8 +173,9 @@ function addListEventListener() {
                 // todo: custom error messages for components on fail
                 try {
                     if(editItem){
+                    console.log('Edit clicked', editItem);
                     displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
-                    handleUpdate();
+                    // handleUpdate();
                 }else{
                     // something went wrong with the editing
                     errorHandler('Unable to edit countdown');
@@ -246,7 +247,9 @@ function setCountDownList(jsArray){
 
 function displayFormPopUp(text, dateTime, modifiedTime) {
     // todo: Track items without using modifiedTime
+    console.log(text, dateTime, modifiedTime, 'form');
     if(text && dateTime&& modifiedTime){
+        console.log('inside form display');
     const updateFormHtml = `<section class="pop-up-container">
     <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
         <div class="form-header">Update Countdown</div>
