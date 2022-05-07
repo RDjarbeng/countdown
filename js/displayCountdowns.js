@@ -116,9 +116,9 @@ function addCountdownItem(countdown, index) {
 function getCountdownString(clock) {
     let countdownString ='';
     if(clock.days>0){
-            countdownString=clock.days + ' days, '+clock.hours+' hours';
+            countdownString=clock.days + ' days, '+ ((clock.hours>0)?(clock.hours+' hours'):(clock.minutes+' minutes'));
     }else if(clock.hours>0){
-            countdownString=clock.hours + ' hours, '+clock.minutes+' minutes';
+            countdownString=clock.hours + ' hours, '+((clock.minutes>0)?(clock.minutes+' minutes'):(clock.seconds+' seconds'));
     }else if(clock.minutes>0){
             countdownString=clock.minutes + ' minutes, '+clock.seconds+' seconds';
     }else if(clock.seconds>0){
