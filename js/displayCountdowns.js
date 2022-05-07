@@ -114,7 +114,29 @@ function addCountdownItem(countdown, index) {
  * @returns {String} string of countdown status
  */
 function getCountdownString(clock) {
-    return ` ${clock.days + ' days, ' + clock.hours + ' hours,' + clock.minutes + ' minutes,' + clock.seconds + ' seconds '} more`
+    let countdownString ='';
+    console.log(typeof clock.hours, clock.hours>0);
+    if(clock.days>0){
+        if(clock.hours<2){
+            countdownString=clock.hours + ' hour, '+clock.minutes+' minutes';
+        }else{
+            countdownString= clock.days+ ' days ';
+        }
+        
+    }else if(clock.hours>0){
+        
+        if(clock.hours<2){
+            countdownString=clock.hours + ' hour, '+clock.minutes+' minutes';
+        }else{
+            countdownString= clock.hours + ' hours';
+        }
+    }else if(clock.minutes>0){
+        countdownString=clock.minutes+' minutes';
+    }else if(clock.seconds>0){
+        countdownString= clock.seconds + ' seconds '
+    }
+    console.log(clock.hours>0, 'hours');
+    return ` ${ countdownString } more`
 }
 /**
  * update countdown status for non elapsed countdowns
