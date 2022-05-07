@@ -8,7 +8,7 @@ App deployed on netlify at https://rcountdown.netlify.app/
 <br><br>
 ## Countdown v0.1.0 (How it began)
 Counts down to midnight with clickable features (dark mode) <br><br>
-![before](https://user-images.githubusercontent.com/73431750/147592275-2123d01f-a49a-40c4-afa5-6e563450da5c.png)
+![v0 1](https://user-images.githubusercontent.com/73431750/163797559-f06ea073-8a74-4a09-a5f7-8aa4cb8c4732.png)
 
 
 ## Countdown v0.2.1
@@ -19,18 +19,17 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 * Changed fonts
 * Simplified css
 
+
 ## Countdown v0.2.2
 * Added Font Awesome icons
 * Fixed light and dark mode styling
 * Fixed light/dark mode toggle button layout
 * Minor text edits
 
+
 ## Countdown v0.2.3
 * Added auto light and dark mode
-
-![mobile](https://user-images.githubusercontent.com/73431750/147591678-5b72d187-91a4-453e-bf5e-e13989782adb.png)
-![darkpc](https://user-images.githubusercontent.com/73431750/147591798-52dc8861-8e7c-456e-bdc2-2f4c2880e320.png)
-![lightpc](https://user-images.githubusercontent.com/73431750/147591915-d0a48f8d-c104-4fef-85bb-1467fffdcc53.png)
+![v023@0,75x](https://user-images.githubusercontent.com/73431750/163797714-e40fe63b-6236-482a-865e-2a58665c0352.png)
 
 
 ## Countdown v0.4.2
@@ -38,14 +37,14 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 * Added countdown to end of year
 * Added day count
 
-![pc](https://user-images.githubusercontent.com/73431750/147855844-e87ce479-6e63-4ee5-9e73-53b29cdfb2bb.png)
+![v042](https://user-images.githubusercontent.com/73431750/163798384-a48aae8c-91d0-4d31-b4e1-991f25147766.png)
 
 
 ## Countdown v1.0.0
 * Added authors page
 * Added link with names at bottom of main page to authors page
 
-![v100update](https://user-images.githubusercontent.com/73431750/150794436-9998eed7-c0a2-4621-8c62-19119b7ad679.png)
+![v1](https://user-images.githubusercontent.com/73431750/163801098-192a70c7-ecf6-4f11-bd9b-dc10825ee98b.png)
 
 
 ## Countdown v1.1.0
@@ -59,17 +58,35 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 * Added PWA functionality for (android) users to install app
 * UI updates to light and dark mode 👀
 
-![mobilev1.2](https://user-images.githubusercontent.com/73431750/149920295-20edf313-7736-45b7-9451-02949f64593c.png)
+![v1 2](https://user-images.githubusercontent.com/73431750/163797976-658ca351-eec2-4879-960c-a274609be1ce.png)
 
-![pcv1.2](https://user-images.githubusercontent.com/73431750/149921160-cb97133b-84c5-4c72-8084-5dcbc574a532.png)
 
 ## Countdown v2.0.0
-* redesigned UI; sidebar navigation added, multiple themes and backgrounds to choose from
+* Redesigned UI; sidebar navigation added, multiple themes and backgrounds to choose from
 * User created countdowns is now possible; can edit, delete and set a countdown to display on homepage
 * Added sharing of the day of year Count to Whatsapp platform
 
 ![v2 mobile alt1](https://user-images.githubusercontent.com/73431750/161403556-db26fc75-581e-43e1-8008-f0e3627826a6.png)
 ![v2 pc](https://user-images.githubusercontent.com/73431750/161403301-3f0eea81-6edd-49aa-80b9-d90996449af4.png)
 
+
+## Countdown v2.1.0
+* Added black theme
+* Enhanced app security and integrity by sanitizing form inputs
+* Improved documentation with the addition of the [dev process](/docs/dev-process.md)
+
+![black theme](https://user-images.githubusercontent.com/73431750/163834582-2b98f0be-af25-4011-a0be-361d01a50d4e.png)
+
+
+## Countdown v2.2.0
+* Updated `authors` page to a functional `about` page
+* Added in a special `today` page: <br>
+&emsp; Stay current, share the `dayCount` to Whatsapp and many more to come
+* Provided dark mode styles for form popups, improved responsiveness and styling
+
+![v220@0,5x](https://user-images.githubusercontent.com/73431750/165914344-9e812d54-f5d7-4887-8a70-50253c36f85c.png)
+
+
 ---
 #### Many more to come, stay tuned!
+For more details, and live updates, checkout the [dev process](/docs/dev-process.md) readme

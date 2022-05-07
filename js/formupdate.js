@@ -6,11 +6,11 @@ function popForm() {
     <form action="/html/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
         <div class="form-sections">
-            <label for="">Note &nbsp;</label>
+            <label for="">Title &nbsp;</label>
             <input type="text" placeholder="countdown #${countNumber}" id='countdownText'>
         </div>
         <div class="form-sections">
-            <label for="">Date &nbsp;</label>
+            <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" id ="dateInput" min="" required>
         </div>
         <div class="form-sections">
@@ -57,6 +57,19 @@ function closeFormPopUp() {
     document.body.style.position = "";
 }
 
+function sanitize(string) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return string.replace(reg, (match)=>(map[match]));
+  }
+
 function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
     const submitbutton = document.getElementById('countdown-submit');
@@ -69,7 +82,9 @@ function handleFormSubmission() {
         submitbutton.disabled = true;
         // get text field values, with auto values
         let userTextField = document.getElementById('countdownText');
-        let userText = userTextField.value;
+        console.log(userTextField.value, 'user input');
+        let userText = sanitize(userTextField.value)
+        console.log(userText, 'sanitized user');
 
         if (!userText) {
             userText = userTextField.placeholder;
@@ -121,7 +136,7 @@ let countNumber = 1;
 if (!document.querySelector("[href='css/form.css']")) {
     document.head.insertAdjacentHTML(
         "beforeend",
-        `<link rel="stylesheet" href="../css/form.css">`
+        `<link rel="stylesheet" href="/css/form.css">`
     );
 }
 
