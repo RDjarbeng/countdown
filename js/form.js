@@ -107,22 +107,26 @@ function handleFormSubmission() {
         if(repeatCheck){
             countItem.repeat = repeatCheck.checked;
         }
-        let countdown = localStorage.getItem('countdown');
-        if(countdown !== null){ //countdowns already exist
-         countdown = JSON.parse(countdown);//array
-
-        countdown.push(countItem);
-        console.log(countdown);
-        setCountDownList(countdown)
-        }else{
-            // create first countdown
-             setCountDownList([countItem]);
-        }
+        saveToLocalStorage(countItem);
 
         // testing
         window.location.href = "/html/countdown-list.html";
         closeFormPopUp();
     })
+}
+
+function saveToLocalStorage(countItem){
+    let countdown = localStorage.getItem('countdown');
+    if(countdown !== null){ //countdowns already exist
+     countdown = JSON.parse(countdown);//array
+
+    countdown.push(countItem);
+    console.log(countdown);
+    setCountDownList(countdown)
+    }else{
+        // create first countdown
+         setCountDownList([countItem]);
+    }
 }
 
 
