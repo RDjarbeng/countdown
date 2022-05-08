@@ -15,13 +15,16 @@
         
         
     }
-    countDown() {
-        // Set the date we're counting down to
+
+    getDistance(){
         let countDownDate = this.endDate.getTime();
         let now = new Date().getTime();
-        var distance = countDownDate - now;
+        return countDownDate - now;
+    }
+    countDown() {
+        
         // account for case of the countdown being reached, reset
-        if (distance >= 0) {
+        if (this.getDistance >= 0) {
             // Time calculations for days, hours, minutes and seconds
             this.calculateTimeValues(distance)
         } else {
@@ -66,20 +69,19 @@ class Anniversary extends Clock{
     // @ override
     constructor(endDate){
         super(endDate);
-        let countDownDate = this.endDate.getTime();
-        let now = new Date().getTime();
-        var distance = countDownDate - now;
         // account for case of the countdown being reached, reset
-        if (distance < 0) {
+        if (this.getDistance < 0) {
             // Time calculations for days, hours, minutes and seconds
             this.resetMethod()
         } 
     }
 
     resetMethod(){
-        if(this.endDate.getFullYear()>= new Date().getFullYear()){
+        // console.log('calling reset', this.endDate.getFullYear()<= new Date().getFullYear(), 'first cond', this.getDistance<0);
+        while(this.endDate.getFullYear()<= new Date().getFullYear() && this.getDistance()<0){
             // this.endDate.
-            this.endDate.setFullYear(new Date().getFullYear()+1)
+            console.log(this.endDate, 'End date triggering' );
+            this.endDate.setFullYear(this.endDate.getFullYear()+1)
             // console.log('Anniversary done', this);
         }
     }

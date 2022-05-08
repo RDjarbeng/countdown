@@ -84,7 +84,7 @@ function populateList(arrayOfCountdowns) {
                 arrayOfCountdowns[index].date = new Anniversary(new Date(countdown.date)).endDate.toISOString();
                 arrayOfCountdowns[index].dateModified = new Date().toISOString();
                 setCountDownList(arrayOfCountdowns);
-                console.log('Updating values of old cds');
+                console.log('Updating values of old cds', arrayOfCountdowns[index]);
 
             };
             // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
