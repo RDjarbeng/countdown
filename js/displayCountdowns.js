@@ -337,7 +337,7 @@ function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
         </div>
         <div class="form-sections form-repeat">
             <label for="repeat-cb">
-                <input type="checkbox" id="repeat-cb"> Repeat 
+                <input type="checkbox" id="repeat-cb" ${repeat?'checked':''}> Repeat 
             </label>
         </div>
         <div class="form-sections">
