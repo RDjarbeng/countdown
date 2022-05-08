@@ -281,40 +281,51 @@ function handleUpdate() {
         // get text field values, with auto values
         let userText = document.getElementById('countdownText').value;
         const modifiedTime = document.getElementById('modifiedTime').value;
-
+        let userDate = document.getElementById("dateInput").value;
+        let repeatCheck = document.getElementById("repeat-cb");
         // if (!userText) {
         //     userText = userTextField.placeholder;
         //     countNumber++;
         //     localStorage.setItem('countNumber', countNumber)
         // }
-        let userDate = document.getElementById("dateInput").value;
+        
         userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        arrayOfCountdowns = arrayOfCountdowns? arrayOfCountdowns: JSON.parse(localStorage.getItem('countdown'));
-        if (arrayOfCountdowns !== null) { //countdowns already exist
-            
-            
-            let pos = arrayOfCountdowns.findIndex((value) =>
-                value.dateModified == modifiedTime
-            );
-            if(pos>-1){
-                console.log(arrayOfCountdowns[pos]);
-                arrayOfCountdowns[pos].text = countItem.text;
-                arrayOfCountdowns[pos].date = countItem.date;
-                arrayOfCountdowns[pos].dateModified = countItem.dateModified;
-                setCountDownList(arrayOfCountdowns);
-                displayCountdowns();
-                closeFormPopUp();
-                removeClockAndText();
-            }else{
-                console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);
-                errorHandler('Unable to update Item');
-            }
-
+        if(repeatCheck){
+            countItem.repeat = repeatCheck.checked;
+            console.log(countItem, 'Running In repeat');
         }
+        
+        updateLocalItem(countItem, modifiedTime);
+        displayCountdowns();
+        closeFormPopUp();
+        removeClockAndText();
+        arrayOfCountdowns = arrayOfCountdowns? arrayOfCountdowns: JSON.parse(localStorage.getItem('countdown'));
     })
 }
 
+function updateLocalItem(countItem, modifiedTime){
+    if (arrayOfCountdowns !== null) { //countdowns already exist
+            
+            
+        let pos = arrayOfCountdowns.findIndex((value) =>
+            value.dateModified == modifiedTime
+        );
+        if(pos>-1){
+            console.log(arrayOfCountdowns[pos]);
+            arrayOfCountdowns[pos].text = countItem.text;
+            arrayOfCountdowns[pos].date = countItem.date;
+            arrayOfCountdowns[pos].dateModified = countItem.dateModified;
+            arrayOfCountdowns[pos].repeat = countItem.repeat;
+            setCountDownList(arrayOfCountdowns);
+        }else{
+            console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);
+            errorHandler('Unable to update Item');
+        }
+
+    }
+
+}
 function setCountDownList(jsArray){
     localStorage.setItem('countdown', JSON.stringify(jsArray))   
 }
