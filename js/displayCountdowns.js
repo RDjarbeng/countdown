@@ -77,10 +77,18 @@ function populateList(arrayOfCountdowns) {
     let listItems = '';
     sortArrayOnSelection();
     arrayOfCountdowns.forEach((countdown, index) => {
-        // if(countdown.hasOwnProperty('date')){
-        //     // console.log(arrayOfCountdowns);
-        //     arrayOfCountdowns[index].date =new Anniversary(new Date(countdown.date)).endDate;
-        // }
+        if(countdown.hasOwnProperty('repeat') && countdown.repeat){
+            // console.log(arrayOfCountdowns);
+            // countdown elapsed
+            if(new Date(countdown.date) -new Date()<0){
+                arrayOfCountdowns[index].date =new Anniversary(new Date(countdown.date)).endDate.toISOString();
+                arrayOfCountdowns[index].dateModified =new Date().toISOString();
+                setCountDownList(arrayOfCountdowns);
+                console.log('Updating values of old cds');
+
+            };
+            // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
+        }
         let date = new Date(countdown.date);
         listItems += `
         <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
@@ -132,6 +140,7 @@ function removeClockAndText(){
 }
 
 const triggerContextMenu = (element) => {
+    if(element.querySelector(".menu")){
     if (element.querySelector(".menu").style.display == "block") {
         hideContextMenus();
     }
@@ -141,6 +150,7 @@ const triggerContextMenu = (element) => {
         switchContextIconUp(element);
         // console.log("context-menu: show");
     }
+}
 }
 function switchContextIconUp(element){
     element = element.querySelector('.fa-chevron-circle-down')
@@ -293,7 +303,6 @@ function handleUpdate() {
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
         if(repeatCheck){
             countItem.repeat = repeatCheck.checked;
-            console.log(countItem, 'Running In repeat');
         }
         
         updateLocalItem(countItem, modifiedTime);
