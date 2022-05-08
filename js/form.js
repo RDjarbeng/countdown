@@ -86,11 +86,11 @@ function handleFormSubmission() {
     // console.log(event);
     countdownForm.addEventListener('submit', (e) => {
         // DOM references
+        e.preventDefault();
         const submitbutton = document.getElementById('countdown-submit');
         let userDate = document.getElementById("dateInput").value;
         let repeatCheck = document.getElementById("repeat-cb");
         let userTextField = document.getElementById('countdownText');
-        // e.preventDefault();
         submitbutton.disabled = true;
         // get text field values, with auto values
         
