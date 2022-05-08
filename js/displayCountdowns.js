@@ -208,7 +208,11 @@ function addListEventListener() {
                 try {
                     if(editItem){
                     console.log('Edit clicked', editItem);
-                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
+                    repeat =false;
+                    if(editItem.hasOwnProperty('repeat')){
+                        repeat = editItem.repeat;
+                    }
+                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified, repeat );
                     handleUpdate();
                 }else{
                     // something went wrong with the editing
@@ -315,7 +319,7 @@ function setCountDownList(jsArray){
     localStorage.setItem('countdown', JSON.stringify(jsArray))   
 }
 
-function displayFormPopUp(text, dateTime, modifiedTime) {
+function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
     // todo: Track items without using modifiedTime
     console.log(text, dateTime, modifiedTime, 'form');
     if(text && dateTime&& modifiedTime){
