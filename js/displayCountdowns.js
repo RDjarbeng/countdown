@@ -209,7 +209,7 @@ function addListEventListener() {
                     if(editItem){
                     console.log('Edit clicked', editItem);
                     displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
-                    // handleUpdate();
+                    handleUpdate();
                 }else{
                     // something went wrong with the editing
                     errorHandler('Unable to edit countdown');
