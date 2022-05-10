@@ -22,11 +22,12 @@
         return countDownDate - now;
     }
     countDown() {
-        
+        console.log(this.getDistance());
         // account for case of the countdown being reached, reset
-        if (this.getDistance >= 0) {
+        if (this.getDistance() >= 0) {
+            console.log('Running the count');
             // Time calculations for days, hours, minutes and seconds
-            this.calculateTimeValues(distance)
+            this.calculateTimeValues(this.getDistance())
         } else {
             // clear date values
             this.resetMethod();
@@ -110,13 +111,15 @@ setInnerHtmlForNotNull(dueDate, `Due: ${myclock.endDate.getDate() + ' ' + mycloc
 var customClock;
 
 function setMainClock() {
+    let myclock = new NewYearClock();
     let mainclock =  localStorage.getItem('mainClock');
     if (mainclock !== null && mainclock != undefined) { //countdown set to main
         mainclock = JSON.parse(mainclock)
         myclock = new Clock(new Date(mainclock.date));
         setMainText(mainclock.text)
     }
-    return myclock || new NewYearClock();
+    console.log(myclock);
+    return myclock;
 
 }
 
