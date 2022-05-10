@@ -40,17 +40,41 @@ async function displayCountdowns() {
         let listItems = populateList(arrayOfCountdowns);
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
-        // updateClockAndText(arrayOfCountdowns[arrayOfCountdowns.length-1].date, arrayOfCountdowns[arrayOfCountdowns.length-1].text)
         
+        const  sortUI = async ()=>  {   
+            if (!document.querySelector(".list-settings")) {
+                const listContainer = document.querySelector(".list-container");
+                let sortHtml = `
+                <section class="list-settings">
+                    <div class="sort">
+                        <div class="sort-options">
+                            <div class="sort-opt modified">Date modified</div>
+                            <div class="sort-opt due">Due date</div>
+                        </div>
+                        <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
+                    </div>
+                </section>`;
+                listContainer.insertAdjacentHTML("afterbegin", sortHtml);
+            }
+            // addSortEventListeners();
+        }
+
+        
+        sortUI();
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
         setInnerHtmlForNotNull(countdownTextDisplay, '')
     }
 }
-
+/**
+ * 
+ * @param {Array} arrayOfCountdowns 
+ * @returns {String} listItems
+ */
 function populateList(arrayOfCountdowns) {
     let listItems = '';
+    sortArrayOnSelection();
     arrayOfCountdowns.forEach((countdown, index) => {
         let date = new Date(countdown.date);
         listItems += `
@@ -77,6 +101,15 @@ function populateList(arrayOfCountdowns) {
     return listItems;
 }
 
+function sortArrayOnSelection(){
+    let sortType = localStorage.getItem('sort');
+    if(sortType =="due"){
+        // sort by due date if present
+        arrayOfCountdowns.sort((countItem1, countItem2)=> new Date(countItem2.date).getTime()-new Date(countItem1.date).getTime())
+    }else{
+        arrayOfCountdowns.sort((countItem1, countItem2)=> new Date(countItem1.dateModified).getTime()-new Date(countItem2.dateModified).getTime())
+    }
+}
 function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
@@ -117,16 +150,17 @@ function switchContextIconDown(element){
 }
 function hideContextMenus(event) {
     //if function is not triggered by event listener, event is empty
-    if ((!(event != null))||!(event.target.className == 'countdown-list-options' || event.target.tagName == 'I')) {
+    if ((!(event != null))||!(event.target.className == 'countdown-list-options' || event.target.tagName == 'I'|| (event.target.className.search('sort-title') >-1))) {
         document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
         document.querySelectorAll('.fa-chevron-circle-up').forEach(element => switchContextIconDown(element));
+        closeSortMenu();
+    // }
     } 
+
     
 }
 function addListEventListener() {
     document.querySelector('.countdown-list').addEventListener('click', event => {
-        //hide all context menus
-
         const targetElement = event.target;
 
         // if event is fired on text or date
@@ -186,6 +220,42 @@ function addListEventListener() {
     })
 }
 
+const closeSortMenu=()=>{
+    const sortOpts = document.querySelector(".sort-options");
+    if (sortOpts.style.display == "block") {
+        sortOpts.style.display = "none";
+    }
+}
+
+const addSortEventListeners = ()=>{
+    const sortOpts = document.querySelector(".sort-options");
+    const sortTitle = document.querySelector(".sort-title");
+        sortTitle.addEventListener("click", ()=> {
+            if (sortOpts.style.display == "block") {
+                sortOpts.style.display = "none";
+            }
+            else{
+                sortOpts.style.display = "block";
+            }
+        });
+        // sort options menu events
+        sortOpts.addEventListener("click", (event)=> {
+            if(event.target.className.search('due') > -1){
+                localStorage.setItem('sort', 'due') 
+                // console.log('due clicked', localStorage.getItem('sort'));
+                // displayCountdowns();
+                  
+            }else if(event.target.className.search('modified') > -1){
+                localStorage.setItem('sort', 'modified')
+                // console.log('modified clicked', localStorage.getItem('sort'));
+                // displayCountdowns();
+            }
+            // close sortOptions menu on selection and refresh list
+            closeSortMenu();
+            displayCountdowns();
+        })
+}
+
 function handleUpdate() {
     // todo: update list with custom fired events
     const countdownForm = document.getElementById('customUpDateForm');
@@ -227,7 +297,7 @@ function handleUpdate() {
                 closeFormPopUp();
                 removeClockAndText();
             }else{
-                console.log("Unable to update Item in displayCountdown, HandleUpdate");
+                console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);
                 errorHandler('Unable to update Item');
             }
 
@@ -279,15 +349,21 @@ function setCountDownList(arrayOfJSONCountdowns) {
 
 function addListEventHandlers() {
     addListEventListener();
+    addSortEventListeners();
+
     // add context menu event listener
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
+
+async function displayAndAddListeners(){
+    await displayCountdowns().catch((err)=>{
+        console.log(err);
+        errorHandler('Unable to fetch your countdowns')
+    });
+    addListEventHandlers();
+}
 try{
-displayCountdowns().catch((err)=>{
-    console.log(err);
-    errorHandler('Unable to fetch your countdowns')
-});
-addListEventHandlers();
+    displayAndAddListeners();
 }catch (err) {
     console.log(err, 'err in display countdown initialisation');
     errorHandler("Unable to fetch your countdowns");
