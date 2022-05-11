@@ -119,7 +119,6 @@ function addCountdownItem(countdown, index) {
     </div>
     </div>
         <div class="countdown-list-date" > 
-        Status:
         <span 
             data-date="${countdown.date}" 
             class="${(!elapsed) ? 'countdown-counting' : ''}" >
