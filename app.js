@@ -22,7 +22,7 @@
         return countDownDate - now;
     }
     countDown() {
-        console.log(this.getDistance());
+        // console.log(this.getDistance());
         // account for case of the countdown being reached, reset
         if (this.getDistance() >= 0) {
             // console.log('Running the count');
