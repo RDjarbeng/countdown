@@ -1,13 +1,18 @@
   class Clock {
+     /**
+      * Create a countdown clock with a Date object
+      * @constructor
+      * @param {Date} endDate 
+      */ 
     constructor(endDate) {
         // expecting a date object
         this.setEndDate(endDate)
         this.countDown();
     }
-    /**
-     * 
-     * @param {Date} endDate 
-     */
+/**
+ * change the clock's end date, call this.countdown() after
+ * @param {Date} endDate 
+ */
     setEndDate(endDate) {
         //set endDate to end of year
         // todo: check endDate for validity as date
@@ -15,14 +20,18 @@
         
         
     }
-
+    /**
+     * Returns the time in seconds between end date and current time
+     * @returns {number} n
+     */
     getDistance(){
-        let countDownDate = this.endDate.getTime();
-        let now = new Date().getTime();
-        return countDownDate - now;
+        return this.endDate.getTime() - new Date().getTime();
     }
-    countDown() {
-        // console.log(this.getDistance());
+    /**
+     * Calls the function to populate/refresh the time values in the clock
+     */
+    countDown=()=> {
+        var distance = this.getDistance()
         // account for case of the countdown being reached, reset
         if (this.getDistance() >= 0) {
             // console.log('Running the count');
@@ -31,11 +40,11 @@
         } else {
             // clear date values
             this.resetMethod();
-            
-
         }
     }
-
+    /**
+     * Defines what should happen when the countdown is reached
+     */
     resetMethod(){
         this.clearCounter();
     }
@@ -46,17 +55,25 @@
             this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
     }
+    /**
+     * Return the number of days, account for leap year
+     * @returns {Number} days Number of days in the year
+     */
     countDays() {
         //account for leap year
         this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
         return this.dayLength - this.days
     }
-
+    /**
+     * Sets the clock values, day, hour, year, second to 0, !not a replacement for stop clock 
+     */
     clearCounter(){
         this.days=this.hours=this.minutes=this.seconds=0;
     }
 }
-
+/**
+ * Clock which resets to New year for the next year
+ */
 class NewYearClock extends Clock{
     resetMethod(){
         //reset to New Year's for default 
@@ -127,7 +144,12 @@ function setMainText(countdownText) {
     const textDisplay = document.getElementById('countdown-text');
     setInnerHtmlForNotNull(textDisplay, countdownText)
 }
-
+/**
+ * 
+ * @param {Clock} clock 
+ * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
+ * @param {Number} [duration=800] specifies how long the animation lasts in milliseconds
+ */
  async function waitForAnimation(clock, domElements, duration) {
     await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
     startClock(clock || myclock, domElements);
@@ -145,14 +167,25 @@ function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
         updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
     }
 }
-// add zero in front of numbers < 10
-function addZeros(time) {
-    if (time < 10) {
-        time = "0" + time;
+/**
+ * add zero in front of numbers < 10
+ * @param {Number} num 
+ * @returns num number with 0 at the front
+ */
+function addZeros(num) {
+    if (num < 10) {
+        num = "0" + num;
     }
-    return time;
+    return num;
 }
-
+/**
+ * Updates the html dom nodes with the clock values, days, hours, minutes, seconds
+ * @param {Clock} counter 
+ * @param {HTMLElement} dayDisplay 
+ * @param {HTMLElement} hourDisplay 
+ * @param {HTMLElement} minDisplay 
+ * @param {HTMLElement} secDisplay 
+ */
 function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
     counter.countDown();
     let d = counter.days
@@ -172,18 +205,18 @@ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay)
 /**
  * Listens for a user input for date element
  */
-function listenForDate() {
-    const input = this.value;
-    // console.log(input, 'run');
-    if (input != '') {
-        customClock = new Clock(new Date(input));
-        displayClockRow();
-        // do the fast countdown
-        // set speed faster when day of the year is greater
-        // todo: change to animateValue
-        stepIncreaseAndStart(customClock, { customDayNumber, customHourNumber, customMinNumber, customSecNumber }, (365 - customClock.days < 100) ? 365 - customClock.days : 70);
-    }
-}
+// function listenForDate() {
+//     const input = this.value;
+//     // console.log(input, 'run');
+//     if (input != '') {
+//         customClock = new Clock(new Date(input));
+//         displayClockRow();
+//         // do the fast countdown
+//         // set speed faster when day of the year is greater
+//         // todo: change to animateValue
+//         stepIncreaseAndStart(customClock, { customDayNumber, customHourNumber, customMinNumber, customSecNumber }, (365 - customClock.days < 100) ? 365 - customClock.days : 70);
+//     }
+// }
 
 function displayClockRow() {
     let customRow = document.getElementById("customDisplay");
@@ -199,7 +232,9 @@ function restartTime() {
     }
 }
 */
-//stop the clock
+/**
+ * Stop the clock with global var intervalID
+ */
  function stopClock() {
     clearTimeout(intervalID);
     customClockMovement = false;
@@ -240,7 +275,11 @@ function exportToWhatsapp() {
     let dayNum = dayCount.innerText;
     window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
 }
-
+/**
+ * Checks if a DOM element variable is null before setting innerHTML
+ * @param {HTMLElement} element 
+ * @param {String} value 
+ */
 function setInnerHtmlForNotNull(element, value){
     if(element)//check for null
         element.innerHTML = value;
