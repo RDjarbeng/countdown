@@ -25,7 +25,7 @@
         console.log(this.getDistance());
         // account for case of the countdown being reached, reset
         if (this.getDistance() >= 0) {
-            console.log('Running the count');
+            // console.log('Running the count');
             // Time calculations for days, hours, minutes and seconds
             this.calculateTimeValues(this.getDistance())
         } else {
