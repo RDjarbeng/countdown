@@ -91,6 +91,8 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 * Added option to sort countdowns
 * Removed due date status, added countdown status on the list item
 
+![v2 3](https://user-images.githubusercontent.com/73431750/169272292-e83d9285-05bf-4264-9f45-3d8880505d7b.png)
+
 
 ---
 #### Many more to come, stay tuned!

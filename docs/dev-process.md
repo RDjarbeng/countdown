@@ -143,6 +143,8 @@ Not all elements made it into the final product, some others also got modified, 
 * Added option to sort countdowns
 * Removed due date status, added countdown status on the list item
 
+![v2 3](https://user-images.githubusercontent.com/73431750/169272292-e83d9285-05bf-4264-9f45-3d8880505d7b.png)
+
 
 ### Potential and/or current developments
 * listpage as the homepage with onboarding
