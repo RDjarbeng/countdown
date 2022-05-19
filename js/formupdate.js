@@ -102,12 +102,17 @@ function handleFormSubmission() {
         let countdown = localStorage.getItem('countdown');
         if(countdown !== null){ //countdowns already exist
          countdown = JSON.parse(countdown);//array
-
         countdown.push(countItem);
         // console.log(countdown);
         setCountDownList(countdown);
         // external function
-        displayCountdowns();
+        try{
+            displayAndStartcount();
+            console.log('we did it', countItemExists);
+        } catch (err) {
+    console.log(err, 'err in updating countdown initialisation');
+    errorHandler("Unable to finish update your countdowns");
+}
         closeFormPopUp();
 
         }else{
