@@ -87,6 +87,11 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 ![v220@0,5x](https://user-images.githubusercontent.com/73431750/165914344-9e812d54-f5d7-4887-8a70-50253c36f85c.png)
 
 
+## Countdown v2.3.0
+* Added option to sort countdowns
+* Removed due date status, added countdown status on the list item
+
+
 ---
 #### Many more to come, stay tuned!
 For more details, and live updates, checkout the [dev process](/docs/dev-process.md) readme

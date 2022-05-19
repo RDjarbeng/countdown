@@ -139,6 +139,11 @@ Not all elements made it into the final product, some others also got modified, 
 ![v220@0,5x](https://user-images.githubusercontent.com/73431750/165914344-9e812d54-f5d7-4887-8a70-50253c36f85c.png)
 
 
+## Countdown v2.3.0
+* Added option to sort countdowns
+* Removed due date status, added countdown status on the list item
+
+
 ### Potential and/or current developments
 * listpage as the homepage with onboarding
 * ui for elapsed countdown and clickless countdown updating
