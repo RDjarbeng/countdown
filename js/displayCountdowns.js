@@ -142,7 +142,7 @@ function getCountdownString(clock) {
             countdownString=clock.hours + ' hours, '+((clock.minutes>0)?(clock.minutes+' minutes'):(clock.seconds+' seconds'));
     }else if(clock.minutes>0){
             countdownString=clock.minutes + ' minutes, '+clock.seconds+' seconds';
-    }else if(clock.seconds>0){
+    }else if(clock.seconds>=0){
         countdownString= clock.seconds + ' seconds '
     }
     return ` ${ countdownString } more`
@@ -442,10 +442,7 @@ function addListEventHandlers() {
 }
 
 async function displayAndAddListeners(){
-    await displayCountdowns().catch((err)=>{
-        console.log(err);
-        errorHandler('Unable to fetch your countdowns')
-    });
+    await displayAndStartcount()
     addListEventHandlers();
 }
 try{
