@@ -10,6 +10,7 @@
   --form-header: var(--color-banner);
   --bg-sec: rgba(0,0,0,0.1);
   --form-close: var(--color-banner);
+  --checkbox: rgba(49, 140, 252, 0.36);
 }
 .dark[data-theme="blue"] {
   --bg-color: #182635;
@@ -36,6 +37,7 @@
   --form-header: var(--color-banner);
   --bg-sec: rgba(0,0,0,0.1);
   --form-close: var(--color-banner);
+  --checkbox: rgba(28, 182, 92, 0.36);
 }
 .dark[data-theme="green"] {
   --bg-color: #18351e;
@@ -62,6 +64,7 @@
   --form-header: var(--color-banner);
   --bg-sec: rgba(0,0,0,0.1);
   --form-close: var(--color-banner);
+  --checkbox: rgba(254, 33, 99, 0.36);
 }
 .dark[data-theme="red"] {
   --bg-color: #35181d;
@@ -88,6 +91,7 @@
   --form-header: var(--color-banner);
   --bg-sec: rgba(0,0,0,0.1);
   --form-close: var(--color-banner);
+  --checkbox: rgba(124, 104, 238, 0.36);
 }
 .dark[data-theme="purple"] {
   --bg-color: #1b182c;
@@ -114,6 +118,7 @@
   --form-header: var(--color-banner);
   --bg-sec: rgba(0,0,0,0.1);
   --form-close: var(--color-banner);
+  --checkbox: rgba(255, 191, 0, 0.36);
 }
 .dark[data-theme="yellow"] {
   --bg-color: #352e19;
@@ -140,6 +145,7 @@
   --form-header: var(--color-banner);
   --bg-sec: rgba(0,0,0,0.1);
   --form-close: var(--color-banner);
+  --checkbox: rgba(230, 133, 181, 0.36);
 }
 .dark[data-theme="pink"] {
   --bg-color: #472a39;
@@ -166,6 +172,7 @@
   --form-header: var(--color-banner);
   --bg-sec: rgba(0,0,0,0.1);
   --form-close: var(--color-banner);
+  --checkbox: rgba(129, 129, 129, 0.4);
 }
 .dark[data-theme="black"] {
   --bg-color: #3c3c3c;
