@@ -148,15 +148,15 @@ function addCountdownItem(countdown, index) {
  * @returns {String} string of countdown status
  */
 function getCountdownString(clock) {
-    let countdownString = '';
-    if (clock.days > 0) {
-        countdownString = clock.days + ' days, ' + ((clock.hours > 0) ? (clock.hours + ' hours') : (clock.minutes + ' minutes'));
-    } else if (clock.hours > 0) {
-        countdownString = clock.hours + ' hours, ' + ((clock.minutes > 0) ? (clock.minutes + ' minutes') : (clock.seconds + ' seconds'));
-    } else if (clock.minutes > 0) {
-        countdownString = clock.minutes + ' minutes, ' + clock.seconds + ' seconds';
-    } else if (clock.seconds > 0) {
-        countdownString = clock.seconds + ' seconds '
+    let countdownString ='';
+    if(clock.days>0){
+            countdownString=clock.days + ' days, '+ ((clock.hours>0)?(clock.hours+' hours'):(clock.minutes+' minutes'));
+    }else if(clock.hours>0){
+            countdownString=clock.hours + ' hours, '+((clock.minutes>0)?(clock.minutes+' minutes'):(clock.seconds+' seconds'));
+    }else if(clock.minutes>0){
+            countdownString=clock.minutes + ' minutes, '+clock.seconds+' seconds';
+    }else if(clock.seconds>=0){
+        countdownString= clock.seconds + ' seconds '
     }
     return ` ${countdownString} more`
 }
@@ -475,11 +475,8 @@ function addListEventHandlers() {
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
 
-async function displayAndAddListeners() {
-    await displayCountdowns().catch((err) => {
-        console.log(err);
-        errorHandler('Unable to fetch your countdowns')
-    });
+async function displayAndAddListeners(){
+    await displayAndStartcount()
     addListEventHandlers();
 }
 try {
