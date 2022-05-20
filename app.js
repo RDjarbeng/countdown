@@ -124,7 +124,7 @@ let dayClock = new NewYearClock();
 // Initialize default Clock class
 // var myclock = new Anniversary(new Date('5-5-2022'));
 var myclock =  setMainClock();
-setInnerHtmlForNotNull(dueDate, `Due: ${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
+setInnerHtmlForNotNull(dueDate, `${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 var customClock;
 
 function setMainClock() {
@@ -135,7 +135,6 @@ function setMainClock() {
         myclock = new Clock(new Date(mainclock.date));
         setMainText(mainclock.text)
     }
-    console.log(myclock);
     return myclock;
 
 }
