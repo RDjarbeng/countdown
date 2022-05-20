@@ -6,11 +6,11 @@ function popForm() {
     <form action="/html/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
         <div class="form-sections">
-            <label for="">Note &nbsp;</label>
+            <label for="">Title &nbsp;</label>
             <input type="text" placeholder="countdown #${countNumber}" id='countdownText'>
         </div>
         <div class="form-sections">
-            <label for="">Date &nbsp;</label>
+            <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" id ="dateInput" min="" required>
         </div>
         <div class="form-sections">
@@ -97,12 +97,17 @@ function handleFormSubmission() {
         let countdown = localStorage.getItem('countdown');
         if(countdown !== null){ //countdowns already exist
          countdown = JSON.parse(countdown);//array
-
         countdown.push(countItem);
         // console.log(countdown);
         setCountDownList(countdown);
         // external function
-        displayCountdowns();
+        try{
+            displayAndStartcount();
+            console.log('we did it', countItemExists);
+        } catch (err) {
+    console.log(err, 'err in updating countdown initialisation');
+    errorHandler("Unable to finish update your countdowns");
+}
         closeFormPopUp();
 
         }else{
@@ -131,7 +136,7 @@ let countNumber = 1;
 if (!document.querySelector("[href='css/form.css']")) {
     document.head.insertAdjacentHTML(
         "beforeend",
-        `<link rel="stylesheet" href="../css/form.css">`
+        `<link rel="stylesheet" href="/css/form.css">`
     );
 }
 

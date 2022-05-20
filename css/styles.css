@@ -6,6 +6,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 /* mode variables */
@@ -13,7 +14,7 @@
   --color-muted: rgba(255, 255, 255, 0.15);
   --color-banner: #7b68ee;
   --timer-grad: rgba(255, 255, 255, 0.5);
-  --bg-url: url("../img/bg.svg");
+  --bg-url: url("/img/bg.svg");
   --bg-sidebar: var(--color-banner);
   --bg-modeToggle: rgba(0, 0, 0, 0.2);
   --bg-sidebar: #7b68ee;
@@ -46,20 +47,22 @@ body {
   font-family: "Nunito", sans-serif;
   width: 100vw;
   height: 100vh;
+  overflow-x: hidden;
 }
 main{
   width: 100vw;
   height: 100vh;
-  margin-top: 10vh;
+  padding-top: 10vh;
 }
 .container {
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 2.5em;
+  gap: 2em;
   overflow-x: hidden;
+  padding-bottom: 3vmin;
 }
 
 .mode-info {
@@ -140,9 +143,9 @@ main{
   border-bottom: 0.5rem solid var(--color-banner);
 }
 .banner-h2{
-  font-size: 0.7em;
+  font-size: 0.85em;
   font-weight: lighter;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.15em;
 }
 .day{
   font-size: 1.77em;
@@ -391,6 +394,75 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   z-index: 2;
   color: var(--color-text);
 }
+.countdown-list-date{
+  box-shadow: var(--timer-box);
+  border-radius: 1vmin;
+  width: 3.8rem;
+  height: 2.8rem;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-areas: "icon date";
+  grid-template-columns: 1fr 9fr;
+  overflow: hidden;
+  animation: expand-date 2.5s alternate 2 2s;
+  margin-top: -0.5em;
+  transform: scale(0.8);
+}
+.countdown-list-date:focus, .countdown-list-date:hover{
+  width: 13rem;
+  transition: 1s;
+}
+.countdown-list-date:focus #dueDate, .countdown-list-date:hover #dueDate{
+  padding: 1vmin 0.5vmin 1vmin 1.5vmin;
+  transition: 1s;
+}
+@keyframes expand-date {
+  0%{
+    visibility: visible;
+    width: 3.8rem;
+  }
+  50%,100%{
+    width: 13rem;
+  }
+}
+.date-icon{
+  background: var(--color-muted);
+  grid-area: icon;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.1rem;
+  width: 3.8rem;
+  height: 2.8rem;
+  background: var(--bg-timer);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+.due{
+  font-size: 0.65rem;
+}
+#dueDate{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  grid-area: date;
+  text-overflow: clip;
+  white-space: nowrap; 
+  overflow: hidden;
+  height: 2.8rem;
+  background: var(--bg-timer);
+  filter: opacity(0.8);
+  animation: due-padding 2.5s alternate 2 2s;
+}
+@keyframes due-padding {
+  0%{
+    padding: 0;
+  }
+  50%,100%{
+      padding: 1vmin 0.5vmin 1vmin 1.5vmin;
+  }
+}
 
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
@@ -413,13 +485,6 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
     width: 1.8em;
     height: 1.8em;
   }
-  .controls-row {
-    flex-flow: row nowrap;
-    gap: 4em;
-  }  
-  #sendWhatsappButton{
-    display: none;
-  }
 }
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
@@ -441,12 +506,7 @@ hr{color:rgba(255, 255, 255, 0.2); width: 85%;}
   .new-item{
     bottom: 10vh;
   }
-/* temporary fix */
-  .clock-row{
-    justify-content: normal;
+  .countdown-list-date{
+    transform: scale(0.65);
   }
-}
-
-.countdown-list-item:hover{
-  background-color: #130752;
 }

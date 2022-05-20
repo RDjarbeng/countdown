@@ -70,6 +70,11 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 ## Countdown to v2.0.0 😄😅
 The development process
 
+## Design iterations along the way
+Not all elements made it into the final product, some others also got modified, added and even dropped completely
+![v2 sketches](https://user-images.githubusercontent.com/73431750/161426509-69ab234d-7307-4214-a030-87ed374ee119.png)
+<br>
+
 #### Changelog
 * Added new themes with different colours
 * Added sidebar
@@ -101,18 +106,12 @@ The development process
 ![image](https://user-images.githubusercontent.com/57795443/157711429-3a3dc955-a21e-41ec-a9ed-c7908b91122a.png)
 
 
-## Design iterations along the way
-Not all elements made it into the final product, some others also got modified, added and even dropped completely
-![v2 sketches](https://user-images.githubusercontent.com/73431750/161426509-69ab234d-7307-4214-a030-87ed374ee119.png)
-<br>
-
-
 ### Timeline
 ![v2 timeline@0,25x](https://user-images.githubusercontent.com/73431750/163827141-6d08747d-3af2-4eea-acc3-91b3c2f90dac.jpg)
 <br><br>
 
 
-## Countdown V2 currently
+## Countdown V2
 * redesigned UI; sidebar navigation added, multiple themes and backgrounds to choose from
 * User created countdowns is now possible; can edit, delete and set a countdown to display on homepage
 * Added sharing of the day of year Count to Whatsapp platform
@@ -120,7 +119,38 @@ Not all elements made it into the final product, some others also got modified, 
 ![v2 mobile alt1](https://user-images.githubusercontent.com/73431750/161403556-db26fc75-581e-43e1-8008-f0e3627826a6.png)
 ![v2 pc](https://user-images.githubusercontent.com/73431750/161403301-3f0eea81-6edd-49aa-80b9-d90996449af4.png)
 ![goku@0,5x](https://user-images.githubusercontent.com/73431750/163831402-05a3a93d-db85-48fb-b35e-96d7f98f3dd1.jpg)
+
+
+## Countdown v2.1.0
+* Added black theme
+* Enhanced app security and integrity by sanitizing form inputs
+* Improved documentation with the addition of the [dev process](/docs/dev-process.md)
+
 ![black theme](https://user-images.githubusercontent.com/73431750/163834582-2b98f0be-af25-4011-a0be-361d01a50d4e.png)
+
+
+## Countdown v2.2.0
+* Updated `authors` page to a functional `about` page
+* Added in a special `today` page: <br>
+&emsp; Stay current, share the `dayCount` to Whatsapp and many more to come
+* Provided dark mode styles for form popups, improved responsiveness and styling
+
+![v220@0,5x](https://user-images.githubusercontent.com/73431750/165914344-9e812d54-f5d7-4887-8a70-50253c36f85c.png)
+
+
+## Countdown v2.3.0
+* Added option to sort countdowns
+* Removed due date status, added countdown status on the list item
+
+![v2 3](https://user-images.githubusercontent.com/73431750/169272292-e83d9285-05bf-4264-9f45-3d8880505d7b.png)
+
+
+### Potential and/or current developments
+* listpage as the homepage with onboarding
+* ui for elapsed countdown and clickless countdown updating
+* styling for deadline on homepage
+
+![elapse ui](https://user-images.githubusercontent.com/73431750/166104394-9bdf011d-499e-4a14-a81a-af07e7ebfd93.png)
 
 
 ---
