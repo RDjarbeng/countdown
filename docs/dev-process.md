@@ -70,6 +70,11 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 ## Countdown to v2.0.0 😄😅
 The development process
 
+## Design iterations along the way
+Not all elements made it into the final product, some others also got modified, added and even dropped completely
+![v2 sketches](https://user-images.githubusercontent.com/73431750/161426509-69ab234d-7307-4214-a030-87ed374ee119.png)
+<br>
+
 #### Changelog
 * Added new themes with different colours
 * Added sidebar
@@ -99,12 +104,6 @@ The development process
 ![v2b4](https://user-images.githubusercontent.com/73431750/154068156-19e978cd-bc66-4d76-bc92-3ff101d543bb.png)
 ![image](https://user-images.githubusercontent.com/57795443/157711049-26be2f0a-d0b2-4b78-8a53-48a504c3f246.png)
 ![image](https://user-images.githubusercontent.com/57795443/157711429-3a3dc955-a21e-41ec-a9ed-c7908b91122a.png)
-
-
-## Design iterations along the way
-Not all elements made it into the final product, some others also got modified, added and even dropped completely
-![v2 sketches](https://user-images.githubusercontent.com/73431750/161426509-69ab234d-7307-4214-a030-87ed374ee119.png)
-<br>
 
 
 ### Timeline
