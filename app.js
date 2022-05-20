@@ -135,7 +135,6 @@ function setMainClock() {
         myclock = new Clock(new Date(mainclock.date));
         setMainText(mainclock.text)
     }
-    console.log(myclock);
     return myclock;
 
 }
