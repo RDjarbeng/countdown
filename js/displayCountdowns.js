@@ -442,10 +442,7 @@ function addListEventHandlers() {
 }
 
 async function displayAndAddListeners(){
-    await displayCountdowns().catch((err)=>{
-        console.log(err);
-        errorHandler('Unable to fetch your countdowns')
-    });
+    await displayAndStartcount()
     addListEventHandlers();
 }
 try{
