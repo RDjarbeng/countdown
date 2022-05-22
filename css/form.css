@@ -98,7 +98,7 @@ input[type="submit"]:disabled{
 }
 .form-repeat{
     align-self: flex-start;
-    padding-left: 10%;
+    padding-left: 5vmin;
 }
 
 /* upload image form */
@@ -144,5 +144,8 @@ input[type="file"] {
     }
     input[type="text"], input[type="datetime-local"] {
         width: 82vmin;
+    }
+    .form-repeat{
+        padding-left: 4vmin;
     }
 }
