@@ -90,14 +90,7 @@ function populateList(arrayOfCountdowns) {
 function addCountdownItem(countdown, index) {
     if (countdown.hasOwnProperty('repeat') && countdown.repeat) {
         // console.log(arrayOfCountdowns);
-        // countdown elapsed
-        if (new Date(countdown.date) - new Date() < 0) {
-            arrayOfCountdowns[index].date = new Anniversary(new Date(countdown.date)).endDate.toISOString();
-            arrayOfCountdowns[index].dateModified = new Date().toISOString();
-            setCountDownList(arrayOfCountdowns);
-            console.log('Updating values of old cds', arrayOfCountdowns[index]);
-
-        };
+        updateRepeatCountdown(countdown, index);
     }
         let listItemClock = new Clock(new Date(countdown.date));
         let timeDifference = listItemClock.getDistance();
@@ -140,6 +133,17 @@ function addCountdownItem(countdown, index) {
         </div>    
     </div>`;
     return countdownListItem;
+
+}
+
+function updateRepeatCountdown(countdown, index){
+    if (new Date(countdown.date) - new Date() < 0) {
+        arrayOfCountdowns[index].date = new Anniversary(new Date(countdown.date)).endDate.toISOString();
+        arrayOfCountdowns[index].dateModified = new Date().toISOString();
+        setCountDownList(arrayOfCountdowns);
+        console.log('Updating values of old cds', arrayOfCountdowns[index]);
+
+    };
 
 }
 /**
