@@ -65,6 +65,7 @@ async function displayCountdowns() {
         let file = await fetch("/html/onboarding.html");
         let ft = await file.text();
         document.querySelector("body").insertAdjacentHTML("afterbegin", ft);
+        document.body.style.display = "block";
         setInnerHtmlForNotNull(countdownTextDisplay, '')
     }
 }
