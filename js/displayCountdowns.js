@@ -179,7 +179,6 @@ function getCountdownString(clock) {
 async function updateCountdownItems() {
     let activeCountItems = document.querySelectorAll('.countdown-counting')
     const clock = new Clock();
-    console.log('Updating count');
     if (activeCountItems.length) {
         await activeCountItems.forEach((element, _, countItems) => {
             let date = new Date(element.getAttribute('data-date'));
@@ -216,7 +215,6 @@ async function updateCountdownItems() {
  */
 function displayAndStartcount() {
     displayCountdowns().then(() => {
-        console.log('trigerred today', countItemExists);
         if (countItemExists) {
             let interval = setInterval(() => countItemExists ? updateCountdownItems() : clearInterval(interval), 1000)
         }
