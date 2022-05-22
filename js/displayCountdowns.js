@@ -88,9 +88,12 @@ function populateList(arrayOfCountdowns) {
  * @returns 
  */
 function addCountdownItem(countdown, index) {
+    let repeat = false
     if (countdown.hasOwnProperty('repeat') && countdown.repeat) {
         // console.log(arrayOfCountdowns);
-        updateRepeatCountdown(countdown, index);
+        updateRepeatCountdown(countdown.date, index);
+        repeat = true
+
     }
         let listItemClock = new Clock(new Date(countdown.date));
         let timeDifference = listItemClock.getDistance();
@@ -127,6 +130,8 @@ function addCountdownItem(countdown, index) {
         <div class="countdown-list-date" > 
         <span 
             data-date="${countdown.date}" 
+            data-repeat="${repeat}"
+            data-id="${countdown.dateModified}"
             class="${(!elapsed) ? 'countdown-counting' : ''}" >
              ${countdownStatus}
         </span> 
@@ -135,11 +140,15 @@ function addCountdownItem(countdown, index) {
     return countdownListItem;
 
 }
-
-function updateRepeatCountdown(countdown, index){
-    if (new Date(countdown.date) - new Date() < 0) {
-        arrayOfCountdowns[index].date = new Anniversary(new Date(countdown.date)).endDate.toISOString();
-        arrayOfCountdowns[index].dateModified = new Date().toISOString();
+/**
+ * 
+ * @param {String} date date preferrably in ISO string format
+ * @param {Number} index index of the repeat countdown element 
+ */
+function updateRepeatCountdown(date, index){
+    if (new Date(date) - new Date() < 0) {
+        arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
+        // arrayOfCountdowns[index].dateModified = new Date().toISOString();
         setCountDownList(arrayOfCountdowns);
         console.log('Updating values of old cds', arrayOfCountdowns[index]);
 
@@ -178,6 +187,18 @@ async function updateCountdownItems() {
             clock.countDown();
             if (clock.getDistance() > 0) {
                 setInnerHtmlForNotNull(element, getCountdownString(clock))
+            }else if(element.getAttribute('data-repeat')=='true'){
+                console.log('updating repeat', element);
+                // update repeat item set enddate to next year
+                let index = arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == element.getAttribute('data-id'));
+                let date=element.getAttribute('data-date');
+                if(index && date){
+                updateRepeatCountdown(date, index);
+                displayAndStartcount();
+            }
+        //         arrayOfCountdowns[index].date = new Anniversary(new Date(countdown.date)).endDate.toISOString();
+        // arrayOfCountdowns[index].dateModified = new Date().toISOString();
+
             } else {
                 console.log('elapsing');
                 element.classList.remove('countdown-counting')
