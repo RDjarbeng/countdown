@@ -94,8 +94,8 @@ function addCountdownItem(countdown, index) {
         updateRepeatCountdown(countdown.date, index);
         repeat = true
     }
-    
-    let listItemClock = new Clock(new Date(countdown.date));
+    const countdownDate =new Date(countdown.date)
+    let listItemClock = new Clock(countdownDate);
     let timeDifference = listItemClock.getDistance();
     let countdownStatus = "";
     let countdownStatusTI =`<span style="color:#03bf42;"><i class="fas fa-hourglass-start"></i> active</span>`;
@@ -106,7 +106,7 @@ function addCountdownItem(countdown, index) {
     } else {
         // countdown elapsed
         elapsed = 'true';
-        countdownStatus = new Date(countdown.date);
+        countdownStatus = countdownDate.getDate() + ' ' + countdownDate.toLocaleString('default', { month: 'long' }) + ', ' + countdownDate.getFullYear();
         countdownStatusTI = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>`;
     }
         // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
