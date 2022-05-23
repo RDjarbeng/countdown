@@ -447,7 +447,6 @@ function setCountDownList(jsArray) {
 
 function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
     // todo: Track items without using modifiedTime
-    console.log(text, dateTime, modifiedTime, 'form');
     if (text && dateTime && modifiedTime) {
         console.log('inside form display');
         const updateFormHtml = `<section class="pop-up-container">
