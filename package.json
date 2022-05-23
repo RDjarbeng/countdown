@@ -13,7 +13,6 @@
   },
   "dependencies": {
     
-    "envinfo": "^7.8.1",
-    "lodash": "^4.17.21"
+    "envinfo": "^7.8.1"
   }
 }
