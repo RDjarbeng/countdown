@@ -1,0 +1,19 @@
+{
+  "name": "rcountdown",
+  "private": true,
+  "version": "2.2.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.9.5",
+    "@vitejs/plugin-legacy": "^1.8.1"
+  },
+  "dependencies": {
+    
+    "envinfo": "^7.8.1",
+    "lodash": "^4.17.21"
+  }
+}
