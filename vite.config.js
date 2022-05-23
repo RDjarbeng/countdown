@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import legacy from '@vitejs/plugin-legacy';
+// import legacy from '@vitejs/plugin-legacy';
 
 export default defineConfig({
   plugins: [
@@ -12,8 +12,10 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        about: resolve(__dirname, 'about.html'),
-        myabout: resolve(__dirname, './myabout/myabout.html'),
+        about: resolve(__dirname, './html/about.html'),
+        countdownList: resolve(__dirname, './html/countdown-list.html'),
+        fallback: resolve(__dirname, './html/fallback.html'),
+        today: resolve(__dirname, './html/today.html'),
 
         // aboutjs: resolve(__dirname, 'about.js')
       },
