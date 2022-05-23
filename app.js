@@ -298,13 +298,13 @@ addWhatappEventHandler();
 
 // service worker
 
-// if('serviceWorker' in navigator){
-//     window.addEventListener('load', () => {
-//     navigator.serviceWorker.register('/sw.js')
-//     .then( (reg)=>{ 
-//         console.log('service worker registered', reg)
-//     })
-//         .catch((err)=> console.log('Service worker not registered', err));
-//   });
+if('serviceWorker' in navigator){
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+    .then( (reg)=>{ 
+        console.log('service worker registered', reg)
+    })
+        .catch((err)=> console.log('Service worker not registered', err));
+  });
         
-// }
+}
