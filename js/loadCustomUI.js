@@ -78,7 +78,6 @@ function loadBg() {
 function loadMode() {
     let savedMode = localStorage.getItem("userMode");
     if( !["",null,undefined].includes(savedMode)){
-        console.log("loading: ",savedMode);
         let modeAlt = (savedMode == "dark") ? "light" : "dark";
         const setModeIcon = (mode)=> {
             if (mode == "dark") {
@@ -87,7 +86,6 @@ function loadMode() {
             else {
                 icon.innerHTML = `<i class="fas fa-moon fa-fw"></i>`
             }
-            console.log("setting mode icon");
         }
         
         if(!document.body.classList.contains(savedMode)){
