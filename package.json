@@ -8,8 +8,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.9.5",
-    "@vitejs/plugin-legacy": "^1.8.1"
+    "vite": "^2.9.5"
   },
   "dependencies": {
     
