@@ -106,7 +106,7 @@ function addCountdownItem(countdown, index) {
     } else {
         // countdown elapsed
         elapsed = 'true';
-        countdownStatus = "Elapsed "
+        countdownStatus = new Date(countdown.date);
         countdownStatusTI = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>`;
     }
         // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
