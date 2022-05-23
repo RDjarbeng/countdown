@@ -106,7 +106,7 @@ function addCountdownItem(countdown, index) {
     } else {
         // countdown elapsed
         elapsed = 'true';
-        countdownStatus = countdownDate.getDate() + ' ' + countdownDate.toLocaleString('default', { month: 'long' }) + ', ' + countdownDate.getFullYear();
+        countdownStatus = 'Due: '+countdownDate.getDate() + ' ' + countdownDate.toLocaleString('default', { month: 'long' }) + ', ' + countdownDate.getFullYear();
         countdownStatusTI = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>`;
     }
         // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
