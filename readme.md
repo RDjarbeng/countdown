@@ -94,6 +94,13 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 ![v2 3](https://user-images.githubusercontent.com/73431750/169272292-e83d9285-05bf-4264-9f45-3d8880505d7b.png)
 
 
+## Countdown v2.4.0
+* Animated deadline on homepage
+* Added option to set repeatable countdowns 
+* Added ui cues for countdown status
+* fixed rogue italics, browser auto text selection and more
+
+
 ---
 #### Many more to come, stay tuned!
 For more details, and live updates, checkout the [dev process](/docs/dev-process.md) readme
