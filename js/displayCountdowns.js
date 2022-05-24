@@ -93,48 +93,48 @@ function addCountdownItem(countdown, index) {
         // console.log(arrayOfCountdowns);
         updateRepeatCountdown(countdown.date, index);
         repeat = true
-
     }
-        let listItemClock = new Clock(new Date(countdown.date));
-        let timeDifference = listItemClock.getDistance();
-        let countdownStatus = "";
-        let elapsed = false;
-        if (timeDifference > 0) {
-            countItemExists = true;
-            countdownStatus = getCountdownString(listItemClock);
-        } else {
-            // countdown elapsed
-            elapsed = 'true';
-            countdownStatus = "Elapsed "
-        }
-
+    const countdownDate =new Date(countdown.date)
+    let listItemClock = new Clock(countdownDate);
+    let timeDifference = listItemClock.getDistance();
+    let countdownStatus = "";
+    let countdownStatusTI =`<span style="color:#03bf42;"><i class="fas fa-hourglass-start"></i> active</span>`;
+    let elapsed = false;
+    if (timeDifference > 0) {
+        countItemExists = true;
+        countdownStatus = getCountdownString(listItemClock);
+    } else {
+        // countdown elapsed
+        elapsed = 'true';
+        countdownStatus = 'Due: '+countdownDate.getDate() + ' ' + countdownDate.toLocaleString('default', { month: 'long' }) + ', ' + countdownDate.getFullYear();
+        countdownStatusTI = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>`;
+    }
         // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
 
     let countdownListItem = `
     <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
         <div class="countdown-list-text"> ${countdown.text} </div>
-        <div class="countdown-list-options" ><i class="fas fa-chevron-circle-down fa-lg"></i>
-        <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
-        <div class="menu-opts edit">
-            <i class="fas fa-edit"></i>&nbsp;Edit
+        <div class="countdown-list-options"><i class="fas fa-chevron-circle-down fa-lg"></i>
+            <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
+                <div class="menu-opts edit">
+                    <i class="fas fa-edit"></i>&nbsp;Edit
+                </div>
+                <div class="menu-opts del">
+                    <i class="fas fa-trash-alt"></i> &nbsp;Delete
+                </div>
+                <div class="menu-opts main">
+                    <i class="fas fa-clock"></i> &nbsp;Set as main
+                </div>       
+            </div>
         </div>
-        <div class="menu-opts del">
-            <i class="fas fa-trash-alt"></i> &nbsp;Delete
-        </div>
-        <div class="menu-opts main">
-            <i class="fas fa-clock"></i> &nbsp;Set as main
-        </div>
-        
-    </div>
-    </div>
-        <div class="countdown-list-date" > 
-        <span 
-            data-date="${countdown.date}" 
-            data-repeat="${repeat}"
-            data-id="${countdown.dateModified}"
-            class="${(!elapsed) ? 'countdown-counting' : ''}" >
-             ${countdownStatus}
-        </span> 
+        <div class="countdown-list-date"> 
+            <div data-date="${countdown.date}" 
+                data-id="${countdown.dateModified}" 
+                data-repeat="${repeat}" 
+                class="${(!elapsed) ? 'countdown-counting' : ''}" > 
+                ${countdownStatus}
+            </div>
+            <div class="status-text">${countdownStatusTI}</div>
         </div>    
     </div>`;
     return countdownListItem;
@@ -447,7 +447,6 @@ function setCountDownList(jsArray) {
 
 function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
     // todo: Track items without using modifiedTime
-    console.log(text, dateTime, modifiedTime, 'form');
     if (text && dateTime && modifiedTime) {
         console.log('inside form display');
         const updateFormHtml = `<section class="pop-up-container">
