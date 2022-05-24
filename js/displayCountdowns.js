@@ -51,7 +51,6 @@ async function displayCountdowns() {
  * Adds sort menu to the page
  */
 const sortUI = async () => {
-    console.log('sort ui firing');
     if (!document.querySelector(".list-settings")) {
         const listContainer = document.querySelector(".list-container");
         let sortHtml = `
@@ -382,8 +381,6 @@ const sortOptionsEventHandler = (event) => {
             localStorage.setItem('sort', 'due')
         } else if (event.target.className.search('modified') > -1) {
             localStorage.setItem('sort', 'modified')
-            // console.log('modified clicked', localStorage.getItem('sort'));
-            // displayCountdowns();
         }
         // close sortOptions menu on selection and refresh list
         closeSortMenu();
@@ -393,7 +390,6 @@ const sortOptionsEventHandler = (event) => {
 const addSortEventListeners = () => {
     const sortOpts = document.querySelector(".sort-options");
     const sortTitle = document.querySelector(".sort-title");
-    console.log('sort title', sortTitle);
     if(sortTitle){
         sortTitle.removeEventListener("click", sortTitleEventHandler);
         sortTitle.addEventListener("click", sortTitleEventHandler);
@@ -513,7 +509,6 @@ function setCountDownList(arrayOfJSONCountdowns) {
 }
 
 function addListEventHandlers() {
-    console.log('listEvent handler firing');
     addListEventListener();
     addSortEventListeners();
 
@@ -522,7 +517,6 @@ function addListEventHandlers() {
 }
 
 async function displayAndAddListeners(){
-    console.log('calling display and add listeners');
     await displayAndStartcount()
         // sortUI();
         addListEventHandlers();
