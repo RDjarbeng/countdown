@@ -286,7 +286,7 @@ function setInnerHtmlForNotNull(element, value){
 }
 try {
     //show day value before animation runs
-setInnerHtmlForNotNull(dayCount, dayClock.countDays());
+// setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
