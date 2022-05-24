@@ -308,4 +308,3 @@ if('serviceWorker' in navigator){
   });
         
 }
-
