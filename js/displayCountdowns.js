@@ -40,23 +40,7 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
 
-        const sortUI = async () => {
-            if (!document.querySelector(".list-settings")) {
-                const listContainer = document.querySelector(".list-container");
-                let sortHtml = `
-                <section class="list-settings">
-                    <div class="sort">
-                        <div class="sort-options">
-                            <div class="sort-opt modified">Date modified</div>
-                            <div class="sort-opt due">Due date</div>
-                        </div>
-                        <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
-                    </div>
-                </section>`;
-                listContainer.insertAdjacentHTML("afterbegin", sortHtml);
-            }
-            // addSortEventListeners();
-        }
+        
 
 
         sortUI();
@@ -65,6 +49,26 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
         setInnerHtmlForNotNull(countdownTextDisplay, '')
     }
+}
+/**
+ * Adds sort menu to the page
+ */
+const sortUI = async () => {
+    if (!document.querySelector(".list-settings")) {
+        const listContainer = document.querySelector(".list-container");
+        let sortHtml = `
+        <section class="list-settings">
+            <div class="sort">
+                <div class="sort-options">
+                    <div class="sort-opt modified">Date modified</div>
+                    <div class="sort-opt due">Due date</div>
+                </div>
+                <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
+            </div>
+        </section>`;
+        listContainer.insertAdjacentHTML("afterbegin", sortHtml);
+    }
+    // addSortEventListeners();
 }
 /**
  * Returns html string with a list of countdowns
@@ -359,27 +363,32 @@ const closeSortMenu = () => {
 const addSortEventListeners = () => {
     const sortOpts = document.querySelector(".sort-options");
     const sortTitle = document.querySelector(".sort-title");
-    sortTitle.addEventListener("click", () => {
-        if (sortOpts.style.display == "block") {
-            sortOpts.style.display = "none";
-        }
-        else {
-            sortOpts.style.display = "block";
-        }
-    });
+    console.log('sort title', sortTitle);
+    if(sortTitle){
+        sortTitle.addEventListener("click", () => {
+            if (sortOpts.style.display == "block") {
+                sortOpts.style.display = "none";
+            }
+            else {
+                sortOpts.style.display = "block";
+            }
+        });
+    }
     // sort options menu events
-    sortOpts.addEventListener("click", (event) => {
-        if (event.target.className.search('due') > -1) {
-            localStorage.setItem('sort', 'due')
-        } else if (event.target.className.search('modified') > -1) {
-            localStorage.setItem('sort', 'modified')
-            // console.log('modified clicked', localStorage.getItem('sort'));
-            // displayCountdowns();
-        }
-        // close sortOptions menu on selection and refresh list
-        closeSortMenu();
-        displayCountdowns();
-    })
+    if(sortOpts){
+        sortOpts.addEventListener("click", (event) => {
+            if (event.target.className.search('due') > -1) {
+                localStorage.setItem('sort', 'due')
+            } else if (event.target.className.search('modified') > -1) {
+                localStorage.setItem('sort', 'modified')
+                // console.log('modified clicked', localStorage.getItem('sort'));
+                // displayCountdowns();
+            }
+            // close sortOptions menu on selection and refresh list
+            closeSortMenu();
+            displayCountdowns();
+        })
+    }
 }
 
 function handleUpdate() {
