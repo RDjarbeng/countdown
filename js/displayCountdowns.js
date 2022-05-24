@@ -40,9 +40,6 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
 
-        
-
-
         sortUI();
 
     } else {
@@ -54,6 +51,7 @@ async function displayCountdowns() {
  * Adds sort menu to the page
  */
 const sortUI = async () => {
+    console.log('sort ui firing');
     if (!document.querySelector(".list-settings")) {
         const listContainer = document.querySelector(".list-container");
         let sortHtml = `
@@ -307,6 +305,7 @@ function addListEventListener() {
         else if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
             //get the countdown list item and pass to function, search for list class .menu
             //in case of directly clicking on icon, parent element is .countdown-list-options div
+            console.log('trigger context');
             triggerContextMenu(targetElement.parentElement);
 
         } else if (targetElement.className.search('menu-opts') > -1) {
@@ -500,6 +499,7 @@ function setCountDownList(arrayOfJSONCountdowns) {
 }
 
 function addListEventHandlers() {
+    console.log('listEvent handler firing');
     addListEventListener();
     addSortEventListeners();
 
@@ -508,8 +508,10 @@ function addListEventHandlers() {
 }
 
 async function displayAndAddListeners(){
+    console.log('calling display and add listeners');
     await displayAndStartcount()
-    addListEventHandlers();
+        // sortUI();
+        addListEventHandlers();
 }
 try {
     displayAndAddListeners();
