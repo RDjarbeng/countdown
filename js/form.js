@@ -1,4 +1,4 @@
-function popForm() {
+export function popForm() {
     countNumber = localStorage.getItem('countNumber');
     if (!countNumber)
         countNumber = 1;
@@ -57,12 +57,12 @@ function setDateAttributes() {
     dateInput.value= todayString;
 }
 
-function closeFormPopUp() {
+export function closeFormPopUp() {
     document.getElementsByClassName("pop-up-container")[0].remove();
     document.body.style.position = "";
 }
 
-function sanitize(string) {
+export function sanitize(string) {
     const map = {
         '&': '&amp;',
         '<': '&lt;',
@@ -82,16 +82,17 @@ function checkRepeat(repeatCheckBox){
 
 }
 function handleFormSubmission() {
-    const countdownForm = document.getElementById('customDateForm');
+    const submitbutton = document.getElementById('countdown-submit');
     // console.log(event);
-    countdownForm.addEventListener('submit', (e) => {
+    submitbutton.addEventListener('click', (e) => {
+        console.log('submit firing');
         // DOM references
         e.preventDefault();
-        const submitbutton = document.getElementById('countdown-submit');
+        // const submitbutton = document.getElementById('countdown-submit');
         let userDate = document.getElementById("dateInput").value;
         let repeatCheck = document.getElementById("repeat-cb");
         let userTextField = document.getElementById('countdownText');
-        submitbutton.disabled = true;
+        // submitbutton.disabled = true;
         // get text field values, with auto values
         
         let userText = sanitize(userTextField.value);
@@ -107,15 +108,15 @@ function handleFormSubmission() {
         if(repeatCheck){
             countItem.repeat = repeatCheck.checked;
         }
-        saveToLocalStorage(countItem);
+        // saveToLocalStorage(countItem);
 
         // testing
-        window.location.href = "/html/countdown-list.html";
-        closeFormPopUp();
+        // window.location.href = "/html/countdown-list.html";
+        // closeFormPopUp();
     })
 }
 
-function saveToLocalStorage(countItem){
+export function saveToLocalStorage(countItem){
     let countdown = localStorage.getItem('countdown');
     if(countdown !== null){ //countdowns already exist
      countdown = JSON.parse(countdown);//array
