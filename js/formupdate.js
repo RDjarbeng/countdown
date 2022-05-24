@@ -116,7 +116,7 @@ function handleFormSubmission() {
              closeFormPopUp();
         }
         try{
-            displayAndStartcount();
+            displayAndAddListeners();
             console.log('we did it', countItemExists);
         } catch (err) {
     console.log(err, 'err in updating countdown initialisation');
