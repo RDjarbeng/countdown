@@ -98,6 +98,7 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 * Animated deadline on homepage
 * Added option to set repeatable countdowns 
 * Added ui cues for countdown status
+* Display due date when countdown is elapsed
 * fixed rogue italics, browser auto text selection and more
 
 
