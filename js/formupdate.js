@@ -84,9 +84,10 @@ function handleFormSubmission() {
     countdownForm.addEventListener('submit', (e) => {
 
         e.preventDefault();
-        submitbutton.disabled = true;
+        // submitbutton.disabled = true;
         // get text field values, with auto values
         let userTextField = document.getElementById('countdownText');
+        let repeatCheck = document.getElementById("repeat-cb");
         console.log(userTextField.value, 'user input');
         let userText = sanitize(userTextField.value)
         console.log(userText, 'sanitized user');
@@ -99,6 +100,10 @@ function handleFormSubmission() {
         let userDate = document.getElementById("dateInput").value;
         userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
+        if(repeatCheck){
+            countItem.repeat = repeatCheck.checked;
+        }
+        console.log(countItem);
         let countdown = localStorage.getItem('countdown');
         if (countdown !== null) { //countdowns already exist
             countdown = JSON.parse(countdown);//array
@@ -106,14 +111,10 @@ function handleFormSubmission() {
             // console.log(countdown);
             setCountDownList(countdown);
             // external function
-
-            closeFormPopUp();
-
         } else {
             // create first countdown
             setCountDownList([countItem]);
             //  displayAndAddListeners();
-            closeFormPopUp();
         }
         try {
             displayAndAddListeners();
@@ -123,7 +124,7 @@ function handleFormSubmission() {
             errorHandler("Unable to finish update your countdowns");
         }
         // testing
-        // closeFormPopUp();
+        closeFormPopUp();
     })
 }
 
