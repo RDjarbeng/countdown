@@ -1,7 +1,7 @@
 // #5
 
-const staticCacheName = 'site-static-v50';
-const dynamicCache = 'site-dynamic-v50';
+const staticCacheName = 'site-static-v51';
+const dynamicCache = 'site-dynamic-v51';
 
 const dynamicCacheSize = 30;
 
