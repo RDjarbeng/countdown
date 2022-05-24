@@ -106,6 +106,15 @@ function handleFormSubmission() {
         // console.log(countdown);
         setCountDownList(countdown);
         // external function
+        
+        closeFormPopUp();
+
+        }else{
+            // create first countdown
+             setCountDownList([countItem]);
+            //  displayAndAddListeners();
+             closeFormPopUp();
+        }
         try{
             displayAndStartcount();
             console.log('we did it', countItemExists);
@@ -113,15 +122,6 @@ function handleFormSubmission() {
     console.log(err, 'err in updating countdown initialisation');
     errorHandler("Unable to finish update your countdowns");
 }
-        closeFormPopUp();
-
-        }else{
-            // create first countdown
-             setCountDownList([countItem]);
-             displayCountdowns();
-             closeFormPopUp();
-        }
-
         // testing
         // closeFormPopUp();
     })
