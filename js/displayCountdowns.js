@@ -309,7 +309,6 @@ const listEventListener = event => {
     else if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
         //get the countdown list item and pass to function, search for list class .menu
         //in case of directly clicking on icon, parent element is .countdown-list-options div
-        console.log('trigger context');
         triggerContextMenu(targetElement.parentElement);
 
     } else if (targetElement.className.search('menu-opts') > -1) {
@@ -367,34 +366,42 @@ const closeSortMenu = () => {
     }
 }
 
+const sortTitleEventHandler= () => {
+    const sortOpts = document.querySelector(".sort-options");
+    console.log('clicking in sort');
+    if (sortOpts.style.display == "block") {
+        sortOpts.style.display = "none";
+    }
+    else {
+        sortOpts.style.display = "block";
+    }
+}
+
+const sortOptionsEventHandler = (event) => {
+        if (event.target.className.search('due') > -1) {
+            localStorage.setItem('sort', 'due')
+        } else if (event.target.className.search('modified') > -1) {
+            localStorage.setItem('sort', 'modified')
+            // console.log('modified clicked', localStorage.getItem('sort'));
+            // displayCountdowns();
+        }
+        // close sortOptions menu on selection and refresh list
+        closeSortMenu();
+        displayCountdowns();
+    }
+
 const addSortEventListeners = () => {
     const sortOpts = document.querySelector(".sort-options");
     const sortTitle = document.querySelector(".sort-title");
     console.log('sort title', sortTitle);
     if(sortTitle){
-        sortTitle.addEventListener("click", () => {
-            if (sortOpts.style.display == "block") {
-                sortOpts.style.display = "none";
-            }
-            else {
-                sortOpts.style.display = "block";
-            }
-        });
+        sortTitle.removeEventListener("click", sortTitleEventHandler);
+        sortTitle.addEventListener("click", sortTitleEventHandler);
     }
     // sort options menu events
     if(sortOpts){
-        sortOpts.addEventListener("click", (event) => {
-            if (event.target.className.search('due') > -1) {
-                localStorage.setItem('sort', 'due')
-            } else if (event.target.className.search('modified') > -1) {
-                localStorage.setItem('sort', 'modified')
-                // console.log('modified clicked', localStorage.getItem('sort'));
-                // displayCountdowns();
-            }
-            // close sortOptions menu on selection and refresh list
-            closeSortMenu();
-            displayCountdowns();
-        })
+        sortOpts.removeEventListener("click", sortOptionsEventHandler)
+        sortOpts.addEventListener("click", sortOptionsEventHandler)
     }
 }
 
