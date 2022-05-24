@@ -287,6 +287,10 @@ function hideContextMenus(event) {
 
 }
 
+/**
+ * List Click event listener for the countdowns, context menu and items
+ * @param {Event} event 
+ */
 const listEventListener = event => {
     const targetElement = event.target;
 
