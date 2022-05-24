@@ -63,6 +63,12 @@ const closeSideBarListener = (event) => {
 };
 
 const showLoader = () => {
+    if (!$("[href='css/form.css']")[0]) {
+        document.head.insertAdjacentHTML(
+            "beforeend",
+            `<link rel="stylesheet" href="/css/form.css">`
+        );
+    }
     document.body.insertAdjacentHTML(
         "afterbegin",
         `<aside class="pop-up-container loader-container">
@@ -110,15 +116,7 @@ const showLoader = () => {
 };
 
 function openBgPicker() {
-    if (!$("[href='css/form.css']")[0]) {
-        document.head.insertAdjacentHTML(
-            "beforeend",
-            `<link rel="stylesheet" href="/css/form.css">`
-        );
-    }
-
     showLoader();
-
     const loadForm = async () => {
         let file = await fetch("/html/form-upload.html");
         let ft = await file.text();
