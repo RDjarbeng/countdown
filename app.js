@@ -1,3 +1,4 @@
+//   import '/js/error.js'
   class Clock {
      /**
       * Create a countdown clock with a Date object
