@@ -307,4 +307,8 @@ addWhatappEventHandler();
 //         .catch((err)=> console.log('Service worker not registered', err));
 //   });
         
+
 // }
+
+}
+
