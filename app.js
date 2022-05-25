@@ -1,7 +1,10 @@
 
 
 import {Clock, NewYearClock  } from "./js/clock.js";
-import {setInnerHtmlForNotNull, animateValue,updateDisplay, addZeros } from "./js/functions.js";
+import { waitForAnimation, startTime,  updateDisplay } from "./js/appfunctions.js";
+
+import {setInnerHtmlForNotNull } from "./js/functions.js";
+
 // DOM nodes
 let dayCount = document.getElementById("countDay");
 const animatedCountDuration = 800;
@@ -39,29 +42,8 @@ function setMainText(countdownText) {
     const textDisplay = document.getElementById('countdown-text');
     setInnerHtmlForNotNull(textDisplay, countdownText)
 }
-/**
- * 
- * @param {Clock} clock 
- * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
- * @param {Number} [duration=800] specifies how long the animation lasts in milliseconds
- */
- async function waitForAnimation(clock, domElements, duration) {
-    await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
-    startClock(clock || myclock, domElements);
-}
 
-function startClock(clock, domElements) {
-    intervalID = setInterval(() => {  startTime(clock, domElements);  }, 500);
-}
 
-function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
-    // console.log(clock);
-    updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
-    setInnerHtmlForNotNull(dayCount, dayClock.countDays());
-    if (customClockMovement) {
-        updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
-    }
-}
 // todo: remove this unused function 
 function displayClockRow() {
     let customRow = document.getElementById("customDisplay");
@@ -78,18 +60,11 @@ function restartTime() {
 }
 
 
-async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
-    animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
-    animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
-    animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
-    animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
-
-}
 try {
     //show day value before animation runs
 // setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 // startTime();
-waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
+waitForAnimation(myclock,  { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration, customClockMovement,);
 // addWhatappEventHandler();
 // as;
 } catch (error) {
