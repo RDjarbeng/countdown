@@ -1,19 +1,19 @@
-import {popForm, closeFormPopUp} from './form.js'
+import {popForm, closeFormPopUp} from './formfunctions.js'
 import {sanitize} from './functions.js'
 
 
 
 
 function handleFormSubmission() {
-    const countdownForm = document.getElementById('customDateForm');
     const submitbutton = document.getElementById('countdown-submit');
 
     // const event = document.createEvent('Event');
     // console.log(event);
-    countdownForm.addEventListener('submit', (e) => {
+    submitbutton.addEventListener('click', (e) => {
 
         e.preventDefault();
-        // submitbutton.disabled = true;
+        console.log('submitting in form update');
+        submitbutton.disabled = true;
         // get text field values, with auto values
         let userTextField = document.getElementById('countdownText');
         let repeatCheck = document.getElementById("repeat-cb");
