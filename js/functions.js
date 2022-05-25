@@ -61,3 +61,11 @@ export function animateValue(domElement, start, end, duration) {
     };
     window.requestAnimationFrame(step);
 }
+
+/**
+ * Stop the clock with global var intervalID
+ */
+ function stopClock(interval) {
+    clearTimeout(interval);
+    customClockMovement = false;
+}

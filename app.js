@@ -127,13 +127,7 @@ function restartTime() {
     }
 }
 */
-/**
- * Stop the clock with global var intervalID
- */
- function stopClock() {
-    clearTimeout(intervalID);
-    customClockMovement = false;
-}
+
 
 
 
