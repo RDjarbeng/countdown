@@ -1,10 +1,14 @@
-import {popForm, closeFormPopUp} from './formfunctions.js'
+import {popForm, closeFormPopUp, saveToLocalStorage, getFormValuesAndSaveCd} from './formfunctions.js'
 import {sanitize} from './functions.js'
 
 
 
+const popAndAddFormOnList=()=>{
+    popForm()
+    handleLlispageForm();
+}
 
-function handleFormSubmission() {
+function handleLlispageForm() {
     const submitbutton = document.getElementById('countdown-submit');
 
     // const event = document.createEvent('Event');
@@ -12,39 +16,8 @@ function handleFormSubmission() {
     submitbutton.addEventListener('click', (e) => {
 
         e.preventDefault();
-        console.log('submitting in form update');
         submitbutton.disabled = true;
-        // get text field values, with auto values
-        let userTextField = document.getElementById('countdownText');
-        let repeatCheck = document.getElementById("repeat-cb");
-        console.log(userTextField.value, 'user input');
-        let userText = sanitize(userTextField.value)
-        console.log(userText, 'sanitized user');
-
-        if (!userText) {
-            userText = userTextField.placeholder;
-            countNumber++;
-            localStorage.setItem('countNumber', countNumber)
-        }
-        let userDate = document.getElementById("dateInput").value;
-        userDate = new Date(userDate);
-        let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        if(repeatCheck){
-            countItem.repeat = repeatCheck.checked;
-        }
-        console.log(countItem);
-        let countdown = localStorage.getItem('countdown');
-        if (countdown !== null) { //countdowns already exist
-            countdown = JSON.parse(countdown);//array
-            countdown.push(countItem);
-            // console.log(countdown);
-            setCountDownList(countdown);
-            // external function
-        } else {
-            // create first countdown
-            setCountDownList([countItem]);
-            //  displayAndAddListeners();
-        }
+        getFormValuesAndSaveCd()
         try {
             displayAndAddListeners();
             console.log('we did it', countItemExists);
@@ -77,4 +50,4 @@ if (!document.querySelector("[href='css/form.css']")) {
 
 
 
-createButton.addEventListener("click", popForm);
+createButton.addEventListener("click", popAndAddFormOnList);
