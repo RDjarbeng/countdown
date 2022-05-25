@@ -1,5 +1,5 @@
 import { popForm, closeFormPopUp, sanitize, getFormValuesAndSaveCd } from './formfunctions.js'
-
+import { displayAndAddListeners } from './displayCountdowns.js';
 const popAndAddFormOnList = () => {
     popForm()
     handleListpageForm();
@@ -15,7 +15,6 @@ function handleListpageForm() {
         // todo: refactor display and add 
         try {
             displayAndAddListeners();
-            console.log('we did it', countItemExists);
         } catch (err) {
             console.log(err, 'err in updating countdown initialisation');
             errorHandler("Unable to finish update your countdowns");
