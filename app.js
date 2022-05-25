@@ -1,7 +1,7 @@
 
 
 import {Clock, NewYearClock  } from "./js/clock.js";
-import {setInnerHtmlForNotNull } from "./js/functions.js";
+import {setInnerHtmlForNotNull, animateValue } from "./js/functions.js";
 // DOM nodes
 let dayCount = document.getElementById("countDay");
 const animatedCountDuration = 800;
@@ -135,20 +135,7 @@ function restartTime() {
     customClockMovement = false;
 }
 
-//for the animated Countdown
-function animateValue(domElement, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        setInnerHtmlForNotNull(domElement, addZeros(Math.floor(progress * (end - start) + start)))
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-            // animationComplete = false;
-        }
-    };
-    window.requestAnimationFrame(step);
-}
+
 
 async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
     animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
