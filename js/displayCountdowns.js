@@ -504,7 +504,7 @@ function closeFormPopUp() {
 }
 
 
-function addListEventHandlers() {
+function addEventHandlers() {
     addListEventListener();
     addSortEventListeners();
 
@@ -515,7 +515,7 @@ function addListEventHandlers() {
 async function displayAndAddListeners(){
     await displayAndStartcount()
         // sortUI();
-        addListEventHandlers();
+        addEventHandlers();
 }
 try {
     displayAndAddListeners();
