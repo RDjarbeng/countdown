@@ -1,21 +1,21 @@
 // for a single source for all the scattered functions
 //  due to Uc browser fix
 
-function setCountDownList(arrayOfJSONCountdowns){
+export function setCountDownList(arrayOfJSONCountdowns){
     localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
 }
 
-function setInnerHtmlForNotNull(element, value){
+export function setInnerHtmlForNotNull(element, value){
     if(element)//check for null
         element.innerHTML = value;
 }
 
-function closeFormPopUp() {
+export function closeFormPopUp() {
     document.getElementsByClassName("pop-up-container")[0].remove();
     document.body.style.position = "";
 }
 
-function addZeros(time) {
+export function addZeros(time) {
     if (time < 10) {
         time = "0" + time;
     }
