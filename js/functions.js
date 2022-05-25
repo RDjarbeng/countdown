@@ -78,7 +78,7 @@ export function animateValue(domElement, start, end, duration) {
  * @param {HTMLElement} minDisplay 
  * @param {HTMLElement} secDisplay 
  */
- function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
+ export function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
     counter.countDown();
     let d = counter.days
     let h = counter.hours
