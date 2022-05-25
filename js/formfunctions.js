@@ -1,5 +1,6 @@
+import {addZeros} from './functions.js'
 export function popForm() {
-    countNumber = localStorage.getItem('countNumber');
+    let countNumber = localStorage.getItem('countNumber');
     if (!countNumber)
         countNumber = 1;
     const popFormHtml = `<section class="pop-up-container">
@@ -20,7 +21,7 @@ export function popForm() {
         </div>
         <div class="form-sections">
             <label for=""></label>
-            <input type="submit" id ="countdown-submit"value="Submit">
+            <input type="submit" id ="countdown-submit"value="Submit" formmethod="dialog">
         </div>    
         <div class="close-form"><button>Close</button></div>
     </form>
@@ -34,4 +35,26 @@ export function popForm() {
         closeFormPopUp();
      }
     
+}
+
+export function closeFormPopUp() {
+    document.getElementsByClassName("pop-up-container")[0].remove();
+    document.body.style.position = "";
+}
+
+export function setDateAttributes() {
+    const dateInput = document.getElementById("dateInput");
+    const today = new Date();
+    let dd = today.getDate();//add 1 to the date so date starts from tomorrow
+    let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+    let yyyy = today.getFullYear();
+    let hr = addZeros(today.getHours());
+    let min = addZeros(today.getMinutes());
+    dd = addZeros(dd);
+    mm = addZeros(mm)
+
+    let todayString = yyyy + '-' + mm + '-' + dd + 'T' + hr + ':' + min;
+    console.log(todayString);
+    dateInput.setAttribute("min", todayString);
+    dateInput.value = todayString;
 }
