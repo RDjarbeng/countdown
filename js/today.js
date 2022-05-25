@@ -1,3 +1,4 @@
+import { setInnerHtmlForNotNull } from "./functions";
 let today = new Date();
 let day, month, year, time, dayOfWeek;
 
@@ -14,10 +15,6 @@ time =document.getElementById('time');
 setDomElements();
 }
 
-function setInnerHtmlForNotNull(element, value){
-    if(element)//check for null
-        element.innerHTML = value;
-}
 function setDomElements(){
     setInnerHtmlForNotNull(day, today.getDate())
     setInnerHtmlForNotNull(month, months[today.getMonth()] )
