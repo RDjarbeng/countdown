@@ -5,13 +5,6 @@ const popAndAddFormSubmission=()=>{
     popForm()
     handleFormSubmission();
 }
-function addZeros(time) {
-    if (time < 10) {
-        time = "0" + time;
-    }
-    return time;
-}
-
 
 
 function handleFormSubmission() {
