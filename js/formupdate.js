@@ -1,12 +1,7 @@
 import {popForm} from './form.js'
+import {addZeros} from './functions.js'
 
 
-function addZeros(time) {
-    if (time < 10) {
-        time = "0" + time;
-    }
-    return time;
-}
 
 function setDateAttributes() {
     const dateInput = document.getElementById("dateInput");
