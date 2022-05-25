@@ -1,4 +1,5 @@
 import {addZeros} from './functions.js'
+
 export function popForm() {
     let countNumber = localStorage.getItem('countNumber');
     if (!countNumber)
@@ -57,4 +58,51 @@ export function setDateAttributes() {
     console.log(todayString);
     dateInput.setAttribute("min", todayString);
     dateInput.value = todayString;
+}
+
+export function saveToLocalStorage(countItem) {
+    let countdown = localStorage.getItem('countdown');
+    if (countdown !== null) { //countdowns already exist
+        countdown = JSON.parse(countdown);//array
+
+        countdown.push(countItem);
+        console.log(countdown);
+        setCountDownList(countdown)
+    } else {
+        // create first countdown
+        setCountDownList([countItem]);
+    }
+}
+
+export function setCountDownList(jsArray) {
+    localStorage.setItem('countdown', JSON.stringify(jsArray))
+}
+
+export function getFormValuesAndSaveCd(){
+    // DOM references
+    let userDate = document.getElementById("dateInput").value;
+    let repeatCheck = document.getElementById("repeat-cb");
+    let userTextField = document.getElementById('countdownText');
+    
+    // get text field values, with auto values
+
+    let userText = sanitize(userTextField.value);
+
+    if (!userText) {
+        userText = userTextField.placeholder;
+        countNumber++;
+        localStorage.setItem('countNumber', countNumber)
+    }
+
+    userDate = new Date(userDate);
+    let countItem = { text: userText, date: userDate, dateModified: new Date() };
+    if (repeatCheck) {
+        countItem.repeat = repeatCheck.checked;
+    }
+    saveToLocalStorage(countItem);
+}
+
+export function checkRepeat(repeatCheckBox) {
+    return repeatCheckBox.checked
+
 }
