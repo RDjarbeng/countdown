@@ -73,52 +73,17 @@ function addZeros(num) {
     }
     return num;
 }
-/**
- * Updates the html dom nodes with the clock values, days, hours, minutes, seconds
- * @param {Clock} counter 
- * @param {HTMLElement} dayDisplay 
- * @param {HTMLElement} hourDisplay 
- * @param {HTMLElement} minDisplay 
- * @param {HTMLElement} secDisplay 
- */
-function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
-    counter.countDown();
-    let d = counter.days
-    let h = counter.hours
-    let m = counter.minutes
-    let s = counter.seconds
-    d = addZeros(d);
-    h = addZeros(h);
-    m = addZeros(m);
-    s = addZeros(s);
-    setInnerHtmlForNotNull(dayDisplay, `${d}`);
-    setInnerHtmlForNotNull(hourDisplay, `${h}`);
-    setInnerHtmlForNotNull(minDisplay, `${m}`);
-    setInnerHtmlForNotNull(secDisplay, `${s}`);
-}
 
-/**
- * Listens for a user input for date element
- */
-// function listenForDate() {
-//     const input = this.value;
-//     // console.log(input, 'run');
-//     if (input != '') {
-//         customClock = new Clock(new Date(input));
-//         displayClockRow();
-//         // do the fast countdown
-//         // set speed faster when day of the year is greater
-//         // todo: change to animateValue
-//         stepIncreaseAndStart(customClock, { customDayNumber, customHourNumber, customMinNumber, customSecNumber }, (365 - customClock.days < 100) ? 365 - customClock.days : 70);
-//     }
-// }
 
+
+
+// todo: remove this unused function 
 function displayClockRow() {
     let customRow = document.getElementById("customDisplay");
     // show row
     customRow.style.display = 'block';
 }
-/* //restart the clock
+// todo: remove this unused function 
 function restartTime() {
     if (customClockMovement) {
         return;
@@ -126,7 +91,7 @@ function restartTime() {
         startClock();
     }
 }
-*/
+
 
 
 

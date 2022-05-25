@@ -69,3 +69,27 @@ export function animateValue(domElement, start, end, duration) {
     clearTimeout(interval);
     customClockMovement = false;
 }
+
+/**
+ * Updates the html dom nodes with the clock values, days, hours, minutes, seconds
+ * @param {Clock} counter 
+ * @param {HTMLElement} dayDisplay 
+ * @param {HTMLElement} hourDisplay 
+ * @param {HTMLElement} minDisplay 
+ * @param {HTMLElement} secDisplay 
+ */
+ function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
+    counter.countDown();
+    let d = counter.days
+    let h = counter.hours
+    let m = counter.minutes
+    let s = counter.seconds
+    d = addZeros(d);
+    h = addZeros(h);
+    m = addZeros(m);
+    s = addZeros(s);
+    setInnerHtmlForNotNull(dayDisplay, `${d}`);
+    setInnerHtmlForNotNull(hourDisplay, `${h}`);
+    setInnerHtmlForNotNull(minDisplay, `${m}`);
+    setInnerHtmlForNotNull(secDisplay, `${s}`);
+}
