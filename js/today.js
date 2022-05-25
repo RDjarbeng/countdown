@@ -1,6 +1,8 @@
-import { setInnerHtmlForNotNull } from "./functions";
+import { NewYearClock } from "./clock.js";
+import { setInnerHtmlForNotNull, addWhatappEventHandler } from "./functions.js";
 let today = new Date();
-let day, month, year, time, dayOfWeek;
+let dayClock = new NewYearClock()
+let day, month, year, time, dayOfWeek, dayCount;
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -11,6 +13,7 @@ month =document.getElementById('month');
 day =document.getElementById('dayOfMonth');
 dayOfWeek =document.getElementById('dayOfWeek');
 time =document.getElementById('time');
+dayCount = document.getElementById("countDay");
 
 setDomElements();
 }
@@ -25,14 +28,18 @@ function setDomElements(){
         minute: '2-digit',
         hour12: true
     }))
+    // day count
+    setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 }
 
 
 getAndSetDomElements();
+addWhatappEventHandler();
 let dayIntervaltimer = setInterval(setDomElements, 1000);
 
 async function copyDOY() {
     await navigator.clipboard.writeText(`Day ${ dayCount.innerText ||'rcountdown'}/365`);
+    // todo: import notify user correctly, waiting for nat
     notifyUser("Copied to clipboard");
     // console.log(await navigator.clipboard.readText());
 }
