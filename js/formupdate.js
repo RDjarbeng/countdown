@@ -2,24 +2,6 @@ import {popForm} from './form.js'
 import {addZeros} from './functions.js'
 
 
-
-function setDateAttributes() {
-    const dateInput = document.getElementById("dateInput");
-    const today = new Date();
-    let dd = today.getDate();//add 1 to the date so date starts from tomorrow
-    let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
-    let yyyy = today.getFullYear();
-    let hr = addZeros(today.getHours());
-    let min = addZeros(today.getMinutes());
-    dd = addZeros(dd);
-    mm = addZeros(mm)
-
-    let todayString = yyyy + '-' + mm + '-' + dd + 'T' + hr + ':' + min;
-    console.log(todayString);
-    dateInput.setAttribute("min", todayString);
-    dateInput.value = todayString;
-}
-
 function closeFormPopUp() {
     document.getElementsByClassName("pop-up-container")[0].remove();
     document.body.style.position = "";
