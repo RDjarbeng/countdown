@@ -1,7 +1,7 @@
 
 
 import {Clock, NewYearClock  } from "./js/clock.js";
-import {setInnerHtmlForNotNull } from "./js/functions";
+import {setInnerHtmlForNotNull } from "./js/functions.js";
 // DOM nodes
 let dayCount = document.getElementById("countDay");
 const animatedCountDuration = 800;
@@ -158,34 +158,20 @@ async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start
 
 }
 
-function addWhatappEventHandler() {
-    let whatsappIcon = document.getElementById('sendWhatsappButton');
-    if (whatsappIcon) {
-        whatsappIcon.addEventListener('click', exportToWhatsapp);
-    }
 
-}
 
 function exportToWhatsapp() {
     let dayNum = dayCount.innerText;
     window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
 }
-/**
- * Checks if a DOM element variable is null before setting innerHTML
- * @param {HTMLElement} element 
- * @param {String} value 
- */
-function setInnerHtmlForNotNull(element, value){
-    if(element)//check for null
-        element.innerHTML = value;
-}
+
 try {
     //show day value before animation runs
 // setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 
 // startTime();
 waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
-addWhatappEventHandler();
+// addWhatappEventHandler();
 // as;
 } catch (error) {
     errorHandler("Error in clock");

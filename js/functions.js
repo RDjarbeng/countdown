@@ -5,11 +5,11 @@ export function setCountDownList(arrayOfJSONCountdowns){
     localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
 }
 /**
- * 
- * @param {Element} element 
+ * Checks if a DOM element variable is null before setting innerHTML
+ * @param {HTMLElement} element 
  * @param {String} value 
  */
-export function setInnerHtmlForNotNull(element, value){
+ export function setInnerHtmlForNotNull(element, value){
     if(element)//check for null
         element.innerHTML = value;
 }
@@ -26,3 +26,10 @@ export function addZeros(time) {
     return time;
 }
 
+function addWhatappEventHandler() {
+    let whatsappIcon = document.getElementById('sendWhatsappButton');
+    if (whatsappIcon) {
+        whatsappIcon.addEventListener('click', exportToWhatsapp);
+    }
+
+}
