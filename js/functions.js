@@ -44,7 +44,7 @@ export function addWhatappEventHandler() {
 
 
 export function exportToWhatsapp() {
-    let dayNum = dayCount.innerText;
+    let dayNum = document.getElementById("countDay").innerText;
     window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
 }
 

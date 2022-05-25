@@ -6,7 +6,9 @@ import { waitForAnimation, startTime,  updateDisplay } from "./js/appfunctions.j
 import {setInnerHtmlForNotNull } from "./js/functions.js";
 
 // DOM nodes
+// todo remove day clock and day count
 let dayCount = document.getElementById("countDay");
+let dayClock = new NewYearClock();
 const animatedCountDuration = 800;
 
 const body = document.body;
@@ -19,7 +21,6 @@ var dueDate = document.getElementById('dueDate');
 //to stop the clock
 let intervalID;
 let customClockMovement = false;
-let dayClock = new NewYearClock();
 // Initialize default Clock class
 // var myclock = new Anniversary(new Date('5-5-2022'));
 var myclock =  setMainClock();
