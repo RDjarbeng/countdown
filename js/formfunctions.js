@@ -1,9 +1,7 @@
 import {addZeros} from './functions.js'
 
 export function popForm() {
-    let countNumber = localStorage.getItem('countNumber');
-    if (!countNumber)
-        countNumber = 1;
+    let countNumber = getUserDefaultCount()
     const popFormHtml = `<section class="pop-up-container">
     <form id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
@@ -36,6 +34,16 @@ export function popForm() {
         closeFormPopUp();
      }
     
+}
+/**
+ * Returns the count of user default countdowns stored in local storage else returns 1
+ * @returns {Number} 
+ */
+export function getUserDefaultCount(){
+    let countNumber = localStorage.getItem('countNumber');
+    if (!countNumber)
+        countNumber = 1;
+    return countNumber;
 }
 
 export function closeFormPopUp() {
@@ -90,6 +98,7 @@ export function getFormValuesAndSaveCd(){
 
     if (!userText) {
         userText = userTextField.placeholder;
+        let countNumber = getUserDefaultCount();
         countNumber++;
         localStorage.setItem('countNumber', countNumber)
     }
