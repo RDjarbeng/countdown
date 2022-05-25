@@ -1,6 +1,7 @@
 
 
 import {Clock, NewYearClock  } from "./js/clock.js";
+import {setInnerHtmlForNotNull } from "./js/functions";
 // DOM nodes
 let dayCount = document.getElementById("countDay");
 const animatedCountDuration = 800;
