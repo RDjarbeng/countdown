@@ -49,26 +49,6 @@ export function exportToWhatsapp() {
 }
 
 
-/**
- * for the animated Countdown 
- * @param {HTMLElement} domElement 
- * @param {Number} start initial value
- * @param {Number} end final value of count
- * @param {Number} duration value in ms on how long count should last
- */
-export function animateValue(domElement, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        setInnerHtmlForNotNull(domElement, addZeros(Math.floor(progress * (end - start) + start)))
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-            // animationComplete = false;
-        }
-    };
-    window.requestAnimationFrame(step);
-}
 
 /**
  * Stop the clock with global var intervalID
@@ -78,29 +58,9 @@ export function animateValue(domElement, start, end, duration) {
     // customClockMovement = false;
 }
 
-/**
- * Updates the html dom nodes with the clock values, days, hours, minutes, seconds
- * @param {Clock} counter 
- * @param {HTMLElement} dayDisplay 
- * @param {HTMLElement} hourDisplay 
- * @param {HTMLElement} minDisplay 
- * @param {HTMLElement} secDisplay 
- */
- export function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
-    counter.countDown();
-    let d = counter.days
-    let h = counter.hours
-    let m = counter.minutes
-    let s = counter.seconds
-    d = addZeros(d);
-    h = addZeros(h);
-    m = addZeros(m);
-    s = addZeros(s);
-    setInnerHtmlForNotNull(dayDisplay, `${d}`);
-    setInnerHtmlForNotNull(hourDisplay, `${h}`);
-    setInnerHtmlForNotNull(minDisplay, `${m}`);
-    setInnerHtmlForNotNull(secDisplay, `${s}`);
-}
+
+/* SECTION: DISPLAY COUNTDOWNS */
+
 /**
  * Update a single countdown item in the array of countdowns
  *  with text, date, dateModified and repeat
@@ -130,3 +90,20 @@ export function updateLocalItem(arrayOfCountdowns, countItem, id) {
     }
 
 }
+
+
+
+/**
+ * Sort countdown array by date modified or due date
+ * @param {Array.<{text: String, date: String, dateModified: String, repeat: String}>} arrayOfCountdowns | contains array of countdown objects
+ */
+export function sortArrayOnSelection(arrayOfCountdowns) {
+    let sortType = localStorage.getItem('sort');
+    if (sortType == "due") {
+        // sort by due date if present
+        arrayOfCountdowns.sort((countItem1, countItem2) => new Date(countItem2.date).getTime() - new Date(countItem1.date).getTime())
+    } else {
+        arrayOfCountdowns.sort((countItem1, countItem2) => new Date(countItem1.dateModified).getTime() - new Date(countItem2.dateModified).getTime())
+    }
+}
+
