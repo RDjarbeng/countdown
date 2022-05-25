@@ -1,6 +1,9 @@
 // for a single source for all the scattered functions
 //  due to Uc browser fix
-
+/**
+ * 
+ * @param {Array} arrayOfJSONCountdowns 
+ */
 export function setCountDownList(arrayOfJSONCountdowns){
     localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
 }

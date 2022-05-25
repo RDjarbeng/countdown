@@ -1,3 +1,5 @@
+import { Clock } from "./clock.js";
+import { setCountDownList, setInnerHtmlForNotNull } from "./functions.js";
 // Dom elements
 // begin displaycountdown.js
 var hourNumber = document.getElementById("hour-num");
@@ -460,9 +462,6 @@ function updateLocalItem(countItem, modifiedTime) {
     }
 
 }
-function setCountDownList(jsArray) {
-    localStorage.setItem('countdown', JSON.stringify(jsArray))
-}
 
 function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
     // todo: Track items without using modifiedTime
@@ -504,9 +503,6 @@ function closeFormPopUp() {
     document.body.style.position = "";
 }
 
-function setCountDownList(arrayOfJSONCountdowns) {
-    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))
-}
 
 function addListEventHandlers() {
     addListEventListener();
