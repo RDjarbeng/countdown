@@ -151,8 +151,7 @@ Not all elements made it into the final product, some others also got modified, 
 * Display due date when countdown is elapsed
 * fixed rogue italics, browser auto text selection and more
 
-
-
+![v2 4@0,5x](https://user-images.githubusercontent.com/73431750/170242064-43aa6765-229c-43e8-a6e7-ed39e7de3ee0.png)
 
 
 ### Potential and/or current developments
