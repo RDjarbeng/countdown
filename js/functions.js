@@ -19,11 +19,16 @@ export function closeFormPopUp() {
     document.body.style.position = "";
 }
 
-export function addZeros(time) {
-    if (time < 10) {
-        time = "0" + time;
+/**
+ * add zero in front of numbers < 10
+ * @param {Number} num 
+ * @returns {String} number with 0 at the front
+ */
+export function addZeros(num) {
+    if (num < 10) {
+        num = "0" + num;
     }
-    return time;
+    return num;
 }
 
 export function addWhatappEventHandler() {
