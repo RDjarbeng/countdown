@@ -1,5 +1,5 @@
 /* generic */
-.pop-up-container{
+.pop-up-container {
     position: absolute;
     top: 0;
     width: 100vw;
@@ -11,20 +11,20 @@
     z-index: 10;
 }
 .pop-up-form {
-	position: relative;
-	width: 80vmin;
-	height: 75vmin;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-flow: column nowrap;
-	background: var(--bg-form);
-	box-shadow: var(--timer-box);
-	border-radius: 0.2rem;
-	gap: 3vmin;
-	color: var(--form-header);
+    position: relative;
+    width: 80vmin;
+    height: 78vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+    background: var(--bg-form);
+    box-shadow: var(--timer-box);
+    border-radius: 0.2rem;
+    gap: 3vmin;
+    color: var(--form-header);
 }
-.form-header{
+.form-header {
     position: absolute;
     top: 5vmin;
     font-size: 6vmin;
@@ -32,71 +32,105 @@
     font-weight: bold;
     color: var(--form-header);
 }
-.close-form{
+.close-form {
     position: absolute;
-    bottom: 3vmin;
+    bottom: 1.7vmin;
 }
-.close-form button{
-    padding: 2vmin 5vmin;
-    border-radius: .3rem;
-    border: solid 1px var(--color-banner); 
+.close-form button {
+    padding: 1.5vmin 5vmin;
+    border-radius: 0.3rem;
+    border: solid 1px var(--color-banner);
     color: var(--form-close);
     background: var(--bg-sec);
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
     font-size: 0.85rem;
 }
 
-/* create countdown form */
-input[type="text"], input[type="datetime-local"] {
-	width: 70vmin;
-	padding: 2.5vmin 1.8vmin;
-	border-radius: 2vmin;
-	border: var(--color-banner) solid 1px;
-	outline: none;
-	color: var(--color-input);
-	background: var(--bg-sec);
+/* countdown form */
+input[type="text"],
+input[type="datetime-local"] {
+    width: 70vmin;
+    padding: 2.5vmin 1.8vmin;
+    border-radius: 2vmin;
+    border: var(--color-banner) solid 1px;
+    outline: none;
+    color: var(--color-input);
+    background: var(--bg-sec);
     font-size: 1rem;
 }
-input[type="text"]:focus, input[type="datetime-local"]:focus {
-	box-shadow: inset 0 1px var(--color-banner),
-                inset 0 -1px var(--color-banner),
-                inset 1px 0 var(--color-banner),
-                inset -1px 0 var(--color-banner);
-	outline: none;
-	color: var(--color-input);
-	background: var(--bg-sec);
+input[type="text"]:focus,
+input[type="datetime-local"]:focus {
+    box-shadow: inset 0 1px var(--color-banner),
+        inset 0 -1px var(--color-banner), inset 1px 0 var(--color-banner),
+        inset -1px 0 var(--color-banner);
+    outline: none;
+    color: var(--color-input);
+    background: var(--bg-sec);
 }
-input[type="submit"],.reset button{
+input[type="submit"],
+.reset button {
     padding: 2vmin 6vmin;
-    border-radius: .3rem;
-    border: none;  
-    background: var(--color-banner); 
+    border-radius: 0.3rem;
+    border: none;
+    background: var(--color-banner);
     color: white;
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
     font-size: 1rem;
 }
-input[type="submit"]:hover,.reset button:hover{
+input[type="submit"]:hover,
+.reset button:hover {
     background: var(--color-banner);
-    filter:saturate(1.5);
+    filter: saturate(1.5);
     box-shadow: inset 0px 0px 0px 2px var(--color-sidebar),
-        inset 0px 0px 0px 2px var(--color-sidebar), 
+        inset 0px 0px 0px 2px var(--color-sidebar),
         0 0 0 1px var(--color-banner);
 }
-input[type="submit"]:disabled{
+input[type="submit"]:disabled {
     background: grey;
     color: white;
     cursor: not-allowed;
-    /* border: 1px solid grey; */
     box-shadow: inset 0px 0px 0px 2px var(--color-sidebar),
-        inset 0px 0px 0px 2px var(--color-sidebar), 
-        0 0 0 1px grey;
+        inset 0px 0px 0px 2px var(--color-sidebar), 0 0 0 1px grey;
 }
-.form-sections{
+.form-sections {
     display: inline-flex;
     flex-direction: column;
     gap: 2vmin;
 }
-
+.form-repeat {
+    align-self: flex-start;
+    padding-left: 5vmin;
+    margin-bottom: -2vmin;
+}
+#repeat-cb {
+    appearance: none;
+    width: 2rem;
+    height: 0.8rem;
+    border-radius: 0.5rem;
+    background: var(--bg-sec);
+    position: relative;
+}
+#repeat-cb::before {
+    content: "";
+    background: #acacac;
+    border-radius: 50%;
+    width: 1.1rem;
+    height: 1.1rem;
+    z-index: 4;
+    top: 53%;
+    transform: translateY(-50%);
+    left: 0;
+    position: absolute;
+    transition: left 0.15s, background 0.15s;
+}
+#repeat-cb:checked {
+    background: var(--checkbox);
+}
+#repeat-cb:checked::before {
+    background: var(--color-banner);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+    left: 48%;
+}
 /* upload image form */
 .bg-presets {
     display: flex;
@@ -135,10 +169,14 @@ input[type="file"] {
 /* mobile and small screens */
 @media screen and (max-width: 427px) {
     .pop-up-form {
-        height: 90vmin;
+        height: 95vmin;
         width: 90vmin;
     }
-    input[type="text"], input[type="datetime-local"] {
+    input[type="text"],
+    input[type="datetime-local"] {
         width: 82vmin;
+    }
+    .form-repeat {
+        padding-left: 4vmin;
     }
 }

@@ -13,6 +13,11 @@ function popForm() {
             <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" id ="dateInput" min="" required>
         </div>
+        <div class="form-sections form-repeat">
+            <label for="repeat-cb">
+                <input type="checkbox" id="repeat-cb"> Repeat every year 
+            </label>
+        </div>
         <div class="form-sections">
             <label for=""></label>
             <input type="submit" id ="countdown-submit"value="Submit">
@@ -70,18 +75,25 @@ function sanitize(string) {
     return string.replace(reg, (match)=>(map[match]));
   }
 
+function checkRepeat(repeatCheckBox){
+    if(repeatCheckBox.checked){
+        return {repeat: true};
+    }
+
+}
 function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
-    const submitbutton = document.getElementById('countdown-submit');
-    
-    // const event = document.createEvent('Event');
     // console.log(event);
     countdownForm.addEventListener('submit', (e) => {
-        
-        // e.preventDefault();
+        // DOM references
+        e.preventDefault();
+        const submitbutton = document.getElementById('countdown-submit');
+        let userDate = document.getElementById("dateInput").value;
+        let repeatCheck = document.getElementById("repeat-cb");
+        let userTextField = document.getElementById('countdownText');
         submitbutton.disabled = true;
         // get text field values, with auto values
-        let userTextField = document.getElementById('countdownText');
+        
         let userText = sanitize(userTextField.value);
 
         if (!userText) {
@@ -89,27 +101,34 @@ function handleFormSubmission() {
             countNumber++;
             localStorage.setItem('countNumber', countNumber)
         }
-        let userDate = document.getElementById("dateInput").value;
+        
         userDate = new Date(userDate);
-        let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        let countdown = localStorage.getItem('countdown');
-        if(countdown !== null){ //countdowns already exist
-         countdown = JSON.parse(countdown);//array
-
-        countdown.push(countItem);
-        // console.log(countdown);
-        setCountDownList(countdown)
-
-        }else{
-            // create first countdown
-             setCountDownList([countItem]);
+        let countItem = { text: userText, date: userDate, dateModified: new Date()};
+        if(repeatCheck){
+            countItem.repeat = repeatCheck.checked;
         }
+        saveToLocalStorage(countItem);
 
         // testing
         window.location.href = "/index.html";
         closeFormPopUp();
     })
 }
+
+function saveToLocalStorage(countItem){
+    let countdown = localStorage.getItem('countdown');
+    if(countdown !== null){ //countdowns already exist
+     countdown = JSON.parse(countdown);//array
+
+    countdown.push(countItem);
+    console.log(countdown);
+    setCountDownList(countdown)
+    }else{
+        // create first countdown
+         setCountDownList([countItem]);
+    }
+}
+
 
 function setCountDownList(jsArray){
     localStorage.setItem('countdown', JSON.stringify(jsArray))   
