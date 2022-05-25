@@ -1,5 +1,6 @@
 import { Clock } from "./clock.js";
 import { setCountDownList, setInnerHtmlForNotNull } from "./functions.js";
+import { handleFormUpdate } from "./formfunctions.js";
 // Dom elements
 // begin displaycountdown.js
 var hourNumber = document.getElementById("hour-num");
@@ -339,7 +340,7 @@ const listEventListener = event => {
                         repeat = editItem.repeat;
                     }
                     displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified, repeat);
-                    handleUpdate();
+                    handleFormUpdate();
                 } else {
                     // something went wrong with the editing
                     errorHandler('Unable to edit countdown');
@@ -512,7 +513,7 @@ function addEventHandlers() {
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
 
-async function displayAndAddListeners(){
+export async function displayAndAddListeners(){
     await displayAndStartcount()
         // sortUI();
         addEventHandlers();
