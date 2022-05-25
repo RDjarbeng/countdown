@@ -1,14 +1,13 @@
-import {popForm, closeFormPopUp, saveToLocalStorage, getFormValuesAndSaveCd} from './formfunctions.js'
-import {sanitize} from './functions.js'
+import {popForm, closeFormPopUp, sanitize, getFormValuesAndSaveCd} from './formfunctions.js'
 
 
 
 const popAndAddFormOnList=()=>{
     popForm()
-    handleLlispageForm();
+    handleListpageForm();
 }
 
-function handleLlispageForm() {
+function handleListpageForm() {
     const submitbutton = document.getElementById('countdown-submit');
 
     // const event = document.createEvent('Event');
@@ -18,6 +17,7 @@ function handleLlispageForm() {
         e.preventDefault();
         submitbutton.disabled = true;
         getFormValuesAndSaveCd()
+        // todo: refactor display and add 
         try {
             displayAndAddListeners();
             console.log('we did it', countItemExists);
@@ -30,16 +30,9 @@ function handleLlispageForm() {
     })
 }
 
-function setCountDownList(jsArray) {
-    localStorage.setItem('countdown', JSON.stringify(jsArray))
-}
-
 // DOM Elements
 const createButton = document.getElementsByClassName("new-item")[0];
-let countNumber = 1;
-
 // let dateInput, textInput;
-
 // todo: remove dynamic seting of css
 if (!document.querySelector("[href='css/form.css']")) {
     document.head.insertAdjacentHTML(
