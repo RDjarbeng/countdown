@@ -1,24 +1,8 @@
-import {popForm} from './form.js'
-import {addZeros} from './functions.js'
+import {popForm, closeFormPopUp} from './form.js'
+import {sanitize} from './functions.js'
 
 
-function closeFormPopUp() {
-    document.getElementsByClassName("pop-up-container")[0].remove();
-    document.body.style.position = "";
-}
 
-function sanitize(string) {
-    const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#x27;',
-        "/": '&#x2F;',
-    };
-    const reg = /[&<>"'/]/ig;
-    return string.replace(reg, (match) => (map[match]));
-}
 
 function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
