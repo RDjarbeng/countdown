@@ -160,10 +160,6 @@ async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start
 
 
 
-function exportToWhatsapp() {
-    let dayNum = dayCount.innerText;
-    window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
-}
 
 try {
     //show day value before animation runs

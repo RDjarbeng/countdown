@@ -26,10 +26,16 @@ export function addZeros(time) {
     return time;
 }
 
-function addWhatappEventHandler() {
+export function addWhatappEventHandler() {
     let whatsappIcon = document.getElementById('sendWhatsappButton');
     if (whatsappIcon) {
         whatsappIcon.addEventListener('click', exportToWhatsapp);
     }
 
+}
+
+
+export function exportToWhatsapp() {
+    let dayNum = dayCount.innerText;
+    window.open(`whatsapp://send?text= Day ${dayNum || 'rcountdown'}/365`);
 }
