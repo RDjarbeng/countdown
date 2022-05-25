@@ -1,6 +1,6 @@
 import { Clock } from "./clock.js";
-import { setCountDownList, setInnerHtmlForNotNull } from "./functions.js";
-import { handleFormUpdate, closeFormPopUp } from "./formfunctions.js";
+import { setCountDownList, setInnerHtmlForNotNull, updateLocalItem, stopClock } from "./functions.js";
+import { closeFormPopUp, displayFormPopUp } from "./formfunctions.js";
 // Dom elements
 // begin displaycountdown.js
 var hourNumber = document.getElementById("hour-num");
@@ -15,10 +15,7 @@ let testid = '';
 
 
 
-function stopClock() {
-    clearTimeout(intervalID);
-    customClockMovement = false;
-}
+
 
 async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
     animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
@@ -335,7 +332,7 @@ const listEventListener = event => {
             try {
                 if (editItem) {
                     console.log('Edit clicked', editItem);
-                    repeat = false;
+                    let repeat = false;
                     if (editItem.hasOwnProperty('repeat')) {
                         repeat = editItem.repeat;
                     }
@@ -433,7 +430,7 @@ function handleUpdate() {
             countItem.repeat = repeatCheck.checked;
         }
 
-        updateLocalItem(countItem, modifiedTime);
+        updateLocalItem(arrayOfCountdowns,countItem, modifiedTime);
         displayCountdowns();
         closeFormPopUp();
         removeClockAndText();
@@ -441,64 +438,44 @@ function handleUpdate() {
     })
 }
 
-function updateLocalItem(countItem, modifiedTime) {
-    if (arrayOfCountdowns !== null) { //countdowns already exist
+
+export function handleFormUpdate() {
+    // todo: update list with custom fired events
+    const countdownForm = document.getElementById('customUpDateForm');
+    const submitbutton = document.getElementById('countdown-update');
 
 
-        let pos = arrayOfCountdowns.findIndex((value) =>
-            value.dateModified == modifiedTime
-        );
-        if (pos > -1) {
-            console.log(arrayOfCountdowns[pos]);
-            arrayOfCountdowns[pos].text = countItem.text;
-            arrayOfCountdowns[pos].date = countItem.date;
-            arrayOfCountdowns[pos].dateModified = countItem.dateModified;
-            arrayOfCountdowns[pos].repeat = countItem.repeat;
-            setCountDownList(arrayOfCountdowns);
-        } else {
-            console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);
-            errorHandler('Unable to update Item');
+    // const event = document.createEvent('Event');
+    // console.log(event);
+    countdownForm.addEventListener('submit', (e) => {
+
+        e.preventDefault();
+        submitbutton.disabled = true;
+        // get text field values, with auto values
+        let userText = document.getElementById('countdownText').value;
+        const modifiedTime = document.getElementById('modifiedTime').value;
+        let userDate = document.getElementById("dateInput").value;
+        let repeatCheck = document.getElementById("repeat-cb");
+        // if (!userText) {
+        //     userText = userTextField.placeholder;
+        //     countNumber++;
+        //     localStorage.setItem('countNumber', countNumber)
+        // }
+
+        userDate = new Date(userDate);
+        let countItem = { text: userText, date: userDate, dateModified: new Date() };
+        if (repeatCheck) {
+            countItem.repeat = repeatCheck.checked;
         }
 
-    }
-
+        updateLocalItem(arrayOfCountdowns,countItem, modifiedTime);
+        displayCountdowns();
+        closeFormPopUp();
+        removeClockAndText();
+        arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : JSON.parse(localStorage.getItem('countdown'));
+    })
 }
 
-function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
-    // todo: Track items without using modifiedTime
-    if (text && dateTime && modifiedTime) {
-        console.log('inside form display');
-        const updateFormHtml = `<section class="pop-up-container">
-    <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
-        <div class="form-header">Update Countdown</div>
-        <div class="form-sections">
-            <label for="">Title &nbsp;</label>
-            <input type="text" value="${text}" id='countdownText'>
-        </div>
-        <div class="form-sections">
-            <label for="">Date & Time &nbsp;</label>
-            <input type="datetime-local" value= ${dateTime} id ="dateInput" min="" required>
-        </div>
-        <div class="form-sections form-repeat">
-            <label for="repeat-cb">
-                <input type="checkbox" id="repeat-cb" ${repeat ? 'checked' : ''}> Repeat 
-            </label>
-        </div>
-        <div class="form-sections">
-            <label for=""></label>
-            <input type="hidden" value = ${modifiedTime} id="modifiedTime">
-            <input type="submit" id ="countdown-update" value="Update">
-        </div>    
-        
-        <div class="close-form"><button>Close</button></div>
-    </form>
-    </section>`;
-        document.body.insertAdjacentHTML("afterbegin", updateFormHtml);
-        document.body.style.position = "fixed";
-        // setDateAttributes();
-        document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
-    }
-}
 
 
 function addEventHandlers() {
