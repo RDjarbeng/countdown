@@ -4,7 +4,11 @@
 export function setCountDownList(arrayOfJSONCountdowns){
     localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
 }
-
+/**
+ * 
+ * @param {Element} element 
+ * @param {String} value 
+ */
 export function setInnerHtmlForNotNull(element, value){
     if(element)//check for null
         element.innerHTML = value;
