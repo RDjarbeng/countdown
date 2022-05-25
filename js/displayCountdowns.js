@@ -35,7 +35,7 @@ async function displayCountdowns() {
     let jsonListOfCountdowns = await localStorage.getItem('countdown');
     arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
     if (arrayOfCountdowns && arrayOfCountdowns.length) {
-
+        document.body.style.display = "block";
         let listItems = populateList(arrayOfCountdowns);
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
