@@ -1,5 +1,4 @@
-import {sanitize} from './functions.js'
-import {popForm, closeFormPopUp, getFormValuesAndSaveCd} from './formfunctions.js'
+import {popForm, closeFormPopUp, getFormValuesAndSaveCd, sanitize} from './formfunctions.js'
 
 const popAndAddFormSubmission=()=>{
     popForm()
