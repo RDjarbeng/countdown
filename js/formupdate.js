@@ -26,7 +26,7 @@ function handleListpageForm() {
 }
 
 
-// todo: remove dynamic seting of css
+// todo: remove dynamic seting of css, @nyakotey
 if (!document.querySelector("[href='css/form.css']")) {
     document.head.insertAdjacentHTML(
         "beforeend",
