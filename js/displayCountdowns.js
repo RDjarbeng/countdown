@@ -1,6 +1,6 @@
 import { Clock } from "./clock.js";
 import { setCountDownList, setInnerHtmlForNotNull } from "./functions.js";
-import { handleFormUpdate } from "./formfunctions.js";
+import { handleFormUpdate, closeFormPopUp } from "./formfunctions.js";
 // Dom elements
 // begin displaycountdown.js
 var hourNumber = document.getElementById("hour-num");
@@ -498,10 +498,6 @@ function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
         // setDateAttributes();
         document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
     }
-}
-function closeFormPopUp() {
-    document.getElementsByClassName("pop-up-container")[0].remove();
-    document.body.style.position = "";
 }
 
 
