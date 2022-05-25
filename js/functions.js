@@ -73,9 +73,9 @@ export function animateValue(domElement, start, end, duration) {
 /**
  * Stop the clock with global var intervalID
  */
- function stopClock(interval) {
+ export function stopClock(interval) {
     clearTimeout(interval);
-    customClockMovement = false;
+    // customClockMovement = false;
 }
 
 /**
@@ -100,4 +100,33 @@ export function animateValue(domElement, start, end, duration) {
     setInnerHtmlForNotNull(hourDisplay, `${h}`);
     setInnerHtmlForNotNull(minDisplay, `${m}`);
     setInnerHtmlForNotNull(secDisplay, `${s}`);
+}
+/**
+ * Update a single countdown item in the array of countdowns
+ *  with text, date, dateModified and repeat
+ * @param {Array} arrayOfCountdowns 
+ * @param {Object} countItem 
+ * @param {String} id Identified to search array by
+ */
+export function updateLocalItem(arrayOfCountdowns, countItem, id) {
+    if (arrayOfCountdowns !== null) { //countdowns already exist
+
+
+        let pos = arrayOfCountdowns.findIndex((value) =>
+            value.dateModified == id
+        );
+        if (pos > -1) {
+            console.log(arrayOfCountdowns[pos]);
+            arrayOfCountdowns[pos].text = countItem.text;
+            arrayOfCountdowns[pos].date = countItem.date;
+            arrayOfCountdowns[pos].dateModified = countItem.dateModified;
+            arrayOfCountdowns[pos].repeat = countItem.repeat;
+            setCountDownList(arrayOfCountdowns);
+        } else {
+            console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);
+            errorHandler('Unable to update Item');
+        }
+
+    }
+
 }
