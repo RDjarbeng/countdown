@@ -1,16 +1,14 @@
-import {popForm, closeFormPopUp, getFormValuesAndSaveCd, sanitize} from './formfunctions.js'
+import { popForm, closeFormPopUp, getFormValuesAndSaveCd, sanitize } from './formfunctions.js'
 
-const popAndAddFormSubmission=()=>{
+const popAndAddFormSubmission = () => {
     popForm()
     handleFormSubmission();
 }
 
-
 function handleFormSubmission() {
     const submitbutton = document.getElementById('countdown-submit');
-    // console.log(event);
+    
     submitbutton.addEventListener('click', (e) => {
-        
         e.preventDefault();
         submitbutton.disabled = true;
         getFormValuesAndSaveCd()
@@ -21,17 +19,6 @@ function handleFormSubmission() {
 }
 
 
-
-
-
-
-
-// DOM Elements
-const createButton = document.getElementsByClassName("new-item")[0];
-let countNumber = 1;
-
-// let dateInput, textInput;
-
 // todo: remove dynamic seting of css
 if (!document.querySelector("[href='css/form.css']")) {
     document.head.insertAdjacentHTML(
@@ -40,6 +27,6 @@ if (!document.querySelector("[href='css/form.css']")) {
     );
 }
 
-
-
+// DOM Elements
+const createButton = document.getElementsByClassName("new-item")[0];
 createButton.addEventListener("click", popAndAddFormSubmission);
