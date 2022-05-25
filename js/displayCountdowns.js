@@ -1,6 +1,7 @@
-import { Clock } from "./clock.js";
-import { setCountDownList, setInnerHtmlForNotNull, updateLocalItem, stopClock } from "./functions.js";
+import { Clock, Anniversary } from "./clock.js";
+import { setCountDownList, setInnerHtmlForNotNull, updateLocalItem, stopClock, sortArrayOnSelection } from "./functions.js";
 import { closeFormPopUp, displayFormPopUp } from "./formfunctions.js";
+import { waitForAnimation } from "./appfunctions.js";
 // Dom elements
 // begin displaycountdown.js
 var hourNumber = document.getElementById("hour-num");
@@ -10,7 +11,7 @@ var countdownTextDisplay = document.getElementById('countdown-text');
 var countdownClock = document.querySelector('.clock-row');
 var countdownList = document.getElementById('countdown-list');
 let countItemExists = false;
-let arrayOfCountdowns;
+let arrayOfCountdowns=fetchArrayOfCountdowns();
 let testid = '';
 
 
@@ -25,18 +26,20 @@ async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start
 
 }
 
-async function waitForAnimation(clock, domElements, duration) {
-    await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
-    startClock(clock || myclock, domElements);
+async function  fetchArrayOfCountdowns(){
+    let jsonListOfCountdowns = await localStorage.getItem('countdown');
+     return JSON.parse(jsonListOfCountdowns);
 }
 
 // todo: sort by modified time
-async function displayCountdowns() {
-    let jsonListOfCountdowns = await localStorage.getItem('countdown');
-    arrayOfCountdowns = JSON.parse(jsonListOfCountdowns);
-    if (arrayOfCountdowns && arrayOfCountdowns.length) {
+async function displayCountdowns( ) {
+    let cdArray =arrayOfCountdowns = await fetchArrayOfCountdowns();
 
-        let listItems = populateList(arrayOfCountdowns);
+    console.log(arrayOfCountdowns);
+    if ( cdArray &&  cdArray.length) {
+        
+        let listItems = populateList( cdArray)
+        
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
 
@@ -67,20 +70,8 @@ const sortUI = async () => {
     }
     // addSortEventListeners();
 }
-/**
- * Returns html string with a list of countdowns
- * @param {Array.<{text: String, date: String, dateModified: String}>} arrayOfCountdowns | contains array of countdown objects
- * @returns {string} list of countdownitems to be appended to DOM
- */
-function populateList(arrayOfCountdowns) {
-    countItemExists = false;
-    let listItems = '';
-    sortArrayOnSelection();
-    arrayOfCountdowns.forEach((countdown, index) => {
-        listItems += addCountdownItem(countdown, index)
-    });
-    return listItems;
-}
+
+
 
 /**
  * 
@@ -88,11 +79,11 @@ function populateList(arrayOfCountdowns) {
  * @param {Number} index the array index of the current item
  * @returns 
  */
-function addCountdownItem(countdown, index) {
+ export function addCountdownItem(countdown, index) {
     let repeat = false
     if (countdown.hasOwnProperty('repeat') && countdown.repeat) {
         // console.log(arrayOfCountdowns);
-        updateRepeatCountdown(countdown.date, index);
+        updateRepeatCountdown(arrayOfCountdowns,countdown.date, index);
         repeat = true
     }
     const countdownDate =new Date(countdown.date)
@@ -141,21 +132,38 @@ function addCountdownItem(countdown, index) {
     return countdownListItem;
 
 }
+
 /**
- * 
- * @param {String} date date preferrably in ISO string format
- * @param {Number} index index of the repeat countdown element 
+ * Returns html string with a list of countdowns
+ * @param {Array.<{text: String, date: String, dateModified: String, repeat: String}>} arrayOfCountdowns | contains array of countdown objects
+ * @returns {string} list of countdownitems to be appended to DOM
  */
-function updateRepeatCountdown(date, index){
+ export function populateList(arrayOfCountdowns) {
+    let listItems = '';
+    sortArrayOnSelection(arrayOfCountdowns);
+    arrayOfCountdowns.forEach((countdown, index) => {
+        listItems += addCountdownItem(countdown, index)
+    });
+    return listItems;
+}
+
+/**
+* 
+* @param {Array.<{text: String, date: String, dateModified: String, repeat: String}>} arrayOfCountdowns | contains array of countdown objects
+* @param {String} date date preferrably in ISO string format
+* @param {Number} index index of the repeat countdown element 
+*/
+export function updateRepeatCountdown(arrayOfCountdowns,date, index){
     if (new Date(date) - new Date() < 0) {
         arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
         // arrayOfCountdowns[index].dateModified = new Date().toISOString();
         setCountDownList(arrayOfCountdowns);
         console.log('Updating values of old cds', arrayOfCountdowns[index]);
-
+ 
     };
+ 
+ }
 
-}
 /**
  * Get string with status of countdowns
  * @param {Clock} clock clock object for particular countdown
@@ -193,7 +201,7 @@ async function updateCountdownItems() {
                 let index = arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == element.getAttribute('data-id'));
                 let date=element.getAttribute('data-date');
                 if(index && date){
-                updateRepeatCountdown(date, index);
+                updateRepeatCountdown(arrayOfCountdowns,date, index);
                 displayAndStartcount();
             }
         //         arrayOfCountdowns[index].date = new Anniversary(new Date(countdown.date)).endDate.toISOString();
@@ -225,16 +233,9 @@ function displayAndStartcount() {
     });
 }
 
-function sortArrayOnSelection() {
-    let sortType = localStorage.getItem('sort');
-    if (sortType == "due") {
-        // sort by due date if present
-        arrayOfCountdowns.sort((countItem1, countItem2) => new Date(countItem2.date).getTime() - new Date(countItem1.date).getTime())
-    } else {
-        arrayOfCountdowns.sort((countItem1, countItem2) => new Date(countItem1.dateModified).getTime() - new Date(countItem2.dateModified).getTime())
-    }
-}
+
 function updateClockAndText(date, text, animation = true) {
+    console.log('inside update clock');
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
     stopClock();
@@ -282,8 +283,6 @@ function hideContextMenus(event) {
         closeSortMenu();
         // }
     }
-
-
 }
 
 /**
@@ -297,7 +296,12 @@ const listEventListener = event => {
     if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
         // hideContextMenus()
         // todo: find a better way of accessing element in countdown array
-        updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
+        console.log('calling update clock');
+        console.log(arrayOfCountdowns[0], 'ooo');
+        // console.log(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date)
+        console.log(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')])
+        console.log(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
+        // updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
 
         if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
             document.querySelector(".clock-row").style.display = "flex";
@@ -401,44 +405,7 @@ const addSortEventListeners = () => {
     }
 }
 
-function handleUpdate() {
-    // todo: update list with custom fired events
-    const countdownForm = document.getElementById('customUpDateForm');
-    const submitbutton = document.getElementById('countdown-update');
-
-
-    // const event = document.createEvent('Event');
-    // console.log(event);
-    countdownForm.addEventListener('submit', (e) => {
-
-        e.preventDefault();
-        submitbutton.disabled = true;
-        // get text field values, with auto values
-        let userText = document.getElementById('countdownText').value;
-        const modifiedTime = document.getElementById('modifiedTime').value;
-        let userDate = document.getElementById("dateInput").value;
-        let repeatCheck = document.getElementById("repeat-cb");
-        // if (!userText) {
-        //     userText = userTextField.placeholder;
-        //     countNumber++;
-        //     localStorage.setItem('countNumber', countNumber)
-        // }
-
-        userDate = new Date(userDate);
-        let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        if (repeatCheck) {
-            countItem.repeat = repeatCheck.checked;
-        }
-
-        updateLocalItem(arrayOfCountdowns,countItem, modifiedTime);
-        displayCountdowns();
-        closeFormPopUp();
-        removeClockAndText();
-        arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : JSON.parse(localStorage.getItem('countdown'));
-    })
-}
-
-
+// todo: move this function to form update.js
 export function handleFormUpdate() {
     // todo: update list with custom fired events
     const countdownForm = document.getElementById('customUpDateForm');
