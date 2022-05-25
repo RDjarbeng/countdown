@@ -1,17 +1,12 @@
-import {popForm, closeFormPopUp, sanitize, getFormValuesAndSaveCd} from './formfunctions.js'
+import { popForm, closeFormPopUp, sanitize, getFormValuesAndSaveCd } from './formfunctions.js'
 
-
-
-const popAndAddFormOnList=()=>{
+const popAndAddFormOnList = () => {
     popForm()
     handleListpageForm();
 }
 
 function handleListpageForm() {
     const submitbutton = document.getElementById('countdown-submit');
-
-    // const event = document.createEvent('Event');
-    // console.log(event);
     submitbutton.addEventListener('click', (e) => {
 
         e.preventDefault();
@@ -30,9 +25,7 @@ function handleListpageForm() {
     })
 }
 
-// DOM Elements
-const createButton = document.getElementsByClassName("new-item")[0];
-// let dateInput, textInput;
+
 // todo: remove dynamic seting of css
 if (!document.querySelector("[href='css/form.css']")) {
     document.head.insertAdjacentHTML(
@@ -41,6 +34,6 @@ if (!document.querySelector("[href='css/form.css']")) {
     );
 }
 
-
-
+// DOM Elements
+const createButton = document.getElementsByClassName("new-item")[0];
 createButton.addEventListener("click", popAndAddFormOnList);
