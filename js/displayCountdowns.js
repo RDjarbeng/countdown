@@ -1,13 +1,14 @@
 import { Clock, Anniversary } from "./clock.js";
 import { setCountDownList, setInnerHtmlForNotNull, updateLocalItem, stopClock, sortArrayOnSelection } from "./functions.js";
 import { closeFormPopUp, displayFormPopUp } from "./formfunctions.js";
-import { waitForAnimation } from "./appfunctions.js";
+import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
 // begin displaycountdown.js
-var hourNumber = document.getElementById("hour-num");
-var minNumber = document.getElementById("min-num");
-var secNumber = document.getElementById("sec-num");
+const dayNumber = document.getElementById("day-num");
+const hourNumber = document.getElementById("hour-num");
+const minNumber = document.getElementById("min-num");
+const secNumber = document.getElementById("sec-num");
 var countdownTextDisplay = document.getElementById('countdown-text');
 var countdownClock = document.querySelector('.clock-row');
 var countdownList = document.getElementById('countdown-list');
@@ -223,13 +224,15 @@ function displayAndStartcount() {
     });
 }
 
-
+let interval;
 function updateClockAndText(date, text, animation = true) {
     console.log('inside update clock');
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
-    stopClock();
-    waitForAnimation(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500)
+    stopClock(interval);
+    (animation)?stepIncreaseAndStart(clock, { dayNumber, hourNumber, minNumber, secNumber }, 400):null;
+    interval =startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500, interval);
+    
 }
 
 function removeClockAndText() {
@@ -285,10 +288,11 @@ const listEventListener = event => {
     // if event is fired on text or date
     if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
         // hideContextMenus()
+        let targetIndex =targetElement.parentElement.getAttribute('data-index');
         // todo: find a better way of accessing element in countdown array
         console.log('calling update clock');
-        console.log(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')])
-        // updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
+        console.log(targetIndex)
+        updateClockAndText(arrayOfCountdowns[targetIndex].date, arrayOfCountdowns[targetIndex].text)
 
         if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
             document.querySelector(".clock-row").style.display = "flex";
