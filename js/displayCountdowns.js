@@ -2,6 +2,7 @@ import { Clock, Anniversary } from "./clock.js";
 import { setCountDownList, setInnerHtmlForNotNull, updateLocalItem, stopClock, sortArrayOnSelection } from "./functions.js";
 import { closeFormPopUp, displayFormPopUp } from "./formfunctions.js";
 import { waitForAnimation } from "./appfunctions.js";
+import { errorHandler } from "./error.js";
 // Dom elements
 // begin displaycountdown.js
 var hourNumber = document.getElementById("hour-num");
@@ -25,15 +26,14 @@ async function  fetchArrayOfCountdowns(){
 async function displayCountdowns( ) {
     let cdArray =arrayOfCountdowns = await fetchArrayOfCountdowns();
 
-    console.log(arrayOfCountdowns);
     if ( cdArray &&  cdArray.length) {
         
-        let listItems = populateList( cdArray)
+        let listItems = await populateList( cdArray)
         
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
 
-        sortUI();
+        sortUIAddListeners();
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
@@ -43,7 +43,7 @@ async function displayCountdowns( ) {
 /**
  * Adds sort menu to the page
  */
-const sortUI = async () => {
+const sortUIAddListeners = async () => {
     if (!document.querySelector(".list-settings")) {
         const listContainer = document.querySelector(".list-container");
         let sortHtml = `
@@ -58,7 +58,7 @@ const sortUI = async () => {
         </section>`;
         listContainer.insertAdjacentHTML("afterbegin", sortHtml);
     }
-    // addSortEventListeners();
+    await addSortEventListeners();
 }
 
 
@@ -361,7 +361,6 @@ const closeSortMenu = () => {
 
 const sortTitleEventHandler= () => {
     const sortOpts = document.querySelector(".sort-options");
-    console.log('clicking in sort');
     if (sortOpts.style.display == "block") {
         sortOpts.style.display = "none";
     }
@@ -384,15 +383,17 @@ const sortOptionsEventHandler = (event) => {
 const addSortEventListeners = () => {
     const sortOpts = document.querySelector(".sort-options");
     const sortTitle = document.querySelector(".sort-title");
-    if(sortTitle){
+    
+    if(!(sortTitle && sortOpts )){
+        console.log('Var sort title and sortOpts is null', 'sort title', sortTitle, 'sort opts', sortOpts);
+        errorHandler("Something's wrong in sort UI")
+        return;
+    }
         sortTitle.removeEventListener("click", sortTitleEventHandler);
         sortTitle.addEventListener("click", sortTitleEventHandler);
-    }
     // sort options menu events
-    if(sortOpts){
         sortOpts.removeEventListener("click", sortOptionsEventHandler)
         sortOpts.addEventListener("click", sortOptionsEventHandler)
-    }
 }
 
 // todo: move this function to form update.js
@@ -437,8 +438,6 @@ export function handleFormUpdate() {
 
 function addEventHandlers() {
     addListEventListener();
-    addSortEventListeners();
-
     // add context menu event listener
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
