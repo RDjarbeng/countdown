@@ -1,4 +1,4 @@
-let prevErr = false;
+
 
 
 export const closeErrorInfo = (event) => {
@@ -70,4 +70,5 @@ export const errorHandler = (msg) => {
     }
     document.querySelector('.error-message').addEventListener('click', closeErrorInfo)
 };
+let prevErr = false;
 window.onerror = errorHandlerWithoutMessage;
