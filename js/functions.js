@@ -106,24 +106,3 @@ export function sortArrayOnSelection(arrayOfCountdowns) {
         arrayOfCountdowns.sort((countItem1, countItem2) => new Date(countItem1.dateModified).getTime() - new Date(countItem2.dateModified).getTime())
     }
 }
-/**
- * 
- * @param {String} message 
- */
-export function notifyUser(message) {
-    let notifyText = message;
-    let body = document.body
-
-    if (document.getElementsByClassName("mode-info")[0]) {
-        document.getElementsByClassName("mode-info")[0].remove();
-        body.insertAdjacentHTML(
-            "afterbegin",
-            `<span class="mode-info">${notifyText}</span>`
-        );
-    } else {
-        body.insertAdjacentHTML(
-            "afterbegin",
-            `<span class="mode-info">${notifyText}</span>`
-        );
-    }
-}
