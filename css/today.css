@@ -343,10 +343,15 @@ hr {
 .sidebar-list {
     width: 90%;
 }
-.sidebar-list-items {
-    padding: 2.5vmin 0vmin 2.5vmin 4vmin;
-    border-radius: 2.5vmin;
-    margin: 0.5rem auto;
+.sidebar-list-items{
+  padding: 2.5vmin 0vmin 2.5vmin 4vmin;
+  border-radius: 2.5vmin;
+  margin: 0.5rem auto;
+  display: grid;
+  grid-template-areas: "icon text";
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.35rem;
 }
 .sidebar-list-items:hover {
     background: var(--bg-sidebarListHover);
