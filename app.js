@@ -33,9 +33,10 @@
     countDown=()=> {
         var distance = this.getDistance()
         // account for case of the countdown being reached, reset
-        if (distance >= 0) {
+        if (this.getDistance() >= 0) {
+            // console.log('Running the count');
             // Time calculations for days, hours, minutes and seconds
-            this.calculateTimeValues(distance)
+            this.calculateTimeValues(this.getDistance())
         } else {
             // clear date values
             this.resetMethod();
@@ -79,6 +80,31 @@ class NewYearClock extends Clock{
         this.setEndDate()
     }
 }
+/**
+ * Clock that resets every year for given date
+ */
+class Anniversary extends Clock{
+    // @ override
+    constructor(endDate){
+        super(endDate);
+        // account for case of the countdown being reached, reset
+        if (this.getDistance < 0) {
+            // Time calculations for days, hours, minutes and seconds
+            this.resetMethod()
+        } 
+    }
+
+    resetMethod(){
+        // console.log('calling reset', this.endDate.getFullYear()<= new Date().getFullYear(), 'first cond', this.getDistance<0);
+        while(this.endDate.getFullYear()<= new Date().getFullYear() && this.getDistance()<0){
+            // this.endDate.
+            console.log(this.endDate, 'End date triggering' );
+            this.endDate.setFullYear(this.endDate.getFullYear()+1)
+            // console.log('Anniversary done', this);
+        }
+    }
+
+}
 
 // DOM nodes
 let dayCount = document.getElementById("countDay");
@@ -96,20 +122,20 @@ let intervalID;
 let customClockMovement = false;
 let dayClock = new NewYearClock();
 // Initialize default Clock class
-// var myclock = new NewYearClock();
-var myclock =  setMainClock();
+// var myclock = new Anniversary(new Date('5-5-2022'));
 var myclock =  setMainClock();
 setInnerHtmlForNotNull(dueDate, `${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 var customClock;
 
 function setMainClock() {
+    let myclock = new NewYearClock();
     let mainclock =  localStorage.getItem('mainClock');
     if (mainclock !== null && mainclock != undefined) { //countdown set to main
         mainclock = JSON.parse(mainclock)
         myclock = new Clock(new Date(mainclock.date));
         setMainText(mainclock.text)
     }
-    return myclock || new NewYearClock();
+    return myclock;
 
 }
 

@@ -39,32 +39,33 @@ async function displayCountdowns() {
         let listItems = populateList(arrayOfCountdowns);
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
-        
-        const  sortUI = async ()=>  {   
-            if (!document.querySelector(".list-settings")) {
-                const listContainer = document.querySelector(".list-container");
-                let sortHtml = `
-                <section class="list-settings">
-                    <div class="sort">
-                        <div class="sort-options">
-                            <div class="sort-opt modified">Date modified</div>
-                            <div class="sort-opt due">Due date</div>
-                        </div>
-                        <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
-                    </div>
-                </section>`;
-                listContainer.insertAdjacentHTML("afterbegin", sortHtml);
-            }
-            // addSortEventListeners();
-        }
 
-        
         sortUI();
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
         setInnerHtmlForNotNull(countdownTextDisplay, '')
     }
+}
+/**
+ * Adds sort menu to the page
+ */
+const sortUI = async () => {
+    if (!document.querySelector(".list-settings")) {
+        const listContainer = document.querySelector(".list-container");
+        let sortHtml = `
+        <section class="list-settings">
+            <div class="sort">
+                <div class="sort-options">
+                    <div class="sort-opt modified">Date modified</div>
+                    <div class="sort-opt due">Due date</div>
+                </div>
+                <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
+            </div>
+        </section>`;
+        listContainer.insertAdjacentHTML("afterbegin", sortHtml);
+    }
+    // addSortEventListeners();
 }
 /**
  * Returns html string with a list of countdowns
@@ -88,7 +89,14 @@ function populateList(arrayOfCountdowns) {
  * @returns 
  */
 function addCountdownItem(countdown, index) {
-    let listItemClock = new Clock(new Date(countdown.date));
+    let repeat = false
+    if (countdown.hasOwnProperty('repeat') && countdown.repeat) {
+        // console.log(arrayOfCountdowns);
+        updateRepeatCountdown(countdown.date, index);
+        repeat = true
+    }
+    const countdownDate =new Date(countdown.date)
+    let listItemClock = new Clock(countdownDate);
     let timeDifference = listItemClock.getDistance();
     let countdownStatus = "";
     let elapsed = false;
@@ -99,9 +107,10 @@ function addCountdownItem(countdown, index) {
     } else {
         // countdown elapsed
         elapsed = 'true';
-        countdownStatus = "Elapsed "
         statusHtml = `<div class="countdown-list-status" style="color:crimson; background: rgba(192,0,0,0.1)"> <i class="fas fa-hourglass-end"></i> </div>`;
+        countdownStatus = 'Due: '+countdownDate.getDate() + ' ' + countdownDate.toLocaleString('default', { month: 'long' }) + ', ' + countdownDate.getFullYear();
     }
+        // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
 
     let countdownListItem = `
     <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
@@ -118,14 +127,34 @@ function addCountdownItem(countdown, index) {
                 </div>
                 <div class="menu-opts main">
                     <i class="fas fa-clock"></i> &nbsp;Set as main
-                </div>      
+                </div>       
             </div>
         </div>
         <div class="countdown-list-date"> 
-            <span data-date="${countdown.date}" class="${(!elapsed) ? 'countdown-counting' : ''}">${countdownStatus}</span>
+            <div data-date="${countdown.date}" 
+                data-id="${countdown.dateModified}" 
+                data-repeat="${repeat}" 
+                class="${(!elapsed) ? 'countdown-counting' : ''}" > 
+                ${countdownStatus}
+            </div>
         </div>    
     </div>`;
     return countdownListItem;
+
+}
+/**
+ * 
+ * @param {String} date date preferrably in ISO string format
+ * @param {Number} index index of the repeat countdown element 
+ */
+function updateRepeatCountdown(date, index){
+    if (new Date(date) - new Date() < 0) {
+        arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
+        // arrayOfCountdowns[index].dateModified = new Date().toISOString();
+        setCountDownList(arrayOfCountdowns);
+        console.log('Updating values of old cds', arrayOfCountdowns[index]);
+
+    };
 
 }
 /**
@@ -144,7 +173,7 @@ function getCountdownString(clock) {
     }else if(clock.seconds>=0){
         countdownString= clock.seconds + ' seconds '
     }
-    return ` ${ countdownString } more`
+    return ` ${countdownString} more`
 }
 /**
  * update countdown status for non elapsed countdowns
@@ -152,33 +181,44 @@ function getCountdownString(clock) {
 async function updateCountdownItems() {
     let activeCountItems = document.querySelectorAll('.countdown-counting')
     const clock = new Clock();
-    if(activeCountItems.length){
+    if (activeCountItems.length) {
         await activeCountItems.forEach((element, _, countItems) => {
-            let date =new Date(element.getAttribute('data-date'));
+            let date = new Date(element.getAttribute('data-date'));
             clock.setEndDate(date);
             clock.countDown();
-            if(clock.getDistance()>0){
+            if (clock.getDistance() > 0) {
                 setInnerHtmlForNotNull(element, getCountdownString(clock))
-            }else{
+            }else if(element.getAttribute('data-repeat')=='true'){
+                console.log('updating repeat', element);
+                // update repeat item set enddate to next year
+                let index = arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == element.getAttribute('data-id'));
+                let date=element.getAttribute('data-date');
+                if(index && date){
+                updateRepeatCountdown(date, index);
+                displayAndStartcount();
+            }
+        //         arrayOfCountdowns[index].date = new Anniversary(new Date(countdown.date)).endDate.toISOString();
+        // arrayOfCountdowns[index].dateModified = new Date().toISOString();
+
+            } else {
                 console.log('elapsing');
                 element.classList.remove('countdown-counting')
                 setInnerHtmlForNotNull(element, 'Elapsed')
             }
-            
+
             // countItemExists =(countItems.length<2 && clock.getDistance()<0)?false:countItemExists
         });
-    }else{
-        countItemExists= false;
+    } else {
+        countItemExists = false;
     }
 }
 /**
  * display countdowns and start updating display for countdowns in progress
  */
-function displayAndStartcount(){
+function displayAndStartcount() {
     displayCountdowns().then(() => {
-        // console.log('trigerred', countItemExists);
         if (countItemExists) {
-            let interval =setInterval(()=>countItemExists?updateCountdownItems():clearInterval(interval), 1000)
+            let interval = setInterval(() => countItemExists ? updateCountdownItems() : clearInterval(interval), 1000)
         }
     }).catch((err) => {
         console.log(err);
@@ -186,13 +226,13 @@ function displayAndStartcount(){
     });
 }
 
-function sortArrayOnSelection(){
+function sortArrayOnSelection() {
     let sortType = localStorage.getItem('sort');
-    if(sortType =="due"){
+    if (sortType == "due") {
         // sort by due date if present
-        arrayOfCountdowns.sort((countItem1, countItem2)=> new Date(countItem2.date).getTime()-new Date(countItem1.date).getTime())
-    }else{
-        arrayOfCountdowns.sort((countItem1, countItem2)=> new Date(countItem1.dateModified).getTime()-new Date(countItem2.dateModified).getTime())
+        arrayOfCountdowns.sort((countItem1, countItem2) => new Date(countItem2.date).getTime() - new Date(countItem1.date).getTime())
+    } else {
+        arrayOfCountdowns.sort((countItem1, countItem2) => new Date(countItem1.dateModified).getTime() - new Date(countItem2.dateModified).getTime())
     }
 }
 function updateClockAndText(date, text, animation = true) {
@@ -212,14 +252,16 @@ function removeClockAndText() {
 }
 
 const triggerContextMenu = (element) => {
-    if (element.querySelector(".menu").style.display == "block") {
-        hideContextMenus();
-    }
-    else {
-        hideContextMenus();//close all context menus before displaying the clicked one
-        element.querySelector(".menu").style.display = "block";
-        switchContextIconUp(element);
-        // console.log("context-menu: show");
+    if (element.querySelector(".menu")) {
+        if (element.querySelector(".menu").style.display == "block") {
+            hideContextMenus();
+        }
+        else {
+            hideContextMenus();//close all context menus before displaying the clicked one
+            element.querySelector(".menu").style.display = "block";
+            switchContextIconUp(element);
+            // console.log("context-menu: show");
+        }
     }
 }
 function switchContextIconUp(element) {
@@ -235,109 +277,129 @@ function switchContextIconDown(element) {
 }
 function hideContextMenus(event) {
     //if function is not triggered by event listener, event is empty
-    if ((!(event != null))||!(event.target.className == 'countdown-list-options' || event.target.tagName == 'I'|| (event.target.className.search('sort-title') >-1))) {
+    if ((!(event != null)) || !(event.target.className == 'countdown-list-options' || event.target.tagName == 'I' || (event.target.className.search('sort-title') > -1))) {
         document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
         document.querySelectorAll('.fa-chevron-circle-up').forEach(element => switchContextIconDown(element));
         closeSortMenu();
-    // }
-    } 
+        // }
+    }
 
-    
+
+}
+
+/**
+ * List Click event listener for the countdowns, context menu and items
+ * @param {Event} event 
+ */
+const listEventListener = event => {
+    const targetElement = event.target;
+
+    // if event is fired on text or date
+    if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
+        // hideContextMenus()
+        // todo: find a better way of accessing element in countdown array
+        updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
+
+        if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
+            document.querySelector(".clock-row").style.display = "flex";
+            document.querySelector(".clock-row").style.animationPlayState = "running";
+        }
+    }
+    //if the area for context menu is clicked
+    else if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
+        //get the countdown list item and pass to function, search for list class .menu
+        //in case of directly clicking on icon, parent element is .countdown-list-options div
+        triggerContextMenu(targetElement.parentElement);
+
+    } else if (targetElement.className.search('menu-opts') > -1) {
+        let count_modified = targetElement.parentElement.getAttribute('data-id');
+        if (targetElement.className.search('main') > -1) {
+            // set as main clicked
+            // find the element convert to JSON and place it as the main clock
+            const countdown = arrayOfCountdowns.find((countdown) => countdown.dateModified == count_modified);
+            const mainCount = JSON.stringify(countdown);
+            localStorage.setItem('mainClock', mainCount);
+            let date = new Date(countdown.date);
+            notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
+        } else if (targetElement.className.search('del') > -1) {
+            // delete item clicked
+            arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
+            setCountDownList(arrayOfCountdowns);
+            setInnerHtmlForNotNull(countdownList, populateList(arrayOfCountdowns));
+            // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
+        } else if (targetElement.className.search('edit') > -1) {
+            let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
+            // todo: custom error messages for components on fail
+            try {
+                if (editItem) {
+                    console.log('Edit clicked', editItem);
+                    repeat = false;
+                    if (editItem.hasOwnProperty('repeat')) {
+                        repeat = editItem.repeat;
+                    }
+                    displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified, repeat);
+                    handleUpdate();
+                } else {
+                    // something went wrong with the editing
+                    errorHandler('Unable to edit countdown');
+                    // console.log(editItem);
+                }
+            } catch (err) {
+                console.log(err, 'Error in form display');
+                errorHandler('Error in form display');
+            }
+
+
+        }
+    }
 }
 function addListEventListener() {
-    document.querySelector('.countdown-list').addEventListener('click', event => {
-        const targetElement = event.target;
-
-        // if event is fired on text or date
-        if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
-            // hideContextMenus()
-            // todo: find a better way of accessing element in countdown array
-            updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
-
-            if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
-                document.querySelector(".clock-row").style.display = "flex";
-                document.querySelector(".clock-row").style.animationPlayState = "running";
-            }
-        }
-        //if the area for context menu is clicked
-        else if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
-            //get the countdown list item and pass to function, search for list class .menu
-            //in case of directly clicking on icon, parent element is .countdown-list-options div
-            triggerContextMenu(targetElement.parentElement);
-
-        } else if (targetElement.className.search('menu-opts') > -1) {
-            let count_modified = targetElement.parentElement.getAttribute('data-id');
-            if (targetElement.className.search('main') > -1) {
-                // set as main clicked
-                // find the element convert to JSON and place it as the main clock
-                const countdown = arrayOfCountdowns.find((countdown) => countdown.dateModified == count_modified);
-                const mainCount = JSON.stringify(countdown);
-                localStorage.setItem('mainClock', mainCount);
-                let date = new Date(countdown.date);
-                notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
-            } else if (targetElement.className.search('del') > -1) {
-                // delete item clicked
-                arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
-                setCountDownList(arrayOfCountdowns);
-                setInnerHtmlForNotNull(countdownList,populateList(arrayOfCountdowns));
-                // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
-            } else if (targetElement.className.search('edit') > -1) {
-                let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
-                // todo: custom error messages for components on fail
-                try {
-                    if (editItem) {
-                        displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified);
-                        handleUpdate();
-                    } else {
-                        // something went wrong with the editing
-                        errorHandler('Unable to edit countdown');
-                        // console.log(editItem);
-                    }
-                } catch (err) {
-                    console.log(err, 'Error in form display');
-                    errorHandler('Error in form display');
-                }
-
-
-            }
-        }
-    })
+    const countList =document.querySelector('.countdown-list')
+    countList.removeEventListener('click', listEventListener)
+    countList.addEventListener('click', listEventListener)
 }
 
-const closeSortMenu=()=>{
+const closeSortMenu = () => {
     const sortOpts = document.querySelector(".sort-options");
     if (sortOpts.style.display == "block") {
         sortOpts.style.display = "none";
     }
 }
 
-const addSortEventListeners = ()=>{
+const sortTitleEventHandler= () => {
+    const sortOpts = document.querySelector(".sort-options");
+    console.log('clicking in sort');
+    if (sortOpts.style.display == "block") {
+        sortOpts.style.display = "none";
+    }
+    else {
+        sortOpts.style.display = "block";
+    }
+}
+
+const sortOptionsEventHandler = (event) => {
+        if (event.target.className.search('due') > -1) {
+            localStorage.setItem('sort', 'due')
+        } else if (event.target.className.search('modified') > -1) {
+            localStorage.setItem('sort', 'modified')
+        }
+        // close sortOptions menu on selection and refresh list
+        closeSortMenu();
+        displayCountdowns();
+    }
+
+const addSortEventListeners = () => {
     const sortOpts = document.querySelector(".sort-options");
     const sortTitle = document.querySelector(".sort-title");
-        sortTitle.addEventListener("click", ()=> {
-            if (sortOpts.style.display == "block") {
-                sortOpts.style.display = "none";
-            }
-            else{
-                sortOpts.style.display = "block";
-            }
-        });
-        // sort options menu events
-        sortOpts.addEventListener("click", (event)=> {
-            if(event.target.className.search('due') > -1){
-                localStorage.setItem('sort', 'due') 
-                // console.log('due clicked', localStorage.getItem('sort'));
-                // displayCountdowns();
-                  
-            }else if(event.target.className.search('modified') > -1){
-                localStorage.setItem('sort', 'modified')
-                // console.log('modified clicked', localStorage.getItem('sort'));
-                // displayCountdowns();
-            }
-            // close sortOptions menu on selection and refresh list
-            closeSortMenu();
-            displayCountdowns();
-        })
+    if(sortTitle){
+        sortTitle.removeEventListener("click", sortTitleEventHandler);
+        sortTitle.addEventListener("click", sortTitleEventHandler);
+    }
+    // sort options menu events
+    if(sortOpts){
+        sortOpts.removeEventListener("click", sortOptionsEventHandler)
+        sortOpts.addEventListener("click", sortOptionsEventHandler)
+    }
 }
 
 function handleUpdate() {
@@ -355,48 +417,58 @@ function handleUpdate() {
         // get text field values, with auto values
         let userText = document.getElementById('countdownText').value;
         const modifiedTime = document.getElementById('modifiedTime').value;
-
+        let userDate = document.getElementById("dateInput").value;
+        let repeatCheck = document.getElementById("repeat-cb");
         // if (!userText) {
         //     userText = userTextField.placeholder;
         //     countNumber++;
         //     localStorage.setItem('countNumber', countNumber)
         // }
-        let userDate = document.getElementById("dateInput").value;
+
         userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : JSON.parse(localStorage.getItem('countdown'));
-        if (arrayOfCountdowns !== null) { //countdowns already exist
-
-
-            let pos = arrayOfCountdowns.findIndex((value) =>
-                value.dateModified == modifiedTime
-            );
-            if (pos > -1) {
-                // todo: combine this file and form update.js
-                console.log(arrayOfCountdowns[pos]);
-                arrayOfCountdowns[pos].text = countItem.text;
-                arrayOfCountdowns[pos].date = countItem.date;
-                arrayOfCountdowns[pos].dateModified = countItem.dateModified;
-                setCountDownList(arrayOfCountdowns);
-                displayAndStartcount();
-                closeFormPopUp();
-                removeClockAndText();
-            }else{
-                console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);
-                errorHandler('Unable to update Item');
-            }
-
+        if (repeatCheck) {
+            countItem.repeat = repeatCheck.checked;
         }
+
+        updateLocalItem(countItem, modifiedTime);
+        displayCountdowns();
+        closeFormPopUp();
+        removeClockAndText();
+        arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : JSON.parse(localStorage.getItem('countdown'));
     })
 }
 
+function updateLocalItem(countItem, modifiedTime) {
+    if (arrayOfCountdowns !== null) { //countdowns already exist
+
+
+        let pos = arrayOfCountdowns.findIndex((value) =>
+            value.dateModified == modifiedTime
+        );
+        if (pos > -1) {
+            console.log(arrayOfCountdowns[pos]);
+            arrayOfCountdowns[pos].text = countItem.text;
+            arrayOfCountdowns[pos].date = countItem.date;
+            arrayOfCountdowns[pos].dateModified = countItem.dateModified;
+            arrayOfCountdowns[pos].repeat = countItem.repeat;
+            setCountDownList(arrayOfCountdowns);
+        } else {
+            console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);
+            errorHandler('Unable to update Item');
+        }
+
+    }
+
+}
 function setCountDownList(jsArray) {
     localStorage.setItem('countdown', JSON.stringify(jsArray))
 }
 
-function displayFormPopUp(text, dateTime, modifiedTime) {
+function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
     // todo: Track items without using modifiedTime
     if (text && dateTime && modifiedTime) {
+        console.log('inside form display');
         const updateFormHtml = `<section class="pop-up-container">
     <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
         <div class="form-header">Update Countdown</div>
@@ -407,6 +479,11 @@ function displayFormPopUp(text, dateTime, modifiedTime) {
         <div class="form-sections">
             <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" value= ${dateTime} id ="dateInput" min="" required>
+        </div>
+        <div class="form-sections form-repeat">
+            <label for="repeat-cb">
+                <input type="checkbox" id="repeat-cb" ${repeat ? 'checked' : ''}> Repeat 
+            </label>
         </div>
         <div class="form-sections">
             <label for=""></label>
@@ -442,11 +519,12 @@ function addListEventHandlers() {
 
 async function displayAndAddListeners(){
     await displayAndStartcount()
-    addListEventHandlers();
+        // sortUI();
+        addListEventHandlers();
 }
-try{
+try {
     displayAndAddListeners();
-}catch (err) {
+} catch (err) {
     console.log(err, 'err in display countdown initialisation');
     errorHandler("Unable to fetch your countdowns");
 }
