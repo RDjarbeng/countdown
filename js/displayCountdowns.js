@@ -1,5 +1,5 @@
 import { Clock, Anniversary } from "./clock.js";
-import { setCountDownList, setInnerHtmlForNotNull, updateLocalItem, stopClock, sortArrayOnSelection } from "./functions.js";
+import { setCountDownList, setInnerHtmlForNotNull, updateLocalItem, stopClock, sortArrayOnSelection, setCountDownStatus, getCountdownString } from "./functions.js";
 import { closeFormPopUp, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
@@ -72,25 +72,18 @@ const sortUIAddListeners = async () => {
  */
 export function addCountdownItem(countdown, index) {
     let repeat = false
+    let elapsed = false
     if (countdown.hasOwnProperty('repeat') && countdown.repeat) {
         // console.log(arrayOfCountdowns);
         updateRepeatCountdown(arrayOfCountdowns, countdown.date, index);
         repeat = true
     }
-    const countdownDate = new Date(countdown.date)
-    let listItemClock = new Clock(countdownDate);
-    let timeDifference = listItemClock.getDistance();
-    let countdownStatus = "";
-    let countdownStatusTI = `<span style="color:#03bf42;"><i class="fas fa-hourglass-start"></i> active</span>`;
-    let elapsed = false;
-    if (timeDifference > 0) {
-        countItemExists = true;
-        countdownStatus = getCountdownString(listItemClock);
-    } else {
-        // countdown elapsed
-        elapsed = 'true';
-        countdownStatus = 'Due: ' + countdownDate.getDate() + ' ' + countdownDate.toLocaleString('default', { month: 'long' }) + ', ' + countdownDate.getFullYear();
-        countdownStatusTI = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>`;
+    let listItemClock = new Clock(new Date(countdown.date));
+    let {countdownStatus, countdownStatusTI}=setCountDownStatus(listItemClock)
+    if(listItemClock.getDistance()>0){
+        countItemExists =true
+    }else{
+        elapsed = true;
     }
     // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
 
@@ -155,24 +148,7 @@ export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
 
 }
 
-/**
- * Get string with status of countdowns
- * @param {Clock} clock clock object for particular countdown
- * @returns {String} string of countdown status
- */
-function getCountdownString(clock) {
-    let countdownString = '';
-    if (clock.days > 0) {
-        countdownString = clock.days + ' days, ' + ((clock.hours > 0) ? (clock.hours + ' hours') : (clock.minutes + ' minutes'));
-    } else if (clock.hours > 0) {
-        countdownString = clock.hours + ' hours, ' + ((clock.minutes > 0) ? (clock.minutes + ' minutes') : (clock.seconds + ' seconds'));
-    } else if (clock.minutes > 0) {
-        countdownString = clock.minutes + ' minutes, ' + clock.seconds + ' seconds';
-    } else if (clock.seconds >= 0) {
-        countdownString = clock.seconds + ' seconds '
-    }
-    return ` ${countdownString} more`
-}
+
 /**
  * update countdown status for non elapsed countdowns
  */
@@ -276,7 +252,18 @@ function hideContextMenus(event) {
         // }
     }
 }
-
+/**
+ * Display the mini clock on the countdownlist page
+ */
+const showClockRow = () => {
+    if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
+        const clockRow = document.querySelector(".clock-row")
+        if (clockRow) {
+            clockRow.style.display = "flex";
+            clockRow.style.animationPlayState = "running";
+        }
+    }
+}
 /**
  * List Click event listener for the countdowns, context menu and items
  * @param {Event} event 
@@ -290,16 +277,8 @@ const listEventListener = event => {
         let targetIndex = targetElement.parentElement.getAttribute('data-index');
         // todo: find a better way of accessing element in countdown array
         console.log(targetIndex)
+        showClockRow()
         updateClockAndText(arrayOfCountdowns[targetIndex].date, arrayOfCountdowns[targetIndex].text)
-
-        if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
-            const clockRow = document.querySelector(".clock-row")
-            if (clockRow) {
-                clockRow.style.display = "flex";
-                clockRow.style.animationPlayState = "running";
-            }
-
-        }
     }
     //if the area for context menu is clicked
     else if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
