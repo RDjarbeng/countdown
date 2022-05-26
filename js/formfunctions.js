@@ -1,4 +1,5 @@
-import {addZeros, updateLocalItem} from './functions.js'
+import {addZeros} from './functions.js'
+import { updateLocalItem } from "./listFunctions.js";
 
 export function popForm() {
     let countNumber = getUserDefaultCount()

@@ -1,5 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
-import { setCountDownList, setInnerHtmlForNotNull, updateLocalItem, stopClock, sortArrayOnSelection, setCountDownStatus, getCountdownString } from "./functions.js";
+import { setInnerHtmlForNotNull, stopClock } from "./functions.js";
+import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString, setCountDownList } from "./listFunctions.js";
 import { closeFormPopUp, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
