@@ -24,7 +24,7 @@ export let icon = document.getElementById('themeToggle');
         );
     }
 }
-function activateLightMode() {
+export function activateLightMode() {
     setInnerHtmlForNotNull(icon, `<i class="fas fa-moon fa-fw"></i>`);
     if (body.classList.contains("dark")) {
         body.classList.replace("dark", "light");
@@ -32,7 +32,7 @@ function activateLightMode() {
     localStorage.setItem("userMode", "light");
     console.log("saving: ", localStorage.getItem("userMode"));
 }
-function activateDarkMode() {
+export function activateDarkMode() {
     setInnerHtmlForNotNull(icon, `<i class="fas fa-sun fa-fw"></i>`);
     if (body.classList.contains("light")) {
         body.classList.replace("light", "dark");

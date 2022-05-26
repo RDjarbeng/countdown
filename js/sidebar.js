@@ -1,3 +1,6 @@
+import { notifyUser } from "./uiFunctions.js";
+
+
 const $ = (selector) => document.querySelectorAll(selector);
 const setLink = (link) => (window.location.href = link);
 const nav = $(".nav")[0];
