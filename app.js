@@ -1,25 +1,21 @@
 
 
 import {Clock, NewYearClock  } from "./js/clock.js";
-import { waitForAnimation, startTime,  updateDisplay } from "./js/appfunctions.js";
-
+import { waitForAnimation } from "./js/appfunctions.js";
+import { errorHandler } from "./js/error.js";
 import {setInnerHtmlForNotNull } from "./js/functions.js";
 
 // DOM nodes
 // todo remove day clock and day count
 let dayCount = document.getElementById("countDay");
-let dayClock = new NewYearClock();
 const animatedCountDuration = 800;
 
-const body = document.body;
 var dayNumber = document.getElementById('day-num');
 var hourNumber = document.getElementById("hour-num");
 var minNumber = document.getElementById("min-num");
 var secNumber = document.getElementById("sec-num");
 var dueDate = document.getElementById('dueDate');
 
-//to stop the clock
-let intervalID;
 let customClockMovement = false;
 // Initialize default Clock class
 // var myclock = new Anniversary(new Date('5-5-2022'));
@@ -63,9 +59,8 @@ function restartTime() {
 
 try {
     //show day value before animation runs
-// setInnerHtmlForNotNull(dayCount, dayClock.countDays());
-// startTime();
 waitForAnimation(myclock,  { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration, customClockMovement,);
+
 // addWhatappEventHandler();
 // as;
 } catch (error) {
