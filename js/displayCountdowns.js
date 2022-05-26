@@ -287,10 +287,7 @@ const listEventListener = event => {
         // hideContextMenus()
         // todo: find a better way of accessing element in countdown array
         console.log('calling update clock');
-        console.log(arrayOfCountdowns[0], 'ooo');
-        // console.log(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date)
         console.log(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')])
-        console.log(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
         // updateClockAndText(arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].date, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')].text)
 
         if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {

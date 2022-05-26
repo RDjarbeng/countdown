@@ -3,28 +3,24 @@ import {setInnerHtmlForNotNull, addZeros } from "./functions.js";
 /**
  * 
  * @param {Clock} clock 
- * @param {Boolean} customClockMovement boolean to check if clock is already moving 
  * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
  * @param {Number} [duration=800] specifies how long the animation lasts in milliseconds
  */
- export async function waitForAnimation(clock, domElements, duration, customClockMovement=false ) {
-    await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration, customClockMovement)
-    startClock(clock || myclock, customClockMovement, domElements);
+ export async function waitForAnimation(clock, domElements, duration ) {
+    await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
+    startClock(clock || myclock, domElements);
 }
 
-export function startClock(clock, customClockMovement, domElements) {
-    let intervalID = setInterval(() => {  startTime(clock, customClockMovement, domElements,);  }, 500);
+export function startClock(clock, domElements) {
+    let intervalID = setInterval(() => {  startTime(clock,  domElements,);  }, 500);
     return intervalID;
 }
 
 
-export function startTime(clock, customClockMovement, { dayNumber, hourNumber, minNumber, secNumber }) {
+export function startTime(clock,  { dayNumber, hourNumber, minNumber, secNumber }) {
     // console.log(clock);
     updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
     // setInnerHtmlForNotNull(dayCount, dayClock.countDays());
-    if (customClockMovement) {
-        // updateDisplay(customClock, customDayNumber, customHourNumber, customMinNumber, customSecNumber);
-    }
 }
 
 export async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
