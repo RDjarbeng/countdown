@@ -6,9 +6,20 @@ import {setInnerHtmlForNotNull, addZeros } from "./functions.js";
  * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
  * @param {Number} [duration=800] specifies how long the animation lasts in milliseconds
  */
+ export async function waitForAnimationUpdate(clock, domElements, duration, interval ) {
+    await stepIncreaseAndStart(clock , domElements, duration );
+    return startClockAndReset(clock , domElements, interval);
+}
+
+/**
+ * 
+ * @param {Clock} clock 
+ * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
+ * @param {Number} [duration=800] specifies how long the animation lasts in milliseconds
+ */
  export async function waitForAnimation(clock, domElements, duration ) {
-    await stepIncreaseAndStart(clock || myclock, domElements, duration || animatedCountDuration)
-    startClock(clock || myclock, domElements);
+    await stepIncreaseAndStart(clock, domElements, duration || animatedCountDuration)
+    startClock(clock, domElements);
 }
 
 export function startClock(clock, domElements) {
@@ -17,12 +28,23 @@ export function startClock(clock, domElements) {
 }
 
 
+
 export function startTime(clock,  { dayNumber, hourNumber, minNumber, secNumber }) {
     // console.log(clock);
     updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
     // setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 }
-
+/**
+ * 
+ * @param {HTMLElement} clockElement 
+ * @param {Object} domElements 
+ *  @param {HTMLElement} domElements.dayNumber
+ *  @param {HTMLElement} domElements.hourNumber
+ *  @param {HTMLElement} domElements.minNumber
+ *  @param {HTMLElement} domElements.secNumber
+ * @param {Number} [speed = 50 ] - Speed of the animation in ms
+ * @param {Number} [start_num =0] Start number at animation beginning
+ */
 export async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
     animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
     animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
