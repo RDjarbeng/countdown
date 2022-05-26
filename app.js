@@ -16,12 +16,10 @@ var minNumber = document.getElementById("min-num");
 var secNumber = document.getElementById("sec-num");
 var dueDate = document.getElementById('dueDate');
 
-let customClockMovement = false;
 // Initialize default Clock class
 // var myclock = new Anniversary(new Date('5-5-2022'));
 var myclock =  setMainClock();
 setInnerHtmlForNotNull(dueDate, `${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
-var customClock;
 
 function setMainClock() {
     let myclock = new NewYearClock();
@@ -47,19 +45,11 @@ function displayClockRow() {
     // show row
     customRow.style.display = 'block';
 }
-// todo: remove this unused function 
-function restartTime() {
-    if (customClockMovement) {
-        return;
-    } else {
-        startClock();
-    }
-}
 
 
 try {
     //show day value before animation runs
-waitForAnimation(myclock,  { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration, customClockMovement,);
+waitForAnimation(myclock,  { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 
 // addWhatappEventHandler();
 // as;
