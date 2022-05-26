@@ -104,6 +104,10 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 ![v2 4@0,5x](https://user-images.githubusercontent.com/73431750/170242064-43aa6765-229c-43e8-a6e7-ed39e7de3ee0.png)
 
 
+## Countdown v2.4.1
+* fix sidebar option text going under the icon
+
+
 ---
 #### Many more to come, stay tuned!
 For more details, and live updates, checkout the [dev process](/docs/dev-process.md) readme
