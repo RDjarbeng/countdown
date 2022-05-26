@@ -99,7 +99,7 @@ function addCountdownItem(countdown, index) {
     let listItemClock = new Clock(countdownDate);
     let timeDifference = listItemClock.getDistance();
     let countdownStatus = "";
-    let countdownStatusTI =`<span style="color:#03bf42;"><i class="fas fa-hourglass-start"></i> active</span>`;
+    let countdownStatusTI =`<span style="color:#03bf42;"><span class="material-icons md-18">hourglass_top</span> active</span>`;
     let elapsed = false;
     if (timeDifference > 0) {
         countItemExists = true;
@@ -108,7 +108,7 @@ function addCountdownItem(countdown, index) {
         // countdown elapsed
         elapsed = 'true';
         countdownStatus = 'Due: '+countdownDate.getDate() + ' ' + countdownDate.toLocaleString('default', { month: 'long' }) + ', ' + countdownDate.getFullYear();
-        countdownStatusTI = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>`;
+        countdownStatusTI = `<span style="color:crimson;"><span class="material-icons md-18">hourglass_bottom</span> elapsed</span>`;
     }
         // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
 
