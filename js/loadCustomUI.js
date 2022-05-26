@@ -1,3 +1,4 @@
+import { notifyUser } from "./functions.js";
 let icon = document.getElementById('themeToggle');
 
 function activateLightMode() {
@@ -32,23 +33,6 @@ function notifyMode() {
     }
 
     notifyUser(notifyText);
-}
-
- function notifyUser(message) {
-    let notifyText = message;
-
-    if (document.getElementsByClassName("mode-info")[0]) {
-        document.getElementsByClassName("mode-info")[0].remove();
-        body.insertAdjacentHTML(
-            "afterbegin",
-            `<span class="mode-info">${notifyText}</span>`
-        );
-    } else {
-        body.insertAdjacentHTML(
-            "afterbegin",
-            `<span class="mode-info">${notifyText}</span>`
-        );
-    }
 }
 
 function loadTheme() {
