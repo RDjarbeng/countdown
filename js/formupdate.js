@@ -3,15 +3,20 @@ function popForm() {
     if (!countNumber)
         countNumber = 1;
     const popFormHtml = `<section class="pop-up-container">
-    <form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
+    <form action="/html/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
         <div class="form-sections">
-            <label for="">Note &nbsp;</label>
+            <label for="">Title &nbsp;</label>
             <input type="text" placeholder="countdown #${countNumber}" id='countdownText'>
         </div>
         <div class="form-sections">
-            <label for="">Date &nbsp;</label>
+            <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" id ="dateInput" min="" required>
+        </div>
+        <div class="form-sections form-repeat">
+            <label for="repeat-cb">
+            <input type="checkbox" id="repeat-cb"> Repeat every year 
+            </label>
         </div>
         <div class="form-sections">
             <label for=""></label>
@@ -38,7 +43,7 @@ function addZeros(time) {
 function setDateAttributes() {
     const dateInput = document.getElementById("dateInput");
     const today = new Date();
-    let dd = today.getDate() ;//add 1 to the date so date starts from tomorrow
+    let dd = today.getDate();//add 1 to the date so date starts from tomorrow
     let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
     let yyyy = today.getFullYear();
     let hr = addZeros(today.getHours());
@@ -46,10 +51,10 @@ function setDateAttributes() {
     dd = addZeros(dd);
     mm = addZeros(mm)
 
-    let todayString = yyyy + '-' + mm + '-' + dd+'T'+ hr+':'+min;
+    let todayString = yyyy + '-' + mm + '-' + dd + 'T' + hr + ':' + min;
     console.log(todayString);
     dateInput.setAttribute("min", todayString);
-    dateInput.value= todayString;
+    dateInput.value = todayString;
 }
 
 function closeFormPopUp() {
@@ -57,19 +62,35 @@ function closeFormPopUp() {
     document.body.style.position = "";
 }
 
+function sanitize(string) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return string.replace(reg, (match) => (map[match]));
+}
+
 function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
     const submitbutton = document.getElementById('countdown-submit');
-    
+
     // const event = document.createEvent('Event');
     // console.log(event);
     countdownForm.addEventListener('submit', (e) => {
-        
+
         e.preventDefault();
-        submitbutton.disabled = true;
+        // submitbutton.disabled = true;
         // get text field values, with auto values
         let userTextField = document.getElementById('countdownText');
-        let userText = userTextField.value;
+        let repeatCheck = document.getElementById("repeat-cb");
+        console.log(userTextField.value, 'user input');
+        let userText = sanitize(userTextField.value)
+        console.log(userText, 'sanitized user');
 
         if (!userText) {
             userText = userTextField.placeholder;
@@ -79,31 +100,36 @@ function handleFormSubmission() {
         let userDate = document.getElementById("dateInput").value;
         userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        let countdown = localStorage.getItem('countdown');
-        if(countdown !== null){ //countdowns already exist
-         countdown = JSON.parse(countdown);//array
-
-        countdown.push(countItem);
-        // console.log(countdown);
-        setCountDownList(countdown);
-        // external function
-        displayCountdowns();
-        closeFormPopUp();
-
-        }else{
-            // create first countdown
-             setCountDownList([countItem]);
-             displayCountdowns();
-             closeFormPopUp();
+        if(repeatCheck){
+            countItem.repeat = repeatCheck.checked;
         }
-
+        console.log(countItem);
+        let countdown = localStorage.getItem('countdown');
+        if (countdown !== null) { //countdowns already exist
+            countdown = JSON.parse(countdown);//array
+            countdown.push(countItem);
+            // console.log(countdown);
+            setCountDownList(countdown);
+            // external function
+        } else {
+            // create first countdown
+            setCountDownList([countItem]);
+            //  displayAndAddListeners();
+        }
+        try {
+            displayAndAddListeners();
+            console.log('we did it', countItemExists);
+        } catch (err) {
+            console.log(err, 'err in updating countdown initialisation');
+            errorHandler("Unable to finish update your countdowns");
+        }
         // testing
-        // closeFormPopUp();
+        closeFormPopUp();
     })
 }
 
-function setCountDownList(jsArray){
-    localStorage.setItem('countdown', JSON.stringify(jsArray))   
+function setCountDownList(jsArray) {
+    localStorage.setItem('countdown', JSON.stringify(jsArray))
 }
 
 // DOM Elements
@@ -113,10 +139,10 @@ let countNumber = 1;
 // let dateInput, textInput;
 
 // todo: remove dynamic seting of css
-if (!document.querySelector("[href='form.css']")) {
+if (!document.querySelector("[href='css/form.css']")) {
     document.head.insertAdjacentHTML(
         "beforeend",
-        `<link rel="stylesheet" href="form.css">`
+        `<link rel="stylesheet" href="/css/form.css">`
     );
 }
 

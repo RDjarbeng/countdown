@@ -3,15 +3,20 @@ function popForm() {
     if (!countNumber)
         countNumber = 1;
     const popFormHtml = `<section class="pop-up-container">
-    <form action="/countdown-list.html" method="get" id='customDateForm' class="pop-up-form">
+    <form id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
         <div class="form-sections">
-            <label for="">Note &nbsp;</label>
+            <label for="">Title &nbsp;</label>
             <input type="text" placeholder="countdown #${countNumber}" id='countdownText'>
         </div>
         <div class="form-sections">
-            <label for="">Date &nbsp;</label>
+            <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" id ="dateInput" min="" required>
+        </div>
+        <div class="form-sections form-repeat">
+            <label for="repeat-cb">
+                <input type="checkbox" id="repeat-cb"> Repeat every year 
+            </label>
         </div>
         <div class="form-sections">
             <label for=""></label>
@@ -57,45 +62,73 @@ function closeFormPopUp() {
     document.body.style.position = "";
 }
 
+function sanitize(string) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return string.replace(reg, (match)=>(map[match]));
+  }
+
+function checkRepeat(repeatCheckBox){
+    if(repeatCheckBox.checked){
+        return {repeat: true};
+    }
+
+}
 function handleFormSubmission() {
     const countdownForm = document.getElementById('customDateForm');
-    const submitbutton = document.getElementById('countdown-submit');
-    
-    // const event = document.createEvent('Event');
     // console.log(event);
     countdownForm.addEventListener('submit', (e) => {
-        
-        // e.preventDefault();
+        // DOM references
+        e.preventDefault();
+        const submitbutton = document.getElementById('countdown-submit');
+        let userDate = document.getElementById("dateInput").value;
+        let repeatCheck = document.getElementById("repeat-cb");
+        let userTextField = document.getElementById('countdownText');
         submitbutton.disabled = true;
         // get text field values, with auto values
-        let userTextField = document.getElementById('countdownText');
-        let userText = userTextField.value;
+        
+        let userText = sanitize(userTextField.value);
 
         if (!userText) {
             userText = userTextField.placeholder;
             countNumber++;
             localStorage.setItem('countNumber', countNumber)
         }
-        let userDate = document.getElementById("dateInput").value;
+        
         userDate = new Date(userDate);
-        let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        let countdown = localStorage.getItem('countdown');
-        if(countdown !== null){ //countdowns already exist
-         countdown = JSON.parse(countdown);//array
-
-        countdown.push(countItem);
-        // console.log(countdown);
-        setCountDownList(countdown)
-
-        }else{
-            // create first countdown
-             setCountDownList([countItem]);
+        let countItem = { text: userText, date: userDate, dateModified: new Date()};
+        if(repeatCheck){
+            countItem.repeat = repeatCheck.checked;
         }
+        saveToLocalStorage(countItem);
 
         // testing
-        // closeFormPopUp();
+        window.location.href = "/html/countdown-list.html";
+        closeFormPopUp();
     })
 }
+
+function saveToLocalStorage(countItem){
+    let countdown = localStorage.getItem('countdown');
+    if(countdown !== null){ //countdowns already exist
+     countdown = JSON.parse(countdown);//array
+
+    countdown.push(countItem);
+    console.log(countdown);
+    setCountDownList(countdown)
+    }else{
+        // create first countdown
+         setCountDownList([countItem]);
+    }
+}
+
 
 function setCountDownList(jsArray){
     localStorage.setItem('countdown', JSON.stringify(jsArray))   
@@ -108,10 +141,10 @@ let countNumber = 1;
 // let dateInput, textInput;
 
 // todo: remove dynamic seting of css
-if (!document.querySelector("[href='form.css']")) {
+if (!document.querySelector("[href='css/form.css']")) {
     document.head.insertAdjacentHTML(
         "beforeend",
-        `<link rel="stylesheet" href="form.css">`
+        `<link rel="stylesheet" href="/css/form.css">`
     );
 }
 

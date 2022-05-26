@@ -1,22 +1,42 @@
-// #3
-const staticCacheName = 'site-static-v3';
-const dynamicCache = 'site-dynamic-v3';
+// #5
 
+const staticCacheName = 'site-static-v54';
+const dynamicCache = 'site-dynamic-v54';
+
+const dynamicCacheSize = 30;
+
+console.log("sw version: "+ staticCacheName.split("-")[2]);
 // caching
 //assets to cache
 const assets = [
     '/',
     '/index.html',
-    '/authors.html',
-    '/fallback.html',
-    '/clock.js',
+    '/html/about.html',
+    '/html/countdown-list.html',
+    '/html/fallback.html',
+    '/html/form-upload.html',
+    '/html/today.html',
+    '/css/styles.css',
+    '/css/themes.css',
+    '/css/about.css',
+    '/css/today.css',
+    '/css/countdown-list.css',
+    '/css/form.css',
     '/app.js',
+    '/js/sidebar.js',
+    '/js/loadCustomUI.js',
+    '/js/displayCountdowns.js',
+    '/js/formupdate.js',
+    '/js/error.js',
+    '/js/form.js',
+    '/js/today.js',
+    '/img/icons/chrome192.png',
+    '/img/icons/chrome512.png',
     '/img/bg.svg',
-    '/styles.css',
-    'img/icons/favicon.png',
-    'img/icons/chrome192.png',
-    'img/icons/chrome512.png',
-    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css",
+    '/img/bg/goku.jpg',
+    '/img/bg/ship_sky_balloons.jpg',
+    '/img/icons/favicon.png',
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css",
     // "https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap",
     // 'https://fonts.gstatic.com/s/nunito/v20/XRXI3I6Li01BKofiOc5wtlZ2di8HDIkhdTk3j77e.woff2'
 
@@ -36,8 +56,19 @@ self.addEventListener('install', evt => {
     evt.waitUntil(
         caches.open(staticCacheName).then(cache => {
             // console.log('caching');
-            cache.add('/app.js');
-            cache.addAll(assets);
+            // cache.add('/app.js');
+            cache.addAll(assets).catch((reason)=>{
+                // try caching again
+                console.log(reason);
+                assets.forEach(value=>{
+                    caches.open(staticCacheName).then(cache => {
+                        // console.log('caching');
+                        cache.add(value).catch(err=> console.log(err, value));
+                        console.log('recaching complete');
+                    }).catch(err=> console.log(err))     
+                })
+                
+            });
             console.log('caching complete');
         })
     )
@@ -67,13 +98,13 @@ self.addEventListener('fetch', evt => {
             return cacheRes || fetch(evt.request).then(fetchRes => {
                 return caches.open(dynamicCache).then(cache => {
                     cache.put(evt.request.url, fetchRes.clone())
-                    limitCacheSize(dynamicCache, 15)
+                    limitCacheSize(dynamicCache, dynamicCacheSize)
                     return fetchRes;
                 })
             });
         }).catch(()=>{
             if(evt.request.url.indexOf('.html')>-1 )
-            return caches.match('/fallback.html')
+            return caches.match('/html/fallback.html')
         })
     );
 })

@@ -1,9 +1,15 @@
 let prevErr = false;
-const errMessage = "Oops an error occurred 🤧😐";
+
 
 const closeErrorInfo = () => event.currentTarget.parentNode.remove();
 
-const errorHandler =()=> {
+errorHandlerWithoutMessage= (err)=>{
+    console.log(err);
+    errorHandler();
+}
+
+const errorHandler =(msg)=> {
+    const errMessage = "Oops an error occurred 🤧😐";
     let errHtml = `
     <section class="error-notification">
     <style>
@@ -43,7 +49,7 @@ const errorHandler =()=> {
         }
     </style>
     <div class="error-message">
-        <span>${errMessage}</span>
+        <span>${msg||errMessage}</span>
         <div class="error-close" onclick="closeErrorInfo()">
             <span class="material-icons">close</span>
         </div>
@@ -60,4 +66,4 @@ const errorHandler =()=> {
         prevErr = true;
     }
 };
-window.onerror = errorHandler;
+window.onerror = errorHandlerWithoutMessage;

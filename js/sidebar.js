@@ -9,13 +9,14 @@ nav.addEventListener("click", () => {
         sidebar.classList.replace("sidebar-hide", "sidebar-show");
     }
 });
-sidebarItems[0].addEventListener("click", () => setLink("./index.html"));
+sidebarItems[0].addEventListener("click", () => setLink("/index.html"));
 sidebarItems[1].addEventListener("click", () =>
-    setLink("./countdown-list.html")
+    setLink("/html/countdown-list.html")
 );
 sidebarItems[2].addEventListener("click", openBgPicker);
 sidebarItems[3].addEventListener("click", openColorPicker);
-sidebarItems[4].addEventListener("click", () => setLink("./authors.html"));
+sidebarItems[4].addEventListener("click", () => setLink("/html/today.html"));
+sidebarItems[5].addEventListener("click", () => setLink("/html/about.html"));
 
 function setTheme(event) {
     let prevTheme = getComputedStyle(document.body).getPropertyValue(
@@ -56,10 +57,10 @@ const closeSideBarListener = (event) => {
 };
 
 function openBgPicker() {
-    if (!$("[href='form.css']")[0]) {
+    if (!$("[href='css/form.css']")[0]) {
         document.head.insertAdjacentHTML(
             "beforeend",
-            `<link rel="stylesheet" href="form.css">`
+            `<link rel="stylesheet" href="/css/form.css">`
         );
     }
     const showLoader = () => {
@@ -111,12 +112,16 @@ function openBgPicker() {
     showLoader();
 
     const loadForm = async () => {
-        let file = await fetch("./form-upload.html");
+        let file = await fetch("/html/form-upload.html");
         let ft = await file.text();
         document.getElementsByClassName("loader-container")[0].remove();
         document.body.insertAdjacentHTML("afterbegin", ft);
         document.body.style.position = "fixed";
         const filePicker = document.querySelector("input[type='file']");
+        const closeFormPopUp = () => {
+            document.getElementsByClassName("pop-up-container")[0].remove();
+            document.body.style.position = "";
+        }
         const reading = (uploadedPic) => {
                 let reader = new FileReader();
             if(fileSizeOk(uploadedPic)){
@@ -131,9 +136,10 @@ function openBgPicker() {
                 localStorage.setItem("userBg", `${uploadedPic64}`);
                 document.body.style.backgroundImage = `url(${uploadedPic64})`;
                 notifyUser("Background is set");
+                closeFormPopUp();
             };
             reader.onerror = function () {
-                errorHandler();
+                errorHandler("Unable to set background");
                 console.log(reader.error);
             };
         };
@@ -142,13 +148,12 @@ function openBgPicker() {
         };
         document
             .getElementsByClassName("close-form")[0]
-            .addEventListener("click", () => {
-                document.getElementsByClassName("pop-up-container")[0].remove();
-                document.body.style.position = "";
-            });
+            .addEventListener("click", closeFormPopUp);
         $(".reset")[0].addEventListener("click", () => {
             localStorage.removeItem("userBg");
             document.body.style.backgroundImage = "";
+                notifyUser("Default background restored");
+                closeFormPopUp();
         });
         $(".bg-presets-preview:not(.upload-preview) img").forEach((e) => {
             e.addEventListener("click", () => {
@@ -162,10 +167,11 @@ function openBgPicker() {
         });
     };
     loadForm().catch(err => {
-        errorHandler();
+        errorHandler("Unable to set custom background");
+        console.log(err);
     });
 }
 const fileSizeOk = (pic)=>{
     console.log((pic.size/1048576).toFixed(2)+"MB");
-    return pic.size/1048576 < 4.00 ? true : false; 
+    return pic.size/1048576 < 3.00 ? true : false; 
 }

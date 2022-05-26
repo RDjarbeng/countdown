@@ -8,13 +8,11 @@
     <meta name="Keywords" content="Countdown, Midnight countdown">
     <title>Final Countdown</title>
     <link href="/img/icons/favicon.png" rel="icon">
-    <meta name="Author" content="R.Djarbeng| A.Nyakotey">
-
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /> -->
-    
-    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="Author" content="R.Djarbeng| A.Nyakotey">    
+    <link rel="stylesheet" href="/css/today.css">
     <link rel="stylesheet" href="/css/themes.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"></noscript>
     <link rel="manifest" href="/manifest.json">
     <!-- ios support -->
     <link rel="apple-touch-icon" href="/img/icons/favicon.png">
@@ -35,16 +33,16 @@
             <div class="opt-group">OPTIONS</div>
             <div class="sidebar-list">
                 <div class="sidebar-list-items">
-                    <span class="material-icons md-18">home</span> &nbsp;&nbsp;&nbsp;Home
+                    <i class="fas fa-home fa-fw"></i> &nbsp;&nbsp;&nbsp;Home
                 </div>
                 <div class="sidebar-list-items">
-                    <span class="material-icons md-18">watch_later</span> &nbsp;&nbsp;&nbsp;My CountDowns
+                    <i class="fas fa-clock fa-fw"></i> &nbsp;&nbsp;&nbsp;My CountDowns
                 </div>
                 <div class="sidebar-list-items">
-                    <span class="material-icons md-18">file_upload</span> &nbsp;&nbsp;&nbsp;Set Custom Background
+                    <i class="fas fa-upload fa-fw"></i> &nbsp;&nbsp;&nbsp;Set Custom Background
                 </div>
                 <div class="sidebar-list-items">
-                    <span class="material-icons md-18">auto_fix_high</span> &nbsp;&nbsp;&nbsp;Change Theme
+                    <i class="fas fa-adjust fa-fw"></i> &nbsp;&nbsp;&nbsp;Change Theme
                 </div>
                 <section class="pick-color">
                     <span class="pick-color-ico" data-settheme="red"></span>
@@ -56,69 +54,59 @@
                     <span class="pick-color-ico" data-settheme="black"></span>
                 </section>
                 <div class="sidebar-list-items">
-                    <span class="material-icons md-18">contact_page</span> &nbsp;&nbsp;&nbsp;Today
+                    <i class="fas fa-calendar-day fa-fw"></i> &nbsp;&nbsp;&nbsp;Today
                 </div>
                 <div class="sidebar-list-items">
-                    <span class="material-icons md-18">calendar</span> &nbsp;&nbsp;&nbsp;About
+                    <i class="fas fa-question-circle fa-fw"></i> &nbsp;&nbsp;&nbsp;About
                 </div>
             </div>
         </section>
     </aside>
     <header class="header">        
         <div class="nav">
-            <span class="material-icons">menu</span>
+            <i class="fas fa-bars fa-lg"></i>
         </div>
         <div class="logo">
             <a href="/index.html"><div class="logo-ico"><img src="/img/icons/chrome192.png" alt="logo"></div></a>
             <div class="logo-name">Final CountDown</div>
         </div>
         <div class="mode-row">
-            <span class="toggleMode" id='themeToggle'><span class="material-icons">light_mode</span></span>
+            <span class="toggleMode" id='themeToggle'><i class="fas fa-sun fa-fw"></i></span>
         </div>
     </header>
     <main>
         <section class="container">
-            <div class="banner-row">
-                <div class="banner">
-                    <div class="banner-h2" id ='countdown-text'> CountDown to New Year <span class="material-icons">snowman</span></div>
-                </div>
-            </div>
-            <div class="clock-row">
-                <div class="timer">
-                    <span class="timer-num" id="day-num">00</span>
-                    <span class="timer-text">Days</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="hour-num">00</span>
-                    <span class="timer-text">Hours</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="min-num">00</span>
-                    <span class="timer-text">Minutes</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="sec-num">00</span>
-                    <span class="timer-text">Seconds</span>
-                </div>
-            </div>
-            <div class="due-row">
-                <div class="countdown-list-date">
-                    <div class="date-icon">
-                        <i class="far fa-calendar"></i>
-                        <span class="due">DUE</span>
+            <div class="date-row">
+                <div class="day-of-year">
+                    <div class="day-text">DAY</div> 
+                    <div class="day-count" id='countDay'>X</div>
+                    <div class="divider"></div>
+                    <div class="year-count">365</div>
+
+                    <div class="share-row">
+                        <div class="sm share-whatsapp" 
+                            id ="sendWhatsappButton" 
+                            data-action="share/whatsapp/share"
+                            title="share to Whatsapp">
+                            <i class="fab fa-whatsapp fa-fw"></i>
+                        </div>
+                        <div class="sm copy-link" title="copy link"><i class="far fa-copy fa-fw"></i></div>
                     </div>
-                    <div id="dueDate"></div>
+                </div>
+                <div class="date">
+                    <div class="day-of-week" id ="dayOfWeek">Monday</div>
+                    <div class="day" id ="dayOfMonth">11</div>
+                    <div class="month" id="month">Mar</div>
+                    <div class="year" id="year">2022</div>
+                    <div class="time" id="time">11:00 pm</div>
                 </div>
             </div>
         </section>
     </main>
-    <div class="new-item"><span class="material-icons">add </span></div>
-
-    <script src="/js/error.js"></script>
+    <script src="/js/error.js"></script>    
     <script src="/app.js"></script>
-    <script src="/js/sidebar.js" async></script>
+    <script src="/js/sidebar.js"></script>
     <script src="/js/loadCustomUI.js"></script>
-    <script  src="/js/form.js" async></script>
-        
+    <script src="/js/today.js"></script>
 </body>
 </html>
