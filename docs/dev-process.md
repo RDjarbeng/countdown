@@ -154,6 +154,10 @@ Not all elements made it into the final product, some others also got modified, 
 ![v2 4@0,5x](https://user-images.githubusercontent.com/73431750/170242064-43aa6765-229c-43e8-a6e7-ed39e7de3ee0.png)
 
 
+## Countdown v2.4.1
+* fix sidebar option text going under the icon
+
+
 ### Potential and/or current developments
 * listpage as the homepage with onboarding
 * ui for elapsed countdown and clickless countdown updating
