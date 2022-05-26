@@ -1,16 +1,17 @@
 let prevErr = false;
 
 
-const closeErrorInfo = (element) => {
-    console.log(element);
-    element.parentNode.remove();}
+export const closeErrorInfo = (event) => {
+    // remove div containing error message
+    event.currentTarget.parentElement.remove();
+}
 
-const errorHandlerWithoutMessage= (err)=>{
+export const errorHandlerWithoutMessage = (err) => {
     console.log(err);
     errorHandler();
 }
 
-const errorHandler =(msg)=> {
+export const errorHandler = (msg) => {
     const errMessage = "Oops an error occurred 🤧😐";
     let errHtml = `
     <section class="error-notification">
@@ -51,21 +52,22 @@ const errorHandler =(msg)=> {
         }
     </style>
     <div class="error-message">
-        <span>${msg||errMessage}</span>
-        <div class="error-close" onclick="closeErrorInfo(this)">
+        <span>${msg || errMessage}</span>
+        <div class="error-close" >
             <i class="fas fa-times"></i>
         </div>
     </div>
 </section>
 `;
     if (prevErr) {
-        let item =$(".error-notification")[0]
-        if(item)
-        item.remove();
+        let item = document.querySelectorAll(".error-notification")[0]
+        if (item)
+            item.remove();
         document.body.insertAdjacentHTML("afterbegin", errHtml);
     } else {
         document.body.insertAdjacentHTML("afterbegin", errHtml);
         prevErr = true;
     }
+    document.querySelector('.error-message').addEventListener('click', closeErrorInfo)
 };
 window.onerror = errorHandlerWithoutMessage;
