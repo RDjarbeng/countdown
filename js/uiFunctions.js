@@ -1,6 +1,29 @@
-import { notifyUser } from "./functions.js";
+import { setInnerHtmlForNotNull } from "./functions.js";
 
+// DOM elements
+let body = document.body
+export let icon = document.getElementById('themeToggle');
+/**
+ * 
+ * @param {String} message 
+ */
+ export function notifyUser(message) {
+    let notifyText = message;
+    
 
+    if (document.getElementsByClassName("mode-info")[0]) {
+        document.getElementsByClassName("mode-info")[0].remove();
+        body.insertAdjacentHTML(
+            "afterbegin",
+            `<span class="mode-info">${notifyText}</span>`
+        );
+    } else {
+        body.insertAdjacentHTML(
+            "afterbegin",
+            `<span class="mode-info">${notifyText}</span>`
+        );
+    }
+}
 function activateLightMode() {
     setInnerHtmlForNotNull(icon, `<i class="fas fa-moon fa-fw"></i>`);
     if (body.classList.contains("dark")) {
@@ -85,6 +108,6 @@ export function loadMode() {
     }
 }
 
-export let icon = document.getElementById('themeToggle');
+
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);

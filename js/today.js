@@ -1,5 +1,6 @@
 import { NewYearClock } from "./clock.js";
-import { setInnerHtmlForNotNull, addWhatappEventHandler, notifyUser } from "./functions.js";
+import { setInnerHtmlForNotNull, addWhatappEventHandler } from "./functions.js";
+import { notifyUser } from "./uiFunctions.js";
 const today = new Date();
 const dayClock = new NewYearClock()
 let day, month, year, time, dayOfWeek, dayCount;
