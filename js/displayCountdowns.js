@@ -16,16 +16,6 @@ let testid = '';
 
 
 
-
-
-async function stepIncreaseAndStart(clockElement, domElements, speed = 50, start_num = 0) {
-    animateValue(domElements.dayNumber, start_num, clockElement.days, speed);
-    animateValue(domElements.hourNumber, start_num, clockElement.hours, speed);
-    animateValue(domElements.minNumber, start_num, clockElement.minutes, speed);
-    animateValue(domElements.secNumber, start_num, clockElement.seconds, speed);
-
-}
-
 async function  fetchArrayOfCountdowns(){
     let jsonListOfCountdowns = await localStorage.getItem('countdown');
      return JSON.parse(jsonListOfCountdowns);
