@@ -226,7 +226,6 @@ function displayAndStartcount() {
 
 let interval;
 function updateClockAndText(date, text, animation = true) {
-    console.log('inside update clock');
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
     stopClock(interval);
@@ -290,13 +289,16 @@ const listEventListener = event => {
         // hideContextMenus()
         let targetIndex =targetElement.parentElement.getAttribute('data-index');
         // todo: find a better way of accessing element in countdown array
-        console.log('calling update clock');
         console.log(targetIndex)
         updateClockAndText(arrayOfCountdowns[targetIndex].date, arrayOfCountdowns[targetIndex].text)
 
         if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
-            document.querySelector(".clock-row").style.display = "flex";
-            document.querySelector(".clock-row").style.animationPlayState = "running";
+            const clockRow =document.querySelector(".clock-row")
+            if(clockRow){
+                clockRow.style.display = "flex";
+            clockRow.style.animationPlayState = "running";
+            }
+            
         }
     }
     //if the area for context menu is clicked
