@@ -1,7 +1,7 @@
 import { NewYearClock } from "./clock.js";
 import { setInnerHtmlForNotNull, addWhatappEventHandler, notifyUser } from "./functions.js";
-let today = new Date();
-let dayClock = new NewYearClock()
+const today = new Date();
+const dayClock = new NewYearClock()
 let day, month, year, time, dayOfWeek, dayCount;
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
