@@ -1,9 +1,11 @@
 let prevErr = false;
 
 
-const closeErrorInfo = () => event.currentTarget.parentNode.remove();
+const closeErrorInfo = (element) => {
+    console.log(element);
+    element.parentNode.remove();}
 
-errorHandlerWithoutMessage= (err)=>{
+const errorHandlerWithoutMessage= (err)=>{
     console.log(err);
     errorHandler();
 }
@@ -50,7 +52,7 @@ const errorHandler =(msg)=> {
     </style>
     <div class="error-message">
         <span>${msg||errMessage}</span>
-        <div class="error-close" onclick="closeErrorInfo()">
+        <div class="error-close" onclick="closeErrorInfo(this)">
             <i class="fas fa-times"></i>
         </div>
     </div>
