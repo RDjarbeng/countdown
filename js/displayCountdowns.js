@@ -1,7 +1,7 @@
 import { Clock, Anniversary } from "./clock.js";
 import { setInnerHtmlForNotNull, stopClock } from "./functions.js";
-import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString, setCountDownList, populateList } from "./listFunctions.js";
-import { closeFormPopUp, displayFormPopUp } from "./formfunctions.js";
+import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList } from "./listFunctions.js";
+import { closeFormPopUp, setCountDownList, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
@@ -17,7 +17,7 @@ let countItemExists = false;
 let arrayOfCountdowns = fetchArrayOfCountdowns();
 let testid = '';
 
-
+setCountDownList
 
 async function fetchArrayOfCountdowns() {
     let jsonListOfCountdowns = await localStorage.getItem('countdown');
@@ -65,74 +65,8 @@ const sortUIAddListeners = async () => {
 
 
 
-/**
- * 
- * @param {{text: String, date: String, dateModified: String}} countdown 
- * @param {Number} index the array index of the current item
- * @returns 
- */
-export function addCountdownItem(countdown, index) {
-    let repeat = false
-    let elapsed = false
-    if (countdown.hasOwnProperty('repeat') && countdown.repeat) {
-        // console.log(arrayOfCountdowns);
-        updateRepeatCountdown(arrayOfCountdowns, countdown.date, index);
-        repeat = true
-    }
-    let listItemClock = new Clock(new Date(countdown.date));
-    let {countdownStatus, countdownStatusTI}=setCountDownStatus(listItemClock)
-    if(listItemClock.getDistance()>0){
-        countItemExists =true
-    }else{
-        elapsed = true;
-    }
-    // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
 
-    let countdownListItem = `
-    <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
-        <div class="countdown-list-text"> ${countdown.text} </div>
-        <div class="countdown-list-options"><i class="fas fa-chevron-circle-down fa-lg"></i>
-            <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
-                <div class="menu-opts edit">
-                    <i class="fas fa-edit"></i>&nbsp;Edit
-                </div>
-                <div class="menu-opts del">
-                    <i class="fas fa-trash-alt"></i> &nbsp;Delete
-                </div>
-                <div class="menu-opts main">
-                    <i class="fas fa-clock"></i> &nbsp;Set as main
-                </div>       
-            </div>
-        </div>
-        <div class="countdown-list-date"> 
-            <div data-date="${countdown.date}" 
-                data-id="${countdown.dateModified}" 
-                data-repeat="${repeat}" 
-                class="${(!elapsed) ? 'countdown-counting' : ''}" > 
-                ${countdownStatus}
-            </div>
-            <div class="status-text">${countdownStatusTI}</div>
-        </div>    
-    </div>`;
-    return countdownListItem;
 
-}
-/**
-* 
-* @param {Array.<{text: String, date: String, dateModified: String, repeat: String}>} arrayOfCountdowns | contains array of countdown objects
-* @param {String} date date preferrably in ISO string format
-* @param {Number} index index of the repeat countdown element 
-*/
-export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
-    if (new Date(date) - new Date() < 0) {
-        arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
-        // arrayOfCountdowns[index].dateModified = new Date().toISOString();
-        setCountDownList(arrayOfCountdowns);
-        console.log('Updating values of old cds', arrayOfCountdowns[index]);
-
-    };
-
-}
 
 
 /**
