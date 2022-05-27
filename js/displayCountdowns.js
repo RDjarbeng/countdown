@@ -1,6 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
 import { setInnerHtmlForNotNull, stopClock } from "./functions.js";
-import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString, setCountDownList } from "./listFunctions.js";
+import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString, setCountDownList, populateList } from "./listFunctions.js";
 import { closeFormPopUp, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
@@ -117,21 +117,6 @@ export function addCountdownItem(countdown, index) {
     return countdownListItem;
 
 }
-
-/**
- * Returns html string with a list of countdowns
- * @param {Array.<{text: String, date: String, dateModified: String, repeat: String}>} arrayOfCountdowns | contains array of countdown objects
- * @returns {string} list of countdownitems to be appended to DOM
- */
-export function populateList(arrayOfCountdowns) {
-    let listItems = '';
-    sortArrayOnSelection(arrayOfCountdowns);
-    arrayOfCountdowns.forEach((countdown, index) => {
-        listItems += addCountdownItem(countdown, index)
-    });
-    return listItems;
-}
-
 /**
 * 
 * @param {Array.<{text: String, date: String, dateModified: String, repeat: String}>} arrayOfCountdowns | contains array of countdown objects
