@@ -49,13 +49,15 @@ export function populateList(arrayOfCountdowns) {
     return listItems;
 }
 
-function countItemInProgress(date){
-    let listItemClock = new Clock(new Date(date));
+export function setCountItemStatus( arrayOfCountdowns, date){
+    arrayOfCountdowns.forEach((countdown) => {
+        let listItemClock = new Clock(new Date(countdown.date));
     if(listItemClock.getDistance()>0){
-        return true;
-    }else{
-        return null;
+        setCountItemExists(true)
     }
+        
+    });
+    
 }
 /**
  *
@@ -180,3 +182,20 @@ export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
     };
 
 }
+/**
+ * 
+ * @param {Boolean} value Represents if a countdown is in progress/ non-elapsed
+ */
+export const setCountItemExists= (value)=> {
+    countItemExists = value;
+}
+
+/**
+ * 
+ * @returns {Boolean}
+ */
+export const getCountItemExists= ()=> countItemExists;
+
+
+
+let countItemExists = false;
