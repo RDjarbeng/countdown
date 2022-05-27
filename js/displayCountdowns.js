@@ -1,6 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
 import { setInnerHtmlForNotNull, stopClock } from "./functions.js";
-import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList } from "./listFunctions.js";
+import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList, getCountItemExists, setCountItemExists } from "./listFunctions.js";
 import { closeFormPopUp, setCountDownList, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
@@ -31,7 +31,7 @@ async function displayCountdowns() {
     if (cdArray && cdArray.length) {
 
         let listItems = await populateList(cdArray)
-
+        
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
 
@@ -62,10 +62,6 @@ const sortUIAddListeners = async () => {
     }
     await addSortEventListeners();
 }
-
-
-
-
 
 
 
@@ -103,7 +99,7 @@ async function updateCountdownItems() {
             // countItemExists =(countItems.length<2 && clock.getDistance()<0)?false:countItemExists
         });
     } else {
-        countItemExists = false;
+        setCountItemExists(false)
     }
 }
 /**
@@ -111,8 +107,8 @@ async function updateCountdownItems() {
  */
 function displayAndStartcount() {
     displayCountdowns().then(() => {
-        if (countItemExists) {
-            let interval = setInterval(() => countItemExists ? updateCountdownItems() : clearInterval(interval), 1000)
+        if (getCountItemExists()) {
+            let interval = setInterval(() => getCountItemExists() ? updateCountdownItems() : clearInterval(interval), 1000)
         }
     }).catch((err) => {
         console.log(err);
