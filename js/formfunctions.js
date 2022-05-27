@@ -82,7 +82,10 @@ export function saveToLocalStorage(countItem) {
         setCountDownList([countItem]);
     }
 }
-
+/**
+ * 
+ * @param {Array} arrayOfJSONCountdowns 
+ */
 export function setCountDownList(jsArray) {
     localStorage.setItem('countdown', JSON.stringify(jsArray))
 }
