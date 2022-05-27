@@ -1,14 +1,7 @@
-
-
+import { Clock } from "./clock.js";
+import { setCountDownList } from "./formfunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 
-/**
- * 
- * @param {Array} arrayOfJSONCountdowns 
- */
- export function setCountDownList(arrayOfJSONCountdowns){
-    localStorage.setItem('countdown', JSON.stringify(arrayOfJSONCountdowns))   
-}
 /**
  * Update a single countdown item in the array of countdowns
  *  with text, date, dateModified and repeat
@@ -38,6 +31,7 @@ export function updateLocalItem(arrayOfCountdowns, countItem, id) {
 
     }
 
+
 }
 /**
  * Returns html string with a list of countdowns
@@ -49,9 +43,19 @@ export function populateList(arrayOfCountdowns) {
     let listItems = '';
     sortArrayOnSelection(arrayOfCountdowns);
     arrayOfCountdowns.forEach((countdown, index) => {
-        listItems += addCountdownItem(countdown, index);
+        listItems += getCountdownItemHtml(arrayOfCountdowns,countdown, index);
+        
     });
     return listItems;
+}
+
+function countItemInProgress(date){
+    let listItemClock = new Clock(new Date(date));
+    if(listItemClock.getDistance()>0){
+        return true;
+    }else{
+        return null;
+    }
 }
 /**
  *
@@ -105,4 +109,74 @@ export function sortArrayOnSelection(arrayOfCountdowns) {
     } else {
         arrayOfCountdowns.sort((countItem1, countItem2) => new Date(countItem1.dateModified).getTime() - new Date(countItem2.dateModified).getTime());
     }
+}
+
+/**
+ * 
+ * @param {{text: String, date: String, dateModified: String}} countdown 
+ * @param {Number} index the array index of the current item
+ * @returns 
+ */
+ export function getCountdownItemHtml(arrayOfCountdowns,countdown, index) {
+    let repeat = false
+    let elapsed = false
+    if (countdown.hasOwnProperty('repeat') && countdown.repeat) {
+        // console.log(arrayOfCountdowns);
+        updateRepeatCountdown(arrayOfCountdowns, countdown.date, index);
+        repeat = true
+    }
+    let listItemClock = new Clock(new Date(countdown.date));
+    let {countdownStatus, countdownStatusTI}=setCountDownStatus(listItemClock)
+    // if(listItemClock.getDistance()>0){
+    //     countItemExists =true
+    // }else{
+    //     elapsed = true;
+    // }
+    // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
+
+    let countdownListItem = `
+    <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
+        <div class="countdown-list-text"> ${countdown.text} </div>
+        <div class="countdown-list-options"><i class="fas fa-chevron-circle-down fa-lg"></i>
+            <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
+                <div class="menu-opts edit">
+                    <i class="fas fa-edit"></i>&nbsp;Edit
+                </div>
+                <div class="menu-opts del">
+                    <i class="fas fa-trash-alt"></i> &nbsp;Delete
+                </div>
+                <div class="menu-opts main">
+                    <i class="fas fa-clock"></i> &nbsp;Set as main
+                </div>       
+            </div>
+        </div>
+        <div class="countdown-list-date"> 
+            <div data-date="${countdown.date}" 
+                data-id="${countdown.dateModified}" 
+                data-repeat="${repeat}" 
+                class="${(!elapsed) ? 'countdown-counting' : ''}" > 
+                ${countdownStatus}
+            </div>
+            <div class="status-text">${countdownStatusTI}</div>
+        </div>    
+    </div>`;
+    return countdownListItem;
+
+}
+
+/**
+* 
+* @param {Array.<{text: String, date: String, dateModified: String, repeat: String}>} arrayOfCountdowns | contains array of countdown objects
+* @param {String} date date preferrably in ISO string format
+* @param {Number} index index of the repeat countdown element 
+*/
+export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
+    if (new Date(date) - new Date() < 0) {
+        arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
+        // arrayOfCountdowns[index].dateModified = new Date().toISOString();
+        setCountDownList(arrayOfCountdowns);
+        console.log('Updating values of old cds', arrayOfCountdowns[index]);
+
+    };
+
 }
