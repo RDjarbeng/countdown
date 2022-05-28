@@ -58,23 +58,14 @@ export function exportToWhatsapp() {
  */
 export const toggleElementDisplayBlockOnScreen=(element)=>{
     if(element){
-        if (element.style.display == "block") {
-            removeElementSetDisplayNone(element)
-        }
-        else {
-            addElementSetDisplayBlock(element)
-        }
+        (element.style.display == "block")?removeElementSetDisplayNone(element):addElementSetDisplayBlock(element)
     }
 
 }
 
 
-export const removeElementSetDisplayNone=(element)=>{
-    if(element)
-    element.style.display = "none";
-}
+export const removeElementSetDisplayNone=(element)=>(element)?element.style.display = "none":null;
 
-export const addElementSetDisplayBlock=(element)=>{
-    if(element)
-    element.style.display = "block";
-}
+
+export const addElementSetDisplayBlock=(element)=>(element)?element.style.display = "block":null;
+
