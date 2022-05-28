@@ -53,4 +53,14 @@ export function exportToWhatsapp() {
 }
 
 
+export const toggleElementDisplayBlockOnScreen=(element)=>{
+    if(element){
+        if (element.style.display == "block") {
+            element.style.display = "none";
+        }
+        else {
+            element.style.display = "block";
+        }
+    }
 
+}
