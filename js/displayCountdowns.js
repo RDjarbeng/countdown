@@ -252,13 +252,10 @@ const addSortEventListeners = () => {
 // todo: move this function to form update.js
 export function handleFormUpdate() {
     // todo: update list with custom fired events
-    const countdownForm = document.getElementById('customUpDateForm');
     const submitbutton = document.getElementById('countdown-update');
 
 
-    // const event = document.createEvent('Event');
-    // console.log(event);
-    countdownForm.addEventListener('submit', (e) => {
+    submitbutton.addEventListener('click', (e) => {
 
         e.preventDefault();
         submitbutton.disabled = true;
@@ -267,11 +264,11 @@ export function handleFormUpdate() {
         const modifiedTime = document.getElementById('modifiedTime').value;
         let userDate = document.getElementById("dateInput").value;
         let repeatCheck = document.getElementById("repeat-cb");
-        // if (!userText) {
-        //     userText = userTextField.placeholder;
-        //     countNumber++;
-        //     localStorage.setItem('countNumber', countNumber)
-        // }
+        if (!userText) {
+            userText = userTextField.placeholder;
+            countNumber++;
+            localStorage.setItem('countNumber', countNumber)
+        }
 
         userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
