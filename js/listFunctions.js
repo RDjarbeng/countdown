@@ -240,4 +240,12 @@ export function switchContextIconDown(element) {
  */
 export const isTargetElementOnCountdownItem=(targetElement)=> (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date')
 
+
+/**
+ * Checks if the target element is part of context menu
+ * @param {HTMLElement} targetElement 
+ * @returns {Boolean}
+ */
+export const isTargetElementOnContextMenu=(targetElement)=> (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I')
+
 let countItemExists = false;
