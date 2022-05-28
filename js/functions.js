@@ -52,7 +52,10 @@ export function exportToWhatsapp() {
     // customClockMovement = false;
 }
 
-
+/**
+ * Toggles an element from style.display =block if none and vice versa
+ * @param {HTMLElement} element element to set to block or none
+ */
 export const toggleElementDisplayBlockOnScreen=(element)=>{
     if(element){
         if (element.style.display == "block") {
@@ -63,4 +66,9 @@ export const toggleElementDisplayBlockOnScreen=(element)=>{
         }
     }
 
+}
+
+
+export const removeElementSetDisplayNone=(element)=>{
+    element.style.display = "none";
 }
