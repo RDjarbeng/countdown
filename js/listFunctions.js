@@ -1,4 +1,5 @@
 import { Clock, Anniversary } from "./clock.js";
+import { errorHandler } from "./error.js";
 import { setCountDownList } from "./formfunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 

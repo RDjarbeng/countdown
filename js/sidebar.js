@@ -1,3 +1,4 @@
+import { errorHandler } from "./error.js";
 import { notifyUser } from "./uiFunctions.js";
 
 

@@ -1,5 +1,6 @@
 import { popForm, closeFormPopUp, sanitize, getFormValuesAndSaveCd } from './formfunctions.js'
 import { displayAndAddListeners } from './displayCountdowns.js';
+import { errorHandler } from './error.js';
 const popAndAddFormOnList = () => {
     popForm()
     handleListpageForm();
