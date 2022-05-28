@@ -1,6 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
-import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp } from "./listFunctions.js";
+import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown } from "./listFunctions.js";
 import { closeFormPopUp, setCountDownList, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
@@ -155,7 +155,7 @@ const listEventListener = event => {
     const targetElement = event.target;
 
     // if event is fired on text or date
-    if (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date') {
+    if (isTargetElementOnCountdownItem(targetElement)) {
         // hideContextMenus()
         let targetIndex = targetElement.parentElement.getAttribute('data-index');
         // todo: find a better way of accessing element in countdown array
@@ -164,28 +164,26 @@ const listEventListener = event => {
         updateClockAndText(arrayOfCountdowns[targetIndex].date, arrayOfCountdowns[targetIndex].text)
     }
     //if the area for context menu is clicked
-    else if (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I') {
+    else if (isTargetElementOnContextMenu(targetElement)) {
         //get the countdown list item and pass to function, search for list class .menu
         //in case of directly clicking on icon, parent element is .countdown-list-options div
         triggerContextMenu(targetElement.parentElement);
 
-    } else if (targetElement.className.search('menu-opts') > -1) {
+    } else if (isClassOnTargetElement(targetElement,'menu-opts')) {
         let count_modified = targetElement.parentElement.getAttribute('data-id');
-        if (targetElement.className.search('main') > -1) {
+        if ( isClassOnTargetElement(targetElement,'main')) {
             // set as main clicked
             // find the element convert to JSON and place it as the main clock
             const countdown = arrayOfCountdowns.find((countdown) => countdown.dateModified == count_modified);
-            const mainCount = JSON.stringify(countdown);
-            localStorage.setItem('mainClock', mainCount);
-            let date = new Date(countdown.date);
-            notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
-        } else if (targetElement.className.search('del') > -1) {
-            // delete item clicked
+            setMainClockCountdown(countdown);
+            
+        
+        } else if (isClassOnTargetElement(targetElement,'del') ) {
             arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
             setCountDownList(arrayOfCountdowns);
             setInnerHtmlForNotNull(countdownList, populateList(arrayOfCountdowns));
             // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
-        } else if (targetElement.className.search('edit') > -1) {
+        } else if (isClassOnTargetElement(targetElement,'edit')) {
             let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
             // todo: custom error messages for components on fail
             try {
@@ -198,9 +196,9 @@ const listEventListener = event => {
                     displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified, repeat);
                     handleFormUpdate();
                 } else {
-                    // something went wrong with the editing
+                    console.log( 'something went wrong with the editing');
                     errorHandler('Unable to edit countdown');
-                    // console.log(editItem);
+                    console.log(editItem);
                 }
             } catch (err) {
                 console.log(err, 'Error in form display');
