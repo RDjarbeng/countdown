@@ -10,9 +10,9 @@ const dayNumber = document.getElementById("day-num");
 const hourNumber = document.getElementById("hour-num");
 const minNumber = document.getElementById("min-num");
 const secNumber = document.getElementById("sec-num");
-var countdownTextDisplay = document.getElementById('countdown-text');
-var countdownClock = document.querySelector('.clock-row');
-var countdownList = document.getElementById('countdown-list');
+const countdownTextDisplay = document.getElementById('countdown-text');
+const countdownClock = document.querySelector('.clock-row');
+const countdownList = document.getElementById('countdown-list');
 let arrayOfCountdowns = fetchArrayOfCountdowns();
 
 
