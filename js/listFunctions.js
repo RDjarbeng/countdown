@@ -204,7 +204,7 @@ export async function fetchArrayOfCountdowns() {
  */
 export const closeSortMenu = () => {
     const sortOpts = document.querySelector(".sort-options");
-    if (sortOpts.style.display == "block") {
+    if (sortOpts && sortOpts.style.display == "block") {
         sortOpts.style.display = "none";
     }
 }
@@ -232,5 +232,12 @@ export function switchContextIconDown(element) {
     if (element)
         element.classList.replace('fa-chevron-circle-up', 'fa-chevron-circle-down');
 }
+
+/**
+ * Checks if the target element is part of a countdown
+ * @param {HTMLElement} targetElement 
+ * @returns {Boolean}
+ */
+export const isTargetElementOnCountdownItem=(targetElement)=> (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date')
 
 let countItemExists = false;
