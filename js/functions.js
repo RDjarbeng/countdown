@@ -70,5 +70,6 @@ export const toggleElementDisplayBlockOnScreen=(element)=>{
 
 
 export const removeElementSetDisplayNone=(element)=>{
+    if(element)
     element.style.display = "none";
 }
