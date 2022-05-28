@@ -1,6 +1,8 @@
 // for a single source for all the scattered functions
 //  due to Uc browser fix
 
+import { errorHandler } from "./error.js";
+
 /**
  * Checks if a DOM element variable is null before setting innerHTML
  * @param {HTMLElement} element 
@@ -59,6 +61,9 @@ export function exportToWhatsapp() {
 export const toggleElementDisplayBlockOnScreen=(element)=>{
     if(element){
         (element.style.display == "block")?removeElementSetDisplayNone(element):addElementSetDisplayBlock(element)
+    }else{
+        console.log('Element passed to toggleElementDisplayBlockOnScreen is null');
+        errorHandler('Unable to display item')
     }
 
 }
