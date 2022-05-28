@@ -1,6 +1,7 @@
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
 import { setCountDownList } from "./formfunctions.js";
+import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 
 /**
@@ -250,6 +251,11 @@ export const isTargetElementOnContextMenu=(targetElement)=> (targetElement.class
 /**
  * 
  */
-export const isClassOnTargetElement=(targetElement, className) => (targetElement.className.search(className) > -1)
+export const isClassOnTargetElement=(targetElement, className) => (targetElement.className.search(className) > -1);
 
+export const setMainClockCountdown=(countdown) =>{
+        localStorage.setItem('mainClock', JSON.stringify(countdown));
+        let date = new Date(countdown.date);
+            notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
+}
 let countItemExists = false;
