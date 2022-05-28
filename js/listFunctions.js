@@ -199,6 +199,14 @@ export async function fetchArrayOfCountdowns() {
     let jsonListOfCountdowns = await localStorage.getItem('countdown');
     return JSON.parse(jsonListOfCountdowns);
 }
-
+/**
+ * closes the context menu for the sort option
+ */
+export const closeSortMenu = () => {
+    const sortOpts = document.querySelector(".sort-options");
+    if (sortOpts.style.display == "block") {
+        sortOpts.style.display = "none";
+    }
+}
 
 let countItemExists = false;
