@@ -1,4 +1,4 @@
-import { Clock } from "./clock.js";
+import { Clock, Anniversary } from "./clock.js";
 import { setCountDownList } from "./formfunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 
@@ -49,7 +49,7 @@ export function populateList(arrayOfCountdowns) {
     return listItems;
 }
 
-export function setCountItemStatus( arrayOfCountdowns, date){
+export function setCountItemStatus( arrayOfCountdowns){
     arrayOfCountdowns.forEach((countdown) => {
         let listItemClock = new Clock(new Date(countdown.date));
     if(listItemClock.getDistance()>0){
@@ -117,7 +117,7 @@ export function sortArrayOnSelection(arrayOfCountdowns) {
  * 
  * @param {{text: String, date: String, dateModified: String}} countdown 
  * @param {Number} index the array index of the current item
- * @returns 
+ * @returns {String} countdownListItem containing html for a countdown item
  */
  export function getCountdownItemHtml(arrayOfCountdowns,countdown, index) {
     let repeat = false
@@ -129,11 +129,9 @@ export function sortArrayOnSelection(arrayOfCountdowns) {
     }
     let listItemClock = new Clock(new Date(countdown.date));
     let {countdownStatus, countdownStatusTI}=setCountDownStatus(listItemClock)
-    // if(listItemClock.getDistance()>0){
-    //     countItemExists =true
-    // }else{
-    //     elapsed = true;
-    // }
+    if(listItemClock.getDistance()<0){
+        elapsed =true
+    }
     // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
 
     let countdownListItem = `
@@ -196,6 +194,10 @@ export const setCountItemExists= (value)=> {
  */
 export const getCountItemExists= ()=> countItemExists;
 
+export async function fetchArrayOfCountdowns() {
+    let jsonListOfCountdowns = await localStorage.getItem('countdown');
+    return JSON.parse(jsonListOfCountdowns);
+}
 
 
 let countItemExists = false;

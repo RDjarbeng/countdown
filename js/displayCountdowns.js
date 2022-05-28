@@ -1,6 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
 import { setInnerHtmlForNotNull, stopClock } from "./functions.js";
-import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList, getCountItemExists, setCountItemExists } from "./listFunctions.js";
+import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns } from "./listFunctions.js";
 import { closeFormPopUp, setCountDownList, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
@@ -19,11 +19,6 @@ let testid = '';
 
 setCountDownList
 
-async function fetchArrayOfCountdowns() {
-    let jsonListOfCountdowns = await localStorage.getItem('countdown');
-    return JSON.parse(jsonListOfCountdowns);
-}
-
 // todo: sort by modified time
 async function displayCountdowns() {
     let cdArray = arrayOfCountdowns = await fetchArrayOfCountdowns();
@@ -35,6 +30,7 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
 
+        setCountItemStatus(cdArray)
         sortUIAddListeners();
 
     } else {
@@ -73,8 +69,7 @@ async function updateCountdownItems() {
     const clock = new Clock();
     if (activeCountItems.length) {
         await activeCountItems.forEach((element, _, countItems) => {
-            let date = new Date(element.getAttribute('data-date'));
-            clock.setEndDate(date);
+            clock.setEndDate(new Date(element.getAttribute('data-date')));
             clock.countDown();
             if (clock.getDistance() > 0) {
                 setInnerHtmlForNotNull(element, getCountdownString(clock))
@@ -91,7 +86,7 @@ async function updateCountdownItems() {
                 // arrayOfCountdowns[index].dateModified = new Date().toISOString();
 
             } else {
-                console.log('elapsing');
+                console.log('elapsing', arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id')));
                 element.classList.remove('countdown-counting')
                 setInnerHtmlForNotNull(element, 'Elapsed')
             }
