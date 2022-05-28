@@ -1,6 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
-import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu } from "./listFunctions.js";
+import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp } from "./listFunctions.js";
 import { closeFormPopUp, setCountDownList, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
@@ -14,7 +14,6 @@ const countdownTextDisplay = document.getElementById('countdown-text');
 const countdownClock = document.querySelector('.clock-row');
 const countdownList = document.getElementById('countdown-list');
 let arrayOfCountdowns = fetchArrayOfCountdowns();
-
 
 // todo: sort by modified time
 async function displayCountdowns() {
@@ -138,17 +137,7 @@ const triggerContextMenu = (element) => {
         }
     }
 }
-function switchContextIconUp(element) {
-    element = element.querySelector('.fa-chevron-circle-down')
-    if (element) {
-        element.classList.replace('fa-chevron-circle-down', 'fa-chevron-circle-up');
-    }
-}
 
-function switchContextIconDown(element) {
-    if (element)
-        element.classList.replace('fa-chevron-circle-up', 'fa-chevron-circle-down');
-}
 function hideContextMenus(event) {
     //if function is not triggered by event listener, event is empty
     if ((!(event != null)) || !(event.target.className == 'countdown-list-options' || event.target.tagName == 'I' || (event.target.className.search('sort-title') > -1))) {
@@ -156,18 +145,6 @@ function hideContextMenus(event) {
         document.querySelectorAll('.fa-chevron-circle-up').forEach(element => switchContextIconDown(element));
         closeSortMenu();
         // }
-    }
-}
-/**
- * Display the mini clock on the countdownlist page
- */
-const showClockRow = () => {
-    if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
-        const clockRow = document.querySelector(".clock-row")
-        if (clockRow) {
-            clockRow.style.display = "flex";
-            clockRow.style.animationPlayState = "running";
-        }
     }
 }
 /**
