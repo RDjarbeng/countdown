@@ -238,7 +238,7 @@ export function switchContextIconDown(element) {
  * @param {HTMLElement} targetElement 
  * @returns {Boolean}
  */
-export const isTargetElementOnCountdownItem=(targetElement)=> (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date')
+export const isTargetElementOnCountdownItem=(targetElement)=> (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date');
 
 
 /**
@@ -246,6 +246,10 @@ export const isTargetElementOnCountdownItem=(targetElement)=> (targetElement.cla
  * @param {HTMLElement} targetElement 
  * @returns {Boolean}
  */
-export const isTargetElementOnContextMenu=(targetElement)=> (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I')
+export const isTargetElementOnContextMenu=(targetElement)=> (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I');
+/**
+ * 
+ */
+export const isClassOnTargetElement=(targetElement, className) => (targetElement.className.search(className) > -1)
 
 let countItemExists = false;
