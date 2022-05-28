@@ -13,11 +13,8 @@ const secNumber = document.getElementById("sec-num");
 var countdownTextDisplay = document.getElementById('countdown-text');
 var countdownClock = document.querySelector('.clock-row');
 var countdownList = document.getElementById('countdown-list');
-let countItemExists = false;
 let arrayOfCountdowns = fetchArrayOfCountdowns();
-let testid = '';
 
-setCountDownList
 
 // todo: sort by modified time
 async function displayCountdowns() {
