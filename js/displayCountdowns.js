@@ -1,6 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
-import { setInnerHtmlForNotNull, stopClock } from "./functions.js";
-import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns } from "./listFunctions.js";
+import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
+import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu } from "./listFunctions.js";
 import { closeFormPopUp, setCountDownList, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
@@ -88,7 +88,6 @@ async function updateCountdownItems() {
                 setInnerHtmlForNotNull(element, 'Elapsed')
             }
 
-            // countItemExists =(countItems.length<2 && clock.getDistance()<0)?false:countItemExists
         });
     } else {
         setCountItemExists(false)
@@ -122,8 +121,7 @@ function removeClockAndText() {
     stopClock();
     setInnerHtmlForNotNull(countdownTextDisplay, '')
     if (countdownClock) {
-        // todo: set the display to none instead
-        countdownClock.style.display = ''
+        removeElementSetDisplayNone(countdownClock)
     }
 }
 
@@ -154,7 +152,7 @@ function switchContextIconDown(element) {
 function hideContextMenus(event) {
     //if function is not triggered by event listener, event is empty
     if ((!(event != null)) || !(event.target.className == 'countdown-list-options' || event.target.tagName == 'I' || (event.target.className.search('sort-title') > -1))) {
-        document.querySelectorAll('.menu').forEach(contextMenu => contextMenu.style.display = "none");
+        document.querySelectorAll('.menu').forEach(contextMenu => removeElementSetDisplayNone(contextMenu));
         document.querySelectorAll('.fa-chevron-circle-up').forEach(element => switchContextIconDown(element));
         closeSortMenu();
         // }
@@ -242,21 +240,11 @@ function addListEventListener() {
     countList.addEventListener('click', listEventListener)
 }
 
-const closeSortMenu = () => {
-    const sortOpts = document.querySelector(".sort-options");
-    if (sortOpts.style.display == "block") {
-        sortOpts.style.display = "none";
-    }
-}
+
 
 const sortTitleEventHandler = () => {
     const sortOpts = document.querySelector(".sort-options");
-    if (sortOpts.style.display == "block") {
-        sortOpts.style.display = "none";
-    }
-    else {
-        sortOpts.style.display = "block";
-    }
+    toggleElementDisplayBlockOnScreen(sortOpts)
 }
 
 const sortOptionsEventHandler = (event) => {
