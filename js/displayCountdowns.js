@@ -1,7 +1,6 @@
 import { Clock } from "./clock.js";
 import { setInnerHtmlForNotNull } from "./functions.js";
 import { updateLocalItem, getCountdownString, populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns,   LISTPAGE_DOM_IDS, displayCountdowns, addEventHandlers } from "./listFunctions.js";
-import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
 // begin displaycountdown.js
