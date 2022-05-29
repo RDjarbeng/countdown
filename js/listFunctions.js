@@ -530,6 +530,42 @@ export function handleFormUpdate() {
     });
 }
 
+/**
+ * update countdown status for non elapsed countdowns
+ */
+ export async function updateCountdownItems() {
+    let activeCountItems = document.querySelectorAll('.countdown-counting')
+    const clock = new Clock();
+    if (activeCountItems.length) {
+        await activeCountItems.forEach((element, _, countItems) => {
+            clock.setEndDate(new Date(element.getAttribute('data-date')));
+            clock.countDown();
+            if (clock.getDistance() > 0) {
+                setInnerHtmlForNotNull(element, getCountdownString(clock))
+            } else if (element.getAttribute('data-repeat') == 'true') {
+                console.log('updating repeat', element);
+                // update repeat item set enddate to next year
+                let index = arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == element.getAttribute('data-id'));
+                let date = element.getAttribute('data-date');
+                if (index && date) {
+                    updateRepeatCountdown(arrayOfCountdowns, date, index);
+                    displayAndStartcount();
+                }
+                //         arrayOfCountdowns[index].date = new Anniversary(new Date(countdown.date)).endDate.toISOString();
+                // arrayOfCountdowns[index].dateModified = new Date().toISOString();
+
+            } else {
+                console.log('elapsing', arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id')));
+                element.classList.remove('countdown-counting')
+                setInnerHtmlForNotNull(element, 'Elapsed')
+            }
+
+        });
+    } else {
+        setCountItemExists(false)
+    }
+}
+
 //DOM Elements
 const dayNumber = document.getElementById(LISTPAGE_DOM_IDS.clockDayElement);
 const hourNumber = document.getElementById(LISTPAGE_DOM_IDS.clockHourElement);
