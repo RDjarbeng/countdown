@@ -15,6 +15,7 @@ import { notifyUser } from "./uiFunctions.js";
 
 
 export function updateLocalItem(arrayOfCountdowns, countItem, id) {
+    id =id.trim();
     if (arrayOfCountdowns !== null) { //countdowns already exist
 
 
@@ -29,6 +30,9 @@ export function updateLocalItem(arrayOfCountdowns, countItem, id) {
             saveCountDownList(arrayOfCountdowns);
         } else {
             console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);
+            console.log('item', countItem);
+            console.log('countdowns', arrayOfCountdowns);
+            
             errorHandler('Unable to update Item');
         }
 
@@ -197,8 +201,8 @@ export const setCountItemExists= (value)=> {
  */
 export const getCountItemExists= ()=> countItemExists;
 
-export async function fetchArrayOfCountdowns() {
-    let jsonListOfCountdowns = await localStorage.getItem('countdown');
+export  function fetchArrayOfCountdowns() {
+    let jsonListOfCountdowns =  localStorage.getItem('countdown');
     return JSON.parse(jsonListOfCountdowns);
 }
 /**
