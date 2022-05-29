@@ -1,6 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
-import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus } from "./listFunctions.js";
+import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu } from "./listFunctions.js";
 import { closeFormPopUp, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
@@ -125,19 +125,6 @@ function removeClockAndText() {
     }
 }
 
-const triggerContextMenu = (element) => {
-    if (element.querySelector(".menu")) {
-        if (element.querySelector(".menu").style.display == "block") {
-            hideContextMenus();
-        }
-        else {
-            hideContextMenus();//close all context menus before displaying the clicked one
-            element.querySelector(".menu").style.display = "block";
-            switchContextIconUp(element);
-            // console.log("context-menu: show");
-        }
-    }
-}
 
 
 /**

@@ -277,4 +277,19 @@ export const setMainClockCountdown=(countdown) =>{
         let date = new Date(countdown.date);
             notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
 }
+
+export const triggerContextMenu = (element) => {
+    if (element.querySelector(".menu")) {
+        if (element.querySelector(".menu").style.display == "block") {
+            hideContextMenus();
+        }
+        else {
+            hideContextMenus();//close all context menus before displaying the clicked one
+            element.querySelector(".menu").style.display = "block";
+            switchContextIconUp(element);
+            // console.log("context-menu: show");
+        }
+    }
+}
+
 let countItemExists = false;
