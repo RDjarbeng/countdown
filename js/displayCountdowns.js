@@ -1,6 +1,6 @@
 import { Clock } from "./clock.js";
-import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock } from "./functions.js";
-import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler, addSortEventListeners, displayCountdowns, getCountdownIndexByDateModified, getArrayIndexByDateModified, removeClockAndText, addEventHandlers } from "./listFunctions.js";
+import { setInnerHtmlForNotNull } from "./functions.js";
+import { updateLocalItem, getCountdownString, populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns,   LISTPAGE_DOM_IDS, displayCountdowns, addEventHandlers } from "./listFunctions.js";
 import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
@@ -62,23 +62,6 @@ function displayAndStartcount() {
         errorHandler('Unable to display your countdowns');
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
