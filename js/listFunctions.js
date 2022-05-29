@@ -5,7 +5,7 @@ import { removeElementSetDisplayNone } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 
-export const DOM_IDS ={
+export const LISTPAGE_DOM_IDS ={
     clockDayElement:'day-num',
     clockHourElement: 'hour-num',
     clockMinuteElement: 'min-num',
