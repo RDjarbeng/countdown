@@ -1,6 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
-import { updateLocalItem, sortArrayOnSelection, setCountDownStatus, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown } from "./listFunctions.js";
+import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus } from "./listFunctions.js";
 import { closeFormPopUp, setCountDownList, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
@@ -138,15 +138,7 @@ const triggerContextMenu = (element) => {
     }
 }
 
-function hideContextMenus(event) {
-    //if function is not triggered by event listener, event is empty
-    if ((!(event != null)) || !(event.target.className == 'countdown-list-options' || event.target.tagName == 'I' || (event.target.className.search('sort-title') > -1))) {
-        document.querySelectorAll('.menu').forEach(contextMenu => removeElementSetDisplayNone(contextMenu));
-        document.querySelectorAll('.fa-chevron-circle-up').forEach(element => switchContextIconDown(element));
-        closeSortMenu();
-        // }
-    }
-}
+
 /**
  * List Click event listener for the countdowns, context menu and items
  * @param {Event} event 

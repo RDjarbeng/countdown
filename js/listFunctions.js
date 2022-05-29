@@ -1,6 +1,7 @@
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
 import { setCountDownList } from "./formfunctions.js";
+import { removeElementSetDisplayNone } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 
@@ -209,6 +210,20 @@ export const closeSortMenu = () => {
         sortOpts.style.display = "none";
     }
 }
+/**
+ * Closes all countdown context menus, event or triggered in code
+ * @param {Event} [event] 
+ */
+export function hideContextMenus(event) {
+    //if function is not triggered by event listener, event is empty
+    if ((!(event != null)) || !(event.target.className == 'countdown-list-options' || event.target.tagName == 'I' || (event.target.className.search('sort-title') > -1))) {
+        document.querySelectorAll('.menu').forEach(contextMenu => removeElementSetDisplayNone(contextMenu));
+        document.querySelectorAll('.fa-chevron-circle-up').forEach(element => switchContextIconDown(element));
+        closeSortMenu();
+        // }
+    }
+}
+
 /**
  * Display the mini clock on the countdownlist page
  */
