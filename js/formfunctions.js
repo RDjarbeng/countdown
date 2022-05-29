@@ -44,6 +44,8 @@ export function getUserDefaultCount(){
     let countNumber = localStorage.getItem('countNumber');
     if (!countNumber)
         countNumber = 1;
+    else 
+        countNumber = Number(countNumber)
     return countNumber;
 }
 
@@ -96,19 +98,20 @@ export function saveCountDownList(jsArray) {
  */
 export function getUserText(userTextField){
     let userText = sanitize(userTextField.value);  
+    let count = getUserDefaultCount();
     if (!userText) {  
         userText = userTextField.placeholder;
-        localStorage.setItem('countNumber', getUserDefaultCount()++)
+        localStorage.setItem('countNumber', ++count)
     }
     return userText;
 }
 
-export function getFormValuesAndSaveCd(){
+export function saveCdFromInputs({userTextField,dateInput, repeatCheck, }){
+    console.log('testing form save');
     // DOM references
-    let userDate = document.getElementById("dateInput").value;
-    let repeatCheck = document.getElementById("repeat-cb");
+    let userDate = dateInput.value;
     // get text field values, with auto values
-    let userText = getUserText(document.getElementById('countdownText'));
+    let userText = getUserText(userTextField);
 
     userDate = new Date(userDate);
     let countItem = { text: userText, date: userDate, dateModified: new Date() };

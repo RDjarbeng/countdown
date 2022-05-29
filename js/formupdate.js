@@ -1,4 +1,4 @@
-import { popForm, closeFormPopUp, sanitize, getFormValuesAndSaveCd } from './formfunctions.js'
+import { popForm, closeFormPopUp, sanitize, saveCdFromInputs } from './formfunctions.js'
 import { displayAndAddListeners } from './displayCountdowns.js';
 import { errorHandler } from './error.js';
 const popAndAddFormOnList = () => {
@@ -12,7 +12,14 @@ function handleListpageForm() {
 
         e.preventDefault();
         submitbutton.disabled = true;
-        getFormValuesAndSaveCd()
+
+        let userDate = document.getElementById("dateInput");
+    let repeatCheck = document.getElementById("repeat-cb");
+    let userTextField = document.getElementById('countdownText');
+    // get text field values, with auto values
+    // let userText = getUserText();
+
+        saveCdFromInputs({ userTextField: userTextField, dateInput: userDate, repeatCheck: repeatCheck})
         // todo: refactor display and add 
         try {
             displayAndAddListeners();
