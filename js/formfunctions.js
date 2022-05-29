@@ -107,7 +107,6 @@ export function getUserText(userTextField){
 }
 
 export function saveCdFromInputs({userTextField,dateInput, repeatCheck, }){
-    console.log('testing form save');
     // DOM references
     let userDate = dateInput.value;
     // get text field values, with auto values
