@@ -1,7 +1,7 @@
 import { Clock, Anniversary } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu } from "./listFunctions.js";
-import { closeFormPopUp, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
+import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
@@ -232,7 +232,7 @@ const addSortEventListeners = () => {
 // todo: move this function to form update.js
 export function handleFormUpdate() {
     // todo: update list with custom fired events
-    const submitbutton = document.getElementById('countdown-submit');
+    const submitbutton = document.getElementById(CONSTANT_IDS.form_submitButton);
 
 
     submitbutton.addEventListener('click', (e) => {
@@ -240,10 +240,10 @@ export function handleFormUpdate() {
         e.preventDefault();
         submitbutton.disabled = true;
         // get text field values, with auto values
-        let userText = document.getElementById('countdownText').value;
-        const modifiedTime = document.getElementById('modifiedTime').value;
-        let userDate = document.getElementById("dateInput").value;
-        let repeatCheck = document.getElementById("repeat-cb");
+        let userText = document.getElementById(CONSTANT_IDS.form_TextInput).value;
+        const modifiedTime = document.getElementById(CONSTANT_IDS.form_modifiedTime).value;
+        let userDate = document.getElementById(CONSTANT_IDS.form_dateInput).value;
+        let repeatCheck = document.getElementById(CONSTANT_IDS.form_repeatCheckBox);
         if (!userText) {
             userText = userTextField.placeholder;
             countNumber++;
