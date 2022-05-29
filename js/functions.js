@@ -13,10 +13,6 @@ import { errorHandler } from "./error.js";
         element.innerHTML = value;
 }
 
-export function closeFormPopUp() {
-    document.getElementsByClassName("pop-up-container")[0].remove();
-    document.body.style.position = "";
-}
 
 /**
  * add zero in front of numbers < 10
