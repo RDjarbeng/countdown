@@ -7,7 +7,7 @@ export const CONSTANT_IDS ={
     form_dateInput: 'dateInput',
     form_repeatCheckBox: 'repeat-cb',
     form_modifiedTime: 'modifiedTime',
-    form_submit: 'countdown-submit'
+    form_submitButton: 'countdown-submit'
 }
 export function popForm() {
     const popFormHtml = getFormHTML()
@@ -49,8 +49,8 @@ export function getFormHTML(formDefaultValues){
         </div>
         <div class="form-sections">
             <label for=""></label>
-            <input type="hidden" value =" ${modifiedTime||''}" id="${CONSTANT_IDS.form_repeatCheckBox|| 'modifiedTime'}">
-            <input type="submit" id ="${CONSTANT_IDS.form_submit|| 'countdown-submit'}" value="${formEdit? 'Update' :'Submit' }" formmethod="dialog">
+            <input type="hidden" value =" ${modifiedTime||''}" id="${CONSTANT_IDS.form_modifiedTime|| 'modifiedTime'}">
+            <input type="submit" id ="${CONSTANT_IDS.form_submitButton|| 'countdown-submit'}" value="${formEdit? 'Update' :'Submit' }" formmethod="dialog">
         </div>    
         <div class="close-form"><button>Close</button></div>
     </form>
