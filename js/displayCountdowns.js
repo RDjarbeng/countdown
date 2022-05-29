@@ -273,7 +273,7 @@ export function handleFormUpdate() {
         displayCountdowns();
         closeFormPopUp();
         removeClockAndText();
-        arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : JSON.parse(localStorage.getItem('countdown'));
+        arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : fetchArrayOfCountdowns();
     })
 }
 
@@ -288,6 +288,7 @@ function addEventHandlers() {
 export async function displayAndAddListeners() {
     await displayAndStartcount()
     // sortUI();
+    console.log(arrayOfCountdowns);
     addEventHandlers();
 }
 try {
@@ -296,3 +297,4 @@ try {
     console.log(err, 'err in display countdown initialisation');
     errorHandler("Unable to fetch your countdowns");
 }
+
