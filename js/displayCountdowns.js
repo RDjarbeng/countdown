@@ -1,8 +1,7 @@
-import { Clock, Anniversary } from "./clock.js";
-import { addListenersWithoutDuplicates, removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
-import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler } from "./listFunctions.js";
+import { Clock } from "./clock.js";
+import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock } from "./functions.js";
+import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler, addSortEventListeners, displayCountdowns } from "./listFunctions.js";
 import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
-import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
 // begin displaycountdown.js
@@ -12,32 +11,6 @@ const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
 let arrayOfCountdowns = fetchArrayOfCountdowns();
 
 
-// todo: sort by modified time
-async function displayCountdowns() {
-    let cdArray = arrayOfCountdowns = await fetchArrayOfCountdowns();
-
-    if (cdArray && cdArray.length) {
-
-        let listItems = await populateList(cdArray)
-        
-        setInnerHtmlForNotNull(countdownList, listItems)
-        setInnerHtmlForNotNull(countdownTextDisplay, '')
-
-        setCountItemStatus(cdArray)
-        addSortUIAndListeners();
-
-    } else {
-        setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
-        setInnerHtmlForNotNull(countdownTextDisplay, '')
-    }
-}
-/**
- * Adds sort menu to the page
- */
-const addSortUIAndListeners = async () => {
-    addSortUI();
-    await addSortEventListeners();
-}
 
 
 
@@ -174,30 +147,7 @@ function addListEventListener() {
 
 
 
-const sortOptionsEventHandler = (event) => {
-    if (event.target.className.search('due') > -1) {
-        localStorage.setItem('sort', 'due')
-    } else if (event.target.className.search('modified') > -1) {
-        localStorage.setItem('sort', 'modified')
-    }
-    // close sortOptions menu on selection and refresh list
-    closeSortMenu();
-    displayCountdowns();
-}
 
-const addSortEventListeners = () => {
-    const sortOpts = document.querySelector(".sort-options");
-    const sortTitle = document.querySelector(".sort-title");
-
-    if (!(sortTitle && sortOpts)) {
-        console.log('Var sort title and sortOpts is null', 'sort title', sortTitle, 'sort opts', sortOpts);
-        errorHandler("Something's wrong in sort UI")
-        return;
-    }
-    // sort options menu events
-    addListenersWithoutDuplicates(sortTitle, sortTitleEventHandler)
-    addListenersWithoutDuplicates(sortOpts, sortOptionsEventHandler)
-}
 
 // todo: move this function to form update.js
 export function handleFormUpdate() {
