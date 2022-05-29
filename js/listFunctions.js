@@ -22,11 +22,11 @@ export function updateLocalItem(arrayOfCountdowns, countItem, id) {
         let pos = arrayOfCountdowns.findIndex((value) => value.dateModified == id
         );
         if (pos > -1) {
-            console.log(arrayOfCountdowns[pos]);
             arrayOfCountdowns[pos].text = countItem.text;
             arrayOfCountdowns[pos].date = countItem.date;
             arrayOfCountdowns[pos].dateModified = countItem.dateModified;
             arrayOfCountdowns[pos].repeat = countItem.repeat;
+            console.log(arrayOfCountdowns[pos]);
             saveCountDownList(arrayOfCountdowns);
         } else {
             console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);

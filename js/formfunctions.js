@@ -80,7 +80,6 @@ export function getFormHTML(formDefaultValues){
 }
 
 export function addFormHTMLToPage(popFormHtml){
-    console.log(popFormHtml);
     document.body.insertAdjacentHTML("afterbegin", popFormHtml);
     document.body.style.position = "fixed";
     
@@ -226,35 +225,8 @@ export function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
     // todo: Track items without using modifiedTime
     if (text && dateTime && modifiedTime) {
         console.log('Edit items',text, dateTime, modifiedTime, repeat);
-        console.log('inside form display');
-        console.log(getFormHTML({text: text, dateTime: dateTime, modifiedTime: modifiedTime, repeat: repeat}));
         
         const updateFormHtml = getFormHTML({text: text, dateTime: dateTime, modifiedTime: modifiedTime, repeat: repeat});
-    //      `<section class="pop-up-container">
-    // <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
-    //     <div class="form-header">Update Countdown</div>
-    //     <div class="form-sections">
-    //         <label for="">Title &nbsp;</label>
-    //         <input type="text" value="${text}" id='countdownText'>
-    //     </div>
-    //     <div class="form-sections">
-    //         <label for="">Date & Time &nbsp;</label>
-    //         <input type="datetime-local" value= "${dateTime}" id ="dateInput" min="" required>
-    //     </div>
-    //     <div class="form-sections form-repeat">
-    //         <label for="repeat-cb">
-    //             <input type="checkbox" id="repeat-cb" ${repeat ? 'checked' : ''}> Repeat 
-    //         </label>
-    //     </div>
-    //     <div class="form-sections">
-    //         <label for=""></label>
-    //         <input type="hidden" value = "${modifiedTime}" id="modifiedTime">
-    //         <input type="submit" id ="countdown-update" value="Update" formmethod="dialog">
-    //     </div>    
-        
-    //     <div class="close-form"><button>Close</button></div>
-    // </form>
-    // </section>`;
         addFormHTMLToPage(updateFormHtml);
     }else{
         errorHandler('Error in form edit.')
