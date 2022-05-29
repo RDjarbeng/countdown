@@ -3,7 +3,7 @@ import {addZeros} from './functions.js'
 import { updateLocalItem } from "./listFunctions.js";
 
 export const CONSTANT_IDS ={
-    form_Text:'countdownText',
+    form_TextInput:'countdownText',
     form_dateInput: 'dateInput',
     form_repeatCheckBox: 'repeat-cb',
     form_modifiedTime: 'modifiedTime',
@@ -39,7 +39,7 @@ export function getFormHTML(formDefaultValues){
             <input type="text" 
             value= "${text||'' }" 
             placeholder="countdown #${countNumber}" 
-            id="${CONSTANT_IDS.form_Text|| 'countdownText'}"
+            id="${CONSTANT_IDS.form_TextInput|| 'countdownText'}"
             >
         </div>
         <div class="form-sections">
