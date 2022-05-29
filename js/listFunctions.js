@@ -5,6 +5,14 @@ import { removeElementSetDisplayNone } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 
+export const DOM_IDS ={
+    clockDayElement:'day-num',
+    clockHourElement: 'hour-num',
+    clockMinuteElement: 'min-num',
+    clockSecondElement: 'sec-num',
+    countdownTextDisplay: 'countdown-text',
+    countdownList: 'countdown-list'
+}
 /**
  * Update a single countdown item in the array of countdowns
  *  with text, date, dateModified and repeat
