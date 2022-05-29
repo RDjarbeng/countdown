@@ -1,42 +1,69 @@
+import { errorHandler } from './error.js';
 import {addZeros} from './functions.js'
 import { updateLocalItem } from "./listFunctions.js";
 
+export const CONSTANT_IDS ={
+    form_Text:'countdownText',
+    form_dateInput: 'dateInput',
+    form_repeatCheckBox: 'repeat-cb',
+    form_modifiedTime: 'modifiedTime',
+    form_submit: 'countdown-submit'
+}
 export function popForm() {
-    let countNumber = getUserDefaultCount()
+    const popFormHtml = getFormHTML()
+    addFormHTMLToPage(popFormHtml)
+    setDateAttributes();
+    
+}
+/**
+ * 
+ * @param {Object} [formDefaultValues] 
+ * @returns 
+ */
+export function getFormHTML(formDefaultValues){
+    let text, dateTime, modifiedTime, repeat;
+    let formEdit=false;
+    if(formDefaultValues){
+        formEdit = true;
+        text = formDefaultValues.text
+        dateTime = formDefaultValues.dateTime
+        modifiedTime = formDefaultValues.modifiedTime
+        repeat = formDefaultValues.repeat
+    }
+    let countNumber= getUserDefaultCount();
     const popFormHtml = `<section class="pop-up-container">
     <form id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
         <div class="form-sections">
             <label for="">Title &nbsp;</label>
-            <input type="text" placeholder="countdown #${countNumber}" id='countdownText'>
+            <input type="text" value= "${text||'' }" placeholder="countdown #${countNumber}" id="${CONSTANT_IDS.form_Text|| 'countdownText'}">
         </div>
         <div class="form-sections">
             <label for="">Date & Time &nbsp;</label>
-            <input type="datetime-local" id ="dateInput" min="" required>
+            <input type="datetime-local" value= "${dateTime||'' }" id ="${CONSTANT_IDS.form_dateInput|| 'dateInput'}" min="" required>
         </div>
         <div class="form-sections form-repeat">
             <label for="repeat-cb">
-                <input type="checkbox" id="repeat-cb"> Repeat every year 
+                <input type="checkbox" id="${CONSTANT_IDS.form_repeatCheckBox|| 'repeat-cb'}" ${repeat ? 'checked' : ''}> Repeat every year 
             </label>
         </div>
         <div class="form-sections">
             <label for=""></label>
-            <input type="submit" id ="countdown-submit"value="Submit" formmethod="dialog">
+            <input type="hidden" value =" ${modifiedTime||''}" id="${CONSTANT_IDS.form_repeatCheckBox|| 'modifiedTime'}">
+            <input type="submit" id ="${CONSTANT_IDS.form_submit|| 'countdown-submit'}" value="${formEdit? 'Update' :'Submit' }" formmethod="dialog">
         </div>    
         <div class="close-form"><button>Close</button></div>
     </form>
     </section>`;
+    return popFormHtml;
 
-    addFormHTMLToPage(popFormHtml)
-    
 }
 
-
-
 export function addFormHTMLToPage(popFormHtml){
+    console.log(popFormHtml);
     document.body.insertAdjacentHTML("afterbegin", popFormHtml);
     document.body.style.position = "fixed";
-    setDateAttributes();
+    
     document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
 }
 /**
@@ -69,7 +96,6 @@ export function setDateAttributes() {
     mm = addZeros(mm)
 
     let todayString = yyyy + '-' + mm + '-' + dd + 'T' + hr + ':' + min;
-    console.log(todayString);
     dateInput.setAttribute("min", todayString);
     dateInput.value = todayString;
 }
@@ -179,32 +205,39 @@ export function sanitize(string) {
 export function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
     // todo: Track items without using modifiedTime
     if (text && dateTime && modifiedTime) {
+        console.log('Edit items',text, dateTime, modifiedTime, repeat);
         console.log('inside form display');
-        const updateFormHtml = `<section class="pop-up-container">
-    <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
-        <div class="form-header">Update Countdown</div>
-        <div class="form-sections">
-            <label for="">Title &nbsp;</label>
-            <input type="text" value="${text}" id='countdownText'>
-        </div>
-        <div class="form-sections">
-            <label for="">Date & Time &nbsp;</label>
-            <input type="datetime-local" value= ${dateTime} id ="dateInput" min="" required>
-        </div>
-        <div class="form-sections form-repeat">
-            <label for="repeat-cb">
-                <input type="checkbox" id="repeat-cb" ${repeat ? 'checked' : ''}> Repeat 
-            </label>
-        </div>
-        <div class="form-sections">
-            <label for=""></label>
-            <input type="hidden" value = ${modifiedTime} id="modifiedTime">
-            <input type="submit" id ="countdown-update" value="Update" formmethod="dialog">
-        </div>    
+        console.log(getFormHTML({text: text, dateTime: dateTime, modifiedTime: modifiedTime, repeat: repeat}));
         
-        <div class="close-form"><button>Close</button></div>
-    </form>
-    </section>`;
+        const updateFormHtml = getFormHTML({text: text, dateTime: dateTime, modifiedTime: modifiedTime, repeat: repeat});
+    //      `<section class="pop-up-container">
+    // <form action="/html/countdown-list.html" method="get" id='customUpDateForm' class="pop-up-form">
+    //     <div class="form-header">Update Countdown</div>
+    //     <div class="form-sections">
+    //         <label for="">Title &nbsp;</label>
+    //         <input type="text" value="${text}" id='countdownText'>
+    //     </div>
+    //     <div class="form-sections">
+    //         <label for="">Date & Time &nbsp;</label>
+    //         <input type="datetime-local" value= "${dateTime}" id ="dateInput" min="" required>
+    //     </div>
+    //     <div class="form-sections form-repeat">
+    //         <label for="repeat-cb">
+    //             <input type="checkbox" id="repeat-cb" ${repeat ? 'checked' : ''}> Repeat 
+    //         </label>
+    //     </div>
+    //     <div class="form-sections">
+    //         <label for=""></label>
+    //         <input type="hidden" value = "${modifiedTime}" id="modifiedTime">
+    //         <input type="submit" id ="countdown-update" value="Update" formmethod="dialog">
+    //     </div>    
+        
+    //     <div class="close-form"><button>Close</button></div>
+    // </form>
+    // </section>`;
         addFormHTMLToPage(updateFormHtml);
+    }else{
+        errorHandler('Error in form edit.')
+        console.log('Null values in display form pop up');
     }
 }
