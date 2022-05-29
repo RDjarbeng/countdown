@@ -27,11 +27,13 @@ export function popForm() {
     </form>
     </section>`;
 
-    addFormToPage(popFormHtml)
+    addFormHTMLToPage(popFormHtml)
     
 }
 
-function addFormToPage(popFormHtml){
+
+
+export function addFormHTMLToPage(popFormHtml){
     document.body.insertAdjacentHTML("afterbegin", popFormHtml);
     document.body.style.position = "fixed";
     setDateAttributes();
@@ -203,6 +205,6 @@ export function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
         <div class="close-form"><button>Close</button></div>
     </form>
     </section>`;
-        addFormToPage(updateFormHtml);
+        addFormHTMLToPage(updateFormHtml);
     }
 }
