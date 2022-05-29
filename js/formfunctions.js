@@ -69,50 +69,83 @@ export function setDateAttributes() {
     dateInput.value = todayString;
 }
 
-export function saveToLocalStorage(countItem) {
+export function saveNewCountdownToLocalStorage(countItem) {
     let countdown = localStorage.getItem('countdown');
     if (countdown !== null) { //countdowns already exist
         countdown = JSON.parse(countdown);//array
 
         countdown.push(countItem);
         // console.log(countdown);
-        setCountDownList(countdown)
+        saveCountDownList(countdown)
     } else {
         // create first countdown
-        setCountDownList([countItem]);
+        saveCountDownList([countItem]);
     }
 }
 /**
  * 
  * @param {Array} arrayOfJSONCountdowns 
  */
-export function setCountDownList(jsArray) {
+export function saveCountDownList(jsArray) {
     localStorage.setItem('countdown', JSON.stringify(jsArray))
+}
+/**
+ * 
+ * @param {HTMLInputElement} userTextField 
+ * @returns 
+ */
+export function getUserText(userTextField){
+    let userText = sanitize(userTextField.value);  
+    if (!userText) {  
+        userText = userTextField.placeholder;
+        localStorage.setItem('countNumber', getUserDefaultCount()++)
+    }
+    return userText;
 }
 
 export function getFormValuesAndSaveCd(){
     // DOM references
     let userDate = document.getElementById("dateInput").value;
     let repeatCheck = document.getElementById("repeat-cb");
-    let userTextField = document.getElementById('countdownText');
-    
     // get text field values, with auto values
-
-    let userText = sanitize(userTextField.value);
-
-    if (!userText) {
-        userText = userTextField.placeholder;
-        let countNumber = getUserDefaultCount();
-        countNumber++;
-        localStorage.setItem('countNumber', countNumber)
-    }
+    let userText = getUserText(document.getElementById('countdownText'));
 
     userDate = new Date(userDate);
     let countItem = { text: userText, date: userDate, dateModified: new Date() };
     if (repeatCheck) {
         countItem.repeat = repeatCheck.checked;
     }
-    saveToLocalStorage(countItem);
+    saveNewCountdownToLocalStorage(countItem);
+}
+
+// todo: move this function to form update.js
+export function addFormListenerForUpdate() {
+    // todo: update list with custom fired events
+    const submitbutton = document.getElementById('countdown-update');
+
+
+    submitbutton.addEventListener('click', (e) => {
+
+        e.preventDefault();
+        submitbutton.disabled = true;
+        // get text field values, with auto values
+        const modifiedTime = document.getElementById('modifiedTime').value;
+        const userDate = document.getElementById("dateInput").value;
+        const repeatCheck = document.getElementById("repeat-cb");
+        let userText = getUserText(document.getElementById('countdownText'));
+
+        userDate = new Date(userDate);
+        let countItem = { text: userText, date: userDate, dateModified: new Date() };
+        if (repeatCheck) {
+            countItem.repeat = repeatCheck.checked;
+        }
+
+        updateLocalItem(arrayOfCountdowns, countItem, modifiedTime);
+        displayCountdowns();
+        closeFormPopUp();
+        removeClockAndText();
+        arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : JSON.parse(localStorage.getItem('countdown'));
+    })
 }
 
 export function checkRepeat(repeatCheckBox) {

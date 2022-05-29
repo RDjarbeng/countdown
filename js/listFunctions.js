@@ -1,6 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
-import { setCountDownList } from "./formfunctions.js";
+import { saveCountDownList } from "./formfunctions.js";
 import { removeElementSetDisplayNone } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
@@ -26,7 +26,7 @@ export function updateLocalItem(arrayOfCountdowns, countItem, id) {
             arrayOfCountdowns[pos].date = countItem.date;
             arrayOfCountdowns[pos].dateModified = countItem.dateModified;
             arrayOfCountdowns[pos].repeat = countItem.repeat;
-            setCountDownList(arrayOfCountdowns);
+            saveCountDownList(arrayOfCountdowns);
         } else {
             console.log("Unable to find Item to update in displayCountdown array of Countdowns, HandleUpdate", pos);
             errorHandler('Unable to update Item');
@@ -177,7 +177,7 @@ export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
     if (new Date(date) - new Date() < 0) {
         arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
         // arrayOfCountdowns[index].dateModified = new Date().toISOString();
-        setCountDownList(arrayOfCountdowns);
+        saveCountDownList(arrayOfCountdowns);
         console.log('Updating values of old cds', arrayOfCountdowns[index]);
 
     };

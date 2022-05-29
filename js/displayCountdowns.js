@@ -1,7 +1,7 @@
 import { Clock, Anniversary } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus } from "./listFunctions.js";
-import { closeFormPopUp, setCountDownList, displayFormPopUp } from "./formfunctions.js";
+import { closeFormPopUp, saveCountDownList, displayFormPopUp } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
@@ -172,7 +172,7 @@ const listEventListener = event => {
         
         } else if (isClassOnTargetElement(targetElement,'del') ) {
             arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
-            setCountDownList(arrayOfCountdowns);
+            saveCountDownList(arrayOfCountdowns);
             setInnerHtmlForNotNull(countdownList, populateList(arrayOfCountdowns));
             // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
         } else if (isClassOnTargetElement(targetElement,'edit')) {
