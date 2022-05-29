@@ -273,7 +273,7 @@ export function handleFormUpdate() {
         displayCountdowns();
         closeFormPopUp();
         removeClockAndText();
-        arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : fetchArrayOfCountdowns();
+        
     })
 }
 
