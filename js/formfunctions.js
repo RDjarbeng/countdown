@@ -224,10 +224,7 @@ export function sanitize(string) {
 export function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
     // todo: Track items without using modifiedTime
     if (text && dateTime && modifiedTime) {
-        console.log('Edit items',text, dateTime, modifiedTime, repeat);
-        
-        const updateFormHtml = getFormHTML({text: text, dateTime: dateTime, modifiedTime: modifiedTime, repeat: repeat});
-        addFormHTMLToPage(updateFormHtml);
+        addFormHTMLToPage(getFormHTML({text: text, dateTime: dateTime, modifiedTime: modifiedTime, repeat: repeat}));
     }else{
         errorHandler('Error in form edit.')
         console.log('Null values in display form pop up');
