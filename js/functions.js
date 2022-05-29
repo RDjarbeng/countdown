@@ -73,4 +73,12 @@ export const removeElementSetDisplayNone=(element)=>(element)?element.style.disp
 
 
 export const addElementSetDisplayBlock=(element)=>(element)?element.style.display = "block":null;
-
+/**
+ * 
+ * @param {HTMLElement} element 
+ * @param {Function} eventHandler 
+ */
+export const addListenersWithoutDuplicates = (element, eventHandler)=>{
+    element.removeEventListener("click", eventHandler);
+    element.addEventListener("click", eventHandler);
+}
