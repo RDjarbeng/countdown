@@ -171,7 +171,7 @@ export function saveCdFromInputs({userTextField,dateInput, repeatCheck, }){
 // todo: move this function to form update.js
 export function addFormListenerForUpdate() {
     // todo: update list with custom fired events
-    const submitbutton = document.getElementById('countdown-update');
+    const submitbutton = document.getElementById(CONSTANT_IDS.form_submitButton);
 
 
     submitbutton.addEventListener('click', (e) => {
@@ -190,11 +190,11 @@ export function addFormListenerForUpdate() {
             countItem.repeat = repeatCheck.checked;
         }
 
-        updateLocalItem(arrayOfCountdowns, countItem, modifiedTime);
-        displayCountdowns();
-        closeFormPopUp();
-        removeClockAndText();
-        arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : JSON.parse(localStorage.getItem('countdown'));
+        // updateLocalItem(arrayOfCountdowns, countItem, modifiedTime);
+        // displayCountdowns();
+        // closeFormPopUp();
+        // removeClockAndText();
+        // arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : JSON.parse(localStorage.getItem('countdown'));
     })
 }
 
