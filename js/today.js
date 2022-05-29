@@ -35,14 +35,12 @@ const setDomElements = () => {
 
 const copyDOY = async () => {
     await navigator.clipboard.writeText(`Day ${dayCount.innerText || 'rcountdown'}/365`);
-    // todo: import notify user correctly, waiting for nat
     notifyUser("Copied to clipboard");
-    // console.log(await navigator.clipboard.readText());
 }
 const addClipBoardEventHandler = () => document.querySelector(".copy-link").addEventListener("click", copyDOY);
 
 const updateTimeValues = () => {
-    let dayIntervaltimer = setInterval(setDomElements, 1000);
+    return setInterval(setDomElements, 1000);
 
 }
 const registerListenersAndUpdate = () => {
