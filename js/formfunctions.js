@@ -27,14 +27,15 @@ export function popForm() {
     </form>
     </section>`;
 
+    addFormToPage(popFormHtml)
+    
+}
+
+function addFormToPage(popFormHtml){
     document.body.insertAdjacentHTML("afterbegin", popFormHtml);
     document.body.style.position = "fixed";
     setDateAttributes();
-    document.getElementsByClassName("close-form")[0].onclick = (e) => { 
-        // console.log('close firing');
-        closeFormPopUp();
-     }
-    
+    document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
 }
 /**
  * Returns the count of user default countdowns stored in local storage else returns 1
@@ -202,9 +203,6 @@ export function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
         <div class="close-form"><button>Close</button></div>
     </form>
     </section>`;
-        document.body.insertAdjacentHTML("afterbegin", updateFormHtml);
-        document.body.style.position = "fixed";
-        // setDateAttributes();
-        document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
+        addFormToPage(updateFormHtml);
     }
 }
