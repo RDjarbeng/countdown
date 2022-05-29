@@ -401,6 +401,14 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
     return array.findIndex((countdown) => countdown.dateModified == dateModified);
 }
 
+
+export function removeClockAndText() {
+    stopClock();
+    setInnerHtmlForNotNull(countdownTextDisplay, '')
+    if (countdownClock) {
+        removeElementSetDisplayNone(countdownClock)
+    }
+}
 //DOM Elements
 const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
 const dayNumber = document.getElementById(LISTPAGE_DOM_IDS.clockDayElement);
@@ -408,6 +416,7 @@ const hourNumber = document.getElementById(LISTPAGE_DOM_IDS.clockHourElement);
 const minNumber = document.getElementById(LISTPAGE_DOM_IDS.clockMinuteElement);
 const secNumber = document.getElementById(LISTPAGE_DOM_IDS.clockSecondElement);
 const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
+const countdownClock = document.querySelector('.clock-row');
 // clock interval tracker
 let interval;
 let countItemExists = false;

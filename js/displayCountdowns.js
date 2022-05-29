@@ -1,12 +1,12 @@
 import { Clock } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock } from "./functions.js";
-import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler, addSortEventListeners, displayCountdowns, getCountdownIndexByDateModified, getArrayIndexByDateModified } from "./listFunctions.js";
+import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler, addSortEventListeners, displayCountdowns, getCountdownIndexByDateModified, getArrayIndexByDateModified, removeClockAndText } from "./listFunctions.js";
 import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
 // begin displaycountdown.js
 const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
-const countdownClock = document.querySelector('.clock-row');
+
 const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
 let arrayOfCountdowns = fetchArrayOfCountdowns();
 
@@ -65,13 +65,7 @@ function displayAndStartcount() {
 
 
 
-function removeClockAndText() {
-    stopClock();
-    setInnerHtmlForNotNull(countdownTextDisplay, '')
-    if (countdownClock) {
-        removeElementSetDisplayNone(countdownClock)
-    }
-}
+
 
 
 
@@ -158,7 +152,6 @@ export function handleFormUpdate() {
 
 
     submitbutton.addEventListener('click', (e) => {
-
         e.preventDefault();
         submitbutton.disabled = true;
         // get text field values, with auto values
