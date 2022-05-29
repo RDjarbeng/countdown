@@ -1,6 +1,6 @@
 import { Clock, Anniversary } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
-import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText } from "./listFunctions.js";
+import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler } from "./listFunctions.js";
 import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
@@ -24,7 +24,7 @@ async function displayCountdowns() {
         setInnerHtmlForNotNull(countdownTextDisplay, '')
 
         setCountItemStatus(cdArray)
-        sortUIAddListeners();
+        addSortUIAndListeners();
 
     } else {
         setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
@@ -34,21 +34,8 @@ async function displayCountdowns() {
 /**
  * Adds sort menu to the page
  */
-const sortUIAddListeners = async () => {
-    if (!document.querySelector(".list-settings")) {
-        const listContainer = document.querySelector(".list-container");
-        let sortHtml = `
-        <section class="list-settings">
-            <div class="sort">
-                <div class="sort-options">
-                    <div class="sort-opt modified">Date modified</div>
-                    <div class="sort-opt due">Due date</div>
-                </div>
-                <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
-            </div>
-        </section>`;
-        listContainer.insertAdjacentHTML("afterbegin", sortHtml);
-    }
+const addSortUIAndListeners = async () => {
+    addSortUI();
     await addSortEventListeners();
 }
 
@@ -185,10 +172,7 @@ function addListEventListener() {
 
 
 
-const sortTitleEventHandler = () => {
-    const sortOpts = document.querySelector(".sort-options");
-    toggleElementDisplayBlockOnScreen(sortOpts)
-}
+
 
 const sortOptionsEventHandler = (event) => {
     if (event.target.className.search('due') > -1) {

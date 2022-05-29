@@ -2,7 +2,7 @@ import { startClock, stepIncreaseAndStart } from "./appfunctions.js";
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
 import { saveCountDownList } from "./formfunctions.js";
-import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock } from "./functions.js";
+import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 
@@ -309,6 +309,28 @@ export function updateClockAndText(date, text, animation = true) {
     (animation) ? stepIncreaseAndStart(clock, { dayNumber, hourNumber, minNumber, secNumber }, 400) : null;
     interval = startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500, interval);
 
+}
+
+export function addSortUI(){
+    if (!document.querySelector(".list-settings")) {
+        const listContainer = document.querySelector(".list-container");
+        let sortHtml = `
+        <section class="list-settings">
+            <div class="sort">
+                <div class="sort-options">
+                    <div class="sort-opt modified">Date modified</div>
+                    <div class="sort-opt due">Due date</div>
+                </div>
+                <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
+            </div>
+        </section>`;
+        listContainer.insertAdjacentHTML("afterbegin", sortHtml);
+    }
+}
+
+export const sortTitleEventHandler = () => {
+    const sortOpts = document.querySelector(".sort-options");
+    toggleElementDisplayBlockOnScreen(sortOpts);
 }
 
 //DOM Elements
