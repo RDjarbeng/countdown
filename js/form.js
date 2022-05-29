@@ -1,4 +1,4 @@
-import { popForm, closeFormPopUp, addFormListenerForUpdate, sanitize } from './formfunctions.js'
+import { popForm, closeFormPopUp, addFormListenerForUpdate, sanitize, CONSTANT_IDS } from './formfunctions.js'
 
 const popAndAddFormSubmission = () => {
     popForm()
@@ -6,7 +6,7 @@ const popAndAddFormSubmission = () => {
 }
 
 function handleFormSubmission() {
-    const submitbutton = document.getElementById('countdown-submit');
+    const submitbutton = document.getElementById(CONSTANT_IDS.form_submitButton);
     
     submitbutton.addEventListener('click', (e) => {
         e.preventDefault();
