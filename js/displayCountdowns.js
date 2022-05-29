@@ -1,5 +1,5 @@
 import { Clock, Anniversary } from "./clock.js";
-import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
+import { addListenersWithoutDuplicates, removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler } from "./listFunctions.js";
 import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
@@ -194,11 +194,9 @@ const addSortEventListeners = () => {
         errorHandler("Something's wrong in sort UI")
         return;
     }
-    sortTitle.removeEventListener("click", sortTitleEventHandler);
-    sortTitle.addEventListener("click", sortTitleEventHandler);
     // sort options menu events
-    sortOpts.removeEventListener("click", sortOptionsEventHandler)
-    sortOpts.addEventListener("click", sortOptionsEventHandler)
+    addListenersWithoutDuplicates(sortTitle, sortTitleEventHandler)
+    addListenersWithoutDuplicates(sortOpts, sortOptionsEventHandler)
 }
 
 // todo: move this function to form update.js
