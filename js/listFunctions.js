@@ -1,7 +1,7 @@
 import { startClock, stepIncreaseAndStart } from "./appfunctions.js";
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
-import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
+import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, getUserText, saveCountDownList } from "./formfunctions.js";
 import { addListenersWithoutDuplicates, removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
@@ -496,22 +496,18 @@ export function handleFormUpdate() {
         e.preventDefault();
         submitbutton.disabled = true;
         // get text field values, with auto values
-        let userText = document.getElementById(CONSTANT_IDS.form_TextInput).value;
+        // let userText = document.getElementById(CONSTANT_IDS.form_TextInput).value;
         const modifiedTime = document.getElementById(CONSTANT_IDS.form_modifiedTime).value;
         let userDate = document.getElementById(CONSTANT_IDS.form_dateInput).value;
-        let repeatCheck = document.getElementById(CONSTANT_IDS.form_repeatCheckBox);
-        if (!userText) {
-            userText = userTextField.placeholder;
-            countNumber++;
-            localStorage.setItem('countNumber', countNumber)
-        }
+        const repeatCheck = document.getElementById(CONSTANT_IDS.form_repeatCheckBox);
+        const userText = getUserText(document.getElementById(CONSTANT_IDS.form_modifiedTime).value)
 
         userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
         if (repeatCheck) {
             countItem.repeat = repeatCheck.checked;
         }
-
+        
         updateLocalItem(arrayOfCountdowns, countItem, modifiedTime);
         displayCountdowns();
         closeFormPopUp();
@@ -520,12 +516,26 @@ export function handleFormUpdate() {
     })
 }
 
+/**
+ * display countdowns and start updating display for countdowns in progress
+ */
+ export function displayAndStartcount() {
+    displayCountdowns().then(() => {
+        if (getCountItemExists()) {
+            let interval = setInterval(() => getCountItemExists() ? updateCountdownItems() : clearInterval(interval), 1000)
+        }
+    }).catch((err) => {
+        console.log(err);
+        errorHandler('Unable to display your countdowns');
+    });
+}
+
 //DOM Elements
-const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
 const dayNumber = document.getElementById(LISTPAGE_DOM_IDS.clockDayElement);
 const hourNumber = document.getElementById(LISTPAGE_DOM_IDS.clockHourElement);
 const minNumber = document.getElementById(LISTPAGE_DOM_IDS.clockMinuteElement);
 const secNumber = document.getElementById(LISTPAGE_DOM_IDS.clockSecondElement);
+const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
 const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
 const countdownClock = document.querySelector('.clock-row');
 // clock interval tracker
