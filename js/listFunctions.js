@@ -396,6 +396,10 @@ export const getCountdownByDateModified = (dateModified)=>{
 export const getCountdownIndexByDateModified = (dateModified)=>{
     return arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == dateModified);
 }
+// todo remove this function, set array of countdows to one source
+export const getArrayIndexByDateModified = (array,dateModified)=>{
+    return array.findIndex((countdown) => countdown.dateModified == dateModified);
+}
 
 //DOM Elements
 const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);

@@ -1,6 +1,6 @@
 import { Clock } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock } from "./functions.js";
-import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler, addSortEventListeners, displayCountdowns, getCountdownIndexByDateModified } from "./listFunctions.js";
+import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler, addSortEventListeners, displayCountdowns, getCountdownIndexByDateModified, getArrayIndexByDateModified } from "./listFunctions.js";
 import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
@@ -85,10 +85,9 @@ const listEventListener = event => {
     // if event is fired on text or date
     if (isTargetElementOnCountdownItem(targetElement)) {
         console.log(targetElement,'parent', targetElement.parentElement);
-        console.log(arrayOfCountdowns)
         
         // let targetIndex = targetElement.parentElement.getAttribute('data-index');
-        let targetIndex = getCountdownIndexByDateModified(targetElement.parentElement.getAttribute('data-id'))
+        let targetIndex = getArrayIndexByDateModified(arrayOfCountdowns,targetElement.parentElement.getAttribute('data-id'))
         // todo: find a better way of accessing element in countdown array
         console.log(targetIndex)
         showClockRow();
@@ -198,7 +197,6 @@ function addEventHandlers() {
 export async function displayAndAddListeners() {
     await displayAndStartcount()
     // sortUI();
-    console.log(arrayOfCountdowns);
     addEventHandlers();
 }
 try {
