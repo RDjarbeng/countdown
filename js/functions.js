@@ -68,7 +68,11 @@ export const toggleElementDisplayBlockOnScreen=(element)=>{
 
 }
 
-
+/**
+ * removes element from screen,sets its display to none if not null, checks for null
+ * @param {HTMLElement} element 
+ * @returns 
+ */
 export const removeElementSetDisplayNone=(element)=>(element)?element.style.display = "none":null;
 
 
