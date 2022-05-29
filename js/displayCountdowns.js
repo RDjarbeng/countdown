@@ -4,9 +4,6 @@ import { updateLocalItem, getCountdownString, populateList, getCountItemExists, 
 import { errorHandler } from "./error.js";
 // Dom elements
 // begin displaycountdown.js
-const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
-
-const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
 let arrayOfCountdowns = fetchArrayOfCountdowns();
 
 
