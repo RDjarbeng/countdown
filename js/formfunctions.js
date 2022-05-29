@@ -36,21 +36,41 @@ export function getFormHTML(formDefaultValues){
         <div class="form-header">Set Countdown</div>
         <div class="form-sections">
             <label for="">Title &nbsp;</label>
-            <input type="text" value= "${text||'' }" placeholder="countdown #${countNumber}" id="${CONSTANT_IDS.form_Text|| 'countdownText'}">
+            <input type="text" 
+            value= "${text||'' }" 
+            placeholder="countdown #${countNumber}" 
+            id="${CONSTANT_IDS.form_Text|| 'countdownText'}"
+            >
         </div>
         <div class="form-sections">
             <label for="">Date & Time &nbsp;</label>
-            <input type="datetime-local" value= "${dateTime||'' }" id ="${CONSTANT_IDS.form_dateInput|| 'dateInput'}" min="" required>
+            <input type="datetime-local" 
+            value= "${dateTime||'' }" 
+            id ="${CONSTANT_IDS.form_dateInput|| 'dateInput'}" 
+            min="" required
+            >
         </div>
         <div class="form-sections form-repeat">
             <label for="repeat-cb">
-                <input type="checkbox" id="${CONSTANT_IDS.form_repeatCheckBox|| 'repeat-cb'}" ${repeat ? 'checked' : ''}> Repeat every year 
+                <input type="checkbox"
+                 id="${CONSTANT_IDS.form_repeatCheckBox|| 'repeat-cb'}" 
+                 ${repeat ? 'checked' : ''}
+                 > 
+                 Repeat every year 
             </label>
         </div>
         <div class="form-sections">
             <label for=""></label>
-            <input type="hidden" value =" ${modifiedTime||''}" id="${CONSTANT_IDS.form_modifiedTime|| 'modifiedTime'}">
-            <input type="submit" id ="${CONSTANT_IDS.form_submitButton|| 'countdown-submit'}" value="${formEdit? 'Update' :'Submit' }" formmethod="dialog">
+            <input type="hidden" 
+            value ="${modifiedTime||''}" 
+            id="${CONSTANT_IDS.form_modifiedTime|| 'modifiedTime'}"
+            >
+            <input 
+            type="submit" 
+            id ="${CONSTANT_IDS.form_submitButton|| 'countdown-submit'}" 
+            value="${formEdit? 'Update' :'Submit' }" 
+            formmethod="dialog"
+            >
         </div>    
         <div class="close-form"><button>Close</button></div>
     </form>
