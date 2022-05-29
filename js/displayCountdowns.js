@@ -1,7 +1,7 @@
 import { Clock, Anniversary } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus } from "./listFunctions.js";
-import { closeFormPopUp, saveCountDownList, displayFormPopUp } from "./formfunctions.js";
+import { closeFormPopUp, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
@@ -14,6 +14,7 @@ const countdownTextDisplay = document.getElementById('countdown-text');
 const countdownClock = document.querySelector('.clock-row');
 const countdownList = document.getElementById('countdown-list');
 let arrayOfCountdowns = fetchArrayOfCountdowns();
+
 
 // todo: sort by modified time
 async function displayCountdowns() {
@@ -244,7 +245,7 @@ const addSortEventListeners = () => {
 // todo: move this function to form update.js
 export function handleFormUpdate() {
     // todo: update list with custom fired events
-    const submitbutton = document.getElementById('countdown-update');
+    const submitbutton = document.getElementById('countdown-submit');
 
 
     submitbutton.addEventListener('click', (e) => {
