@@ -1,6 +1,6 @@
 import { Clock } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock } from "./functions.js";
-import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler, addSortEventListeners, displayCountdowns } from "./listFunctions.js";
+import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText, addSortUI, sortTitleEventHandler, addSortEventListeners, displayCountdowns, getCountdownIndexByDateModified } from "./listFunctions.js";
 import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
@@ -84,8 +84,11 @@ const listEventListener = event => {
 
     // if event is fired on text or date
     if (isTargetElementOnCountdownItem(targetElement)) {
-        // hideContextMenus()
-        let targetIndex = targetElement.parentElement.getAttribute('data-index');
+        console.log(targetElement,'parent', targetElement.parentElement);
+        console.log(arrayOfCountdowns)
+        
+        // let targetIndex = targetElement.parentElement.getAttribute('data-index');
+        let targetIndex = getCountdownIndexByDateModified(targetElement.parentElement.getAttribute('data-id'))
         // todo: find a better way of accessing element in countdown array
         console.log(targetIndex)
         showClockRow();

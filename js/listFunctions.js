@@ -2,7 +2,7 @@ import { startClock, stepIncreaseAndStart } from "./appfunctions.js";
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
 import { saveCountDownList } from "./formfunctions.js";
-import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
+import { addListenersWithoutDuplicates, removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 
@@ -333,12 +333,78 @@ export const sortTitleEventHandler = () => {
     toggleElementDisplayBlockOnScreen(sortOpts);
 }
 
+export const addSortEventListeners = () => {
+    const sortOpts = document.querySelector(".sort-options");
+    const sortTitle = document.querySelector(".sort-title");
+
+    if (!(sortTitle && sortOpts)) {
+        console.log('Var sort title and sortOpts is null', 'sort title', sortTitle, 'sort opts', sortOpts);
+        errorHandler("Something's wrong in sort UI")
+        return;
+    }
+    // sort options menu events
+    addListenersWithoutDuplicates(sortTitle, sortTitleEventHandler)
+    addListenersWithoutDuplicates(sortOpts, sortOptionsEventHandler)
+}
+
+export async function displayCountdowns() {
+    let cdArray = arrayOfCountdowns = await fetchArrayOfCountdowns();
+
+    if (arrayOfCountdowns && arrayOfCountdowns.length) {
+
+        let listItems = await populateList(arrayOfCountdowns)
+        
+        setInnerHtmlForNotNull(countdownList, listItems)
+        setInnerHtmlForNotNull(countdownTextDisplay, '')
+
+        setCountItemStatus(arrayOfCountdowns)
+        addSortUIAndListeners();
+
+    } else {
+        setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
+        setInnerHtmlForNotNull(countdownTextDisplay, '')
+    }
+}
+
+/**
+ * Adds sort menu to the page
+ */
+ export const addSortUIAndListeners = async () => {
+    addSortUI();
+    await addSortEventListeners();
+}
+
+/**
+ * Handle event when user clicks on item in sort menu
+ * @param {Event} event 
+ */
+export const sortOptionsEventHandler = (event) => {
+    if (event.target.className.search('due') > -1) {
+        localStorage.setItem('sort', 'due')
+    } else if (event.target.className.search('modified') > -1) {
+        localStorage.setItem('sort', 'modified')
+    }
+    // close sortOptions menu on selection and refresh list
+    closeSortMenu();
+    displayCountdowns();
+}
+
+export const getCountdownByDateModified = (dateModified)=>{
+    return arrayOfCountdowns.find((countdown, index) => countdown.dateModified == dateModified);
+}
+
+export const getCountdownIndexByDateModified = (dateModified)=>{
+    return arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == dateModified);
+}
+
 //DOM Elements
 const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
 const dayNumber = document.getElementById(LISTPAGE_DOM_IDS.clockDayElement);
 const hourNumber = document.getElementById(LISTPAGE_DOM_IDS.clockHourElement);
 const minNumber = document.getElementById(LISTPAGE_DOM_IDS.clockMinuteElement);
 const secNumber = document.getElementById(LISTPAGE_DOM_IDS.clockSecondElement);
+const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
 // clock interval tracker
 let interval;
 let countItemExists = false;
+let arrayOfCountdowns = fetchArrayOfCountdowns()
