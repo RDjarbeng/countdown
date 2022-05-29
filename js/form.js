@@ -1,4 +1,4 @@
-import { popForm, closeFormPopUp, getFormValuesAndSaveCd, sanitize } from './formfunctions.js'
+import { popForm, closeFormPopUp, addFormListenerForUpdate, sanitize } from './formfunctions.js'
 
 const popAndAddFormSubmission = () => {
     popForm()
@@ -11,7 +11,7 @@ function handleFormSubmission() {
     submitbutton.addEventListener('click', (e) => {
         e.preventDefault();
         submitbutton.disabled = true;
-        getFormValuesAndSaveCd()
+        addFormListenerForUpdate();
         // testing
         window.location.href = "/html/countdown-list.html";
         closeFormPopUp();
