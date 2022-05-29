@@ -1,15 +1,11 @@
 import { Clock, Anniversary } from "./clock.js";
 import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
-import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS } from "./listFunctions.js";
+import { updateLocalItem, getCountdownString,  populateList, getCountItemExists, setCountItemExists, setCountItemStatus, fetchArrayOfCountdowns, closeSortMenu, showClockRow, switchContextIconDown, switchContextIconUp, isTargetElementOnCountdownItem, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, hideContextMenus, triggerContextMenu, LISTPAGE_DOM_IDS, updateClockAndText } from "./listFunctions.js";
 import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, saveCountDownList } from "./formfunctions.js";
 import { stepIncreaseAndStart, startClock } from "./appfunctions.js";
 import { errorHandler } from "./error.js";
 // Dom elements
 // begin displaycountdown.js
-const dayNumber = document.getElementById(LISTPAGE_DOM_IDS.clockDayElement);
-const hourNumber = document.getElementById(LISTPAGE_DOM_IDS.clockHourElement);
-const minNumber = document.getElementById(LISTPAGE_DOM_IDS.clockMinuteElement);
-const secNumber = document.getElementById(LISTPAGE_DOM_IDS.clockSecondElement);
 const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
 const countdownClock = document.querySelector('.clock-row');
 const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
@@ -107,15 +103,7 @@ function displayAndStartcount() {
     });
 }
 
-let interval;
-function updateClockAndText(date, text, animation = true) {
-    let clock = new Clock(new Date(date));
-    setInnerHtmlForNotNull(countdownTextDisplay, text);
-    stopClock(interval);
-    (animation) ? stepIncreaseAndStart(clock, { dayNumber, hourNumber, minNumber, secNumber }, 400) : null;
-    interval = startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500, interval);
 
-}
 
 function removeClockAndText() {
     stopClock();
@@ -140,7 +128,7 @@ const listEventListener = event => {
         let targetIndex = targetElement.parentElement.getAttribute('data-index');
         // todo: find a better way of accessing element in countdown array
         console.log(targetIndex)
-        showClockRow()
+        showClockRow();
         updateClockAndText(arrayOfCountdowns[targetIndex].date, arrayOfCountdowns[targetIndex].text)
     }
     //if the area for context menu is clicked

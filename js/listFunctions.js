@@ -1,7 +1,8 @@
+import { startClock, stepIncreaseAndStart } from "./appfunctions.js";
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
 import { saveCountDownList } from "./formfunctions.js";
-import { removeElementSetDisplayNone } from "./functions.js";
+import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 
@@ -300,4 +301,22 @@ export const triggerContextMenu = (element) => {
     }
 }
 
+
+export function updateClockAndText(date, text, animation = true) {
+    let clock = new Clock(new Date(date));
+    setInnerHtmlForNotNull(countdownTextDisplay, text);
+    stopClock(interval);
+    (animation) ? stepIncreaseAndStart(clock, { dayNumber, hourNumber, minNumber, secNumber }, 400) : null;
+    interval = startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500, interval);
+
+}
+
+//DOM Elements
+const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
+const dayNumber = document.getElementById(LISTPAGE_DOM_IDS.clockDayElement);
+const hourNumber = document.getElementById(LISTPAGE_DOM_IDS.clockHourElement);
+const minNumber = document.getElementById(LISTPAGE_DOM_IDS.clockMinuteElement);
+const secNumber = document.getElementById(LISTPAGE_DOM_IDS.clockSecondElement);
+// clock interval tracker
+let interval;
 let countItemExists = false;
