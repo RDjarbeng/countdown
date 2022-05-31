@@ -1,4 +1,5 @@
 import { errorHandler } from './error.js';
+import { saveCountdownForm } from './formupdate.js';
 import {addZeros} from './functions.js'
 import { updateLocalItem } from "./listFunctions.js";
 
@@ -178,16 +179,7 @@ export function addFormListenerForUpdate() {
         e.preventDefault();
         submitbutton.disabled = true;
         // get text field values, with auto values
-        const modifiedTime = document.getElementById('modifiedTime').value;
-        const userDate = document.getElementById("dateInput").value;
-        const repeatCheck = document.getElementById("repeat-cb");
-        let userText = getUserText(document.getElementById('countdownText'));
-
-        userDate = new Date(userDate);
-        let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        if (repeatCheck) {
-            countItem.repeat = repeatCheck.checked;
-        }
+        saveCountdownForm();
 
         // updateLocalItem(arrayOfCountdowns, countItem, modifiedTime);
         // displayCountdowns();
