@@ -1,29 +1,30 @@
 import { popForm, closeFormPopUp, sanitize, saveNewCdFromInputs } from './formfunctions.js'
-import { displayAndAddListeners } from './displayCountdowns.js';
 import { errorHandler } from './error.js';
+import { displayAndAddListeners } from './listFunctions.js';
 const popAndAddFormOnList = () => {
     popForm()
     handleListpageForm();
 }
-
 function handleListpageForm() {
     const submitbutton = document.getElementById('countdown-submit');
+    if(submitbutton){
     submitbutton.addEventListener('click', (e) => {
 
         e.preventDefault();
         submitbutton.disabled = true;
         saveCountdownForm();        
         // todo: refactor display and add 
-        try {
-            displayAndAddListeners();
-        } catch (err) {
-            console.log(err, 'err in updating countdown initialisation');
-            errorHandler("Unable to finish update your countdowns");
-        }
+        loadListPage();
         // testing
         closeFormPopUp();
     })
+}else{
+    errorHandler('Something went wrong with the add button');
+    console.warn('FormUpdatejs: Handle List page form can not find submit button');
 }
+}
+
+
 
 export function saveCountdownForm(){
     let userDate = document.getElementById("dateInput");
