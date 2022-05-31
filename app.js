@@ -38,13 +38,6 @@ function setMainText(countdownText) {
 }
 
 
-// todo: remove this unused function 
-function displayClockRow() {
-    let customRow = document.getElementById("customDisplay");
-    // show row
-    customRow.style.display = 'block';
-}
-
 
 try {
     //show day value before animation runs
