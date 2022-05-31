@@ -1,4 +1,4 @@
-import { popForm, closeFormPopUp, addFormListenerForUpdate, CONSTANT_IDS } from './formfunctions.js'
+import { popForm, closeFormPopUp, CONSTANT_IDS, saveCountdownForm } from './formfunctions.js'
 import { addClickListenersWithoutDuplicates } from './functions.js';
 
 const popAndAddFormSubmission = () => {
@@ -11,7 +11,7 @@ function handleFormSubmission() {
     addClickListenersWithoutDuplicates(submitbutton, (e) => {
         e.preventDefault();
         submitbutton.disabled = true;
-        addFormListenerForUpdate();
+        saveCountdownForm();
         // testing
         window.location.href = "/html/countdown-list.html";
         closeFormPopUp();
