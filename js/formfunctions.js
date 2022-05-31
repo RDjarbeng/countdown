@@ -10,8 +10,7 @@ export const CONSTANT_IDS ={
     form_submitButton: 'countdown-submit'
 }
 export function popForm() {
-    const popFormHtml = getFormHTML()
-    addFormHTMLToPage(popFormHtml)
+    addFormHTMLToPage(getFormHTML())
     setDateAttributes();
     
 }
