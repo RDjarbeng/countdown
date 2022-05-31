@@ -81,4 +81,9 @@ export const addElementSetDisplayBlock=(element)=>(element)?element.style.displa
 export const addListenersWithoutDuplicates = (element, eventHandler)=>{
     element.removeEventListener("click", eventHandler);
     element.addEventListener("click", eventHandler);
+    if(element){
+
+}else{
+    console.warn("Null element passed to addlistenersWithoutDuplicates")
+}
 }
