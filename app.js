@@ -1,12 +1,9 @@
-
-
-import {Clock, NewYearClock  } from "./js/clock.js";
+import { Clock, NewYearClock } from "./js/clock.js";
 import { waitForAnimation } from "./js/appfunctions.js";
 import { errorHandler } from "./js/error.js";
-import {setInnerHtmlForNotNull } from "./js/functions.js";
+import { setInnerHtmlForNotNull } from "./js/functions.js";
 
 // DOM nodes
-// todo remove day clock and day count
 const animatedCountDuration = 800;
 
 var dayNumber = document.getElementById('day-num');
@@ -17,12 +14,12 @@ var dueDate = document.getElementById('dueDate');
 
 // Initialize default Clock class
 // var myclock = new Anniversary(new Date('5-5-2022'));
-var myclock =  setMainClock();
+var myclock = setMainClock();
 setInnerHtmlForNotNull(dueDate, `${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 
 function setMainClock() {
     let myclock = new NewYearClock();
-    let mainclock =  localStorage.getItem('mainClock');
+    let mainclock = localStorage.getItem('mainClock');
     if (mainclock !== null && mainclock != undefined) { //countdown set to main
         mainclock = JSON.parse(mainclock)
         myclock = new Clock(new Date(mainclock.date));
@@ -41,10 +38,10 @@ function setMainText(countdownText) {
 
 try {
     //show day value before animation runs
-waitForAnimation(myclock,  { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
+    waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 
-// addWhatappEventHandler();
-// as;
+    // addWhatappEventHandler();
+    // as;
 } catch (error) {
     errorHandler("Error in clock");
     console.log(error);
