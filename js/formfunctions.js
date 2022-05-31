@@ -192,6 +192,18 @@ export function checkRepeat(repeatCheckBox) {
     return repeatCheckBox.checked
 
 }
+
+
+export function saveCountdownForm(){
+    let userDate = document.getElementById("dateInput");
+    let repeatCheck = document.getElementById("repeat-cb");
+    let userTextField = document.getElementById('countdownText');
+    // get text field values, with auto values
+    // let userText = getUserText();
+
+        saveNewCdFromInputs({ userTextField: userTextField, dateInput: userDate, repeatCheck: repeatCheck})
+}
+
 /**
  * 
  * @param {String} string 

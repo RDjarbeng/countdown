@@ -26,15 +26,6 @@ function handleListpageForm() {
 
 
 
-export function saveCountdownForm(){
-    let userDate = document.getElementById("dateInput");
-    let repeatCheck = document.getElementById("repeat-cb");
-    let userTextField = document.getElementById('countdownText');
-    // get text field values, with auto values
-    // let userText = getUserText();
-
-        saveNewCdFromInputs({ userTextField: userTextField, dateInput: userDate, repeatCheck: repeatCheck})
-}
 
 // todo: remove dynamic seting of css, @nyakotey
 if (!document.querySelector("[href='css/form.css']")) {
