@@ -7,7 +7,6 @@ import {setInnerHtmlForNotNull } from "./js/functions.js";
 
 // DOM nodes
 // todo remove day clock and day count
-let dayCount = document.getElementById("countDay");
 const animatedCountDuration = 800;
 
 var dayNumber = document.getElementById('day-num');
