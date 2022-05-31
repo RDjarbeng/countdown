@@ -13,9 +13,7 @@ function handleListpageForm() {
         e.preventDefault();
         submitbutton.disabled = true;
         saveCountdownForm();        
-        // todo: refactor display and add 
         loadListPage();
-        // testing
         closeFormPopUp();
     })
 }else{
