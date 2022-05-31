@@ -78,7 +78,7 @@ export const addElementSetDisplayBlock=(element)=>(element)?element.style.displa
  * @param {HTMLElement} element 
  * @param {Function} eventHandler 
  */
-export const addListenersWithoutDuplicates = (element, eventHandler)=>{
+export const addClickListenersWithoutDuplicates = (element, eventHandler)=>{
     element.removeEventListener("click", eventHandler);
     element.addEventListener("click", eventHandler);
     if(element){

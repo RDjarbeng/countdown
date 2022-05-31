@@ -2,7 +2,7 @@ import { startClock, stepIncreaseAndStart } from "./appfunctions.js";
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
 import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, getUserText, saveCountDownList } from "./formfunctions.js";
-import { addListenersWithoutDuplicates, removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
+import { addClickListenersWithoutDuplicates, removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
 
@@ -343,8 +343,8 @@ export const addSortEventListeners = () => {
         return;
     }
     // sort options menu events
-    addListenersWithoutDuplicates(sortTitle, sortTitleEventHandler)
-    addListenersWithoutDuplicates(sortOpts, sortOptionsEventHandler)
+    addClickListenersWithoutDuplicates(sortTitle, sortTitleEventHandler)
+    addClickListenersWithoutDuplicates(sortOpts, sortOptionsEventHandler)
 }
 
 export async function displayCountdowns() {
@@ -419,7 +419,7 @@ export function addEventHandlers() {
 }
 function addListEventListener() {
     const countList = document.querySelector('.countdown-list')
-    addListenersWithoutDuplicates(countList, listEventListener)
+    addClickListenersWithoutDuplicates(countList, listEventListener)
 }
 
 /**
