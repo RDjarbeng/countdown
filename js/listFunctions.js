@@ -566,6 +566,22 @@ export function handleFormUpdate() {
     }
 }
 
+export function loadListPage(){
+    try {
+        displayAndAddListeners();
+    } catch (err) {
+        console.log(err, 'err in updating countdown initialisation');
+        errorHandler("Unable to finish updating your countdowns");
+    }
+}
+
+export async function displayAndAddListeners() {
+    await displayAndStartcount()
+    // sortUI();
+    addEventHandlers();
+}
+
+// todo: figure out a way to separate functions and dom references
 //DOM Elements
 const dayNumber = document.getElementById(LISTPAGE_DOM_IDS.clockDayElement);
 const hourNumber = document.getElementById(LISTPAGE_DOM_IDS.clockHourElement);
