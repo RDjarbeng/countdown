@@ -348,7 +348,7 @@ export const addSortEventListeners = () => {
 }
 
 export async function displayCountdowns() {
-    let cdArray = arrayOfCountdowns = await fetchArrayOfCountdowns();
+    let arrayOfCountdowns = await fetchArrayOfCountdowns();
 
     if (arrayOfCountdowns && arrayOfCountdowns.length) {
 
