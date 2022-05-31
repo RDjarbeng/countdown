@@ -3,14 +3,6 @@ import { errorHandler } from "./error.js";
 // Dom elements
 // begin displaycountdown.js
 
-
-
-
-
-
-
-
-
 try {
     displayAndAddListeners();
 } catch (err) {
