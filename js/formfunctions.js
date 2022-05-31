@@ -144,12 +144,17 @@ export function saveCountDownList(jsArray) {
  */
 export function getUserText(userTextField){
     let userText = sanitize(userTextField.value);  
-    let count = getUserDefaultCount();
     if (!userText) {  
         userText = userTextField.placeholder;
-        localStorage.setItem('countNumber', ++count)
+        increaseAndSaveUserDefaultCount()
     }
     return userText;
+}
+
+
+export async function increaseAndSaveUserDefaultCount(){
+    let count = getUserDefaultCount();
+    await localStorage.setItem('countNumber', ++count)
 }
 
 export function saveNewCdFromInputs({userTextField,dateInput, repeatCheck, }){
