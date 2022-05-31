@@ -1,4 +1,4 @@
-import { popForm, closeFormPopUp, addFormListenerForUpdate, sanitize, CONSTANT_IDS } from './formfunctions.js'
+import { popForm, closeFormPopUp, addFormListenerForUpdate, CONSTANT_IDS } from './formfunctions.js'
 
 const popAndAddFormSubmission = () => {
     popForm()
