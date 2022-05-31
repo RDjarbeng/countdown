@@ -25,7 +25,7 @@ function handleListpageForm() {
     })
 }
 
-function saveCountdownForm(){
+export function saveCountdownForm(){
     let userDate = document.getElementById("dateInput");
     let repeatCheck = document.getElementById("repeat-cb");
     let userTextField = document.getElementById('countdownText');
