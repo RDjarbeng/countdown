@@ -10,7 +10,7 @@ export const CONSTANT_IDS ={
     form_submitButton: 'countdown-submit'
 }
 export function popForm() {
-    addFormHTMLToPage(getFormHTML())
+    addFormHTMLAndCloseListenerToPage(getFormHTML())
     setDateAttributes();
     
 }
@@ -78,7 +78,7 @@ export function getFormHTML(formDefaultValues){
 
 }
 
-export function addFormHTMLToPage(popFormHtml){
+export function addFormHTMLAndCloseListenerToPage(popFormHtml){
     document.body.insertAdjacentHTML("afterbegin", popFormHtml);
     document.body.style.position = "fixed";
     
@@ -214,7 +214,7 @@ export function sanitize(string) {
 export function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
     // todo: Track items without using modifiedTime
     if (text && dateTime && modifiedTime) {
-        addFormHTMLToPage(getFormHTML({text: text, dateTime: dateTime, modifiedTime: modifiedTime, repeat: repeat}));
+        addFormHTMLAndCloseListenerToPage(getFormHTML({text: text, dateTime: dateTime, modifiedTime: modifiedTime, repeat: repeat}));
     }else{
         errorHandler('Error in form edit.')
         console.log('Null values in display form pop up');

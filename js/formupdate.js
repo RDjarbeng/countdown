@@ -1,6 +1,6 @@
 import { popForm, closeFormPopUp, sanitize, saveNewCdFromInputs } from './formfunctions.js'
 import { errorHandler } from './error.js';
-import { displayAndAddListeners } from './listFunctions.js';
+import { loadListPage } from './listFunctions.js';
 const popAndAddFormOnList = () => {
     popForm()
     handleListpageForm();
