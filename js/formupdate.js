@@ -1,4 +1,4 @@
-import { popForm, closeFormPopUp, sanitize, saveNewCdFromInputs, saveCountdownForm } from './formfunctions.js'
+import { popForm, closeFormPopUp, sanitize, saveNewCdFromInputs, saveCountdownForm, FORM_DOM_IDS } from './formfunctions.js'
 import { errorHandler } from './error.js';
 import { loadListPage } from './listFunctions.js';
 const popAndAddFormOnList = () => {
@@ -6,7 +6,7 @@ const popAndAddFormOnList = () => {
     handleListpageForm();
 }
 function handleListpageForm() {
-    const submitbutton = document.getElementById('countdown-submit');
+    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
     if(submitbutton){
     submitbutton.addEventListener('click', (e) => {
 
