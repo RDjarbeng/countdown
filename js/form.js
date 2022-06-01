@@ -1,4 +1,4 @@
-import { popForm, closeFormPopUp, CONSTANT_IDS, saveCountdownForm } from './formfunctions.js'
+import { popForm, closeFormPopUp, FORM_DOM_IDS, saveCountdownForm } from './formfunctions.js'
 import { addClickListenersWithoutDuplicates } from './functions.js';
 
 const popAndAddFormSubmission = () => {
@@ -7,7 +7,7 @@ const popAndAddFormSubmission = () => {
 }
 
 function handleHomePageFormSubmission() {
-    const submitbutton = document.getElementById(CONSTANT_IDS.form_submitButton);
+    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
     addClickListenersWithoutDuplicates(submitbutton, (e) => {
         e.preventDefault();
         submitbutton.disabled = true;

@@ -2,7 +2,7 @@ import { errorHandler } from './error.js';
 import {addZeros} from './functions.js'
 import { fetchArrayOfCountdowns } from './listFunctions.js';
 
-export const CONSTANT_IDS ={
+export const FORM_DOM_IDS ={
     form_TextInput:'countdownText',
     form_dateInput: 'dateInput',
     form_repeatCheckBox: 'repeat-cb',
@@ -38,21 +38,21 @@ export function getFormHTML(formDefaultValues){
             <input type="text" 
             value= "${text||'' }" 
             placeholder="countdown #${countNumber}" 
-            id="${CONSTANT_IDS.form_TextInput|| 'countdownText'}"
+            id="${FORM_DOM_IDS.form_TextInput|| 'countdownText'}"
             >
         </div>
         <div class="form-sections">
             <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" 
             value= "${dateTime||'' }" 
-            id ="${CONSTANT_IDS.form_dateInput|| 'dateInput'}" 
+            id ="${FORM_DOM_IDS.form_dateInput|| 'dateInput'}" 
             min="" required
             >
         </div>
         <div class="form-sections form-repeat">
             <label for="repeat-cb">
                 <input type="checkbox"
-                 id="${CONSTANT_IDS.form_repeatCheckBox|| 'repeat-cb'}" 
+                 id="${FORM_DOM_IDS.form_repeatCheckBox|| 'repeat-cb'}" 
                  ${repeat ? 'checked' : ''}
                  > 
                  Repeat every year 
@@ -62,11 +62,11 @@ export function getFormHTML(formDefaultValues){
             <label for=""></label>
             <input type="hidden" 
             value ="${modifiedTime||''}" 
-            id="${CONSTANT_IDS.form_modifiedTime|| 'modifiedTime'}"
+            id="${FORM_DOM_IDS.form_modifiedTime|| 'modifiedTime'}"
             >
             <input 
             type="submit" 
-            id ="${CONSTANT_IDS.form_submitButton|| 'countdown-submit'}" 
+            id ="${FORM_DOM_IDS.form_submitButton|| 'countdown-submit'}" 
             value="${formEdit? 'Update' :'Submit' }" 
             formmethod="dialog"
             >
@@ -103,7 +103,7 @@ export function closeFormPopUp() {
 }
 
 export function setDateAttributes() {
-    const dateInput = document.getElementById(CONSTANT_IDS.form_dateInput);
+    const dateInput = document.getElementById(FORM_DOM_IDS.form_dateInput);
     const today = new Date();
     let dd = today.getDate();//add 1 to the date so date starts from tomorrow
     let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
@@ -173,7 +173,7 @@ export function saveNewCdFromInputs({userTextField,dateInput, repeatCheck, }){
 // todo: move this function to form update.js
 export function addFormListenerForUpdate() {
     // todo: update list with custom fired events
-    const submitbutton = document.getElementById(CONSTANT_IDS.form_submitButton);
+    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
 
 
     submitbutton.addEventListener('click', (e) => {
@@ -198,9 +198,9 @@ export function checkRepeat(repeatCheckBox) {
 
 
 export function saveCountdownForm(){
-    let userDate = document.getElementById(CONSTANT_IDS.form_dateInput);
-    let repeatCheck = document.getElementById(CONSTANT_IDS.form_repeatCheckBox);
-    let userTextField = document.getElementById(CONSTANT_IDS.form_TextInput);
+    let userDate = document.getElementById(FORM_DOM_IDS.form_dateInput);
+    let repeatCheck = document.getElementById(FORM_DOM_IDS.form_repeatCheckBox);
+    let userTextField = document.getElementById(FORM_DOM_IDS.form_TextInput);
     // get text field values, with auto values
     // let userText = getUserText();
 

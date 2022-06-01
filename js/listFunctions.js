@@ -1,7 +1,7 @@
 import { startClock, stepIncreaseAndStart } from "./appfunctions.js";
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
-import { closeFormPopUp, CONSTANT_IDS, displayFormPopUp, getUserText, saveCountDownList } from "./formfunctions.js";
+import { closeFormPopUp, FORM_DOM_IDS, displayFormPopUp, getUserText, saveCountDownList } from "./formfunctions.js";
 import { addClickListenersWithoutDuplicates, removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
@@ -497,7 +497,7 @@ const listEventListener = event => {
 // todo: move this function to form update.js
 export function handleFormUpdate() {
     // todo: update list with custom fired events
-    const submitbutton = document.getElementById(CONSTANT_IDS.form_submitButton);
+    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
 
 
     submitbutton.addEventListener('click', (e) => {
@@ -505,10 +505,10 @@ export function handleFormUpdate() {
         submitbutton.disabled = true;
         // get text field values, with auto values
         // let userText = document.getElementById(CONSTANT_IDS.form_TextInput).value;
-        const modifiedTime = document.getElementById(CONSTANT_IDS.form_modifiedTime).value;
-        let userDate = document.getElementById(CONSTANT_IDS.form_dateInput).value;
-        const repeatCheck = document.getElementById(CONSTANT_IDS.form_repeatCheckBox);
-        const userText = getUserText(document.getElementById(CONSTANT_IDS.form_modifiedTime).value)
+        const modifiedTime = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
+        let userDate = document.getElementById(FORM_DOM_IDS.form_dateInput).value;
+        const repeatCheck = document.getElementById(FORM_DOM_IDS.form_repeatCheckBox);
+        const userText = getUserText(document.getElementById(FORM_DOM_IDS.form_modifiedTime).value)
 
         userDate = new Date(userDate);
         let countItem = { text: userText, date: userDate, dateModified: new Date() };
