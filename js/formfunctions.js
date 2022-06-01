@@ -119,10 +119,8 @@ export function setDateAttributes() {
 }
 
 export function saveNewCountdownToLocalStorage(countItem) {
-    let countdown = fetchArrayOfCountdowns
+    let countdown = fetchArrayOfCountdowns();
     if (countdown !== null) { //countdowns already exist
-        countdown = JSON.parse(countdown);//array
-
         countdown.push(countItem);
         // console.log(countdown);
         saveCountDownList(countdown)
