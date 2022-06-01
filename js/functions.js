@@ -11,6 +11,8 @@ import { errorHandler } from "./error.js";
  export function setInnerHtmlForNotNull(element, value){
     if(element)//check for null
         element.innerHTML = value;
+    else
+        console.warn('Element passed to setInnerHTML for not null is null/undefined');
 }
 
 
