@@ -1,5 +1,6 @@
 import { errorHandler } from './error.js';
 import {addZeros} from './functions.js'
+import { fetchArrayOfCountdowns } from './listFunctions.js';
 
 export const CONSTANT_IDS ={
     form_TextInput:'countdownText',
@@ -118,7 +119,7 @@ export function setDateAttributes() {
 }
 
 export function saveNewCountdownToLocalStorage(countItem) {
-    let countdown = localStorage.getItem('countdown');
+    let countdown = fetchArrayOfCountdowns
     if (countdown !== null) { //countdowns already exist
         countdown = JSON.parse(countdown);//array
 
