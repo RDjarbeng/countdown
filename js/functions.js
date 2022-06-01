@@ -76,7 +76,7 @@ export const removeElementSetDisplayNone=(element)=>(element)?element.style.disp
 
 export const addElementSetDisplayBlock=(element)=>(element)?element.style.display = "block":null;
 /**
- * 
+ * use this to set onclick listeners with a callback, recommended to avoid setting the same listener twice, (does not remove other callbacks)
  * @param {HTMLElement} element 
  * @param {Function} eventHandler 
  */
