@@ -3,10 +3,10 @@ import { addClickListenersWithoutDuplicates } from './functions.js';
 
 const popAndAddFormSubmission = () => {
     popForm()
-    handleFormSubmission();
+    handleHomePageFormSubmission();
 }
 
-function handleFormSubmission() {
+function handleHomePageFormSubmission() {
     const submitbutton = document.getElementById(CONSTANT_IDS.form_submitButton);
     addClickListenersWithoutDuplicates(submitbutton, (e) => {
         e.preventDefault();
