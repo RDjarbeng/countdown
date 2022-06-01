@@ -5,12 +5,20 @@ import { setInnerHtmlForNotNull } from "./js/functions.js";
 
 // DOM nodes
 const animatedCountDuration = 800;
+const HOMEPAGE_DOM_IDS ={
+    clockDayElement:'day-num',
+    clockHourElement: 'hour-num',
+    clockMinuteElement: 'min-num',
+    clockSecondElement: 'sec-num',
+    countdownTextDisplay: 'countdown-text',
+    dueDate: 'dueDate',
+}
 
-var dayNumber = document.getElementById('day-num');
-var hourNumber = document.getElementById("hour-num");
-var minNumber = document.getElementById("min-num");
-var secNumber = document.getElementById("sec-num");
-var dueDate = document.getElementById('dueDate');
+var dayNumber = document.getElementById(HOMEPAGE_DOM_IDS.clockDayElement);
+var hourNumber = document.getElementById(HOMEPAGE_DOM_IDS.clockHourElement);
+var minNumber = document.getElementById(HOMEPAGE_DOM_IDS.clockMinuteElement);
+var secNumber = document.getElementById(HOMEPAGE_DOM_IDS.clockSecondElement);
+var dueDate = document.getElementById(HOMEPAGE_DOM_IDS.dueDate);
 
 // Initialize default Clock class
 // var myclock = new Anniversary(new Date('5-5-2022'));
@@ -30,7 +38,7 @@ function setMainClock() {
 }
 
 function setMainText(countdownText) {
-    const textDisplay = document.getElementById('countdown-text');
+    const textDisplay = document.getElementById(HOMEPAGE_DOM_IDS.countdownTextDisplay);
     setInnerHtmlForNotNull(textDisplay, countdownText)
 }
 
