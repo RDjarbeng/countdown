@@ -212,6 +212,11 @@ export const getCountItemExists= ()=> countItemExists;
 
 export  function fetchArrayOfCountdowns() {
     let jsonListOfCountdowns =  localStorage.getItem('countdown');
+    if(!jsonListOfCountdowns){
+        errorHandler('Unable to fetch your saved countdowns')
+        console.log('Error in fetch Array of Countdowns');
+        return;
+    }
     return JSON.parse(jsonListOfCountdowns);
 }
 /**
