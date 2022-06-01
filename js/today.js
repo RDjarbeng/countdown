@@ -7,14 +7,21 @@ let day, month, year, time, dayOfWeek, dayCount;
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
+const TODAYPAGE_DOM_IDS ={
+    yearDomElement: 'year',
+    monthDomElement: 'month',
+    dayOfMonthDomElement: 'dayOfMonth',
+    dayOfWeekDomElement: 'dayOfWeek',
+    timeDomElement: 'time',
+    dayCountDomElement: 'countDay',
+}
 const getAndSetDomElements = () => {
-    year = document.getElementById('year');
-    month = document.getElementById('month');
-    day = document.getElementById('dayOfMonth');
-    dayOfWeek = document.getElementById('dayOfWeek');
-    time = document.getElementById('time');
-    dayCount = document.getElementById("countDay");
+    year = document.getElementById(TODAYPAGE_DOM_IDS.yearDomElement);
+    month = document.getElementById(TODAYPAGE_DOM_IDS.monthDomElement);
+    day = document.getElementById(TODAYPAGE_DOM_IDS.dayOfMonthDomElement);
+    dayOfWeek = document.getElementById(TODAYPAGE_DOM_IDS.dayOfWeekDomElement);
+    time = document.getElementById(TODAYPAGE_DOM_IDS.timeDomElement);
+    dayCount = document.getElementById(TODAYPAGE_DOM_IDS.dayCountDomElement);
 
     setDomElements();
 }
