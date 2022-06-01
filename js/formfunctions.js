@@ -103,7 +103,7 @@ export function closeFormPopUp() {
 }
 
 export function setDateAttributes() {
-    const dateInput = document.getElementById("dateInput");
+    const dateInput = document.getElementById(CONSTANT_IDS.form_dateInput);
     const today = new Date();
     let dd = today.getDate();//add 1 to the date so date starts from tomorrow
     let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
@@ -198,9 +198,9 @@ export function checkRepeat(repeatCheckBox) {
 
 
 export function saveCountdownForm(){
-    let userDate = document.getElementById("dateInput");
-    let repeatCheck = document.getElementById("repeat-cb");
-    let userTextField = document.getElementById('countdownText');
+    let userDate = document.getElementById(CONSTANT_IDS.form_dateInput);
+    let repeatCheck = document.getElementById(CONSTANT_IDS.form_repeatCheckBox);
+    let userTextField = document.getElementById(CONSTANT_IDS.form_TextInput);
     // get text field values, with auto values
     // let userText = getUserText();
 
