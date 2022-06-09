@@ -155,8 +155,15 @@ export async function increaseAndSaveUserDefaultCount(){
     let count = getUserDefaultCount();
     await localStorage.setItem('countNumber', ++count)
 }
-
-export function saveNewCdFromInputs({userTextField,dateInput, repeatCheck, }){
+/**
+ * returns an object representing a single countdown for that form submission
+ * @param {Object} formDOMElements 
+ *  @param {HTMLInputElement} formDOMElements.userTextField
+ *  @param {HTMLElement} formDOMElements.dateInput
+ *  @param {HTMLElement} formDOMElements.repeatCheck
+ * @returns {Object} countItem
+ */
+export function getCdFromFormInputs({userTextField,dateInput, repeatCheck, }){
     // DOM references
     let userDate = dateInput.value;
     // get text field values, with auto values
@@ -167,7 +174,8 @@ export function saveNewCdFromInputs({userTextField,dateInput, repeatCheck, }){
     if (repeatCheck) {
         countItem.repeat = repeatCheck.checked;
     }
-    saveNewCountdownToLocalStorage(countItem);
+    return countItem;
+    
 }
 
 // todo: move this function to form update.js
@@ -204,7 +212,10 @@ export function saveCountdownForm(){
     // get text field values, with auto values
     // let userText = getUserText();
 
-        saveNewCdFromInputs({ userTextField: userTextField, dateInput: userDate, repeatCheck: repeatCheck})
+        
+        saveNewCountdownToLocalStorage(
+            getCdFromFormInputs({ userTextField: userTextField, dateInput: userDate, repeatCheck: repeatCheck})
+        );
 }
 
 /**
