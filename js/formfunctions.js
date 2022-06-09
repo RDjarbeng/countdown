@@ -185,7 +185,10 @@ export function saveCountdownForm() {
         getCdFromFormInputs()
     );
 }
-
+/**
+ * Returns an Object containing elements for the countdown form inputs
+ * @returns {Object}
+ */
 export function getCountdownFormElements() {
     return {
         userTextField: document.getElementById(FORM_DOM_IDS.form_TextInput),
