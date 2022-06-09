@@ -208,11 +208,6 @@ export function checkRepeat(repeatCheckBox) {
 
 
 export function saveCountdownForm(){
-    
-    // get text field values, with auto values
-    // let userText = getUserText();
-
-        
         saveNewCountdownToLocalStorage(
             getCdFromFormInputs()
         );
