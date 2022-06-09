@@ -163,8 +163,10 @@ export async function increaseAndSaveUserDefaultCount(){
  *  @param {HTMLElement} formDOMElements.repeatCheck
  * @returns {Object} countItem
  */
-export function getCdFromFormInputs({userTextField,dateInput, repeatCheck, }){
+export function getCdFromFormInputs(){
+    
     // DOM references
+    let {userTextField,dateInput, repeatCheck }= getCountdownFormElements()
     let userDate = dateInput.value;
     // get text field values, with auto values
     let userText = getUserText(userTextField);
@@ -206,16 +208,21 @@ export function checkRepeat(repeatCheckBox) {
 
 
 export function saveCountdownForm(){
-    let userDate = document.getElementById(FORM_DOM_IDS.form_dateInput);
-    let repeatCheck = document.getElementById(FORM_DOM_IDS.form_repeatCheckBox);
-    let userTextField = document.getElementById(FORM_DOM_IDS.form_TextInput);
+    
     // get text field values, with auto values
     // let userText = getUserText();
 
         
         saveNewCountdownToLocalStorage(
-            getCdFromFormInputs({ userTextField: userTextField, dateInput: userDate, repeatCheck: repeatCheck})
+            getCdFromFormInputs()
         );
+}
+
+export function getCountdownFormElements(){
+    return { 
+        userTextField: document.getElementById(FORM_DOM_IDS.form_TextInput), 
+        dateInput: document.getElementById(FORM_DOM_IDS.form_dateInput), 
+        repeatCheck: document.getElementById(FORM_DOM_IDS.form_repeatCheckBox)}
 }
 
 /**
