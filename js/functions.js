@@ -21,12 +21,7 @@ import { errorHandler } from "./error.js";
  * @param {Number} num 
  * @returns {String} number with 0 at the front
  */
-export function addZeros(num) {
-    if (num < 10) {
-        num = "0" + num;
-    }
-    return num;
-}
+export const addZeros=(num)=> (num < 10)?("0" + num): num;
 
 export function addWhatappEventHandler() {
     let whatsappIcon = document.getElementById('sendWhatsappButton');
