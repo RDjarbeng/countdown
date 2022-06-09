@@ -481,7 +481,7 @@ const listEventListener = event => {
                     displayFormPopUp(editItem.text, /\d+-\d+-\d+T\d+:\d+/.exec(editItem.date), count_modified, repeat);
                     handleFormUpdate();
                 } else {
-                    console.log( 'something went wrong with the editing');
+                    console.log( 'something went wrong with the editing could not find id of item');
                     errorHandler('Unable to edit countdown');
                     console.log(editItem);
                 }
@@ -503,14 +503,8 @@ export function handleFormUpdate() {
     submitbutton.addEventListener('click', (e) => {
         e.preventDefault();
         submitbutton.disabled = true;
-        // get form values and return countdown item   
-        let formDOMElementsAsObject = {
-            userTextField:document.getElementById(FORM_DOM_IDS.form_TextInput),
-        dateInput: document.getElementById(FORM_DOM_IDS.form_dateInput),
-        repeatCheck: document.getElementById(FORM_DOM_IDS.form_repeatCheckBox),
-    }   
-        let countItem =getCdFromFormInputs(formDOMElementsAsObject)
-        countItem.dateModified= new Date();
+        let countItem =getCdFromFormInputs();
+        countItem.dateModified= new Date().toISOString();
         
         const modifiedTime = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
         updateLocalItem(arrayOfCountdowns, countItem, modifiedTime);
