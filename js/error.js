@@ -7,7 +7,7 @@ export const closeErrorInfo = (event) => {
 }
 
 export const errorHandlerWithoutMessage = (err) => {
-    console.log(err);
+    console.warn('Top level error',err);
     errorHandler();
 }
 
