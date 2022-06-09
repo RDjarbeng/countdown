@@ -1,9 +1,9 @@
 import { errorHandler } from './error.js';
-import {addZeros} from './functions.js'
+import { addZeros } from './functions.js'
 import { fetchArrayOfCountdowns } from './listFunctions.js';
 
-export const FORM_DOM_IDS ={
-    form_TextInput:'countdownText',
+export const FORM_DOM_IDS = {
+    form_TextInput: 'countdownText',
     form_dateInput: 'dateInput',
     form_repeatCheckBox: 'repeat-cb',
     form_modifiedTime: 'modifiedTime',
@@ -12,47 +12,47 @@ export const FORM_DOM_IDS ={
 export function popForm() {
     addFormHTMLAndCloseListenerToPage(getFormHTML())
     setDateAttributes();
-    
+
 }
 /**
  * 
  * @param {Object} [formDefaultValues] 
  * @returns 
  */
-export function getFormHTML(formDefaultValues){
+export function getFormHTML(formDefaultValues) {
     let text, dateTime, modifiedTime, repeat;
-    let formEdit=false;
-    if(formDefaultValues){
+    let formEdit = false;
+    if (formDefaultValues) {
         formEdit = true;
         text = formDefaultValues.text
         dateTime = formDefaultValues.dateTime
         modifiedTime = formDefaultValues.modifiedTime
         repeat = formDefaultValues.repeat
     }
-    let countNumber= getUserDefaultCount();
+    let countNumber = getUserDefaultCount();
     const popFormHtml = `<section class="pop-up-container">
     <form id='customDateForm' class="pop-up-form">
         <div class="form-header">Set Countdown</div>
         <div class="form-sections">
             <label for="">Title &nbsp;</label>
             <input type="text" 
-            value= "${text||'' }" 
+            value= "${text || ''}" 
             placeholder="countdown #${countNumber}" 
-            id="${FORM_DOM_IDS.form_TextInput|| 'countdownText'}"
+            id="${FORM_DOM_IDS.form_TextInput || 'countdownText'}"
             >
         </div>
         <div class="form-sections">
             <label for="">Date & Time &nbsp;</label>
             <input type="datetime-local" 
-            value= "${dateTime||'' }" 
-            id ="${FORM_DOM_IDS.form_dateInput|| 'dateInput'}" 
+            value= "${dateTime || ''}" 
+            id ="${FORM_DOM_IDS.form_dateInput || 'dateInput'}" 
             min="" required
             >
         </div>
         <div class="form-sections form-repeat">
             <label for="repeat-cb">
                 <input type="checkbox"
-                 id="${FORM_DOM_IDS.form_repeatCheckBox|| 'repeat-cb'}" 
+                 id="${FORM_DOM_IDS.form_repeatCheckBox || 'repeat-cb'}" 
                  ${repeat ? 'checked' : ''}
                  > 
                  Repeat every year 
@@ -61,13 +61,13 @@ export function getFormHTML(formDefaultValues){
         <div class="form-sections">
             <label for=""></label>
             <input type="hidden" 
-            value ="${modifiedTime||''}" 
-            id="${FORM_DOM_IDS.form_modifiedTime|| 'modifiedTime'}"
+            value ="${modifiedTime || ''}" 
+            id="${FORM_DOM_IDS.form_modifiedTime || 'modifiedTime'}"
             >
             <input 
             type="submit" 
-            id ="${FORM_DOM_IDS.form_submitButton|| 'countdown-submit'}" 
-            value="${formEdit? 'Update' :'Submit' }" 
+            id ="${FORM_DOM_IDS.form_submitButton || 'countdown-submit'}" 
+            value="${formEdit ? 'Update' : 'Submit'}" 
             formmethod="dialog"
             >
         </div>    
@@ -78,21 +78,21 @@ export function getFormHTML(formDefaultValues){
 
 }
 
-export function addFormHTMLAndCloseListenerToPage(popFormHtml){
+export function addFormHTMLAndCloseListenerToPage(popFormHtml) {
     document.body.insertAdjacentHTML("afterbegin", popFormHtml);
     document.body.style.position = "fixed";
-    
+
     document.getElementsByClassName("close-form")[0].onclick = (e) => { closeFormPopUp(); }
 }
 /**
  * Returns the count of user default countdowns stored in local storage else returns 1
  * @returns {Number} 
  */
-export function getUserDefaultCount(){
+export function getUserDefaultCount() {
     let countNumber = localStorage.getItem('countNumber');
     if (!countNumber)
         countNumber = 1;
-    else 
+    else
         countNumber = Number(countNumber)
     return countNumber;
 }
@@ -141,9 +141,9 @@ export function saveCountDownList(jsArray) {
  * @param {HTMLInputElement} userTextField 
  * @returns 
  */
-export function getUserText(userTextField){
-    let userText = sanitize(userTextField.value);  
-    if (!userText) {  
+export function getUserText(userTextField) {
+    let userText = sanitize(userTextField.value);
+    if (!userText) {
         userText = userTextField.placeholder;
         increaseAndSaveUserDefaultCount()
     }
@@ -151,7 +151,7 @@ export function getUserText(userTextField){
 }
 
 
-export async function increaseAndSaveUserDefaultCount(){
+export async function increaseAndSaveUserDefaultCount() {
     let count = getUserDefaultCount();
     await localStorage.setItem('countNumber', ++count)
 }
@@ -163,10 +163,10 @@ export async function increaseAndSaveUserDefaultCount(){
  *  @param {HTMLElement} formDOMElements.repeatCheck
  * @returns {Object} countItem
  */
-export function getCdFromFormInputs(){
-    
+export function getCdFromFormInputs() {
+
     // DOM references
-    let {userTextField,dateInput, repeatCheck }= getCountdownFormElements()
+    let { userTextField, dateInput, repeatCheck } = getCountdownFormElements()
     let userDate = dateInput.value;
     // get text field values, with auto values
     let userText = getUserText(userTextField);
@@ -177,7 +177,7 @@ export function getCdFromFormInputs(){
         countItem.repeat = repeatCheck.checked;
     }
     return countItem;
-    
+
 }
 
 // todo: move this function to form update.js
@@ -207,17 +207,18 @@ export function checkRepeat(repeatCheckBox) {
 }
 
 
-export function saveCountdownForm(){
-        saveNewCountdownToLocalStorage(
-            getCdFromFormInputs()
-        );
+export function saveCountdownForm() {
+    saveNewCountdownToLocalStorage(
+        getCdFromFormInputs()
+    );
 }
 
-export function getCountdownFormElements(){
-    return { 
-        userTextField: document.getElementById(FORM_DOM_IDS.form_TextInput), 
-        dateInput: document.getElementById(FORM_DOM_IDS.form_dateInput), 
-        repeatCheck: document.getElementById(FORM_DOM_IDS.form_repeatCheckBox)}
+export function getCountdownFormElements() {
+    return {
+        userTextField: document.getElementById(FORM_DOM_IDS.form_TextInput),
+        dateInput: document.getElementById(FORM_DOM_IDS.form_dateInput),
+        repeatCheck: document.getElementById(FORM_DOM_IDS.form_repeatCheckBox)
+    }
 }
 
 /**
@@ -242,8 +243,8 @@ export function sanitize(string) {
 export function displayFormPopUp(text, dateTime, modifiedTime, repeat) {
     // todo: Track items without using modifiedTime
     if (text && dateTime && modifiedTime) {
-        addFormHTMLAndCloseListenerToPage(getFormHTML({text: text, dateTime: dateTime, modifiedTime: modifiedTime, repeat: repeat}));
-    }else{
+        addFormHTMLAndCloseListenerToPage(getFormHTML({ text: text, dateTime: dateTime, modifiedTime: modifiedTime, repeat: repeat }));
+    } else {
         errorHandler('Error in form edit.')
         console.log('Null values in display form pop up');
     }
