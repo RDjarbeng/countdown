@@ -1,7 +1,7 @@
 import { startClock, stepIncreaseAndStart } from "./appfunctions.js";
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
-import { closeFormPopUp, FORM_DOM_IDS, displayFormPopUp, getUserText, saveCountDownList, getCdFromFormInputs } from "./formfunctions.js";
+import { closeFormPopUp, FORM_DOM_IDS, displayFormPopUp, saveCountDownList, getCdFromFormInputs } from "./formfunctions.js";
 import { addClickListenersWithoutDuplicates, removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
@@ -26,8 +26,6 @@ export const LISTPAGE_DOM_IDS ={
 export function updateLocalItem(arrayOfCountdowns, countItem, id) {
     id =id.trim();
     if (arrayOfCountdowns !== null) { //countdowns already exist
-
-
         let pos = arrayOfCountdowns.findIndex((value) => value.dateModified == id
         );
         if (pos > -1) {
@@ -200,9 +198,7 @@ export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
  * 
  * @param {Boolean} value Represents if a countdown is in progress/ non-elapsed
  */
-export const setCountItemExists= (value)=> {
-    countItemExists = value;
-}
+export const setCountItemExists= (value)=> countItemExists = value;
 
 /**
  * 
@@ -216,7 +212,7 @@ export const getCountItemExists= ()=> countItemExists;
 export  function fetchArrayOfCountdowns() {
     let jsonListOfCountdowns =  localStorage.getItem('countdown');
     if(!jsonListOfCountdowns){
-        console.warn('Unable to fetch your saved countdowns')
+        console.warn('Unable to fetch your saved countdowns in fetch array()')
         console.log('Error in fetch Array of Countdowns, null fetched');
         return null;
     }
@@ -565,7 +561,9 @@ export function updateCountdownItemFromForm(){
         setCountItemExists(false)
     }
 }
-
+/**
+ * Loads elements for listpage, calls display and addListeners using try and catch
+ */
 export function loadListPage(){
     try {
         displayAndAddListeners();
@@ -587,6 +585,7 @@ const dayNumber = document.getElementById(LISTPAGE_DOM_IDS.clockDayElement);
 const hourNumber = document.getElementById(LISTPAGE_DOM_IDS.clockHourElement);
 const minNumber = document.getElementById(LISTPAGE_DOM_IDS.clockMinuteElement);
 const secNumber = document.getElementById(LISTPAGE_DOM_IDS.clockSecondElement);
+
 const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
 const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
 const countdownClock = document.querySelector('.clock-row');
