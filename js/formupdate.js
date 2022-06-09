@@ -1,4 +1,4 @@
-import { popForm, closeFormPopUp, sanitize, saveNewCdFromInputs, saveCountdownForm, FORM_DOM_IDS } from './formfunctions.js'
+import { popForm, closeFormPopUp, saveCountdownForm, FORM_DOM_IDS } from './formfunctions.js'
 import { errorHandler } from './error.js';
 import { loadListPage } from './listFunctions.js';
 const popAndAddFormOnList = () => {
