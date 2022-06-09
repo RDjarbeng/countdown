@@ -1,7 +1,7 @@
 import { startClock, stepIncreaseAndStart } from "./appfunctions.js";
 import { Clock, Anniversary } from "./clock.js";
 import { errorHandler } from "./error.js";
-import { closeFormPopUp, FORM_DOM_IDS, displayFormPopUp, getUserText, saveCountDownList } from "./formfunctions.js";
+import { closeFormPopUp, FORM_DOM_IDS, displayFormPopUp, getUserText, saveCountDownList, getCdFromFormInputs } from "./formfunctions.js";
 import { addClickListenersWithoutDuplicates, removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 /* SECTION: DISPLAY COUNTDOWNS */
@@ -503,19 +503,16 @@ export function handleFormUpdate() {
     submitbutton.addEventListener('click', (e) => {
         e.preventDefault();
         submitbutton.disabled = true;
-        // get text field values, with auto values
-        // let userText = document.getElementById(CONSTANT_IDS.form_TextInput).value;
-        const modifiedTime = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
-        let userDate = document.getElementById(FORM_DOM_IDS.form_dateInput).value;
-        const repeatCheck = document.getElementById(FORM_DOM_IDS.form_repeatCheckBox);
-        const userText = getUserText(document.getElementById(FORM_DOM_IDS.form_modifiedTime).value)
-
-        userDate = new Date(userDate);
-        let countItem = { text: userText, date: userDate, dateModified: new Date() };
-        if (repeatCheck) {
-            countItem.repeat = repeatCheck.checked;
-        }
+        // get form values and return countdown item   
+        let formDOMElementsAsObject = {
+            userTextField:document.getElementById(FORM_DOM_IDS.form_TextInput),
+        dateInput: document.getElementById(FORM_DOM_IDS.form_dateInput),
+        repeatCheck: document.getElementById(FORM_DOM_IDS.form_repeatCheckBox),
+    }   
+        let countItem =getCdFromFormInputs(formDOMElementsAsObject)
+        countItem.dateModified= new Date();
         
+        const modifiedTime = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
         updateLocalItem(arrayOfCountdowns, countItem, modifiedTime);
         displayCountdowns();
         closeFormPopUp();
