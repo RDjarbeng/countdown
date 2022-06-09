@@ -1,13 +1,13 @@
 
 
-
-export const closeErrorInfo = (event) => {
-    // remove div containing error message
-    event.currentTarget.parentElement.remove();
-}
+/**
+ * remove div containing error message
+ * @param {Event} event 
+ */
+export const closeErrorInfo = (event) =>event.currentTarget.parentElement.remove();
 
 export const errorHandlerWithoutMessage = (err) => {
-    console.warn('Top level error',err);
+    console.warn('Top level window error',err);
     errorHandler();
 }
 
