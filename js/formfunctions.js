@@ -180,12 +180,7 @@ export function getCdFromFormInputs() {
 
 }
 
-
-export function checkRepeat(repeatCheckBox) {
-    return repeatCheckBox.checked
-
-}
-
+export  const checkRepeat=(repeatCheckBox)=> repeatCheckBox.checked
 
 export function saveCountdownForm() {
     saveNewCountdownToLocalStorage(
