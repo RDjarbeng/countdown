@@ -498,16 +498,14 @@ const listEventListener = event => {
 export function handleFormUpdate() {
     // todo: update list with custom fired events
     const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
-
-
     submitbutton.addEventListener('click', (e) => {
         e.preventDefault();
         submitbutton.disabled = true;
         let countItem =getCdFromFormInputs();
         countItem.dateModified= new Date().toISOString();
         
-        const modifiedTime = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
-        updateLocalItem(arrayOfCountdowns, countItem, modifiedTime);
+        const modifiedTimeAsID = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
+        updateLocalItem(arrayOfCountdowns, countItem, modifiedTimeAsID);
         displayCountdowns();
         closeFormPopUp();
         removeClockAndText();
