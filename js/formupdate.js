@@ -3,9 +3,9 @@ import { errorHandler } from './error.js';
 import { loadListPage } from './listFunctions.js';
 const popAndAddFormOnList = () => {
     popForm()
-    handleListpageForm();
+    handleListpageFormSubmission();
 }
-function handleListpageForm() {
+function handleListpageFormSubmission() {
     const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
     if(submitbutton){
     submitbutton.addEventListener('click', (e) => {
