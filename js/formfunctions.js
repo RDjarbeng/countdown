@@ -180,26 +180,6 @@ export function getCdFromFormInputs() {
 
 }
 
-// todo: move this function to form update.js
-export function addFormListenerForUpdate() {
-    // todo: update list with custom fired events
-    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
-
-
-    submitbutton.addEventListener('click', (e) => {
-
-        e.preventDefault();
-        submitbutton.disabled = true;
-        // get text field values, with auto values
-        saveCountdownForm();
-
-        // updateLocalItem(arrayOfCountdowns, countItem, modifiedTime);
-        // displayCountdowns();
-        // closeFormPopUp();
-        // removeClockAndText();
-        // arrayOfCountdowns = arrayOfCountdowns ? arrayOfCountdowns : JSON.parse(localStorage.getItem('countdown'));
-    })
-}
 
 export function checkRepeat(repeatCheckBox) {
     return repeatCheckBox.checked
