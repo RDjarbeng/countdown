@@ -501,11 +501,9 @@ export function handleFormUpdate() {
     submitbutton.addEventListener('click', (e) => {
         e.preventDefault();
         submitbutton.disabled = true;
-        let countItem =getCdFromFormInputs();
-        countItem.dateModified= new Date().toISOString();
-        
+
         const modifiedTimeAsID = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
-        updateLocalItem(arrayOfCountdowns, countItem, modifiedTimeAsID);
+        updateLocalItem(arrayOfCountdowns, updateCountdownItemFromForm(), modifiedTimeAsID);
         displayCountdowns();
         closeFormPopUp();
         removeClockAndText();
@@ -513,6 +511,11 @@ export function handleFormUpdate() {
     })
 }
 
+export function updateCountdownItemFromForm(){
+    let countItem =getCdFromFormInputs();
+        countItem.dateModified= new Date().toISOString();
+        return countItem;
+}
 /**
  * display countdowns and start updating display for countdowns in progress
  */
@@ -568,7 +571,7 @@ export function loadListPage(){
         displayAndAddListeners();
     } catch (err) {
         console.log(err, 'err in updating countdown initialisation');
-        errorHandler("Unable to finish updating your countdowns");
+        errorHandler("Unable to fetch & update your countdowns");
     }
 }
 
