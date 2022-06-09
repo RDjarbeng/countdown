@@ -164,20 +164,18 @@ export async function increaseAndSaveUserDefaultCount() {
  * @returns {Object} countItem
  */
 export function getCdFromFormInputs() {
-
     // DOM references
     let { userTextField, dateInput, repeatCheck } = getCountdownFormElements()
     let userDate = dateInput.value;
     // get text field values, with auto values
     let userText = getUserText(userTextField);
 
-    userDate = new Date(userDate);
+    userDate = new Date(userDate).toISOString();
     let countItem = { text: userText, date: userDate, dateModified: new Date() };
     if (repeatCheck) {
         countItem.repeat = repeatCheck.checked;
     }
     return countItem;
-
 }
 
 export  const checkRepeat=(repeatCheckBox)=> repeatCheckBox.checked
