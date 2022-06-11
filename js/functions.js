@@ -84,3 +84,7 @@ export const addClickListenersWithoutDuplicates = (element, eventHandler)=>{
     console.warn("Null element passed to addlistenersWithoutDuplicates")
 }
 }
+
+export const $ = (selector) => document.querySelectorAll(selector);
+
+export const setLink = (link) => (window.location.href = link);
