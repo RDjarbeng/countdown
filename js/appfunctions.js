@@ -98,3 +98,36 @@ export async function stepIncreaseAndStart(clockElement, domElements, speed = 50
     };
     window.requestAnimationFrame(step);
 }
+
+export const getYearsAndRemainder = (newDate, oldDate) => {
+    let remainder = 0;
+    // get initial years between dates
+    let years = newDate.getFullYear() - oldDate.getFullYear();
+    // check to make sure the oldDate is least recent
+    if (years < 0) {
+        console.warn('new date is lesser than old date in year difference')
+        years = 0;
+    } else {
+        // set the old date and the new date to same year
+        oldDate.setFullYear(newDate.getFullYear());
+        if (oldDate - newDate > 0) {
+            // check if remaining time/months of old date is less than new date
+            // the final year for the dates is  not up to a year
+            if (years != 0) {//skip year manipulation for dates in the same year
+                console.log('Subtracting year');
+                //set the old year to the previous year 
+                // to calculate the time difference between last year and now
+                years--;
+                oldDate.setFullYear(oldDate.getFullYear() - 1);
+            }
+        }
+    }
+
+    remainder = newDate - oldDate;
+    if (remainder < 0) { //check for negative dates due to wrong inputs
+        console.warn('old date is greater than new Date');
+        console.log('new date', newDate, 'old date', oldDate);
+    }
+
+    return { years, remainder };
+}
