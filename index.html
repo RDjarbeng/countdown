@@ -8,30 +8,38 @@
     <meta name="description" content="Countdown application with light and dark mode auto functionality">
     <meta name="Keywords" content="Countdown, Midnight countdown">
     <title>Final Countdown</title>
-    <link href="/img/icons/favicon.png" rel="icon">
+    <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADJUlEQVRYR+2WSyisYRjH/+M+ipKlsVAklz2liTREKCYpKQuxcskCCxJWjBTR5LKRXBY2U6OEKFOTct1gM5spNmSkaGbc5/R/OiPndGZ8M+Z0OjVPffV9X9/3Pr/3/z7/531VqampHvzDUIUBwgr8twqoVCrExsbi6ekJHk/wRlLsgqioKBQVFUGn0yEuLg5XV1e4u7tDQkICMjIyYLVasbKygre3t4BMrQigoqICPT09sNvtGB4exunpKagAZx4ZGSkQZrNZIAYHB0ML0NXVhZaWFkxMTMBoNEri6OhoJCYm4vb2Fi8vL3h/f8f4+DgqKyuRl5cHl8ulGMKvAjk5OVhbW8P09DRGR0clOaOurg79/f2yJA6HA8/Pz9jb20NSUhLy8/Px+Pj4fYDX11c0NjaitbUVpaWlcDqdMqhGo8HGxobMXKvV4uHhAd3d3ejo6MD8/DwGBgYUJ+eHPhXgLMrLy9HQ0IDm5mYZlMVnMpmQnZ2Nvr4+bG1tobe3FzU1NdjZ2UF7e/sHqFIKvwDx8fGytkNDQ7LevK+trcX9/T2Oj49RUFCAm5sbTE1NYXV1FVQt0PAJQIkZMTEx4vfq6moYDAZZ8+TkZClIi8WC/f19+c5bHyED4ECcEf2fkpIiEtP3VVVVWFhYkOexsTFEREQEmvOX77/sA2wss7OzKC4uluo/ODhASUmJFBxVOTs7+3sAbDRU4eLiQuSfm5uD2+0WVZaWlkQZKsJ2HGz4VYCzp8c5y8LCQmkwBOK7rKwsbG9vY3l5OeDu9xnWLwCT8SorK8Pu7u7Hf7Qo1aEFOzs70dbWJg0rmPALwBZLADrhc/A9IdRqNTY3N5GWlob6+nqcnJwEzPBlEfoakTbllZubi/X1dblvamrC4eHhxy/cpDIzM3F0dOQTLGgALgGLj2ro9XrMzMwIxOTkJBYXF6VFs4teX1+LSr4iaAAOyOTeAwlnPzIyIn2BcLwuLy+lfrz7yJ8gvgXAAekUrw25O7Iw09PTcX5+LjumzWbzWxffBvhdCT7zvMCDipIuGRIAJqXk3uMYkyvdG0IGELD/fv4QBggr8AO7VqfwjRwSeAAAAABJRU5ErkJggg==" rel="icon">
     <meta name="Author" content="R.Djarbeng| A.Nyakotey">    
-    <link rel="preload stylesheet"  as="style" type="text/css" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="preload stylesheet"  as="style" type="text/css" href="/css/themes.css">
-    <link rel="stylesheet" href="/css/themes.css">
-    <link rel="preload stylesheet"  as="style" type="text/css" href="/css/form.css">
-    <link rel="stylesheet" href="/css/form.css">
+    
+    
+    
+    
+    
+    
     <link rel="preload stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"></noscript>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="data:application/json;base64,ew0KICAgICJuYW1lIjogIkZpbmFsIENvdW50ZG93biIsDQogICAgInNob3J0X25hbWUiOiAiRmluYWwgY291bnRkb3duIiwNCiAgICAiaWQiOiAiLyIsDQogICAgInN0YXJ0X3VybCI6ICIvIiwNCiAgICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwNCiAgICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMTgyNjM1IiwNCiAgICAidGhlbWVfY29sb3IiOiAiIzAzMWMzNiIsDQogICAgIm9yaWVudGF0aW9uIjogInBvcnRyYWl0LXByaW1hcnkiLA0KICAgICJpY29ucyIgOiBbDQogICAgICAgIHsNCiAgICAgICAgICAgICJzcmMiOiAiL2ltZy9pY29ucy9mYXZpY29uLnBuZyIsDQogICAgICAgICAgICAidHlwZSI6ICJpbWFnZS9wbmciLA0KICAgICAgICAgICAgInNpemVzIjogIjMyeDMyIg0KICAgICAgICB9LA0KICAgICAgICB7DQogICAgICAgICAgICAic3JjIjogIi9pbWcvaWNvbnMvY2hyb21lMTkyLnBuZyIsDQogICAgICAgICAgICAidHlwZSI6ICJpbWFnZS9wbmciLA0KICAgICAgICAgICAgInNpemVzIjogIjE5MngxOTIiDQogICAgICAgIH0sDQogICAgICAgIHsNCiAgICAgICAgICAgICJzcmMiOiAiL2ltZy9pY29ucy9jaHJvbWU1MTIucG5nIiwNCiAgICAgICAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsDQogICAgICAgICAgICAic2l6ZXMiOiAiNTEyeDUxMiINCiAgICAgICAgfSwNCiAgICAgICAgew0KICAgICAgICAgICAgInNyYyI6ICIvaW1nL2ljb25zL21hc2thYmxlX2ljb24ucG5nIiwNCiAgICAgICAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwNCiAgICAgICAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsDQogICAgICAgICAgICAicHVycG9zZSI6ICJtYXNrYWJsZSIgDQogICAgICAgICAgfQ0KICAgIF0NCn0=">
     <!-- ios support -->
-    <link rel="apple-touch-icon" href="/img/icons/favicon.png">
+    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADJUlEQVRYR+2WSyisYRjH/+M+ipKlsVAklz2liTREKCYpKQuxcskCCxJWjBTR5LKRXBY2U6OEKFOTct1gM5spNmSkaGbc5/R/OiPndGZ8M+Z0OjVPffV9X9/3Pr/3/z7/531VqampHvzDUIUBwgr8twqoVCrExsbi6ekJHk/wRlLsgqioKBQVFUGn0yEuLg5XV1e4u7tDQkICMjIyYLVasbKygre3t4BMrQigoqICPT09sNvtGB4exunpKagAZx4ZGSkQZrNZIAYHB0ML0NXVhZaWFkxMTMBoNEri6OhoJCYm4vb2Fi8vL3h/f8f4+DgqKyuRl5cHl8ulGMKvAjk5OVhbW8P09DRGR0clOaOurg79/f2yJA6HA8/Pz9jb20NSUhLy8/Px+Pj4fYDX11c0NjaitbUVpaWlcDqdMqhGo8HGxobMXKvV4uHhAd3d3ejo6MD8/DwGBgYUJ+eHPhXgLMrLy9HQ0IDm5mYZlMVnMpmQnZ2Nvr4+bG1tobe3FzU1NdjZ2UF7e/sHqFIKvwDx8fGytkNDQ7LevK+trcX9/T2Oj49RUFCAm5sbTE1NYXV1FVQt0PAJQIkZMTEx4vfq6moYDAZZ8+TkZClIi8WC/f19+c5bHyED4ECcEf2fkpIiEtP3VVVVWFhYkOexsTFEREQEmvOX77/sA2wss7OzKC4uluo/ODhASUmJFBxVOTs7+3sAbDRU4eLiQuSfm5uD2+0WVZaWlkQZKsJ2HGz4VYCzp8c5y8LCQmkwBOK7rKwsbG9vY3l5OeDu9xnWLwCT8SorK8Pu7u7Hf7Qo1aEFOzs70dbWJg0rmPALwBZLADrhc/A9IdRqNTY3N5GWlob6+nqcnJwEzPBlEfoakTbllZubi/X1dblvamrC4eHhxy/cpDIzM3F0dOQTLGgALgGLj2ro9XrMzMwIxOTkJBYXF6VFs4teX1+LSr4iaAAOyOTeAwlnPzIyIn2BcLwuLy+lfrz7yJ8gvgXAAekUrw25O7Iw09PTcX5+LjumzWbzWxffBvhdCT7zvMCDipIuGRIAJqXk3uMYkyvdG0IGELD/fv4QBggr8AO7VqfwjRwSeAAAAABJRU5ErkJggg==">
     <meta name="apple-mobile-web-app-status-bar" content="#7b68ee">
     <meta name="theme-color" content="#7b68ee">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="grey">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#7b68ee">
+  <script type="module" crossorigin src="./assets/main.07400401.js"></script>
+  <link rel="modulepreload" href="./assets/loadCustomUI.fa5baa27.js">
+  <link rel="modulepreload" href="./assets/clock.199a9db6.js">
+  <link rel="modulepreload" href="./assets/formfunctions.2c1f36ed.js">
+  <link rel="modulepreload" href="./assets/sidebar.cd192aca.js">
+  <link rel="stylesheet" href="./assets/loadCustomUI.c3f23f56.css">
+  <link rel="stylesheet" href="./assets/formfunctions.9f194a9d.css">
+  <link rel="stylesheet" href="./assets/styles.a48c2b70.css">
 </head>
 
 <body class="light" data-theme="purple">
     <aside class="sidebar sidebar-hide">
         <section class="sidebar-content">
             <div class="brand">
-                <div class="brand-logo"><img src="/img/icons/chrome512.png" alt="logo"></div>
+                <div class="brand-logo"><img src="./assets/chrome512.6114a195.png" alt="logo"></div>
                 <div class="brand-name">Final CountDown</div>
             </div>
             <hr>
@@ -72,7 +80,7 @@
             <i class="fas fa-bars fa-lg"></i>
         </div>
         <div class="logo">
-            <a href="/index.html"><div class="logo-ico"><img src="/img/icons/chrome192.png" alt="logo"></div></a>
+            <a href="/index.html"><div class="logo-ico"><img src="./assets/chrome192.f25426fd.png" alt="logo"></div></a>
             <div class="logo-name">Final CountDown</div>
         </div>
         <div class="mode-row">
@@ -117,11 +125,11 @@
     </main>
     <div class="new-item"><i class="fas fa-plus fa-xl"></i></div>
 
-    <script src="/js/error.js" type="module"></script>
-    <script src="/app.js" type="module"></script>
-    <script src="/js/sidebar.js" type="module" async></script>
-    <script src="/js/loadCustomUI.js" type="module"></script>
-    <script  src="/js/form.js" type= "module" async></script>
+    
+    
+    
+    
+    
         
 </body>
 </html>
