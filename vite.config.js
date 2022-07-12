@@ -1,8 +1,38 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa'
 // import legacy from '@vitejs/plugin-legacy';
 
 export default defineConfig({
+  plugins: [
+    VitePWA({
+      includeAssets: ['img/icons/favicon.png', 'apple-touch-icon.png', 'img/icons/maskable_icon.png'],
+      manifest: {
+        name: 'Final Countdown',
+        short_name: 'Final Countdown',
+        description: 'Awesome countdown App',
+        theme_color: '#031c36',
+        icons: [
+          {
+            src: '/img/icons/chrome192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/img/icons/chrome512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          },
+          {
+            src: '/img/icons/chrome512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
+          }
+        ]
+      }
+    })
+  ],
   build: {
     rollupOptions: {
       input: {
