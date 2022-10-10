@@ -286,9 +286,16 @@ export const isTargetElementOnContextMenu=(targetElement)=> (targetElement.class
 export const isClassOnTargetElement=(targetElement, className) => (targetElement.className.search(className) > -1);
 
 export const setMainClockCountdown=(countdown) =>{
-        localStorage.setItem('mainClock', JSON.stringify(countdown));
+    if(countdown){
+        const countdownToStore=JSON.stringify(countdown)
+        localStorage.setItem('mainClock',countdownToStore);
         let date = new Date(countdown.date);
-            notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
+        notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
+    }else{
+        errorHandler('Could not set main clock');
+        console.log("set main clock() received a null or undefined countdown")
+    }
+        
 }
 
 export const triggerContextMenu = (element) => {
@@ -460,11 +467,23 @@ const listEventListener = event => {
             
         
         } else if (isClassOnTargetElement(targetElement,'del') ) {
+            // fetch array if not existing in workspace
+            if(!arrayOfCountdowns){
+                console.log("Strangely array was not found in list functions on delete");
+                updateArrayOfCountdownState();
+
+            }
             arrayOfCountdowns = arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != count_modified);
             saveCountDownList(arrayOfCountdowns);
             setInnerHtmlForNotNull(countdownList, populateList(arrayOfCountdowns));
             // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
         } else if (isClassOnTargetElement(targetElement,'edit')) {
+            if(!arrayOfCountdowns){
+                console.log("Strangely array was not found in list functions on edit");
+                updateArrayOfCountdownState();
+
+            }
+            console.log(arrayOfCountdowns);
             let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
             // todo: custom error messages for components on fail
             try {
@@ -579,6 +598,9 @@ export async function displayAndAddListeners() {
     addEventHandlers();
 }
 
+export function updateArrayOfCountdownState(){
+    arrayOfCountdowns = fetchArrayOfCountdowns()
+}
 // todo: figure out a way to separate functions and dom references
 //DOM Elements
 const dayNumber = document.getElementById(LISTPAGE_DOM_IDS.clockDayElement);
