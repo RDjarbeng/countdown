@@ -1,6 +1,6 @@
 import { popForm, closeFormPopUp, saveCountdownForm, FORM_DOM_IDS } from './formfunctions.js'
 import { errorHandler } from './error.js';
-import { loadListPage } from './listFunctions.js';
+import { loadListPage, updateArrayOfCountdownState } from './listFunctions.js';
 const popAndAddFormOnList = () => {
     popForm()
     handleListpageFormSubmission();
@@ -13,6 +13,7 @@ function handleListpageFormSubmission() {
         e.preventDefault();
         submitbutton.disabled = true;
         saveCountdownForm();        
+        updateArrayOfCountdownState();
         loadListPage();
         closeFormPopUp();
     })
