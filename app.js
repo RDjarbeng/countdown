@@ -28,7 +28,8 @@ setInnerHtmlForNotNull(dueDate, `${myclock.endDate.getDate() + ' ' + myclock.end
 function setMainClock() {
     let myclock = new NewYearClock();
     let mainclock = localStorage.getItem('mainClock');
-    if (mainclock !== null && mainclock != undefined) { //countdown set to main
+    console.log(mainclock);
+    if (mainclock  && mainclock != 'undefined') { //countdown set to main
         mainclock = JSON.parse(mainclock)
         myclock = new Clock(new Date(mainclock.date));
         setMainText(mainclock.text)
