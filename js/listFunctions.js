@@ -245,13 +245,14 @@ export function hideContextMenus(event) {
  * Display the mini clock on the countdownlist page
  */
  export const showClockRow = () => {
-    if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
-        const clockRow = document.querySelector(".clock-row")
-        if (clockRow) {
+    //  if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
+         const clockRow = document.querySelector(".clock-row")
+         if (clockRow) {
+            console.log('Showing the clock row')
             clockRow.style.display = "flex";
             clockRow.style.animationPlayState = "running";
         }
-    }
+    // }
 }
 
 export function switchContextIconUp(element) {
@@ -372,9 +373,16 @@ export async function displayCountdowns() {
         addSortUIAndListeners();
 
     } else {
-        setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
-        setInnerHtmlForNotNull(countdownTextDisplay, '')
+        setDefaultTextForEmptyCountdowns();
     }
+}
+
+/**
+ * Sets the default text to show on new page or when countdown list is empty
+ */
+export const setDefaultTextForEmptyCountdowns=()=>{
+    setInnerHtmlForNotNull(countdownList, 'Found no countdowns to display');
+        setInnerHtmlForNotNull(countdownTextDisplay, '')
 }
 
 /**
@@ -447,7 +455,7 @@ const listEventListener = event => {
         // let targetIndex = targetElement.parentElement.getAttribute('data-index');
         let targetIndex = getArrayIndexByDateModified(arrayOfCountdowns,targetElement.parentElement.getAttribute('data-id'))
         // todo: find a better way of accessing element in countdown array
-        console.log(targetIndex)
+        console.log(targetIndex, 'index of element found in array')
         showClockRow();
         updateClockAndText(arrayOfCountdowns[targetIndex].date, arrayOfCountdowns[targetIndex].text)
     }
