@@ -6,7 +6,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     VitePWA({
-      includeAssets: ['img/icons/favicon.png', 'apple-touch-icon.png', 'img/icons/maskable_icon.png'],
+      includeAssets: ['img/icons/favicon.png', 'img/icons/maskable_icon.png', 'apple-touch-icon.png' ],
       manifest: {
         name: 'Final Countdown',
         short_name: 'Final Countdown',
