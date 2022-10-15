@@ -55,12 +55,13 @@ try {
     errorHandler("Error in clock");
     console.log(error);
 }
-
+/*
 if ("serviceWorker" in navigator) {
     // && !/localhost/.test(window.location)) {
     registerSW();
   }
-// service worker
+  */
+// old service worker
 /*
 if('serviceWorker' in navigator){
     window.addEventListener('load', () => {
