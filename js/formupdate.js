@@ -27,12 +27,12 @@ function handleListpageFormSubmission() {
 
 
 // todo: remove dynamic seting of css, @nyakotey
-if (!document.querySelector("[href='css/form.css']")) {
-    document.head.insertAdjacentHTML(
-        "beforeend",
-        `<link rel="stylesheet" href="/css/form.css">`
-    );
-}
+// if (!document.querySelector("[href='css/form.css']")) {
+//     document.head.insertAdjacentHTML(
+//         "beforeend",
+//         `<link rel="stylesheet" href="/css/form.css">`
+//     );
+// }
 
 // DOM Elements
 const createButton = document.getElementsByClassName("new-item")[0];
