@@ -56,6 +56,10 @@ try {
     console.log(error);
 }
 
+if ("serviceWorker" in navigator) {
+    // && !/localhost/.test(window.location)) {
+    registerSW();
+  }
 // service worker
 /*
 if('serviceWorker' in navigator){
