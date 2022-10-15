@@ -6,30 +6,25 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     VitePWA({
-      includeAssets: ['img/icons/favicon.png', 'img/icons/maskable_icon.png'],
+      // includeAssets: ['img/icons/favicon.png', 'img/icons/maskable_icon.png'],
       manifest: {
         name: 'Final Countdown',
         start_url: "/",
+        id: "/",
         short_name: 'Final Countdown',
         description: 'Awesome countdown App',
         theme_color: '#031c36',
         icons: [
           {
-            src:  'img/icons/chrome192.png',
+            src:  '/img/icons/chrome192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'img/icons/chrome192.png',
+            src: '/img/icons/chrome512.png',
             sizes: '512x512',
             type: 'image/png'
           },
-          {
-            src: 'img/icons/chrome512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable'
-          }
         ]
       }
     })
