@@ -2,6 +2,8 @@ import { Clock, NewYearClock } from "./js/clock.js";
 import { waitForAnimation } from "./js/appfunctions.js";
 import { errorHandler } from "./js/error.js";
 import { setInnerHtmlForNotNull } from "./js/functions.js";
+import { registerSW } from 'virtual:pwa-register'
+import Toastify from 'toastify-js'
 
 // DOM nodes
 const animatedCountDuration = 800;
@@ -55,6 +57,26 @@ try {
     errorHandler("Error in clock");
     console.log(error);
 }
+//service worker update and offline functionality
+const updateSW = registerSW({
+    onNeedRefresh() {
+        console.log('Update sw, new available, devEnv');
+      Toastify({
+        text: `<h4 style='display: inline'>An update is available!</h4>
+               <br><br>
+               <a class='do-sw-update'>Click to update and reload</a>  `,
+        escapeMarkup: false,
+        gravity: "bottom",
+        onClick() {
+          updateSW(true);
+        }
+      }).showToast();
+
+    },
+    onOfflineReady() {
+        console.log('App is offline');
+    },
+  })
 /*
 if ("serviceWorker" in navigator) {
     // && !/localhost/.test(window.location)) {
