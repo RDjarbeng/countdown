@@ -15,17 +15,17 @@ export default defineConfig({
         theme_color: '#031c36',
         icons: [
           {
-            src:  resolve(__dirname, 'img/icons/chrome192.png'),
+            src:  'img/icons/chrome192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: resolve(__dirname, 'img/icons/chrome192.png'),
+            src: 'img/icons/chrome192.png',
             sizes: '512x512',
             type: 'image/png'
           },
           {
-            src: resolve(__dirname, 'img/icons/chrome512.png'),
+            src: 'img/icons/chrome512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable'
