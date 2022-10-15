@@ -6,11 +6,11 @@ import { VitePWA } from 'vite-plugin-pwa'
 export default defineConfig({
   plugins: [
     VitePWA({
-      includeAssets: ["**/*.{js,css,html,ico,jpg,,png,svg,webmanifest}"],
       workbox: {
-        //excluded gif
-        globPatterns: ["**/*.{js,css,html,ico,jpg,,png,svg,webmanifest}"],
+        globPatterns: ["**/*.{js,css,html,ico,jpg,png,svg,gif,webmanifest}"],
       },
+      //include icons in public folder
+      includeAssets: ["**/*.{png}"],
       manifest: {
         name: 'Final Countdown',
         start_url: "/",
