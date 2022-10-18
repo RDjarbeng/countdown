@@ -55,6 +55,7 @@ try {
 } catch (error) {
     errorHandler("Error in clock");
     console.log(error);
+    console.log("Error on main page clock wait for animation")
 }
 
 /*
