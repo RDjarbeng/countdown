@@ -58,14 +58,14 @@ try {
     errorHandler("Error in clock");
     console.log(error);
 }
-
+//add service worker update functionality
 //service worker update and offline functionality
 const updateSW = registerSW({
     onNeedRefresh() {
-        console.log('Update sw, new available, devEnv');
+        console.log('Update sw, now available, devEnv');
       Toastify({
         text: `
-        <h4>A new version of this page is available!</h4>
+        <h4>A newer version of this page is available!</h4>
                <br>
                <a class='do-sw-update'>Click this banner to update and reload</a>
                `,
@@ -87,7 +87,7 @@ const updateSW = registerSW({
 
     },
     onOfflineReady() {
-        console.log('App is offline');
+        console.log('App is offline now');
     },
   })
 /*
