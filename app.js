@@ -80,7 +80,7 @@ const updateSW = registerSW({
         gravity: "bottom",
         duration: -1,
         onClick() {
-          console.log('Clicking on update to refresh service worker');
+          console.log('Clicking on update to refresh the new service worker');
           updateSW(true);
         }
       }).showToast();
