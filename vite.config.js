@@ -4,6 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 // import legacy from '@vitejs/plugin-legacy';
 
 export default defineConfig({
+  base: "./",
   plugins: [
     VitePWA({
       workbox: {
