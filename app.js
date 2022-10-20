@@ -5,7 +5,7 @@ import { setInnerHtmlForNotNull } from "./js/functions.js";
 import { registerSW } from 'virtual:pwa-register'
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
-
+//test clockMinuteElement
 // DOM nodes
 const animatedCountDuration = 800;
 const HOMEPAGE_DOM_IDS ={
