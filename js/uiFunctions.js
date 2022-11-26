@@ -1,4 +1,5 @@
-import { setInnerHtmlForNotNull } from "./functions.js";
+import { setInnerHtmlForNotNull, $ } from "./functions.js";
+import * as components from "./customComponents.js"
 
 // DOM elements
 let body = document.body
@@ -7,9 +8,8 @@ export let icon = document.getElementById('themeToggle');
  * 
  * @param {String} message 
  */
- export function notifyUser(message) {
+export function notifyUser(message) {
     let notifyText = message;
-    
 
     if (document.getElementsByClassName("mode-info")[0]) {
         document.getElementsByClassName("mode-info")[0].remove();
@@ -111,3 +111,76 @@ export function loadMode() {
 
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
+
+export const showLoader = () => {
+    document.body.insertAdjacentHTML(
+        "afterbegin",
+        `<aside class="pop-up-container loader-container">
+        <style>
+        .loader{
+            background-color: #ffffff;
+            color: grey;
+            padding: 0 1rem;
+            border-radius: 0.4rem;
+            font-size: 1.3em;
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.21);
+        }
+        .loader span:nth-child(n+2){
+            font-size: 1.5em;
+            animation-duration:2.5s;
+            animation-iteration-count:infinite;    
+        }
+        .loader span:nth-child(2){animation-name:l1;}
+        .loader span:nth-child(3){animation-name:l2;}
+        .loader span:nth-child(4){animation-name:l3;}
+        @keyframes l1{
+            from{opacity:0;}
+            15%{opacity:0;}
+            25%{opacity:1;}
+        }
+        @keyframes l2{
+            from{opacity:0;}
+            40%{opacity:0;}
+            50%{opacity:1;}
+        }
+        @keyframes l3{
+            from{opacity:0;}
+            65%{opacity:0;}
+            75%{opacity:1;}
+        }
+        </style>
+            <section class="loader" style="color: ${getComputedStyle($("body")[0]).getPropertyValue("--color-banner")}">
+                <span>Loading</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+            </section>
+        </aside>`
+    );
+};
+export const removeLoader = () => {
+    $(".loader-container")[0].remove();
+}
+export function setTheme(elem) {
+    let prevTheme = getComputedStyle(document.body).getPropertyValue("--color-banner");
+    document.body.dataset.theme = elem.dataset.settheme;
+    localStorage.setItem("theme", `${elem.dataset.settheme}`);
+
+    function setAppStatusBarTheme() {
+        let primaryColor = getComputedStyle(document.body).getPropertyValue("--color-banner");
+        $(`[content="${prevTheme}"]`).forEach((e) =>
+            e.setAttribute("content", primaryColor)
+        );
+        localStorage.setItem("primaryColor", primaryColor);
+    }
+    setAppStatusBarTheme();
+}
+
+export function addFormCSS() {
+    if (!$("[href='css/form.css']")[0]) {
+        document.head.insertAdjacentHTML(
+            "beforeend",
+            `<link rel="stylesheet" href="/css/form.css">`
+        );
+    }
+}

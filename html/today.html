@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <base href="/">
     <meta charset="UTF-8">
@@ -10,13 +10,16 @@
     <meta name="Keywords" content="Countdown, Midnight countdown">
     <title>Final Countdown</title>
     <link href="/img/icons/favicon.png" rel="icon">
-    <meta name="Author" content="R.Djarbeng| A.Nyakotey">    
+    <meta name="Author" content="R.Djarbeng| A.Nyakotey">
     <link rel="stylesheet" href="/css/today.css">
     <link rel="stylesheet" href="/css/themes.css">
     <link rel="preload stylesheet" as="style" type="text/css" href="/css/form.css">
     <link rel="stylesheet" href="/css/form.css">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"></noscript>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    </noscript>
     <!-- <link rel="manifest" href="/manifest.json"> -->
     <!-- ios support -->
     <link rel="apple-touch-icon" href="/img/icons/favicon.png">
@@ -27,70 +30,19 @@
 </head>
 
 <body class="light" data-theme="purple">
-    <aside class="sidebar sidebar-hide">
-        <section class="sidebar-content">
-            <div class="brand">
-                <div class="brand-logo"><img src="/img/icons/chrome512.png" alt="logo"></div>
-                <div class="brand-name">Final CountDown</div>
-            </div>
-            <hr>
-            <div class="opt-group">OPTIONS</div>
-            <div class="sidebar-list">
-                <div class="sidebar-list-items">
-                    <i class="fas fa-home fa-fw"></i> <span>Home</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-clock fa-fw"></i> <span>My CountDowns</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-upload fa-fw"></i> <span>Set Custom Background</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-adjust fa-fw"></i> <span>Change Theme</span>
-                </div>
-                <section class="pick-color">
-                    <span class="pick-color-ico" data-settheme="red"></span>
-                    <span class="pick-color-ico" data-settheme="pink"></span>
-                    <span class="pick-color-ico" data-settheme="yellow"></span>
-                    <span class="pick-color-ico" data-settheme="green"></span>
-                    <span class="pick-color-ico" data-settheme="blue"></span>
-                    <span class="pick-color-ico" data-settheme="purple"></span>
-                    <span class="pick-color-ico" data-settheme="black"></span>
-                </section>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-calendar-day fa-fw"></i> <span>Today</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-question-circle fa-fw"></i> <span>About</span>
-                </div>
-            </div>
-        </section>
-    </aside>
-    <header class="header">        
-        <div class="nav">
-            <i class="fas fa-bars fa-lg"></i>
-        </div>
-        <div class="logo">
-            <a href="/index.html"><div class="logo-ico"><img src="/img/icons/chrome192.png" alt="logo"></div></a>
-            <div class="logo-name">Final CountDown</div>
-        </div>
-        <div class="mode-row">
-            <span class="toggleMode" id='themeToggle'><i class="fas fa-sun fa-fw"></i></span>
-        </div>
-    </header>
+    <app-sidebar></app-sidebar>
+    <app-header></app-header>
     <main>
         <section class="container">
             <div class="date-row">
                 <div class="day-of-year">
-                    <div class="day-text">DAY</div> 
+                    <div class="day-text">DAY</div>
                     <div class="day-count" id='countDay'>X</div>
                     <div class="divider"></div>
                     <div class="year-count">365</div>
 
                     <div class="share-row">
-                        <div class="sm share-whatsapp" 
-                            id ="sendWhatsappButton" 
-                            data-action="share/whatsapp/share"
+                        <div class="sm share-whatsapp" id="sendWhatsappButton" data-action="share/whatsapp/share"
                             title="share to Whatsapp">
                             <i class="fab fa-whatsapp fa-fw"></i>
                         </div>
@@ -98,8 +50,8 @@
                     </div>
                 </div>
                 <div class="date">
-                    <div class="day-of-week" id ="dayOfWeek">Monday</div>
-                    <div class="day" id ="dayOfMonth">11</div>
+                    <div class="day-of-week" id="dayOfWeek">Monday</div>
+                    <div class="day" id="dayOfMonth">11</div>
                     <div class="month" id="month">Mar</div>
                     <div class="year" id="year">2022</div>
                     <div class="time" id="time">11:00 pm</div>
@@ -107,11 +59,12 @@
             </div>
         </section>
     </main>
-    <script src="/js/error.js" type="module"></script>    
+    <script src="/js/error.js" type="module"></script>
     <!-- <script src="/app.js" type="module"></script> -->
     <script src="/js/sidebar.js" type="module" async></script>
     <script src="/js/loadCustomUI.js" type="module"></script>
-    <script src="/js/today.js" type ="module"></script>
-    <script  src="/js/serviceWorkerUpdate.js" type= "module"></script>
+    <script src="/js/today.js" type="module"></script>
+    <script src="/js/serviceWorkerUpdate.js" type="module"></script>
 </body>
+
 </html>

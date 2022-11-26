@@ -52,10 +52,10 @@ export function getFormHTML(formDefaultValues) {
         <div class="form-sections form-repeat">
             <label for="repeat-cb">
                 <input type="checkbox"
-                 id="${FORM_DOM_IDS.form_repeatCheckBox || 'repeat-cb'}" 
-                 ${repeat ? 'checked' : ''}
-                 > 
-                 Repeat every year 
+                id="${FORM_DOM_IDS.form_repeatCheckBox || 'repeat-cb'}" 
+                ${repeat ? 'checked' : ''}
+                > 
+                Repeat every year 
             </label>
         </div>
         <div class="form-sections">
