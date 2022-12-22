@@ -88,6 +88,9 @@ export function setCountDownStatus(clock) {
         countdownStatus = getCountdownString(clock);
     } else {
         // countdown elapsed
+        //emit event
+        
+        
         countdownStatus = 'Due: ' + clock.endDate.getDate() + ' ' + clock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + clock.endDate.getFullYear();
         countdownStatusTI = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>`;
     }
@@ -437,8 +440,11 @@ export function addEventHandlers() {
     document.querySelector('.container').addEventListener("click", hideContextMenus);
 }
 function addListEventListener() {
-    const countList = document.querySelector('.countdown-list')
-    addClickListenersWithoutDuplicates(countList, listEventListener)
+    console.log('Added elapsed listener');
+    const countList = document.querySelector('.countdown-list');
+    addClickListenersWithoutDuplicates(countList, listEventListener);
+    //Add listeners for when event elapses
+    addEventListener('elapsed', (e)=>console.log('Elapsed event fired',e));
 }
 
 /**
@@ -578,6 +584,8 @@ export function updateCountdownItemFromForm(){
                 // arrayOfCountdowns[index].dateModified = new Date().toISOString();
 
             } else {
+                const elapsedEvent = new CustomEvent('elapsed', { detail: "test" });
+                dispatchEvent(elapsedEvent);
                 console.log('elapsing', arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id')));
                 element.classList.remove('countdown-counting')
                 setInnerHtmlForNotNull(element, 'Elapsed')
