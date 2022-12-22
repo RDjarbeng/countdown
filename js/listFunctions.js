@@ -543,6 +543,7 @@ export function updateCountdownItemFromForm(){
  * display countdowns and start updating display for countdowns in progress
  */
  export function displayAndStartcount() {
+    
     displayCountdowns().then(() => {
         if (getCountItemExists()) {
             let interval = setInterval(() => getCountItemExists() ? updateCountdownItems() : clearInterval(interval), 1000)
@@ -582,6 +583,7 @@ export function updateCountdownItemFromForm(){
                 element.classList.remove('countdown-counting')
                 setInnerHtmlForNotNull(element, 'Elapsed');
                 //update bottom part of countdown
+                displayAndStartcount();
 
             }
 
