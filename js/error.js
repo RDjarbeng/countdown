@@ -1,9 +1,22 @@
-let prevErr = false;
-const errMessage = "Oops an error occurred 🤧😐";
-
-const closeErrorInfo = () => event.currentTarget.parentNode.remove();
-
-const errorHandler =()=> {
+/**
+ * remove div containing error message
+ * @param {Event} event 
+ */
+export const closeErrorInfo = (event) =>event.currentTarget.parentElement.remove();
+/**
+ * Error handler for the top level window element to catch uncaught errors
+ * @param {Error} err 
+ */
+export const errorHandlerWithoutMessage = (err) => {
+    console.warn('Top level window error',err);
+    errorHandler();
+}
+/**
+ * Displays dismissable error message passed into function on screen
+ * @param {String} msg 
+ */
+export const errorHandler = (msg) => {
+    const errMessage = "Oops an error occurred 🤧😐";
     let errHtml = `
     <section class="error-notification">
     <style>
@@ -43,21 +56,23 @@ const errorHandler =()=> {
         }
     </style>
     <div class="error-message">
-        <span>${errMessage}</span>
-        <div class="error-close" onclick="closeErrorInfo()">
+        <span>${msg || errMessage}</span>
+        <div class="error-close" >
             <i class="fas fa-times"></i>
         </div>
     </div>
 </section>
 `;
     if (prevErr) {
-        let item =$(".error-notification")[0]
-        if(item)
-        item.remove();
+        let item = document.querySelectorAll(".error-notification")[0]
+        if (item)
+            item.remove();
         document.body.insertAdjacentHTML("afterbegin", errHtml);
     } else {
         document.body.insertAdjacentHTML("afterbegin", errHtml);
         prevErr = true;
     }
+    document.querySelector('.error-message').addEventListener('click', closeErrorInfo)
 };
-window.onerror = errorHandler;
+let prevErr = false;
+window.onerror = errorHandlerWithoutMessage;
