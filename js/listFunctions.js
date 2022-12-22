@@ -359,12 +359,12 @@ export const addSortEventListeners = () => {
     addClickListenersWithoutDuplicates(sortOpts, sortOptionsEventHandler)
 }
 
-export async function displayCountdowns() {
-    let arrayOfCountdowns = await fetchArrayOfCountdowns();
+export  function displayCountdowns() {
+    let arrayOfCountdowns =  fetchArrayOfCountdowns();
 
     if (arrayOfCountdowns && arrayOfCountdowns.length) {
 
-        let listItems = await populateList(arrayOfCountdowns)
+        let listItems =  populateList(arrayOfCountdowns)
         
         setInnerHtmlForNotNull(countdownList, listItems)
         setInnerHtmlForNotNull(countdownTextDisplay, '')
@@ -580,7 +580,9 @@ export function updateCountdownItemFromForm(){
             } else {
                 console.log('elapsing', arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id')));
                 element.classList.remove('countdown-counting')
-                setInnerHtmlForNotNull(element, 'Elapsed')
+                setInnerHtmlForNotNull(element, 'Elapsed');
+                //update bottom part of countdown
+
             }
 
         });
