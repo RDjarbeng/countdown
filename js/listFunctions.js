@@ -9,9 +9,10 @@ import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
 import { notifyUser } from "./uiFunctions.js";
 import { hideContextMenus } from "./list_sort/hideContextMenus";
 import { showClockRow } from "./list_ui/showClockRow";
-import { triggerContextMenu } from "./triggerContextMenu";
 import { addSortUI } from "./list_ui/addSortUI";
 import { removeClockAndText } from "./removeClockAndText";
+import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
+
 /**
  * Update a single countdown item in the array of countdowns
  *  with text, date, dateModified and repeat
