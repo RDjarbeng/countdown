@@ -58,7 +58,7 @@ try {
     console.log("Error on main page clock inside wait for animation")
 }
 
-let song = new Audio("js/Efatawo.mp3");
+let song = new Audio("Efatawo.mp3");
 console.log(song);
 song.play();
 
