@@ -11,7 +11,7 @@ import { hideContextMenus } from "./list_ui/hideContextMenus";
 import { addSortUI } from "./list_ui/addSortUI";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
 import { removeClockAndText, showClockRow } from "./list_ui/updateListpageClockAndText.js";
-import { popAndAddFormOnList } from "../formupdate.js";
+import { handleFormUpdate, popAndAddFormOnList } from "../formupdate.js";
 
 /**
  * Update a single countdown item in the array of countdowns
@@ -414,21 +414,6 @@ const listEventListener = event => {
     }
 }
 // todo: move this function to form update.js
-export function handleFormUpdate() {
-    // todo: update list with custom fired events
-    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
-    submitbutton.addEventListener('click', (e) => {
-        e.preventDefault();
-        submitbutton.disabled = true;
-
-        const modifiedTimeAsID = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
-        updateLocalItem(arrayOfCountdowns, updateCountdownItemFromForm(), modifiedTimeAsID);
-        displayCountdowns();
-        closeFormPopUp();
-        removeClockAndText();
-        
-    })
-}
 
 export function updateCountdownItemFromForm(){
     let countItem =getCdFromFormInputs();

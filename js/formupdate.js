@@ -23,7 +23,21 @@ function handleListpageFormSubmission() {
 }
 }
 
+export function handleFormUpdate() {
+    // todo: update list with custom fired events
+    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
+    submitbutton.addEventListener('click', (e) => {
+        e.preventDefault();
+        submitbutton.disabled = true;
 
+        const modifiedTimeAsID = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
+        updateLocalItem(arrayOfCountdowns, updateCountdownItemFromForm(), modifiedTimeAsID);
+        displayCountdowns();
+        closeFormPopUp();
+        removeClockAndText();
+        
+    })
+}
 
 
 // todo: remove dynamic seting of css, @nyakotey
