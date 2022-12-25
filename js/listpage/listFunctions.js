@@ -502,7 +502,7 @@ export function loadListPage(){
 }
 
 export async function displayAndAddListeners() {
-    await displayAndStartcount()
+     displayAndStartcount()
     // sortUI();
     addEventHandlers();
 }
