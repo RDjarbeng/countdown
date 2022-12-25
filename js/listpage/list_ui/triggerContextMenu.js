@@ -1,4 +1,4 @@
-import { hideContextMenus } from "../list_sort/hideContextMenus";
+import { hideContextMenus } from "./hideContextMenus";
 import { switchContextIconUp } from "./switchContextIcon";
 
 

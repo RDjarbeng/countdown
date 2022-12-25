@@ -1,6 +1,6 @@
-import { closeSortMenu } from "../list_ui/closeSortMenu";
+import { closeSortMenu } from "./closeSortMenu";
 import { removeElementSetDisplayNone } from "../../functions.js";
-import { switchContextIconDown } from "./listFunctions";
+import { switchContextIconDown } from "./switchContextIcon";
 
 /**
  * Closes all countdown context menus, event or triggered in code

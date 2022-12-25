@@ -7,7 +7,7 @@ import { addClickListenersWithoutDuplicates, setInnerHtmlForNotNull, stopClock, 
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_IDS";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
 import { notifyUser } from "../uiFunctions.js";
-import { hideContextMenus } from "./list_sort/hideContextMenus";
+import { hideContextMenus } from "./list_ui/hideContextMenus";
 import { addSortUI } from "./list_ui/addSortUI";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
 import { removeClockAndText, showClockRow } from "./list_ui/updateListpageClockAndText.js";
