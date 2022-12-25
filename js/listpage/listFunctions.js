@@ -437,7 +437,7 @@ export function updateCountdownItemFromForm(){
 /**
  * display countdowns and start updating display for countdowns in progress
  */
- export function displayAndStartcount() {
+ export function displayAndUpdatecount() {
     try{
 
         displayCountdowns()
@@ -458,7 +458,7 @@ export function updateCountdownItemFromForm(){
     let activeCountItems = document.querySelectorAll('.countdown-counting')
     const clock = new Clock();
     if (activeCountItems.length) {
-        await activeCountItems.forEach((element, _, countItems) => {
+        activeCountItems.forEach((element, _, countItems) => {
             clock.setEndDate(new Date(element.getAttribute('data-date')));
             clock.countDown();
             if (clock.getDistance() > 0) {
@@ -470,17 +470,15 @@ export function updateCountdownItemFromForm(){
                 let date = element.getAttribute('data-date');
                 if (index && date) {
                     updateRepeatCountdown(arrayOfCountdowns, date, index);
-                    displayAndStartcount();
+                    displayAndUpdatecount();
                 }
-                //         arrayOfCountdowns[index].date = new Anniversary(new Date(countdown.date)).endDate.toISOString();
-                // arrayOfCountdowns[index].dateModified = new Date().toISOString();
 
             } else {
                 console.log('elapsing', arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id')));
                 element.classList.remove('countdown-counting')
                 setInnerHtmlForNotNull(element, 'Elapsed');
                 //update bottom part of countdown
-                displayAndStartcount();
+                displayAndUpdatecount();
 
             }
 
@@ -502,7 +500,7 @@ export function loadListPage(){
 }
 
 export async function displayAndAddListeners() {
-     displayAndStartcount()
+     displayAndUpdatecount()
     // sortUI();
     addEventHandlers();
 }
