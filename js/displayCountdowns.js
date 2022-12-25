@@ -1,3 +1,3 @@
-import { loadListPage } from "./listFunctions.js";
+import { loadListPage } from "./listpage/listFunctions.js";
 // begin displaycountdown.js
 loadListPage();

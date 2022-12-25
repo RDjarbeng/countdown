@@ -1,5 +1,5 @@
-import { hideContextMenus } from "./list_sort/hideContextMenus";
-import { switchContextIconUp } from "./list_ui/switchContextIcon";
+import { hideContextMenus } from "../list_sort/hideContextMenus";
+import { switchContextIconUp } from "./switchContextIcon";
 
 
 export const triggerContextMenu = (element) => {

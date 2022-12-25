@@ -1,5 +1,5 @@
 import { closeSortMenu } from "../list_ui/closeSortMenu";
-import { removeElementSetDisplayNone } from "../functions.js";
+import { removeElementSetDisplayNone } from "../../functions.js";
 import { switchContextIconDown } from "./listFunctions";
 
 /**

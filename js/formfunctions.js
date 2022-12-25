@@ -1,6 +1,6 @@
 import { errorHandler } from './error.js';
 import { addZeros } from './functions.js'
-import { fetchArrayOfCountdowns } from './listFunctions.js';
+import { fetchArrayOfCountdowns } from './listpage/listFunctions.js';
 
 export const FORM_DOM_IDS = {
     form_TextInput: 'countdownText',

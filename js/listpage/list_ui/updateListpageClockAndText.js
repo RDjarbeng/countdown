@@ -1,5 +1,5 @@
-import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock } from "./functions.js";
-import { countdownTextDisplay, countdownClock } from "./listFunctions";
+import { removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock } from "../../functions";
+import { countdownClock, countdownTextDisplay } from "../listFunctions";
 
 
 

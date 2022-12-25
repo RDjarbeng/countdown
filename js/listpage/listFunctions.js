@@ -1,17 +1,16 @@
-import { startClock, stepIncreaseAndStart } from "./appfunctions.js";
-import { Clock, Anniversary } from "./clock.js";
+import { startClock, stepIncreaseAndStart } from "../appfunctions.js";
+import { Clock, Anniversary } from "../clock.js";
 import { closeSortMenu } from "./list_ui/closeSortMenu";
-import { errorHandler } from "./error.js";
-import { closeFormPopUp, FORM_DOM_IDS, displayFormPopUp, saveCountDownList, getCdFromFormInputs } from "./formfunctions.js";
-import { addClickListenersWithoutDuplicates, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
+import { errorHandler } from "../error.js";
+import { closeFormPopUp, FORM_DOM_IDS, displayFormPopUp, saveCountDownList, getCdFromFormInputs } from "../formfunctions.js";
+import { addClickListenersWithoutDuplicates, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "../functions.js";
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_IDS";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
-import { notifyUser } from "./uiFunctions.js";
+import { notifyUser } from "../uiFunctions.js";
 import { hideContextMenus } from "./list_sort/hideContextMenus";
 import { addSortUI } from "./list_ui/addSortUI";
-import { removeClockAndText } from "./removeClockAndText";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
-import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
+import { removeClockAndText, showClockRow } from "./list_ui/updateListpageClockAndText.js";
 
 /**
  * Update a single countdown item in the array of countdowns
