@@ -1,19 +1,17 @@
 import { startClock, stepIncreaseAndStart } from "./appfunctions.js";
 import { Clock, Anniversary } from "./clock.js";
+import { closeSortMenu } from "./list_ui/closeSortMenu";
 import { errorHandler } from "./error.js";
 import { closeFormPopUp, FORM_DOM_IDS, displayFormPopUp, saveCountDownList, getCdFromFormInputs } from "./formfunctions.js";
-import { addClickListenersWithoutDuplicates, removeElementSetDisplayNone, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
+import { addClickListenersWithoutDuplicates, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "./functions.js";
+import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_IDS";
+import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
 import { notifyUser } from "./uiFunctions.js";
-/* SECTION: DISPLAY COUNTDOWNS */
-
-export const LISTPAGE_DOM_IDS ={
-    clockDayElement:'day-num',
-    clockHourElement: 'hour-num',
-    clockMinuteElement: 'min-num',
-    clockSecondElement: 'sec-num',
-    countdownTextDisplay: 'countdown-text',
-    countdownList: 'countdown-list'
-}
+import { hideContextMenus } from "./list_sort/hideContextMenus";
+import { showClockRow } from "./list_ui/showClockRow";
+import { triggerContextMenu } from "./triggerContextMenu";
+import { addSortUI } from "./list_ui/addSortUI";
+import { removeClockAndText } from "./removeClockAndText";
 /**
  * Update a single countdown item in the array of countdowns
  *  with text, date, dateModified and repeat
@@ -113,21 +111,6 @@ export function getCountdownString(clock) {
     return ` ${countdownString} more`;
 }
 /**
- * Sort countdown array by date modified or due date
- * @param {Array.<{text: String, date: String, dateModified: String, repeat: String}>} arrayOfCountdowns | contains array of countdown objects
- */
-
-export function sortArrayOnSelection(arrayOfCountdowns) {
-    let sortType = localStorage.getItem('sort');
-    if (sortType == "due") {
-        // sort by due date if present
-        arrayOfCountdowns.sort((countItem1, countItem2) => new Date(countItem2.date).getTime() - new Date(countItem1.date).getTime());
-    } else {
-        arrayOfCountdowns.sort((countItem1, countItem2) => new Date(countItem1.dateModified).getTime() - new Date(countItem2.dateModified).getTime());
-    }
-}
-
-/**
  * 
  * @param {{text: String, date: String, dateModified: String}} countdown 
  * @param {Number} index the array index of the current item
@@ -219,55 +202,6 @@ export  function fetchArrayOfCountdowns() {
     return JSON.parse(jsonListOfCountdowns);
 }
 /**
- * closes the context menu for the sort option
- */
-export const closeSortMenu = () => {
-    const sortOpts = document.querySelector(".sort-options");
-    if (sortOpts && sortOpts.style.display == "block") {
-        sortOpts.style.display = "none";
-    }
-}
-/**
- * Closes all countdown context menus, event or triggered in code
- * @param {Event} [event] 
- */
-export function hideContextMenus(event) {
-    //if function is not triggered by event listener, event is empty
-    if ((!(event != null)) || !(event.target.className == 'countdown-list-options' || event.target.tagName == 'I' || (event.target.className.search('sort-title') > -1))) {
-        document.querySelectorAll('.menu').forEach(contextMenu => removeElementSetDisplayNone(contextMenu));
-        document.querySelectorAll('.fa-chevron-circle-up').forEach(element => switchContextIconDown(element));
-        closeSortMenu();
-        // }
-    }
-}
-
-/**
- * Display the mini clock on the countdownlist page
- */
- export const showClockRow = () => {
-    //  if ([null, "", undefined].includes(document.querySelector(".clock-row").style.display)) {
-         const clockRow = document.querySelector(".clock-row")
-         if (clockRow) {
-            console.log('Showing the clock row')
-            clockRow.style.display = "flex";
-            clockRow.style.animationPlayState = "running";
-        }
-    // }
-}
-
-export function switchContextIconUp(element) {
-    element = element.querySelector('.fa-chevron-circle-down')
-    if (element) {
-        element.classList.replace('fa-chevron-circle-down', 'fa-chevron-circle-up');
-    }
-}
-
-export function switchContextIconDown(element) {
-    if (element)
-        element.classList.replace('fa-chevron-circle-up', 'fa-chevron-circle-down');
-}
-
-/**
  * Checks if the target element is part of a countdown
  * @param {HTMLElement} targetElement 
  * @returns {Boolean}
@@ -299,21 +233,6 @@ export const setMainClockCountdown=(countdown) =>{
         
 }
 
-export const triggerContextMenu = (element) => {
-    if (element.querySelector(".menu")) {
-        if (element.querySelector(".menu").style.display == "block") {
-            hideContextMenus();
-        }
-        else {
-            hideContextMenus();//close all context menus before displaying the clicked one
-            element.querySelector(".menu").style.display = "block";
-            switchContextIconUp(element);
-            // console.log("context-menu: show");
-        }
-    }
-}
-
-
 export function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
@@ -321,23 +240,6 @@ export function updateClockAndText(date, text, animation = true) {
     (animation) ? stepIncreaseAndStart(clock, { dayNumber, hourNumber, minNumber, secNumber }, 400) : null;
     interval = startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500, interval);
 
-}
-
-export function addSortUI(){
-    if (!document.querySelector(".list-settings")) {
-        const listContainer = document.querySelector(".list-container");
-        let sortHtml = `
-        <section class="list-settings">
-            <div class="sort">
-                <div class="sort-options">
-                    <div class="sort-opt modified">Date modified</div>
-                    <div class="sort-opt due">Due date</div>
-                </div>
-                <div class="sort-title"><i class="fas fas fa-sort-amount-up"></i> Sort By </div>
-            </div>
-        </section>`;
-        listContainer.insertAdjacentHTML("afterbegin", sortHtml);
-    }
 }
 
 export const sortTitleEventHandler = () => {
@@ -421,13 +323,6 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
 }
 
 
-export function removeClockAndText() {
-    stopClock();
-    setInnerHtmlForNotNull(countdownTextDisplay, '')
-    if (countdownClock) {
-        removeElementSetDisplayNone(countdownClock)
-    }
-}
 /**
  * Adds event listeners for the list and the page container for closing context menus
  */
@@ -622,9 +517,9 @@ const hourNumber = document.getElementById(LISTPAGE_DOM_IDS.clockHourElement);
 const minNumber = document.getElementById(LISTPAGE_DOM_IDS.clockMinuteElement);
 const secNumber = document.getElementById(LISTPAGE_DOM_IDS.clockSecondElement);
 
-const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
+export const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
 const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
-const countdownClock = document.querySelector('.clock-row');
+export const countdownClock = document.querySelector('.clock-row');
 // clock interval tracker
 let interval;
 let countItemExists = false;
