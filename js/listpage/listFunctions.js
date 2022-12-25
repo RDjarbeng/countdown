@@ -11,6 +11,7 @@ import { hideContextMenus } from "./list_ui/hideContextMenus";
 import { addSortUI } from "./list_ui/addSortUI";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
 import { removeClockAndText, showClockRow } from "./list_ui/updateListpageClockAndText.js";
+import { popAndAddFormOnList } from "../formupdate.js";
 
 /**
  * Update a single countdown item in the array of countdowns
@@ -518,6 +519,9 @@ const secNumber = document.getElementById(LISTPAGE_DOM_IDS.clockSecondElement);
 export const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
 const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
 export const countdownClock = document.querySelector('.clock-row');
+//get button for create countdown
+const createButton = document.getElementsByClassName("new-item")[0];
+createButton.addEventListener("click", popAndAddFormOnList);
 // clock interval tracker
 let interval;
 let countItemExists = false;

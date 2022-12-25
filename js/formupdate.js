@@ -1,7 +1,7 @@
 import { popForm, closeFormPopUp, saveCountdownForm, FORM_DOM_IDS } from './formfunctions.js'
 import { errorHandler } from './error.js';
 import { loadListPage, updateArrayOfCountdownState } from './listpage/listFunctions.js';
-const popAndAddFormOnList = () => {
+export const popAndAddFormOnList = () => {
     popForm()
     handleListpageFormSubmission();
 }
@@ -35,5 +35,3 @@ function handleListpageFormSubmission() {
 // }
 
 // DOM Elements
-const createButton = document.getElementsByClassName("new-item")[0];
-createButton.addEventListener("click", popAndAddFormOnList);
