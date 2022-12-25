@@ -344,11 +344,9 @@ function addListEventListener() {
 const listEventListener = event => {
     const targetElement = event.target;
 
-    // if event is fired on text or date
+    // if event is fired on text or date, countdown item
     if (isTargetElementOnCountdownItem(targetElement)) {
         console.log(targetElement,'parent', targetElement.parentElement);
-        
-        // let targetIndex = targetElement.parentElement.getAttribute('data-index');
         let targetIndex = getArrayIndexByDateModified(arrayOfCountdowns,targetElement.parentElement.getAttribute('data-id'))
         // todo: find a better way of accessing element in countdown array
         console.log(targetIndex, 'index of element found in array')
@@ -413,7 +411,6 @@ const listEventListener = event => {
         }
     }
 }
-// todo: move this function to form update.js
 
 export function updateCountdownItemFromForm(){
     let countItem =getCdFromFormInputs();
