@@ -8,10 +8,10 @@ import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_IDS";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
 import { notifyUser } from "./uiFunctions.js";
 import { hideContextMenus } from "./list_sort/hideContextMenus";
-import { showClockRow } from "./list_ui/showClockRow";
 import { addSortUI } from "./list_ui/addSortUI";
 import { removeClockAndText } from "./removeClockAndText";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
+import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
 
 /**
  * Update a single countdown item in the array of countdowns
