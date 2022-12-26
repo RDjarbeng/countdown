@@ -3,16 +3,10 @@ import { Anniversary, Clock } from "../clock.js";
 import { errorHandler } from "../error.js";
 import { getCdFromFormInputs, saveCountDownList } from "../formfunctions.js";
 import { popAndAddFormOnList } from "../formupdate.js";
-import { addClickListenersWithoutDuplicates, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "../functions.js";
+import { setInnerHtmlForNotNull, stopClock } from "../functions.js";
 import { fetchArrayOfCountdowns } from "../getCountdowns/fetchArrayOfCountdowns";
-import { notifyUser } from "../uiFunctions.js";
-import { listEventListener } from "./listEventListener";
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_SELECTORS";
-import { addSortEventListeners, sortTitleEventHandler } from "./list_sort/sort.js";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
-import { addSortUI } from "./list_ui/addSortUI";
-import { closeSortMenu } from "./list_ui/closeSortMenu";
-import { hideContextMenus } from "./list_ui/hideContextMenus";
 
 /**
  * Update a single countdown item in the array of countdowns
