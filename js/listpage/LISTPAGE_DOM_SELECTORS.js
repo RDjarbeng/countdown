@@ -5,5 +5,10 @@ export const LISTPAGE_DOM_IDS = {
     clockMinuteElement: 'min-num',
     clockSecondElement: 'sec-num',
     countdownTextDisplay: 'countdown-text',
-    countdownList: 'countdown-list'
+    countdownList: 'countdown-list',
+};
+
+
+export const LISTPAGE_DOM_CLASSES = {
+    countdownList: '.countdown-list',
 };
