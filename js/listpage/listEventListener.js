@@ -38,6 +38,22 @@ import { getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, upd
         
 }
 
+function addListEventListener() {
+    const countList = document.querySelector('.countdown-list')
+    addClickListenersWithoutDuplicates(countList, listEventListener)
+}
+
+/**
+ * Adds event listeners for the list and the page container for closing context menus
+ */
+ export function addEventHandlers() {
+    addListEventListener();
+    // add context menu event listener
+    document.querySelector('.container').addEventListener("click", hideContextMenus);
+}
+
+
+
 /**
  * List Click event listener for the countdowns, context menu and items
  * @param {Event} event
