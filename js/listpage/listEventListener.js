@@ -1,10 +1,11 @@
 import { errorHandler } from "../error.js";
 import { displayFormPopUp, saveCountDownList } from "../formfunctions.js";
-import { setInnerHtmlForNotNull } from "../functions.js";
+import { addClickListenersWithoutDuplicates, setInnerHtmlForNotNull } from "../functions.js";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
 import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
 import { handleFormUpdate } from "../formupdate.js";
 import { getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, updateArrayOfCountdownState, countdownList, populateList, deleteFromCountdownsWithId } from "./listFunctions";
+import { hideContextMenus } from "./list_ui/hideContextMenus.js";
 
 /**
  * Checks if the target element is part of a countdown
@@ -37,7 +38,6 @@ import { getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, upd
     }
         
 }
-
 function addListEventListener() {
     const countList = document.querySelector('.countdown-list')
     addClickListenersWithoutDuplicates(countList, listEventListener)
