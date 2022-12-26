@@ -1,17 +1,17 @@
 import { startClock, stepIncreaseAndStart } from "../appfunctions.js";
-import { Clock, Anniversary } from "../clock.js";
-import { closeSortMenu } from "./list_ui/closeSortMenu";
+import { Anniversary, Clock } from "../clock.js";
 import { errorHandler } from "../error.js";
-import { closeFormPopUp, FORM_DOM_IDS, saveCountDownList, getCdFromFormInputs } from "../formfunctions.js";
+import { getCdFromFormInputs, saveCountDownList } from "../formfunctions.js";
+import { popAndAddFormOnList } from "../formupdate.js";
 import { addClickListenersWithoutDuplicates, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "../functions.js";
+import { fetchArrayOfCountdowns } from "../getCountdowns/fetchArrayOfCountdowns";
+import { notifyUser } from "../uiFunctions.js";
+import { listEventListener } from "./listEventListener";
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_IDS";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
-import { notifyUser } from "../uiFunctions.js";
-import { hideContextMenus } from "./list_ui/hideContextMenus";
 import { addSortUI } from "./list_ui/addSortUI";
-import { removeClockAndText } from "./list_ui/updateListpageClockAndText.js";
-import { popAndAddFormOnList } from "../formupdate.js";
-import { listEventListener } from "./listEventListener";
+import { closeSortMenu } from "./list_ui/closeSortMenu";
+import { hideContextMenus } from "./list_ui/hideContextMenus";
 
 /**
  * Update a single countdown item in the array of countdowns
@@ -189,7 +189,6 @@ export const setCountItemExists= (value)=> countItemExists = value;
  * @returns {Boolean}
  */
 export const getCountItemExists= ()=> countItemExists;
-
 /**
  * Checks if the target element is part of a countdown
  * @param {HTMLElement} targetElement 
