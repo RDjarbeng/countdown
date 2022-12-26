@@ -36,8 +36,6 @@ export const listEventListener = event => {
             // find the element convert to JSON and place it as the main clock
             const countdown = arrayOfCountdowns.find((countdown) => countdown.dateModified == count_modified);
             setMainClockCountdown(countdown);
-
-
         } else if (isClassOnTargetElement(targetElement, 'del')) {
             // fetch array if not existing in workspace
             if (!arrayOfCountdowns) {
@@ -46,14 +44,11 @@ export const listEventListener = event => {
 
             }
             deleteFromCountdownsWithId(count_modified);
-            
             setInnerHtmlForNotNull(countdownList, populateList(arrayOfCountdowns));
-            // console.log('delete clicked', targetElement.parentElement, arrayOfCountdowns[targetElement.parentElement.getAttribute('data-index')]);
         } else if (isClassOnTargetElement(targetElement, 'edit')) {
             if (!arrayOfCountdowns) {
                 console.log("Strangely array was not found in list functions on edit");
                 updateArrayOfCountdownState();
-
             }
             console.log(arrayOfCountdowns);
             let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
