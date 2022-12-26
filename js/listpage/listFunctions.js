@@ -189,19 +189,7 @@ export const setCountItemExists= (value)=> countItemExists = value;
  * @returns {Boolean}
  */
 export const getCountItemExists= ()=> countItemExists;
-/**
- * 
- * @returns {Array} Array of countdowns stored in local storage, null if none
- */
-export  function fetchArrayOfCountdowns() {
-    let jsonListOfCountdowns =  localStorage.getItem('countdown');
-    if(!jsonListOfCountdowns){
-        console.warn('Unable to fetch your saved countdowns in fetch array()')
-        console.log('Warning in fetch Array of Countdowns, null fetched');
-        return null;
-    }
-    return JSON.parse(jsonListOfCountdowns);
-}
+
 /**
  * Checks if the target element is part of a countdown
  * @param {HTMLElement} targetElement 
