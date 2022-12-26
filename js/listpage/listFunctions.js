@@ -212,8 +212,6 @@ export  function displayCountdowns() {
         setInnerHtmlForNotNull(countdownTextDisplay, '')
 
         setCountItemStatus(arrayOfCountdowns)
-        addSortUIAndListeners();
-
     } else {
         setDefaultTextForEmptyCountdowns();
     }
