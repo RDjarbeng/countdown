@@ -8,6 +8,7 @@ import { fetchArrayOfCountdowns } from "../getCountdowns/fetchArrayOfCountdowns"
 import { notifyUser } from "../uiFunctions.js";
 import { listEventListener } from "./listEventListener";
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_SELECTORS";
+import { sortTitleEventHandler } from "./list_sort/sort.js";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
 import { addSortUI } from "./list_ui/addSortUI";
 import { closeSortMenu } from "./list_ui/closeSortMenu";
@@ -248,9 +249,9 @@ export const setDefaultTextForEmptyCountdowns=()=>{
 /**
  * Adds sort menu to the page
  */
- export const addSortUIAndListeners = async () => {
+ export const addSortUIAndListeners = () => {
     addSortUI();
-    await addSortEventListeners();
+     addSortEventListeners();
 }
 
 /**
