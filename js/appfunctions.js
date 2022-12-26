@@ -8,6 +8,7 @@ import {setInnerHtmlForNotNull, addZeros } from "./functions.js";
  */
  export async function waitForAnimationUpdate(clock, domElements, duration, interval ) {
     await stepIncreaseAndStart(clock , domElements, duration );
+    // todo:fix this undefined function
     return startClockAndReset(clock , domElements, interval);
 }
 
