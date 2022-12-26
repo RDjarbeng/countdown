@@ -1,4 +1,6 @@
+import { errorHandler } from "../../error";
 import { addClickListenersWithoutDuplicates, toggleElementDisplayBlockOnScreen } from "../../functions";
+import { fetchArrayOfCountdowns } from "../../getCountdowns/fetchArrayOfCountdowns";
 import { addSortUI } from "../list_ui/addSortUI";
 
 export const sortTitleEventHandler = () => {
@@ -40,6 +42,9 @@ export const addSortEventListeners = () => {
  * Adds sort menu to the page
  */
  export const addSortUIAndListeners = () => {
-    addSortUI();
-     addSortEventListeners();
+    if(fetchArrayOfCountdowns.length){
+        addSortUI();
+    addSortEventListeners();
+
+    }
 }
