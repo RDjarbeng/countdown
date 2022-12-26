@@ -1,8 +1,10 @@
 import { errorHandler } from "./error.js";
-import { notifyUser, showLoader, removeLoader, setTheme, addFormCSS } from "./uiFunctions.js";
-import { $, setLink, fileSizeOk, fetchFile } from "./functions.js";
-import { closeFormPopUp } from "./formfunctions";
+import { notifyUser, setTheme } from "./uiFunctions.js";
+import { $, setLink, fileSizeOk, convertToBlob } from "./functions.js";
+import { closeFormPopUp } from "./formfunctions.js";
+import formUploadHtml from "../html/form-upload.html?raw";
 
+const body = document.body;
 const nav = $(".nav")[0];
 const sidebar = $(".sidebar")[0];
 const sidebarItems = $(".sidebar-list")[0];
@@ -72,8 +74,8 @@ function openColorPicker() {
 }
 
 function openBgPicker() {
-    addFormCSS();
-    showLoader();
+    body.insertAdjacentHTML("afterbegin", formUploadHtml);
+    body.style.position = "fixed";
     processForm().catch(err => {
         errorHandler("Unable to set custom background");
         console.log(err);
@@ -81,34 +83,24 @@ function openBgPicker() {
 
     //defs
     async function processForm() {
-
-        let formHtml = await fetchFile("/html/form-upload.html", "text");
-        removeLoader();
-        document.body.insertAdjacentHTML("afterbegin", formHtml);
-        document.body.style.position = "fixed";
-
         //form DOM
-        const filePicker = document.querySelector("input[type='file']");
-        const closeFormBtn = $(".close-form")[0]
-        const resetBtn = $(".reset")[0]
+        const filePicker = $("input[type='file']")[0];
+        const closeFormBtn = $(".close-form")[0];
+        const resetBtn = $(".reset")[0];
         const defaultImgs = $(".bg-presets-preview:not(.upload-preview) img");
         //main
-        filePicker.onchange = () => {
-            processImg(filePicker.files[0]);
-        };
+        filePicker.addEventListener("change", () => {processImg(filePicker.files[0])});
         closeFormBtn.addEventListener("click", closeFormPopUp);
         resetBtn.addEventListener("click", () => {
             localStorage.removeItem("userBg");
-            document.body.style.backgroundImage = "";
+            body.style.backgroundImage = "";
             notifyUser("Default background restored");
             closeFormPopUp();
         });
         defaultImgs.forEach((img) => {
-            img.addEventListener("click", async () => {
-                let imgBlob = await fetchFile(img.src, "blob");
-                processImg(imgBlob);
-            });
+            img.addEventListener("click", async () => {processImg(await convertToBlob(img.src));});
         });
+        
         //defs
         function processImg(uploadedPic) {
             let reader = new FileReader();
@@ -122,7 +114,7 @@ function openBgPicker() {
             reader.onload = function () {
                 let uploadedPic64 = reader.result;
                 localStorage.setItem("userBg", `${uploadedPic64}`);
-                document.body.style.backgroundImage = `url(${uploadedPic64})`;
+                body.style.backgroundImage = `url(${uploadedPic64})`;
                 notifyUser("Background is set");
                 closeFormPopUp();
             };

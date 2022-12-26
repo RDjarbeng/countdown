@@ -110,3 +110,7 @@ export const fetchFile = async (link,type)=>{
     }
     return data;
 }
+
+export async function convertToBlob (fileUrl) {
+    return await fetchFile(fileUrl, "blob");
+}
