@@ -203,10 +203,7 @@ export function updateClockAndText(date, text, animation = true) {
 
 }
 
-export const sortTitleEventHandler = () => {
-    const sortOpts = document.querySelector(".sort-options");
-    toggleElementDisplayBlockOnScreen(sortOpts);
-}
+
 
 export const addSortEventListeners = () => {
     const sortOpts = document.querySelector(".sort-options");
@@ -284,18 +281,7 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
 }
 
 
-/**
- * Adds event listeners for the list and the page container for closing context menus
- */
-export function addEventHandlers() {
-    addListEventListener();
-    // add context menu event listener
-    document.querySelector('.container').addEventListener("click", hideContextMenus);
-}
-function addListEventListener() {
-    const countList = document.querySelector('.countdown-list')
-    addClickListenersWithoutDuplicates(countList, listEventListener)
-}
+
 
 export function updateCountdownItemFromForm(){
     let countItem =getCdFromFormInputs();
