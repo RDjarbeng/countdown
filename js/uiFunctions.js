@@ -3,7 +3,7 @@ import * as components from "./customComponents.js"
 
 // DOM elements
 let body = document.body
-export let icon = document.getElementById('themeToggle');
+let icon = document.getElementById('themeToggle');
 /**
  * 
  * @param {String} message 

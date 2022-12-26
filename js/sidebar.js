@@ -1,6 +1,7 @@
 import { errorHandler } from "./error.js";
 import { notifyUser, showLoader, removeLoader, setTheme, addFormCSS } from "./uiFunctions.js";
-import { $, setLink, fileSizeOk, fetchFile } from "./functions.js"
+import { $, setLink, fileSizeOk, fetchFile } from "./functions.js";
+import { closeFormPopUp } from "./formfunctions";
 
 const nav = $(".nav")[0];
 const sidebar = $(".sidebar")[0];
@@ -85,7 +86,7 @@ function openBgPicker() {
         removeLoader();
         document.body.insertAdjacentHTML("afterbegin", formHtml);
         document.body.style.position = "fixed";
-        
+
         //form DOM
         const filePicker = document.querySelector("input[type='file']");
         const closeFormBtn = $(".close-form")[0]
@@ -104,15 +105,11 @@ function openBgPicker() {
         });
         defaultImgs.forEach((img) => {
             img.addEventListener("click", async () => {
-                    let imgBlob = await fetchFile(img.src,"blob");
-                    processImg(imgBlob);
+                let imgBlob = await fetchFile(img.src, "blob");
+                processImg(imgBlob);
             });
         });
         //defs
-        function closeFormPopUp() {
-            document.getElementsByClassName("pop-up-container")[0].remove();
-            document.body.style.position = "";
-        }
         function processImg(uploadedPic) {
             let reader = new FileReader();
             if (fileSizeOk(uploadedPic)) {
