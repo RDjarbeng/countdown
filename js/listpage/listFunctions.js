@@ -198,7 +198,9 @@ export const getCountItemExists= ()=> countItemExists;
  */
 export const isTargetElementOnContextMenu=(targetElement)=> (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I');
 /**
- * 
+ * @param {HTMLElement} targetElement 
+ * @param {String} className 
+ * @returns {Boolean}
  */
 export const isClassOnTargetElement=(targetElement, className) => (targetElement.className.search(className) > -1);
 

@@ -4,7 +4,7 @@ import { setInnerHtmlForNotNull } from "../functions.js";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
 import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
 import { handleFormUpdate } from "../formupdate.js";
-import { isTargetElementOnCountdownItem, getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, updateArrayOfCountdownState, countdownList, populateList, deleteFromCountdownsWithId } from "./listFunctions";
+import { getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, updateArrayOfCountdownState, countdownList, populateList, deleteFromCountdownsWithId } from "./listFunctions";
 
 /**
  * Checks if the target element is part of a countdown
