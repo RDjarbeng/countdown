@@ -1,6 +1,7 @@
 import { popForm, closeFormPopUp, saveCountdownForm, FORM_DOM_IDS } from './formfunctions.js'
 import { errorHandler } from './error.js';
-import { loadListPage, updateArrayOfCountdownState } from './listpage/listFunctions.js';
+import { displayCountdowns, loadListPage, updateArrayOfCountdownState, updateCountdownItemFromForm, updateLocalItem } from './listpage/listFunctions.js';
+import { removeClockAndText } from './listpage/list_ui/updateListpageClockAndText.js';
 export const popAndAddFormOnList = () => {
     popForm()
     handleListpageFormSubmission();
@@ -29,9 +30,9 @@ export function handleFormUpdate() {
     submitbutton.addEventListener('click', (e) => {
         e.preventDefault();
         submitbutton.disabled = true;
-
+        
         const modifiedTimeAsID = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
-        updateLocalItem(arrayOfCountdowns, updateCountdownItemFromForm(), modifiedTimeAsID);
+        updateLocalItem(updateCountdownItemFromForm(), modifiedTimeAsID);
         displayCountdowns();
         closeFormPopUp();
         removeClockAndText();
