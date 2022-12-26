@@ -22,7 +22,7 @@ import { listEventListener } from "./listEventListener";
  */
 
 
-export function updateLocalItem(arrayOfCountdowns, countItem, id) {
+export function updateLocalItem( countItem, id) {
     id =id.trim();
     if (arrayOfCountdowns !== null) { //countdowns already exist
         let pos = arrayOfCountdowns.findIndex((value) => value.dateModified == id
