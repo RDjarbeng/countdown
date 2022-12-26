@@ -8,7 +8,7 @@ import { fetchArrayOfCountdowns } from "../getCountdowns/fetchArrayOfCountdowns"
 import { notifyUser } from "../uiFunctions.js";
 import { listEventListener } from "./listEventListener";
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_SELECTORS";
-import { sortTitleEventHandler } from "./list_sort/sort.js";
+import { addSortEventListeners, sortTitleEventHandler } from "./list_sort/sort.js";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
 import { addSortUI } from "./list_ui/addSortUI";
 import { closeSortMenu } from "./list_ui/closeSortMenu";
@@ -191,10 +191,6 @@ export const setCountItemExists= (value)=> countItemExists = value;
  */
 export const getCountItemExists= ()=> countItemExists;
 
-
-
-
-
 export function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));
     setInnerHtmlForNotNull(countdownTextDisplay, text);
@@ -204,21 +200,6 @@ export function updateClockAndText(date, text, animation = true) {
 
 }
 
-
-
-export const addSortEventListeners = () => {
-    const sortOpts = document.querySelector(".sort-options");
-    const sortTitle = document.querySelector(".sort-title");
-
-    if (!(sortTitle && sortOpts)) {
-        console.log('Var sort title and sortOpts is null', 'sort title', sortTitle, 'sort opts', sortOpts);
-        errorHandler("Something's wrong in sort UI")
-        return;
-    }
-    // sort options menu events
-    addClickListenersWithoutDuplicates(sortTitle, sortTitleEventHandler)
-    addClickListenersWithoutDuplicates(sortOpts, sortOptionsEventHandler)
-}
 
 export  function displayCountdowns() {
     let arrayOfCountdowns =  fetchArrayOfCountdowns();
@@ -246,28 +227,9 @@ export const setDefaultTextForEmptyCountdowns=()=>{
         setInnerHtmlForNotNull(countdownTextDisplay, '')
 }
 
-/**
- * Adds sort menu to the page
- */
- export const addSortUIAndListeners = () => {
-    addSortUI();
-     addSortEventListeners();
-}
 
-/**
- * Handle event when user clicks on item in sort menu
- * @param {Event} event 
- */
-export const sortOptionsEventHandler = (event) => {
-    if (event.target.className.search('due') > -1) {
-        localStorage.setItem('sort', 'due')
-    } else if (event.target.className.search('modified') > -1) {
-        localStorage.setItem('sort', 'modified')
-    }
-    // close sortOptions menu on selection and refresh list
-    closeSortMenu();
-    displayCountdowns();
-}
+
+
 
 export const getCountdownByDateModified = (dateModified)=>{
     return arrayOfCountdowns.find((countdown, index) => countdown.dateModified == dateModified);
