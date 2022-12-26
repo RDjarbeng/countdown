@@ -192,18 +192,7 @@ export const getCountItemExists= ()=> countItemExists;
 
 
 
-export const setMainClockCountdown=(countdown) =>{
-    if(countdown){
-        const countdownToStore=JSON.stringify(countdown)
-        localStorage.setItem('mainClock',countdownToStore);
-        let date = new Date(countdown.date);
-        notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
-    }else{
-        errorHandler('Could not set main clock');
-        console.log("set main clock() received a null or undefined countdown")
-    }
-        
-}
+
 
 export function updateClockAndText(date, text, animation = true) {
     let clock = new Clock(new Date(date));

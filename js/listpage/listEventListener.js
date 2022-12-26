@@ -4,7 +4,7 @@ import { setInnerHtmlForNotNull } from "../functions.js";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
 import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
 import { handleFormUpdate } from "../formupdate.js";
-import { getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, updateArrayOfCountdownState, countdownList, populateList, deleteFromCountdownsWithId } from "./listFunctions";
+import { getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, updateArrayOfCountdownState, countdownList, populateList, deleteFromCountdownsWithId } from "./listFunctions";
 
 /**
  * Checks if the target element is part of a countdown
@@ -25,6 +25,19 @@ import { getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, isT
   */
  export const isClassOnTargetElement=(targetElement, className) => (targetElement.className.search(className) > -1);
  
+ export const setMainClockCountdown=(countdown) =>{
+    if(countdown){
+        const countdownToStore=JSON.stringify(countdown)
+        localStorage.setItem('mainClock',countdownToStore);
+        let date = new Date(countdown.date);
+        notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
+    }else{
+        errorHandler('Could not set main clock');
+        console.log("set main clock() received a null or undefined countdown")
+    }
+        
+}
+
 /**
  * List Click event listener for the countdowns, context menu and items
  * @param {Event} event
