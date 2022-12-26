@@ -309,18 +309,14 @@ export function updateCountdownItemFromForm(){
  */
 export function loadListPage(){
     try {
-        displayAndAddListeners();
+        displayAndUpdatecount()
     } catch (err) {
         console.log(err, 'err in updating countdown initialisation');
         errorHandler("Unable to fetch & update your countdowns");
     }
 }
 
-export async function displayAndAddListeners() {
-     displayAndUpdatecount()
-    // sortUI();
-    addEventHandlers();
-}
+
 
 export const deleteFromCountdownsWithId=(id)=>{ 
     arrayOfCountdowns= arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != id);
