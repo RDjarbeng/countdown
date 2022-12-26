@@ -12,7 +12,19 @@ import { getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, isT
  * @returns {Boolean}
  */
  export const isTargetElementOnCountdownItem=(targetElement)=> (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date');
-
+/**
+ * Checks if the target element is part of context menu
+ * @param {HTMLElement} targetElement 
+ * @returns {Boolean}
+ */
+ export const isTargetElementOnContextMenu=(targetElement)=> (targetElement.className == 'countdown-list-options' || targetElement.tagName == 'I');
+ /**
+  * @param {HTMLElement} targetElement 
+  * @param {String} className 
+  * @returns {Boolean}
+  */
+ export const isClassOnTargetElement=(targetElement, className) => (targetElement.className.search(className) > -1);
+ 
 /**
  * List Click event listener for the countdowns, context menu and items
  * @param {Event} event
