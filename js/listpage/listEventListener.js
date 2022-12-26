@@ -7,6 +7,13 @@ import { handleFormUpdate } from "../formupdate.js";
 import { isTargetElementOnCountdownItem, getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, isTargetElementOnContextMenu, isClassOnTargetElement, setMainClockCountdown, updateArrayOfCountdownState, countdownList, populateList, deleteFromCountdownsWithId } from "./listFunctions";
 
 /**
+ * Checks if the target element is part of a countdown
+ * @param {HTMLElement} targetElement 
+ * @returns {Boolean}
+ */
+ export const isTargetElementOnCountdownItem=(targetElement)=> (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date');
+
+/**
  * List Click event listener for the countdowns, context menu and items
  * @param {Event} event
  */

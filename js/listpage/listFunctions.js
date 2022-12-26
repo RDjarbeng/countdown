@@ -6,7 +6,7 @@ import { popAndAddFormOnList } from "../formupdate.js";
 import { addClickListenersWithoutDuplicates, setInnerHtmlForNotNull, stopClock, toggleElementDisplayBlockOnScreen } from "../functions.js";
 import { fetchArrayOfCountdowns } from "../getCountdowns/fetchArrayOfCountdowns";
 import { notifyUser } from "../uiFunctions.js";
-import { listEventListener } from "./listEventListener";
+import { isTargetElementOnCountdownItem, listEventListener } from "./listEventListener";
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_IDS";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
 import { addSortUI } from "./list_ui/addSortUI";
@@ -189,12 +189,6 @@ export const setCountItemExists= (value)=> countItemExists = value;
  * @returns {Boolean}
  */
 export const getCountItemExists= ()=> countItemExists;
-/**
- * Checks if the target element is part of a countdown
- * @param {HTMLElement} targetElement 
- * @returns {Boolean}
- */
-export const isTargetElementOnCountdownItem=(targetElement)=> (targetElement.className == 'countdown-list-text' || targetElement.className == 'countdown-list-date');
 
 
 /**
