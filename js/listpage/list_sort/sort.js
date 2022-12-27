@@ -2,7 +2,7 @@ import { errorHandler } from "../../error";
 import { addClickListenersWithoutDuplicates, toggleElementDisplayBlockOnScreen } from "../../functions";
 import { displayCountdowns, getArrayOfCountdownStatus } from "../listFunctions";
 import { LISTPAGE_DOM_CLASSES } from "../LISTPAGE_DOM_SELECTORS";
-import { addSortUI } from "../list_ui/addSortUI";
+import { addSortUI, removeSortUI } from "../list_ui/addSortUI";
 import { closeSortMenu } from "../list_ui/closeSortMenu";
 
 
@@ -51,5 +51,7 @@ export const addSortEventListeners = () => {
         addSortUI();
     addSortEventListeners();
 
+    }else{
+     removeSortUI();   
     }
 }
