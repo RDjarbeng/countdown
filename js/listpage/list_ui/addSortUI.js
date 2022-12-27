@@ -1,3 +1,4 @@
+import { removeElementSetDisplayNone } from "../../functions";
 
 export function addSortUI() {
     if (!document.querySelector(".list-settings")) {
@@ -14,4 +15,11 @@ export function addSortUI() {
         </section>`;
         listContainer.insertAdjacentHTML("afterbegin", sortHtml);
     }
+}
+
+export const removeSortUI=()=> {
+    let sortContainer =document.querySelector(".list-settings")
+    if (sortContainer){
+        removeElementSetDisplayNone(sortContainer);
+    } 
 }
