@@ -1,13 +1,15 @@
 import { errorHandler } from "../error.js";
-import { displayFormPopUp, saveCountDownList } from "../formfunctions.js";
+import { displayFormPopUp } from "../formfunctions.js";
+import { handleFormUpdate } from "../formupdate.js";
 import { addClickListenersWithoutDuplicates, setInnerHtmlForNotNull } from "../functions.js";
+import { notifyUser } from "../uiFunctions.js";
+import { countdownList, deleteFromCountdownsWithId, getArrayIndexByDateModified, getArrayOfCountdownStatus, populateList, updateArrayOfCountdownState, updateClockAndText } from "./listFunctions";
+import { LISTPAGE_DOM_CLASSES } from "./LISTPAGE_DOM_SELECTORS.js";
+import { hideContextMenus } from "./list_ui/hideContextMenus.js";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
 import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
-import { handleFormUpdate } from "../formupdate.js";
-import { getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, updateArrayOfCountdownState, countdownList, populateList, deleteFromCountdownsWithId } from "./listFunctions";
-import { hideContextMenus } from "./list_ui/hideContextMenus.js";
-import { LISTPAGE_DOM_CLASSES } from "./LISTPAGE_DOM_SELECTORS.js";
 
+let listArrayOfCountdowns =getArrayOfCountdownStatus();
 /**
  * Checks if the target element is part of a countdown
  * @param {HTMLElement} targetElement 
@@ -65,11 +67,11 @@ export const listEventListener = event => {
     // if event is fired on text or date, countdown item
     if (isTargetElementOnCountdownItem(targetElement)) {
         console.log(targetElement, 'parent', targetElement.parentElement);
-        let targetIndex = getArrayIndexByDateModified(arrayOfCountdowns, targetElement.parentElement.getAttribute('data-id'));
+        let targetIndex = getArrayIndexByDateModified(listlistArrayOfCountdowns, targetElement.parentElement.getAttribute('data-id'));
         // todo: find a better way of accessing element in countdown array
         console.log(targetIndex, 'index of element found in array');
         showClockRow();
-        updateClockAndText(arrayOfCountdowns[targetIndex].date, arrayOfCountdowns[targetIndex].text);
+        updateClockAndText(listArrayOfCountdowns[targetIndex].date, listArrayOfCountdowns[targetIndex].text);
     }
 
     //if the area for context menu is clicked
@@ -83,23 +85,23 @@ export const listEventListener = event => {
         if (isClassOnTargetElement(targetElement, 'main')) {
             // set as main clicked
             // find the element convert to JSON and place it as the main clock
-            const countdown = arrayOfCountdowns.find((countdown) => countdown.dateModified == count_modified);
+            const countdown = listArrayOfCountdowns.find((countdown) => countdown.dateModified == count_modified);
             setMainClockCountdown(countdown);
         } else if (isClassOnTargetElement(targetElement, 'del')) {
             // fetch array if not existing in workspace
-            if (!arrayOfCountdowns) {
+            if (!listArrayOfCountdowns) {
                 console.log("Strangely array was not found in list functions on delete");
                 updateArrayOfCountdownState();
 
             }
             deleteFromCountdownsWithId(count_modified);
-            setInnerHtmlForNotNull(countdownList, populateList(arrayOfCountdowns));
+            // setInnerHtmlForNotNull(countdownList, populateList(arrayOfCountdowns));
         } else if (isClassOnTargetElement(targetElement, 'edit')) {
-            if (!arrayOfCountdowns) {
+            if (!listArrayOfCountdowns) {
                 console.log("Strangely array was not found in list functions on edit");
                 updateArrayOfCountdownState();
             }
-            console.log(arrayOfCountdowns);
+            console.log(listArrayOfCountdowns);
             let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
             // todo: custom error messages for components on fail
             try {
