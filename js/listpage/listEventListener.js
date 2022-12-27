@@ -9,7 +9,7 @@ import { hideContextMenus } from "./list_ui/hideContextMenus.js";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
 import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
 
-let listArrayOfCountdowns =getArrayOfCountdownStatus();
+
 /**
  * Checks if the target element is part of a countdown
  * @param {HTMLElement} targetElement 
@@ -63,6 +63,7 @@ function addListEventListener() {
  */
 export const listEventListener = event => {
     const targetElement = event.target;
+    let listArrayOfCountdowns =getArrayOfCountdownStatus();
 
     // if event is fired on text or date, countdown item
     if (isTargetElementOnCountdownItem(targetElement)) {
