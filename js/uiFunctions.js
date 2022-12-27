@@ -1,15 +1,17 @@
-import { setInnerHtmlForNotNull } from "./functions.js";
+import { setInnerHtmlForNotNull, $ } from "./functions.js";
+import "./customComponents.js";
+import loaderHtml from "../html/loader.html?raw";
+
 
 // DOM elements
 let body = document.body
-export let icon = document.getElementById('themeToggle');
+let icon = document.getElementById('themeToggle');
 /**
  * 
  * @param {String} message 
  */
- export function notifyUser(message) {
+export function notifyUser(message) {
     let notifyText = message;
-    
 
     if (document.getElementsByClassName("mode-info")[0]) {
         document.getElementsByClassName("mode-info")[0].remove();
@@ -111,3 +113,24 @@ export function loadMode() {
 
 icon.addEventListener("click", setMode);
 icon.addEventListener("click", notifyMode);
+
+export const showLoader = () => {
+    document.body.insertAdjacentHTML("afterbegin",loaderHtml);
+};
+export const removeLoader = () => {
+    $(".loader-container")[0].remove();
+}
+export function setTheme(elem) {
+    let prevTheme = getComputedStyle(document.body).getPropertyValue("--color-banner");
+    document.body.dataset.theme = elem.dataset.settheme;
+    localStorage.setItem("theme", `${elem.dataset.settheme}`);
+
+    function setAppStatusBarTheme() {
+        let primaryColor = getComputedStyle(document.body).getPropertyValue("--color-banner");
+        $(`[content="${prevTheme}"]`).forEach((e) =>
+            e.setAttribute("content", primaryColor)
+        );
+        localStorage.setItem("primaryColor", primaryColor);
+    }
+    setAppStatusBarTheme();
+}

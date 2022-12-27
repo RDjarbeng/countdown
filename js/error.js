@@ -2,13 +2,13 @@
  * remove div containing error message
  * @param {Event} event 
  */
-export const closeErrorInfo = (event) =>event.currentTarget.parentElement.remove();
+export const closeErrorInfo = (event) => event.currentTarget.parentElement.remove();
 /**
  * Error handler for the top level window element to catch uncaught errors
  * @param {Error} err 
  */
 export const errorHandlerWithoutMessage = (err) => {
-    console.warn('Top level window error',err);
+    console.warn('Top level window error', err);
     errorHandler();
 }
 /**
@@ -51,7 +51,7 @@ export const errorHandler = (msg) => {
         @media screen and (max-width: 427px) {
             .error-message{
                 width: 90vmin;
-               padding: 3.3vmin;
+                padding: 3.3vmin;
             }
         }
     </style>
