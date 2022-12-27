@@ -15,7 +15,7 @@ function handleListpageFormSubmission() {
         submitbutton.disabled = true;
         saveCountdownForm();        
         updateArrayOfCountdownState();
-        loadListPage();
+        // loadListPage();
         closeFormPopUp();
     })
 }else{
