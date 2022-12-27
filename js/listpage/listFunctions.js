@@ -264,7 +264,7 @@ export function updateCountdownItemFromForm(){
  */
 export function loadListPage(){
     try {
-        displayAndUpdatecount()
+        displayAndUpdatecount();
     } catch (err) {
         console.log(err, 'err in updating countdown initialisation');
         errorHandler("Unable to fetch & update your countdowns");
@@ -286,9 +286,9 @@ export function loadListPage(){
 }
 
 export const getArrayOfCountdownStatus=()=>{
-    if(!arrayOfCountdowns){
+    // if(!arrayOfCountdowns){
         arrayOfCountdowns = fetchArrayOfCountdowns();
-    }
+    // }
     return arrayOfCountdowns;
 }
 
