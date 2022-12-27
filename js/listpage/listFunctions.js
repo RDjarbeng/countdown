@@ -295,6 +295,7 @@ export const getArrayOfCountdownStatus=()=>{
 export const deleteFromCountdownsWithId=(id)=>{ 
     arrayOfCountdowns= arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != id);
     saveCountDownList(arrayOfCountdowns);
+    loadListPage();
 };
 
 
