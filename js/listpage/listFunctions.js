@@ -273,6 +273,12 @@ export function loadListPage(){
 }
 
 
+export const getArrayOfCountdownStatus=()=>{
+    if(!arrayOfCountdowns){
+        arrayOfCountdowns = fetchArrayOfCountdowns();
+    }
+    return arrayOfCountdowns;
+}
 
 export const deleteFromCountdownsWithId=(id)=>{ 
     arrayOfCountdowns= arrayOfCountdowns.filter((countdown, index) => countdown.dateModified != id);
@@ -294,9 +300,7 @@ const secNumber = document.getElementById(LISTPAGE_DOM_IDS.clockSecondElement);
 export const countdownTextDisplay = document.getElementById(LISTPAGE_DOM_IDS.countdownTextDisplay);
 export const countdownList = document.getElementById(LISTPAGE_DOM_IDS.countdownList);
 export const countdownClock = document.querySelector('.clock-row');
-//get button for create countdown
-const createButton = document.getElementsByClassName("new-item")[0];
-createButton.addEventListener("click", popAndAddFormOnList);
+
 // clock interval tracker
 let interval;
 let countItemExists = false;
