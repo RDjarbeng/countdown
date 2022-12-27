@@ -6,6 +6,7 @@ import { popAndAddFormOnList } from "../formupdate.js";
 import { setInnerHtmlForNotNull, stopClock } from "../functions.js";
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_SELECTORS";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
+import { removeSortUI } from "./list_ui/addSortUI.js";
 import { getCountdownString, setCountDownStatus } from "./list_ui/setCountdownUI.js";
 
 /**
@@ -171,6 +172,7 @@ export  function displayCountdowns() {
         setCountItemStatus(arrayOfCountdowns)
     } else {
         setDefaultTextForEmptyCountdowns();
+        removeSortUI();
     }
 }
 
@@ -301,6 +303,7 @@ export const deleteFromCountdownsWithId=(id)=>{
 
 export function updateArrayOfCountdownState(){
     arrayOfCountdowns = fetchArrayOfCountdowns();
+    console.log(arrayOfCountdowns);
     loadListPage();
 }
 // todo: figure out a way to separate functions and dom references
