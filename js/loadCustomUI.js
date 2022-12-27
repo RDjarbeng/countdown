@@ -1,4 +1,4 @@
-import { loadTheme, loadAppStatusBarTheme, loadBg, loadMode, setMode, notifyMode } from "./uiFunctions.js";
+import { loadTheme, loadAppStatusBarTheme, loadBg, loadMode } from "./uiFunctions.js";
 
 
 loadTheme();

@@ -1,4 +1,4 @@
-import {setInnerHtmlForNotNull, addZeros } from "./functions.js";
+import { setInnerHtmlForNotNull, addZeros } from "./functions.js";
 
 /**
  * 
@@ -18,19 +18,19 @@ import {setInnerHtmlForNotNull, addZeros } from "./functions.js";
  * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
  * @param {Number} [duration=800] specifies how long the animation lasts in milliseconds
  */
- export async function waitForAnimation(clock, domElements, duration ) {
+export async function waitForAnimation(clock, domElements, duration) {
     await stepIncreaseAndStart(clock, domElements, duration || animatedCountDuration)
     startClock(clock, domElements);
 }
 
 export function startClock(clock, domElements) {
-    let intervalID = setInterval(() => {  startTime(clock,  domElements,);  }, 500);
+    let intervalID = setInterval(() => { startTime(clock, domElements,); }, 500);
     return intervalID;
 }
 
 
 
-export function startTime(clock,  { dayNumber, hourNumber, minNumber, secNumber }) {
+export function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
     // console.log(clock);
     updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
     // setInnerHtmlForNotNull(dayCount, dayClock.countDays());
@@ -62,7 +62,7 @@ export async function stepIncreaseAndStart(clockElement, domElements, speed = 50
  * @param {HTMLElement} minDisplay 
  * @param {HTMLElement} secDisplay 
  */
- export function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
+export function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
     counter.countDown();
     let d = counter.days
     let h = counter.hours
@@ -86,7 +86,7 @@ export async function stepIncreaseAndStart(clockElement, domElements, speed = 50
  * @param {Number} end final value of count
  * @param {Number} duration value in ms on how long count should last
  */
- export function animateValue(domElement, start, end, duration) {
+export function animateValue(domElement, start, end, duration) {
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;

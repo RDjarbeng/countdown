@@ -84,3 +84,33 @@ export const addClickListenersWithoutDuplicates = (element, eventHandler)=>{
     console.warn("Null element passed to addlistenersWithoutDuplicates")
 }
 }
+
+export const $ = (selector) => document.querySelectorAll(selector);
+export const setLink = (link) => (window.location.href = link);
+
+export const fileSizeOk = (pic) => {
+    const megabyte = 1024 * 1024;
+    return pic.size / megabyte < 3.00 ? true : false;
+}
+
+export const fetchFile = async (link,type)=>{
+    let data = await fetch(link);
+    switch (type) {
+        case "text":
+            data = await data.text();
+            break;
+            case "json":
+                data = await data.json();
+                break;
+                case "blob":
+                    data = await data.blob();
+                    break;
+        default:
+            break;
+    }
+    return data;
+}
+
+export async function convertToBlob (fileUrl) {
+    return await fetchFile(fileUrl, "blob");
+}
