@@ -4,10 +4,9 @@ import { errorHandler } from "../error.js";
 import { getCdFromFormInputs, saveCountDownList } from "../formfunctions.js";
 import { popAndAddFormOnList } from "../formupdate.js";
 import { setInnerHtmlForNotNull, stopClock } from "../functions.js";
-import { fetchArrayOfCountdowns } from "../getCountdowns/fetchArrayOfCountdowns";
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_SELECTORS";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
-import { setCountDownStatus } from "./list_ui/setCountdownUI.js";
+import { getCountdownString, setCountDownStatus } from "./list_ui/setCountdownUI.js";
 
 /**
  * Update a single countdown item in the array of countdowns
@@ -235,7 +234,7 @@ export function updateCountdownItemFromForm(){
             clock.setEndDate(new Date(element.getAttribute('data-date')));
             clock.countDown();
             if (clock.getDistance() > 0) {
-                setInnerHtmlForNotNull(element, getCountdownString(clock))
+                setInnerHtmlForNotNull(element, getCountdownString(clock));
             } else if (element.getAttribute('data-repeat') == 'true') {
                 console.log('updating repeat', element);
                 // update repeat item set enddate to next year
