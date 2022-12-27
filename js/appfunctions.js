@@ -8,8 +8,8 @@ import { setInnerHtmlForNotNull, addZeros } from "./functions.js";
  */
  export async function waitForAnimationUpdate(clock, domElements, duration, interval ) {
     await stepIncreaseAndStart(clock , domElements, duration );
-    // todo:fix this undefined function
-    return startClockAndReset(clock , domElements, interval);
+    // todo:fix this undefined function,delete
+    // return startClockAndReset(clock , domElements, interval);
 }
 
 /**
