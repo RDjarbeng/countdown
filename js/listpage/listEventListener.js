@@ -102,7 +102,7 @@ export const listEventListener = event => {
                 updateArrayOfCountdownState();
             }
             console.log(listArrayOfCountdowns);
-            let editItem = arrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
+            let editItem = listArrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
             // todo: custom error messages for components on fail
             try {
                 if (editItem) {
