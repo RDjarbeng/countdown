@@ -2,7 +2,7 @@
  *
  * @returns {Array} Array of countdowns stored in local storage, null if none
  */
-export function fetchArrayOfCountdowns() {
+function fetchArrayOfCountdowns() {
     let jsonListOfCountdowns = localStorage.getItem('countdown');
     if (!jsonListOfCountdowns) {
         console.warn('Unable to fetch your saved countdowns in fetch array()');
