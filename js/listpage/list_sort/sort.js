@@ -47,7 +47,8 @@ export const addSortEventListeners = () => {
  */
  export const addSortUIAndListeners = () => {
      console.log('Adding sort UI');
-     if(fetchArrayOfCountdowns().length>0){
+     let arrayOfCd=fetchArrayOfCountdowns();
+     if(arrayOfCd &&arrayOfCd.length>0){
         addSortUI();
     addSortEventListeners();
 
