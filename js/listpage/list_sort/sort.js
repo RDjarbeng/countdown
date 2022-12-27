@@ -1,10 +1,14 @@
 import { errorHandler } from "../../error";
 import { addClickListenersWithoutDuplicates, toggleElementDisplayBlockOnScreen } from "../../functions";
 import { fetchArrayOfCountdowns } from "../../getCountdowns/fetchArrayOfCountdowns";
+import { displayCountdowns } from "../listFunctions";
+import { LISTPAGE_DOM_CLASSES } from "../LISTPAGE_DOM_SELECTORS";
 import { addSortUI } from "../list_ui/addSortUI";
+import { closeSortMenu } from "../list_ui/closeSortMenu";
+
 
 export const sortTitleEventHandler = () => {
-    const sortOpts = document.querySelector(".sort-options");
+    const sortOpts = document.querySelector(LISTPAGE_DOM_CLASSES.countdownSortByOptions);
     toggleElementDisplayBlockOnScreen(sortOpts);
 }
 
@@ -24,8 +28,8 @@ export const sortTitleEventHandler = () => {
 }
 
 export const addSortEventListeners = () => {
-    const sortOpts = document.querySelector(".sort-options");
-    const sortTitle = document.querySelector(".sort-title");
+    const sortOpts = document.querySelector(LISTPAGE_DOM_CLASSES.countdownSortByOptions);
+    const sortTitle = document.querySelector(LISTPAGE_DOM_CLASSES.countdownSortByText);
 
     if (!(sortTitle && sortOpts)) {
         console.log('Var sort title and sortOpts is null', 'sort title', sortTitle, 'sort opts', sortOpts);
@@ -42,7 +46,8 @@ export const addSortEventListeners = () => {
  * Adds sort menu to the page
  */
  export const addSortUIAndListeners = () => {
-    if(fetchArrayOfCountdowns.length){
+     console.log('Adding sort UI');
+     if(fetchArrayOfCountdowns().length>0){
         addSortUI();
     addSortEventListeners();
 

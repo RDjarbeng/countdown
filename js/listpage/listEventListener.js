@@ -6,6 +6,7 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
 import { handleFormUpdate } from "../formupdate.js";
 import { getArrayIndexByDateModified, arrayOfCountdowns, updateClockAndText, updateArrayOfCountdownState, countdownList, populateList, deleteFromCountdownsWithId } from "./listFunctions";
 import { hideContextMenus } from "./list_ui/hideContextMenus.js";
+import { LISTPAGE_DOM_CLASSES } from "./LISTPAGE_DOM_SELECTORS.js";
 
 /**
  * Checks if the target element is part of a countdown
@@ -39,7 +40,7 @@ import { hideContextMenus } from "./list_ui/hideContextMenus.js";
         
 }
 function addListEventListener() {
-    const countList = document.querySelector('.countdown-list')
+    const countList = document.querySelector(LISTPAGE_DOM_CLASSES.countdownList)
     addClickListenersWithoutDuplicates(countList, listEventListener)
 }
 

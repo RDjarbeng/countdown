@@ -11,4 +11,6 @@ export const LISTPAGE_DOM_IDS = {
 
 export const LISTPAGE_DOM_CLASSES = {
     countdownList: '.countdown-list',
+    countdownSortByOptions: '.sort-options',
+    countdownSortByText: '.sort-title',
 };
