@@ -1,9 +1,9 @@
 import { errorHandler } from "../error.js";
 import { displayFormPopUp } from "../formfunctions.js";
 import { handleFormUpdate } from "../formupdate.js";
-import { addClickListenersWithoutDuplicates, setInnerHtmlForNotNull } from "../functions.js";
+import { addClickListenersWithoutDuplicates } from "../functions.js";
 import { notifyUser } from "../uiFunctions.js";
-import { countdownList, deleteFromCountdownsWithId, getArrayIndexByDateModified, getArrayOfCountdownStatus, populateList, updateArrayOfCountdownState, updateClockAndText } from "./listFunctions";
+import { deleteFromCountdownsWithId, getArrayIndexByDateModified, getArrayOfCountdownStatus, updateArrayOfCountdownState, updateClockAndText } from "./listFunctions";
 import { LISTPAGE_DOM_CLASSES } from "./LISTPAGE_DOM_SELECTORS.js";
 import { hideContextMenus } from "./list_ui/hideContextMenus.js";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
