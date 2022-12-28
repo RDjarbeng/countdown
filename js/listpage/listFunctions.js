@@ -1,13 +1,13 @@
 import { startClock, stepIncreaseAndStart } from "../appfunctions.js";
 import { Anniversary, Clock } from "../clock.js";
 import { errorHandler } from "../error.js";
-import { getCdFromFormInputs, saveCountDownList } from "../formfunctions.js";
-import { popAndAddFormOnList } from "../formupdate.js";
+import { saveCountDownList } from "../formfunctions.js";
 import { setInnerHtmlForNotNull, stopClock } from "../functions.js";
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_SELECTORS";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
 import { removeSortUI } from "./list_ui/addSortUI.js";
 import { getCountdownString, setCountDownStatus } from "./list_ui/setCountdownUI.js";
+import { removeClockAndText } from "./list_ui/updateListpageClockAndText.js";
 
 /**
  * Update a single countdown item in the array of countdowns
@@ -130,9 +130,7 @@ export function setCountItemStatus( arrayOfCountdowns){
 export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
     if (new Date(date) - new Date() < 0) {
         arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
-        // arrayOfCountdowns[index].dateModified = new Date().toISOString();
         saveCountDownList(arrayOfCountdowns);
-        console.log('Updating values of old cds', arrayOfCountdowns[index]);
 
     };
 
@@ -173,6 +171,7 @@ export  function displayCountdowns() {
     } else {
         setDefaultTextForEmptyCountdowns();
         removeSortUI();
+        removeClockAndText();
     }
 }
 
@@ -233,7 +232,6 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
             clock.setEndDate(new Date(element.getAttribute('data-date')));
             clock.countDown();
             if (clock.getDistance() > 0) {
-                console.log('Updating');
                 setInnerHtmlForNotNull(element, getCountdownString(clock));
             } else if (element.getAttribute('data-repeat') == 'true') {
                 console.log('updating repeat', element);
