@@ -31,12 +31,11 @@ export class Clock {
      * Calls the function to populate/refresh the time values in the clock, used for reset
      */
     countDown = () => {
-        var distance = this.getDistance()
         // account for case of the countdown being reached, reset
         if (this.getDistance() >= 0) {
             // console.log('Running the count');
             // Time calculations for days, hours, minutes and seconds
-            this.calculateTimeValues(this.getDistance())
+            this.calculateTimeValues()
         } else {
             // clear date values
             this.resetMethod();
@@ -49,7 +48,8 @@ export class Clock {
         this.clearCounter();
     }
 
-    calculateTimeValues(distance) {
+    calculateTimeValues() {
+        let distance = this.getDistance();
         this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
         this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
