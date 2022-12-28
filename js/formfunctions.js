@@ -182,6 +182,12 @@ export function getCdFromFormInputs() {
     return countItem;
 }
 
+export function updateCountdownItemFromForm(){
+    let countItem =getCdFromFormInputs();
+        countItem.dateModified= new Date().toISOString();
+        return countItem;
+}
+
 export  const checkRepeat=(repeatCheckBox)=> repeatCheckBox.checked
 
 export function saveCountdownForm() {
