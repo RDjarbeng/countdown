@@ -3,6 +3,7 @@ import { Anniversary, Clock } from "../clock.js";
 import { errorHandler } from "../error.js";
 import { saveCountDownList } from "../formfunctions.js";
 import { setInnerHtmlForNotNull, stopClock } from "../functions.js";
+import { getLocalIsoStringFromDateInput } from "../timefunctions.js";
 import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_SELECTORS";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
 import { removeSortUI } from "./list_ui/addSortUI.js";
@@ -129,7 +130,8 @@ export function setCountItemStatus( arrayOfCountdowns){
 */
 export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
     if (new Date(date) - new Date() < 0) {
-        arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
+        // arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
+        arrayOfCountdowns[index].date =getLocalIsoStringFromDateInput(new Anniversary(new Date(date)).endDate);
         saveCountDownList(arrayOfCountdowns);
 
     };

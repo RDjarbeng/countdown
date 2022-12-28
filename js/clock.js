@@ -98,7 +98,7 @@ export class Anniversary extends Clock {
         // console.log('calling reset', this.endDate.getFullYear()<= new Date().getFullYear(), 'first cond', this.getDistance<0);
         while (this.endDate.getFullYear() <= new Date().getFullYear() && this.getDistance() < 0) {
             // this.endDate.
-            console.log(this.endDate, 'End date triggering');
+            console.log(this.endDate, 'Repeat End date triggering');
             this.endDate.setFullYear(this.endDate.getFullYear() + 1)
             // console.log('Anniversary done', this);
         }
