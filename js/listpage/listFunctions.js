@@ -203,18 +203,15 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
 
 
 
-export function updateCountdownItemFromForm(){
-    let countItem =getCdFromFormInputs();
-        countItem.dateModified= new Date().toISOString();
-        return countItem;
-}
+
 /**
  * display countdowns and start updating display for countdowns in progress
  */
  export function displayAndUpdatecount() {
     try{
 
-        displayCountdowns()
+        displayCountdowns();
+        console.log('Count itemExists: ',getCountItemExists());
             if (getCountItemExists()) {
                 let interval = setInterval(() => getCountItemExists() ? updateCountdownItems() : clearInterval(interval), 500)
             }
