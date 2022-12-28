@@ -1,6 +1,7 @@
-import { popForm, closeFormPopUp, saveCountdownForm, FORM_DOM_IDS } from './formfunctions.js'
+import { popForm, closeFormPopUp, saveCountdownForm, FORM_DOM_IDS, updateCountdownItemFromForm } from './formfunctions.js'
 import { errorHandler } from './error.js';
-import { displayCountdowns, loadListPage, updateArrayOfCountdownState, updateCountdownItemFromForm, updateLocalItem } from './listpage/listFunctions.js';
+import {  updateArrayOfCountdownState, updateLocalItem } from './listpage/listFunctions.js';
+
 import { removeClockAndText } from './listpage/list_ui/updateListpageClockAndText.js';
 export const popAndAddFormOnList = () => {
     popForm()
@@ -33,10 +34,22 @@ export function handleFormUpdate() {
         
         const modifiedTimeAsID = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
         updateLocalItem(updateCountdownItemFromForm(), modifiedTimeAsID);
-        displayCountdowns();
+        updateArrayOfCountdownState();
         closeFormPopUp();
         removeClockAndText();
         
+    })
+}
+
+export function handleHomePageFormSubmission() {
+    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
+    addClickListenersWithoutDuplicates(submitbutton, (e) => {
+        e.preventDefault();
+        submitbutton.disabled = true;
+        saveCountdownForm();
+        // testing
+        window.location.href = "/html/countdown-list.html";
+        closeFormPopUp();
     })
 }
 
