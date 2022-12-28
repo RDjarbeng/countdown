@@ -1,7 +1,9 @@
-import { popForm, closeFormPopUp, saveCountdownForm, FORM_DOM_IDS } from './formfunctions.js'
 import { errorHandler } from './error.js';
-import { loadListPage, updateArrayOfCountdownState } from './listFunctions.js';
-const popAndAddFormOnList = () => {
+import { closeFormPopUp, FORM_DOM_IDS, popForm, saveCountdownForm, updateCountdownItemFromForm } from './formfunctions.js';
+import { updateArrayOfCountdownState, updateLocalItem } from './listpage/listFunctions.js';
+import { addClickListenersWithoutDuplicates } from './functions.js';
+import { removeClockAndText } from './listpage/list_ui/updateListpageClockAndText.js';
+export const popAndAddFormOnList = () => {
     popForm()
     handleListpageFormSubmission();
 }
@@ -14,7 +16,7 @@ function handleListpageFormSubmission() {
         submitbutton.disabled = true;
         saveCountdownForm();        
         updateArrayOfCountdownState();
-        loadListPage();
+        // loadListPage();
         closeFormPopUp();
     })
 }else{
@@ -23,7 +25,33 @@ function handleListpageFormSubmission() {
 }
 }
 
+export function handleFormUpdate() {
+    // todo: update list with custom fired events
+    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
+    submitbutton.addEventListener('click', (e) => {
+        e.preventDefault();
+        submitbutton.disabled = true;
+        
+        const modifiedTimeAsID = document.getElementById(FORM_DOM_IDS.form_modifiedTime).value;
+        updateLocalItem(updateCountdownItemFromForm(), modifiedTimeAsID);
+        updateArrayOfCountdownState();
+        closeFormPopUp();
+        removeClockAndText();
+        
+    })
+}
 
+export function handleHomePageFormSubmission() {
+    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
+    addClickListenersWithoutDuplicates(submitbutton, (e) => {
+        e.preventDefault();
+        submitbutton.disabled = true;
+        saveCountdownForm();
+        // testing
+        window.location.href = "/html/countdown-list.html";
+        closeFormPopUp();
+    })
+}
 
 
 // todo: remove dynamic seting of css, @nyakotey
@@ -35,5 +63,3 @@ function handleListpageFormSubmission() {
 // }
 
 // DOM Elements
-const createButton = document.getElementsByClassName("new-item")[0];
-createButton.addEventListener("click", popAndAddFormOnList);

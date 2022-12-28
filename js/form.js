@@ -1,22 +1,11 @@
 import { popForm, closeFormPopUp, FORM_DOM_IDS, saveCountdownForm } from './formfunctions.js'
-import { addClickListenersWithoutDuplicates } from './functions.js';
+import { handleHomePageFormSubmission } from './formupdate.js';
 
 const popAndAddFormSubmission = () => {
     popForm()
     handleHomePageFormSubmission();
 }
 
-function handleHomePageFormSubmission() {
-    const submitbutton = document.getElementById(FORM_DOM_IDS.form_submitButton);
-    addClickListenersWithoutDuplicates(submitbutton, (e) => {
-        e.preventDefault();
-        submitbutton.disabled = true;
-        saveCountdownForm();
-        // testing
-        window.location.href = "/html/countdown-list.html";
-        closeFormPopUp();
-    })
-}
 
 
 // todo: remove dynamic seting of css

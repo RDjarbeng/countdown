@@ -1,6 +1,7 @@
 import { errorHandler } from './error.js';
 import { addZeros } from './functions.js'
-import { fetchArrayOfCountdowns } from './listFunctions.js';
+import { getArrayOfCountdownStatus } from './listpage/listFunctions.js';
+import { getLocalIsoStringFromDateInput } from './timefunctions.js';
 
 export const FORM_DOM_IDS = {
     form_TextInput: 'countdownText',
@@ -119,7 +120,7 @@ export function setDateAttributes() {
 }
 
 export function saveNewCountdownToLocalStorage(countItem) {
-    let countdown = fetchArrayOfCountdowns();
+    let countdown = getArrayOfCountdownStatus();
     if (countdown !== null) { //countdowns already exist
         countdown.push(countItem);
         // console.log(countdown);
@@ -169,13 +170,23 @@ export function getCdFromFormInputs() {
     let userDate = dateInput.value;
     // get text field values, with auto values
     let userText = getUserText(userTextField);
-
-    userDate = new Date(userDate).toISOString();
+    console.log('Entered',userDate);
+    console.log('To locale',new Date(userDate).toLocaleString());
+    // userDate = new Date(userDate).toISOString();
+    userDate = getLocalIsoStringFromDateInput(userDate);
+    console.log('Stored',userDate);
     let countItem = { text: userText, date: userDate, dateModified: new Date() };
     if (repeatCheck) {
         countItem.repeat = repeatCheck.checked;
     }
     return countItem;
+}
+
+export function updateCountdownItemFromForm(){
+    let countItem =getCdFromFormInputs();
+    //todo: use other ID apart from toISOString
+        countItem.dateModified= new Date().toISOString();
+        return countItem;
 }
 
 export  const checkRepeat=(repeatCheckBox)=> repeatCheckBox.checked
