@@ -216,7 +216,7 @@ export function updateCountdownItemFromForm(){
 
         displayCountdowns()
             if (getCountItemExists()) {
-                let interval = setInterval(() => getCountItemExists() ? updateCountdownItems() : clearInterval(interval), 1000)
+                let interval = setInterval(() => getCountItemExists() ? updateCountdownItems() : clearInterval(interval), 500)
             }
         }catch(err) {
             console.log(err);
@@ -236,6 +236,7 @@ export function updateCountdownItemFromForm(){
             clock.setEndDate(new Date(element.getAttribute('data-date')));
             clock.countDown();
             if (clock.getDistance() > 0) {
+                console.log('Updating');
                 setInnerHtmlForNotNull(element, getCountdownString(clock));
             } else if (element.getAttribute('data-repeat') == 'true') {
                 console.log('updating repeat', element);
