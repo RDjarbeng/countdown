@@ -1,7 +1,7 @@
-import { popForm, closeFormPopUp, saveCountdownForm, FORM_DOM_IDS, updateCountdownItemFromForm } from './formfunctions.js'
 import { errorHandler } from './error.js';
-import {  updateArrayOfCountdownState, updateLocalItem } from './listpage/listFunctions.js';
-
+import { closeFormPopUp, FORM_DOM_IDS, popForm, saveCountdownForm, updateCountdownItemFromForm } from './formfunctions.js';
+import { updateArrayOfCountdownState, updateLocalItem } from './listpage/listFunctions.js';
+import { addClickListenersWithoutDuplicates } from './functions.js';
 import { removeClockAndText } from './listpage/list_ui/updateListpageClockAndText.js';
 export const popAndAddFormOnList = () => {
     popForm()
