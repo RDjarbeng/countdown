@@ -4,7 +4,7 @@
  * @param {String} dateString 
  * @returns {String} Date in local time as a string
  */
-export const getLocalIsoString=(dateString)=> {
+export const getLocalIsoStringFromDateInput=(dateString)=> {
     const date = new Date(dateString);
     let year = date.getFullYear();
     let month = date.getMonth() + 1; // getMonth() returns a 0-based index, so we need to add 1
