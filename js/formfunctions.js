@@ -184,6 +184,7 @@ export function getCdFromFormInputs() {
 
 export function updateCountdownItemFromForm(){
     let countItem =getCdFromFormInputs();
+    //todo: use other ID apart from toISOString
         countItem.dateModified= new Date().toISOString();
         return countItem;
 }
