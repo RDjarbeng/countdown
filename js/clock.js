@@ -28,7 +28,7 @@ export class Clock {
         return this.endDate.getTime() - new Date().getTime();
     }
     /**
-     * Calls the function to populate/refresh the time values in the clock
+     * Calls the function to populate/refresh the time values in the clock, used for reset
      */
     countDown = () => {
         var distance = this.getDistance()
