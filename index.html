@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <base href="/">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,80 +10,39 @@
     <meta name="Keywords" content="Countdown, Midnight countdown">
     <title>Final Countdown</title>
     <link href="/img/icons/favicon.png" rel="icon">
-    <meta name="Author" content="R.Djarbeng| A.Nyakotey">    
-    <link rel="preload stylesheet"  as="style" type="text/css" href="/css/styles.css">
+    <link rel="mask-icon" href="/img/icons/favicon.png" color="#FFFFFF">
+    <meta name="Author" content="R.Djarbeng| A.Nyakotey">
+    <link rel="preload stylesheet" as="style" type="text/css" href="/css/styles.css">
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="preload stylesheet"  as="style" type="text/css" href="/css/themes.css">
+    <link rel="preload stylesheet" as="style" type="text/css" href="/css/themes.css">
     <link rel="stylesheet" href="/css/themes.css">
-    <!-- <link rel="stylesheet" href="themes.css"> -->
-    <link rel="preload stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"></noscript>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="preload stylesheet" as="style" type="text/css" href="/css/form.css">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="preload stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    </noscript>
+    <!-- <link rel="manifest" href="/manifest.json"> -->
     <!-- ios support -->
     <link rel="apple-touch-icon" href="/img/icons/favicon.png">
     <meta name="apple-mobile-web-app-status-bar" content="#7b68ee">
     <meta name="theme-color" content="#7b68ee">
+    <link rel="icon" href="img/icons/chrome512.png" color="#FFFFFF">
+    <link rel="mask-icon" href="img/icons/maskable_icon.png" color="#FFFFFF">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="grey">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#7b68ee">
 </head>
 
 <body class="light" data-theme="purple">
-    <aside class="sidebar sidebar-hide">
-        <section class="sidebar-content">
-            <div class="brand">
-                <div class="brand-logo"><img src="/img/icons/chrome512.png" alt="logo"></div>
-                <div class="brand-name">Final CountDown</div>
-            </div>
-            <hr>
-            <div class="opt-group">OPTIONS</div>
-            <div class="sidebar-list">
-                <div class="sidebar-list-items">
-                    <i class="fas fa-home fa-fw"></i> <span>Home</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-clock fa-fw"></i> <span>My CountDowns</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-upload fa-fw"></i> <span>Set Custom Background</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-adjust fa-fw"></i> <span>Change Theme</span>
-                </div>
-                <section class="pick-color">
-                    <span class="pick-color-ico" data-settheme="red"></span>
-                    <span class="pick-color-ico" data-settheme="pink"></span>
-                    <span class="pick-color-ico" data-settheme="yellow"></span>
-                    <span class="pick-color-ico" data-settheme="green"></span>
-                    <span class="pick-color-ico" data-settheme="blue"></span>
-                    <span class="pick-color-ico" data-settheme="purple"></span>
-                    <span class="pick-color-ico" data-settheme="black"></span>
-                </section>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-calendar-day fa-fw"></i> <span>Today</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-question-circle fa-fw"></i> <span>About</span>
-                </div>
-            </div>
-        </section>
-    </aside>
-    <header class="header">        
-        <div class="nav">
-            <i class="fas fa-bars fa-lg"></i>
-        </div>
-        <div class="logo">
-            <a href="/index.html"><div class="logo-ico"><img src="/img/icons/chrome192.png" alt="logo"></div></a>
-            <div class="logo-name">Final CountDown</div>
-        </div>
-        <div class="mode-row">
-            <span class="toggleMode" id='themeToggle'><i class="fas fa-sun fa-fw"></i></span>
-        </div>
-    </header>
+    <app-sidebar></app-sidebar>
+    <app-header></app-header>
     <main>
         <section class="container">
             <div class="banner-row">
                 <div class="banner">
-                    <div class="banner-h2" id ='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i></div>
+                    <div class="banner-h2" id='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i>
+                    </div>
                 </div>
             </div>
             <div class="clock-row">
@@ -115,11 +76,13 @@
     </main>
     <div class="new-item"><i class="fas fa-plus fa-xl"></i></div>
 
-    <script src="/js/error.js"></script>
-    <script src="/app.js"></script>
-    <script src="/js/sidebar.js" async></script>
-    <script src="/js/loadCustomUI.js"></script>
-    <script  src="/js/form.js" async></script>
-        
+    <script src="/js/error.js" type="module"></script>
+    <script src="/app.js" type="module"></script>
+    <script src="/js/sidebar.js" type="module" async></script>
+    <script src="/js/loadCustomUI.js" type="module"></script>
+    <script src="/js/form.js" type="module" async></script>
+    <script src="/js/serviceWorkerUpdate.js" type="module"></script>
+
 </body>
+
 </html>
