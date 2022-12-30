@@ -157,6 +157,10 @@ Not all elements made it into the final product, some others also got modified, 
 ## Countdown v2.4.1
 * fix sidebar option text going under the icon
 
+## Countdown v2.5.0
+* Major code refactor, improved code readability and reusuability
+* Added a bundling step, Vite, resulting in massive performance gains
+* Many other significant updates, setting the stage for the next version
 
 ### Potential and/or current developments
 * listpage as the homepage with onboarding
@@ -165,6 +169,9 @@ Not all elements made it into the final product, some others also got modified, 
 
 ![elapse ui](https://user-images.githubusercontent.com/73431750/166104394-9bdf011d-499e-4a14-a81a-af07e7ebfd93.png)
 
+## Latest News
+* To streamline development, we are making the most of GitHub's ecosystem. The Projects feature has been added to our workflow.
+<br> Progress Tracking has never been easier!
 
 ---
 #### Many more to come, stay tuned!

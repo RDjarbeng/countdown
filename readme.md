@@ -105,9 +105,12 @@ Added contributor [Nathaniel Nyakotey](https://github.com/nyakotey)
 
 
 ## Countdown v2.4.1
-* fix sidebar option text going under the icon
+* fixed sidebar option text going under the icon
 
-
+## Countdown v2.5.0
+* Major code refactor, improved code readability and reusuability
+* Added a bundling step, Vite, resulting in massive performance gains
+* Many other significant updates, setting the stage for the next version
 ---
 #### Many more to come, stay tuned!
 For more details, and live updates, checkout the [dev process](/docs/dev-process.md) readme
