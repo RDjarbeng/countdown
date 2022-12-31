@@ -1,0 +1,64 @@
+app-rcountdown {
+    --color-muted: rgba(255, 255, 255, 0.15);
+    --color-banner: #7b68ee;
+    --bg-timer: whitesmoke;
+    --timer-grad: rgba(255, 255, 255, 0.5);
+    position: relative;
+    display: flex;
+    text-align: center;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.2em;
+    padding: 10px;
+    gap: 1rem;
+    background-color: rgba(0,0,0,0.1);
+}
+.rc--vertical{
+    flex-direction: column;
+}
+.rc--horizontal{
+    flex-direction: row;
+}
+.timer {
+    font-size: 1rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25vmin;
+    height: 25vmin;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.7em;
+    background: linear-gradient(90deg,
+            var(--color-muted) 50%,
+            var(--timer-grad) 50%);
+    margin-bottom: 1rem;
+    backdrop-filter: blur(1px);
+}
+
+/* .light .timer {
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    box-shadow: var(--timer-box);
+} */
+
+.timer-num {
+    font-size: 13vmin;
+}
+
+.timer-text {
+    content: "";
+    position: absolute;
+    bottom: -1em;
+    background: var(--bg-timer);
+    border-radius: 0.3em;
+    padding: 0.5em;
+    text-align: center;
+    width: 18vmin;
+    overflow: clip;
+    transition: background-color 0.2s ease;
+}
+
+/* .light .timer-text {
+    box-shadow: var(--timer-box);
+} */

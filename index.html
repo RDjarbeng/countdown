@@ -1,88 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <base href="/">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Countdown application with light and dark mode auto functionality">
-    <meta name="Keywords" content="Countdown, Midnight countdown">
-    <title>Final Countdown</title>
-    <link href="/img/icons/favicon.png" rel="icon">
-    <link rel="mask-icon" href="/img/icons/favicon.png" color="#FFFFFF">
-    <meta name="Author" content="R.Djarbeng| A.Nyakotey">
-    <link rel="preload stylesheet" as="style" type="text/css" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="preload stylesheet" as="style" type="text/css" href="/css/themes.css">
-    <link rel="stylesheet" href="/css/themes.css">
-    <link rel="preload stylesheet" as="style" type="text/css" href="/css/form.css">
-    <link rel="stylesheet" href="/css/form.css">
-    <link rel="preload stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    </noscript>
-    <!-- <link rel="manifest" href="/manifest.json"> -->
-    <!-- ios support -->
-    <link rel="apple-touch-icon" href="/img/icons/favicon.png">
-    <meta name="apple-mobile-web-app-status-bar" content="#7b68ee">
-    <meta name="theme-color" content="#7b68ee">
-    <link rel="icon" href="img/icons/chrome512.png" color="#FFFFFF">
-    <link rel="mask-icon" href="img/icons/maskable_icon.png" color="#FFFFFF">
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="grey">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#7b68ee">
+    <title>Document</title>
+    <style>
+        
+    </style>
 </head>
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis eum, libero eligendi voluptas placeat eaque blanditiis architecto possimus distinctio ea illum, sunt repellendus. Nam doloribus illo culpa laborum, veritatis molestias!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis eum, libero eligendi voluptas placeat eaque blanditiis architecto possimus distinctio ea illum, sunt repellendus. Nam doloribus illo culpa laborum, veritatis molestias!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis eum, libero eligendi voluptas placeat eaque blanditiis architecto possimus distinctio ea illum, sunt repellendus. Nam doloribus illo culpa laborum, veritatis molestias!</p>
 
-<body class="light" data-theme="purple">
-    <app-sidebar></app-sidebar>
-    <app-header></app-header>
-    <main>
-        <section class="container">
-            <div class="banner-row">
-                <div class="banner">
-                    <div class="banner-h2" id='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="clock-row">
-                <div class="timer">
-                    <span class="timer-num" id="day-num">00</span>
-                    <span class="timer-text">Days</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="hour-num">00</span>
-                    <span class="timer-text">Hours</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="min-num">00</span>
-                    <span class="timer-text">Minutes</span>
-                </div>
-                <div class="timer">
-                    <span class="timer-num" id="sec-num">00</span>
-                    <span class="timer-text">Seconds</span>
-                </div>
-            </div>
-            <div class="due-row">
-                <div class="countdown-list-date">
-                    <div class="date-icon">
-                        <i class="far fa-calendar"></i>
-                        <span class="due">DUE</span>
-                    </div>
-                    <div id="dueDate"></div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <div class="new-item"><i class="fas fa-plus fa-xl"></i></div>
+    <app-rcountdown cd-to="2023-12-31" orient="vertical"></app-rcountdown>
 
-    <script src="/js/error.js" type="module"></script>
-    <script src="/app.js" type="module"></script>
-    <script src="/js/sidebar.js" type="module" async></script>
-    <script src="/js/loadCustomUI.js" type="module"></script>
-    <script src="/js/form.js" type="module" async></script>
-    <script src="/js/serviceWorkerUpdate.js" type="module"></script>
-
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis eum, libero eligendi voluptas placeat eaque blanditiis architecto possimus distinctio ea illum, sunt repellendus. Nam doloribus illo culpa laborum, veritatis molestias!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis eum, libero eligendi voluptas placeat eaque blanditiis architecto possimus distinctio ea illum, sunt repellendus. Nam doloribus illo culpa laborum, veritatis molestias!</p>
+    <script src="rcountdown.js" type="module"></script>
 </body>
-
 </html>
