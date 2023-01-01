@@ -161,6 +161,8 @@ Not all elements made it into the final product, some others also got modified, 
 * Major code refactor, improved code readability and reusuability
 * Added a bundling step, Vite, resulting in massive performance gains
 * Many other significant updates, setting the stage for the next version
+* Bug fixes
+
 
 ### Potential and/or current developments
 * listpage as the homepage with onboarding
