@@ -62,9 +62,16 @@ export class Clock {
     countDays() {
         //account for leap year
         //end date is set to Jan 1st of next year, so subtract 1
-        this.endDate.getFullYear()
-        this.dayLength = ((this.currentDate.getFullYear() % 4 != 0) ? 365 : 366)
+        this.dayLength = this.getDaysinYear();
         return this.dayLength - this.days
+    }
+    /**
+     * Returns the number of days in the year, takes into account leap year
+     * @returns {Number}
+     */
+    getDaysinYear(){
+        //todo: add 400 year condition for leap year
+        return ((this.currentDate.getFullYear() % 4 != 0) ? 365 : 366)
     }
     /**
      * Sets the clock values, day, hour, year, second to 0, !not a replacement for stop clock 
