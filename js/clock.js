@@ -16,8 +16,8 @@ export class Clock {
     setEndDate(endDate) {
         //set endDate to end of year
         // todo: check endDate for validity as date
-        this.endDate = endDate || new Date(`Jan 1, ${new Date().getFullYear() + 1} 00:00:00`)
-
+        this.currentDate = new Date();
+        this.endDate = endDate || new Date(`Jan 1, ${this.currentDate.getFullYear() + 1} 00:00:00`)
 
     }
     /**
@@ -61,7 +61,9 @@ export class Clock {
      */
     countDays() {
         //account for leap year
-        this.dayLength = ((this.endDate.getFullYear() % 4 != 0) ? 365 : 366)
+        //end date is set to Jan 1st of next year, so subtract 1
+        this.endDate.getFullYear()
+        this.dayLength = ((this.currentDate.getFullYear() % 4 != 0) ? 365 : 366)
         return this.dayLength - this.days
     }
     /**
