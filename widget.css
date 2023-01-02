@@ -1,64 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+app-rcountdown * {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    position: relative;
+}
+
 app-rcountdown {
+    --bg-color: rgba(0, 0, 0, 0.05);
     --color-muted: rgba(255, 255, 255, 0.15);
-    --color-banner: #7b68ee;
-    --bg-timer: whitesmoke;
+    --timer-num: calc(0.52 * var(--timer-width));
+    --timer-text-width: calc(0.7 * var(--timer-width));
+    --timer-text-size: calc(0.15 * var(--timer-text-width));
     --timer-grad: rgba(255, 255, 255, 0.5);
+    --timer-box: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+    --timer-spacing: min(2.5vmin, 1.5rem);
+    --timer-text-bg: whitesmoke;
+}
+
+app-rcountdown {
     position: relative;
     display: flex;
-    text-align: center;
-    width: 100%;
     align-items: center;
     justify-content: center;
-    border-radius: 0.2em;
-    padding: 10px;
-    gap: 1rem;
-    background-color: rgba(0,0,0,0.1);
+    text-align: center;
+    border-radius: 0.2rem;
+    padding: var(--timer-spacing);
+    gap: var(--timer-spacing);
+    background-color: var(--bg-color);
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    overflow: hidden;
 }
-.rc--vertical{
+
+.rc--vertical {
     flex-direction: column;
 }
-.rc--horizontal{
-    flex-direction: row;
-}
-.timer {
-    font-size: 1rem;
+
+.rc_timer {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 25vmin;
-    height: 25vmin;
+    flex-shrink: 0;
+    width: var(--timer-width);
+    height: var(--timer-width);
     border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0.7em;
+    border-radius: calc(var(--timer-spacing) / 2);
     background: linear-gradient(90deg,
             var(--color-muted) 50%,
             var(--timer-grad) 50%);
-    margin-bottom: 1rem;
+    margin-bottom: calc(var(--timer-spacing) / 2);
     backdrop-filter: blur(1px);
+    font-family: Inter, sans-serif;
 }
 
-/* .light .timer {
+.light .rc_timer {
     border: 2px solid rgba(255, 255, 255, 0.7);
     box-shadow: var(--timer-box);
-} */
-
-.timer-num {
-    font-size: 13vmin;
 }
 
-.timer-text {
+.rc_timer-num {
+    font-size: var(--timer-num);
+}
+
+.rc_timer-text {
+    font-size: var(--timer-text-size);
     content: "";
     position: absolute;
     bottom: -1em;
-    background: var(--bg-timer);
+    background: var(--timer-text-bg);
     border-radius: 0.3em;
-    padding: 0.5em;
+    padding: 0.5em 0;
     text-align: center;
-    width: 18vmin;
+    width: var(--timer-text-width);
     overflow: clip;
     transition: background-color 0.2s ease;
 }
-
-/* .light .timer-text {
-    box-shadow: var(--timer-box);
-} */

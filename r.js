@@ -47,32 +47,15 @@ export class Clock {
 
 }
 
-function startClock(clock, clockDOM) {
-    let intervalID = setInterval(() => {updateDisplay(clock, clockDOM);}, 500);
-    return intervalID;
-}
-
 export function waitForAnimation(clock, domElements, duration) {
     stepIncreaseAndStart(clock, domElements, duration);
     startClock(clock, domElements);
 }
 
-/**
- * 
- * @param {Clock} clock 
- * @param {Object} domElements 
- *  @param {HTMLElement} domElements.dayNumber
- *  @param {HTMLElement} domElements.hourNumber
- *  @param {HTMLElement} domElements.minNumber
- *  @param {HTMLElement} domElements.secNumber
- * @param {Number} [speed = 50 ] - Speed of the animation in ms
- * @param {Number} [start_num =0] Start number at animation beginning
- */
-async function stepIncreaseAndStart(clock, domElements, speed = 50, start_num = 0) {
-    animateValue(domElements.day, start_num, clock.days, speed);
-    animateValue(domElements.hour, start_num, clock.hours, speed);
-    animateValue(domElements.minute, start_num, clock.minutes, speed);
-    animateValue(domElements.second, start_num, clock.seconds, speed);
+// countdown animation
+function startClock(clock, clockDOM) {
+    let intervalID = setInterval(() => {updateDisplay(clock, clockDOM);}, 500);
+    return intervalID;
 }
 
 function updateDisplay(clock, clockDOM) {
@@ -87,8 +70,15 @@ function updateDisplay(clock, clockDOM) {
     setHTML(clockDOM.second, `${s}`);
 }
 
+// preAnimation i.e the brief countup before the countdown animation starts
+async function stepIncreaseAndStart(clock, domElements, speed = 50, start_num = 0) {
+    animateValue(domElements.day, start_num, clock.days, speed);
+    animateValue(domElements.hour, start_num, clock.hours, speed);
+    animateValue(domElements.minute, start_num, clock.minutes, speed);
+    animateValue(domElements.second, start_num, clock.seconds, speed);
+}
+
 /** 
-* for the animated Countdown 
 * @param {HTMLElement} domElement 
 * @param {Number} start initial value
 * @param {Number} end final value of count
