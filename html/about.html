@@ -6,11 +6,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A countdown app and day of year counter with light and dark mode auto functionality">
+    <meta name="description"
+        content="A countdown app and day of year counter with light and dark mode auto functionality">
     <link href="/img/icons/favicon.png" rel="icon">
-    <link rel="preload stylesheet"  as="style" type="text/css" href="/css/about.css">
+    <link rel="preload stylesheet" as="style" type="text/css" href="/css/about.css">
     <link rel="stylesheet" href="/css/about.css">
-    <link rel="preload stylesheet"  as="style" type="text/css" href="/css/themes.css">
+    <link rel="preload stylesheet" as="style" type="text/css" href="/css/themes.css">
     <link rel="stylesheet" href="/css/themes.css">
 
     <link rel="preload stylesheet" as="style" type="text/css" href="/css/form.css">
@@ -31,75 +32,32 @@
 </head>
 
 <body class="light" data-theme="purple">
-    <aside class="sidebar sidebar-hide">
-        <section class="sidebar-content">
-            <div class="brand">
-                <div class="brand-logo"><img src="/img/icons/chrome512.png" alt="logo"></div>
-                <div class="brand-name">Final CountDown</div>
-            </div>
-            <hr>
-            <div class="opt-group">OPTIONS</div>
-            <div class="sidebar-list">
-                <div class="sidebar-list-items">
-                    <i class="fas fa-home fa-fw"></i> <span>Home</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-clock fa-fw"></i> <span>My CountDowns</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-upload fa-fw"></i> <span>Set Custom Background</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-adjust fa-fw"></i> <span>Change Theme</span>
-                </div>
-                <section class="pick-color">
-                    <span class="pick-color-ico" data-settheme="red"></span>
-                    <span class="pick-color-ico" data-settheme="pink"></span>
-                    <span class="pick-color-ico" data-settheme="yellow"></span>
-                    <span class="pick-color-ico" data-settheme="green"></span>
-                    <span class="pick-color-ico" data-settheme="blue"></span>
-                    <span class="pick-color-ico" data-settheme="purple"></span>
-                    <span class="pick-color-ico" data-settheme="black"></span>
-                </section>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-calendar-day fa-fw"></i> <span>Today</span>
-                </div>
-                <div class="sidebar-list-items">
-                    <i class="fas fa-question-circle fa-fw"></i> <span>About</span>
-                </div>
-            </div>
-        </section>
-    </aside>
-    <header class="header">        
-        <div class="nav">
-            <i class="fas fa-bars fa-lg"></i>
-        </div>
-        <div class="logo">
-            <a href="/index.html"><div class="logo-ico"><img src="/img/icons/chrome192.png" alt="logo"></div></a>
-            <div class="logo-name">Final CountDown</div>
-        </div>
-        <div class="mode-row">
-            <span class="toggleMode" id='themeToggle'><i class="fas fa-sun fa-fw"></i></span>
-        </div>
-    </header>
+    <app-sidebar></app-sidebar>
+    <app-header></app-header>
     <main>
         <section class="container">
             <div class="details">
                 <div class="details-title">Final CountDown</div>
                 <div class="details-info">
                     Simply save the date and let the countdown begin! <br>
-                    <span class="app-learn"> <a href="https://github.com/RDjarbeng/countdown" class="ext-link">Learn more... <i class="fas fas fas fas fa-external-link-alt"></i> </a> </span>
+                    <span class="app-learn">
+                        <a href="https://github.com/RDjarbeng/countdown" class="ext-link">
+                            Learn more... <i class="fas fas fas fas fa-external-link-alt"></i>
+                        </a>
+                    </span>
                 </div>
             </div>
             <div class="details">
                 <div class="details-title">Version</div>
-                <div class="details-info">2.4.1</div>
+                <div class="details-info">2.5.1</div>
             </div>
             <div class="details">
                 <div class="details-title">Credits</div>
                 <div class="details-info">
-                    Team Lead: <a href="https://github.com/RDjarbeng" class="ext-link">Djarbeng <i class="fas fas fas fas fa-external-link-alt"></i> </a> <br>
-                    Design lead: <a href="https://github.com/nyakotey" class="ext-link">Nyakotey <i class="fas fas fas fas fa-external-link-alt"></i> </a> <br>
+                    Team Lead: <a href="https://github.com/RDjarbeng" class="ext-link">
+                        Djarbeng <i class="fas fas fas fas fa-external-link-alt"></i> </a> <br>
+                    Design lead: <a href="https://github.com/nyakotey" class="ext-link">
+                        Nyakotey <i class="fas fas fas fas fa-external-link-alt"></i> </a> <br>
                     Testers:
                     Vincent Adam,
                     Leslie Annan,
@@ -110,15 +68,18 @@
                     Felix Adjei,
                     Joshua Aryee,
                     Joshua Pomary,
-                    Cephas Anthonio, 
-                    Wise Ekpe Richard, 
+                    Cephas Anthonio,
+                    Wise Ekpe Richard,
                     Collins Gyamera
                 </div>
             </div>
             <div class="details">
                 <div class="details-title">Legal</div>
                 <div class="details-info">
-                    This app is licenced under the MIT license. Source code is available on <a href="https://github.com/RDjarbeng/countdown" class="ext-link">Github <i class="fas fas fas fas fa-external-link-alt"></i> </a>. Do support.
+                    This app is licenced under the MIT license. Source code is available on 
+                    <a href="https://github.com/RDjarbeng/countdown" class="ext-link">
+                        Github <i class="fas fas fas fas fa-external-link-alt"></i> 
+                    </a>. Do support.
                 </div>
             </div>
             <div class="details">
@@ -145,8 +106,8 @@
     <script src="/js/error.js" type="module"></script>
     <script src="/js/loadCustomUI.js" type="module"></script>
     <script src="/js/sidebar.js" async type="module"></script>
-    <script  src="/js/serviceWorkerUpdate.js" type= "module"></script>
-    
+    <script src="/js/serviceWorkerUpdate.js" type="module"></script>
+
 </body>
 
 </html>

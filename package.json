@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=./",
-    "preview": "vite preview"
+    "preview": "vite preview --base=./"
   },
   "devDependencies": {
     "vite": "^3.1.7",
