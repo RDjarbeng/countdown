@@ -1,6 +1,6 @@
 # RCountdown Widget
 
-Application that displays a countdown to a given date.
+A Web App Component that displays a countdown to a given date.
 
 File size is  `~6kb` and has `zero` dependencies!
 <br><br>
@@ -23,7 +23,14 @@ That's it!<br>
 The widget auto sizes to fit it's container and blend with the page styles :wink: 
 <br>
 
-![sample from rcountdown.netlify.app](/img/sample.png)
+![sample from rcountdown.netlify.app](/img/sample.png) 
+<br>
+Sample from [rcountdown.netlify.app](rcountdown.netlify.app)
+<br><br>
+
+Check out the [demo](/demo.html) for more examples
+<br><br>
+
 
 If smart-sizing isn't enough for you, you can customize the component size and styles via the available `attributes` or `CSS`
 <br>
