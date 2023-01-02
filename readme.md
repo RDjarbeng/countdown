@@ -2,7 +2,7 @@
 
 Application that displays a countdown to a given date.
 
-File size is only `Xkb` and has `zero` dependencies!
+File size is  `~6kb` and has `zero` dependencies!
 <br><br>
 
 ## Usage
@@ -16,11 +16,14 @@ Simply include the script in your page:
 Place the component anywhere in your document, setting the date it should count down to.
 
 ```html
-<app-rcountdown cd-to="2023-05-17"></app-rcountdown>
+<app-rcountdown cd-to="2024-01-01"></app-rcountdown>
 ```
 
 That's it!<br>
-The widget auto sizes to fit it's container and blend with the page styles :wink: <br>
+The widget auto sizes to fit it's container and blend with the page styles :wink: 
+<br>
+
+![sample from rcountdown.netlify.app](/img/sample.png)
 
 If smart-sizing isn't enough for you, you can customize the component size and styles via the available `attributes` or `CSS`
 <br>
@@ -37,7 +40,7 @@ If smart-sizing isn't enough for you, you can customize the component size and s
 
 ### Extending RCountdown
 
-`Classes` have the prefix `rc_`
+CSS classes have the prefix `rc_`
 
 Each widget in the page is given an incremental id, ie `rcX`, where `X` is 1,2,3... <br>
 You can therefore style each one individually via `CSS`
@@ -62,3 +65,4 @@ However, it is recommended that you manipulate the styling via the the following
     --timer-text-bg: myvalue;
 }
 ```
+![specification](img/specs.png)

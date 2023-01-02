@@ -1,12 +1,24 @@
-import * as app from "./r.js"
+import * as app from "./js/clock.js";
+import html from "./widget.html?raw";
+import css from "./widget.css?raw"
 
 class RCountdown extends HTMLElement {
-    static created = 0;
     constructor() {
         super();
     }
+
+    static created = 0;
+
+    static addStyles() {
+        let stylesheet = document.createElement("style");
+        stylesheet.textContent = css;
+        document.head.append(stylesheet);
+        RCountdown.addedStyles = true;
+    }
+
     async connectedCallback() {
-        this.innerHTML = await app.fetchFile("widget.html", "text");
+        this.innerHTML = html;
+        if (!RCountdown.addedStyles) RCountdown.addStyles();
         let endDate = this.getAttribute("cd-to");
         let orient = this.getAttribute("orient");
         let size = this.getAttribute("size");
@@ -14,6 +26,7 @@ class RCountdown extends HTMLElement {
         this.startRcountdown(endDate);
         this.setStyles(orient, size);
     }
+
 
     $(elem) {
         return this.querySelector(elem);
@@ -78,6 +91,3 @@ class RCountdown extends HTMLElement {
 }
 
 customElements.define("app-rcountdown", RCountdown);
-
-
-

@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import"https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap";
 
 app-rcountdown * {
-    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-family: Nunito, Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -9,7 +9,7 @@ app-rcountdown * {
 }
 
 app-rcountdown {
-    --bg-color: rgba(0, 0, 0, 0.05);
+    --bg-color: rgba(0, 0, 0, 0.07);
     --color-muted: rgba(255, 255, 255, 0.15);
     --timer-num: calc(0.52 * var(--timer-width));
     --timer-text-width: calc(0.7 * var(--timer-width));
@@ -54,11 +54,6 @@ app-rcountdown {
     margin-bottom: calc(var(--timer-spacing) / 2);
     backdrop-filter: blur(1px);
     font-family: Inter, sans-serif;
-}
-
-.light .rc_timer {
-    border: 2px solid rgba(255, 255, 255, 0.7);
-    box-shadow: var(--timer-box);
 }
 
 .rc_timer-num {
