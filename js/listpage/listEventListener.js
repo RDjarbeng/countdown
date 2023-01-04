@@ -2,6 +2,7 @@ import { errorHandler } from "../error.js";
 import { displayFormPopUp } from "../formfunctions.js";
 import { handleFormUpdate } from "../formupdate.js";
 import { addClickListenersWithoutDuplicates } from "../functions.js";
+import { showNotification } from "../notification.js";
 import { notifyUser } from "../uiFunctions.js";
 import { deleteFromCountdownsWithId, getArrayIndexByDateModified, getArrayOfCountdownStatus, updateArrayOfCountdownState, updateClockAndText } from "./listFunctions";
 import { LISTPAGE_DOM_CLASSES } from "./LISTPAGE_DOM_SELECTORS.js";
@@ -45,7 +46,7 @@ function addListEventListener() {
     const countList = document.querySelector(LISTPAGE_DOM_CLASSES.countdownList)
     addClickListenersWithoutDuplicates(countList, listEventListener)
     addEventListener('elapsed', (e)=>{
-        
+        showNotification('Countdown Elapsed')
         console.log('Elapsed event fired',e)
         let song = new Audio("Efatawo.mp3");
 console.log(song);
