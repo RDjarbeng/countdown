@@ -246,9 +246,12 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
                 }
 
             } else {
-                const elapsedEvent = new CustomEvent('elapsed', { detail: "test" });
+                const countdown =arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id'))
+                const elapsedEvent = new CustomEvent('elapsed', { 
+                    body: countdown? countdown.text:'',
+                    detail: "test" });
                 dispatchEvent(elapsedEvent);
-                console.log('elapsing', arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id')));
+                console.log('elapsing');
                 element.classList.remove('countdown-counting')
                 setInnerHtmlForNotNull(element, 'Elapsed');
                 //update bottom part of countdown
@@ -275,7 +278,7 @@ export function loadListPage(){
 
 /**
  *
- * @returns {Array} Array of countdowns stored in local storage, null if none
+ * @returns {Array.<{text: String, date: String, dateModified: String, repeat: String}>} Array of countdowns stored in local storage, null if none
  */
  function fetchArrayOfCountdowns() {
     let jsonListOfCountdowns = localStorage.getItem('countdown');
