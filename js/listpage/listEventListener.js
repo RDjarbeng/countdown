@@ -44,7 +44,13 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
 function addListEventListener() {
     const countList = document.querySelector(LISTPAGE_DOM_CLASSES.countdownList)
     addClickListenersWithoutDuplicates(countList, listEventListener)
-    addEventListener('elapsed', (e)=>console.log('Elapsed event fired',e));
+    addEventListener('elapsed', (e)=>{
+        
+        console.log('Elapsed event fired',e)
+        let song = new Audio("Efatawo.mp3");
+console.log(song);
+song.play();
+    });
 }
 
 /**
