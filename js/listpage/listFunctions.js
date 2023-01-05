@@ -212,7 +212,6 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
     try{
 
         displayCountdowns();
-        console.log('Count itemExists: ',getCountItemExists());
             if (getCountItemExists()) {
                 let interval = setInterval(() => getCountItemExists() ? updateCountdownItems() : clearInterval(interval), 500)
             }
