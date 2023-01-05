@@ -42,9 +42,13 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
     }
         
 }
-
+/**
+ * Determines the response when a countdown elapses
+ * @param {Event} e Contains countdown object at property detail with {text, date, dateModified, repeat}
+ */
 const countHasElapsedListener =(e)=>{
-    notifyUser('Countdown Elapsed')
+    const countdown = e.detail;
+    notifyUser(`Elapsed ${countdown.text}`)
     showNotification('Countdown Elapsed')
     console.log('Elapsed event fired',e)
     let song = new Audio("Efatawo.mp3");
