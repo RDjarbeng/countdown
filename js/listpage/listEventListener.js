@@ -42,17 +42,22 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
     }
         
 }
+
+const countHasElapsedListener =(e)=>{
+    notifyUser('Countdown Elapsed')
+    showNotification('Countdown Elapsed')
+    console.log('Elapsed event fired',e)
+    let song = new Audio("Efatawo.mp3");
+    console.log(song);
+    song.play();
+}
+
 function addListEventListener() {
     const countList = document.querySelector(LISTPAGE_DOM_CLASSES.countdownList)
     addClickListenersWithoutDuplicates(countList, listEventListener)
-    addEventListener('elapsed', (e)=>{
-        showNotification('Countdown Elapsed')
-        console.log('Elapsed event fired',e)
-        let song = new Audio("Efatawo.mp3");
-console.log(song);
-song.play();
-    });
+    addEventListener('elapsed', countHasElapsedListener);
 }
+
 
 /**
  * Adds event listeners for the list and the page container for closing context menus
