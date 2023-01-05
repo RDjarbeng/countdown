@@ -116,10 +116,9 @@ export const listEventListener = event => {
             // setInnerHtmlForNotNull(countdownList, populateList(arrayOfCountdowns));
         } else if (isClassOnTargetElement(targetElement, 'edit')) {
             if (!listArrayOfCountdowns) {
-                console.log("Strangely array was not found in list functions on edit");
+                console.warn("Strangely array was not found in list functions on edit");
                 updateArrayOfCountdownState();
             }
-            console.log(listArrayOfCountdowns);
             let editItem = listArrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
             // todo: custom error messages for components on fail
             try {
