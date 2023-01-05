@@ -1,0 +1,45 @@
+.notification {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    z-index: 99;
+    position: absolute;
+    padding-top: 10vmin;
+}
+
+.notification_msg {
+    width: 80vmin;
+    padding: 2vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2vmin;
+    position: relative;
+}
+
+.notification_close {
+    position: absolute;
+    right: 3%;
+    padding: 1.2vmin 2.2vmin;
+}
+
+@media screen and (max-width: 427px) {
+    .notification_msg{
+        width: 90vmin;
+        padding: 3.3vmin;
+    }
+}
+
+/* error */
+.notification--error .notification_msg{
+    background: #f8d7da;
+    color: #842029;
+}
+
+/* info */
+.notification--info .notification_msg {
+	background: rgb(175, 245, 175);
+	color: #00882f;
+}
