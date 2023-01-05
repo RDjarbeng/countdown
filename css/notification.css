@@ -6,12 +6,13 @@
     background: transparent;
     z-index: 99;
     position: absolute;
-    padding-top: 10vmin;
+    padding-top: min(calc(var(--num) * 10vmin),
+            calc(var(--num) * 3.5rem));
 }
 
 .notification_msg {
     width: 80vmin;
-    padding: 2vmin;
+    padding: min(2vmin, 0.6rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,20 +27,25 @@
 }
 
 @media screen and (max-width: 427px) {
-    .notification_msg{
+    .notification {
+        padding-top: min(calc((1.5 * var(--num)) * 10vmin),
+                calc((1.3 * var(--num)) * 2.5rem));
+    }
+
+    .notification_msg {
         width: 90vmin;
-        padding: 3.3vmin;
+        padding: min(3vmin, 0.5rem);
     }
 }
 
 /* error */
-.notification--error .notification_msg{
+.notification--error .notification_msg {
     background: #f8d7da;
     color: #842029;
 }
 
 /* info */
 .notification--info .notification_msg {
-	background: rgb(175, 245, 175);
-	color: #00882f;
+    background: rgb(175, 245, 175);
+    color: #00882f;
 }
