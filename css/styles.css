@@ -223,29 +223,6 @@ main {
     box-shadow: var(--timer-box);
 }
 
-.controls-row {
-    display: flex;
-    flex-flow: column nowrap;
-    margin-bottom: 5vh;
-    gap: 1em;
-    width: 100vw;
-    height: 20vh;
-    align-items: center;
-    justify-content: center;
-}
-
-.author {
-    /* position: absolute;
-  bottom: 15px;
-  left: 20px; */
-    font-size: 0.7em;
-    color: var(--color-text);
-}
-
-.author:hover {
-    color: var(--color-banner);
-}
-
 .header {
     position: fixed;
     top: 0;
