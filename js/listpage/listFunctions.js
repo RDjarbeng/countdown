@@ -234,7 +234,17 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
             clock.countDown();
             if (clock.getDistance() > 0) {
                 setInnerHtmlForNotNull(element, getCountdownString(clock));
-            } else if (element.getAttribute('data-repeat') == 'true') {
+            }else
+            {  
+                //fire custom elapsed event, passing the countdown elapsed as detail
+                const countdown =arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id'))
+                const elapsedEvent = new CustomEvent('elapsed', { 
+                    detail: countdown 
+                });
+                dispatchEvent(elapsedEvent);
+                console.log('elapsing');
+
+                if (element.getAttribute('data-repeat') == 'true') {
                 console.log('updating repeat', element);
                 // update repeat item set enddate to next year
                 let index = arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == element.getAttribute('data-id'));
@@ -245,18 +255,14 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
                 }
 
             } else {
-                const countdown =arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id'))
-                const elapsedEvent = new CustomEvent('elapsed', { 
-                    body: countdown? countdown.text:'',
-                    detail: "test" });
-                dispatchEvent(elapsedEvent);
-                console.log('elapsing');
+                
                 element.classList.remove('countdown-counting')
                 setInnerHtmlForNotNull(element, 'Elapsed');
                 //update bottom part of countdown
                 displayAndUpdatecount();
 
             }
+        }
 
         });
     } else {
