@@ -18,9 +18,14 @@ export const errorHandlerWithoutMessage = (err) => {
  * @param {String} msg 
  */
 export const errorHandler = (msg) => {
+    let currentNotifications = $(".notification");
+    if (currentNotifications) {
+        currentNotifications.forEach((e)=> e.remove());
+    }
+
     const errMessage = "Oops an error occurred 🤧😐";
     let errHtml = `
-    <section class="notification notification--error" style="--num:${++noticeNum}">
+    <section class="notification notification--error" style="--num:1">
         <div class="notification_msg">
             <span>${msg || errMessage}</span>
             <div class="notification_close" >
@@ -28,12 +33,9 @@ export const errorHandler = (msg) => {
             </div>
         </div>
     </section>`;
-
+    
     document.body.insertAdjacentHTML("afterbegin", errHtml);
-    $('.notification_msg').forEach(elem => {
-        elem.addEventListener('click', closeErrorInfo);
-    })
+    $('.notification_msg')[0].addEventListener('click', closeErrorInfo);
 };
 
-let noticeNum = 0;
 window.onerror = errorHandlerWithoutMessage;
