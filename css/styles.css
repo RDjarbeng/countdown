@@ -197,6 +197,11 @@ main {
     backdrop-filter: blur(1px);
 }
 
+.timer--elapsed{
+    transform: scale(0.6);
+    filter: blur(2px);
+}
+
 .light .timer {
     border: 2px solid rgba(255, 255, 255, 0.7);
     box-shadow: var(--timer-box);
