@@ -3,7 +3,7 @@ import { displayFormPopUp } from "../formfunctions.js";
 import { handleFormUpdate } from "../formupdate.js";
 import { addClickListenersWithoutDuplicates } from "../functions.js";
 import { showNotification } from "../notification.js";
-import { notifyUser } from "../uiFunctions.js";
+import { informUser, notifyUser } from "../uiFunctions.js";
 import { deleteFromCountdownsWithId, getArrayIndexByDateModified, getArrayOfCountdownStatus, updateArrayOfCountdownState, updateClockAndText } from "./listFunctions";
 import { LISTPAGE_DOM_CLASSES } from "./LISTPAGE_DOM_SELECTORS.js";
 import { hideContextMenus } from "./list_ui/hideContextMenus.js";
@@ -48,8 +48,8 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
  */
 const countHasElapsedListener =(e)=>{
     const countdown = e.detail;
-    notifyUser(`Elapsed ${countdown.text}`)
-    showNotification('Countdown Elapsed')
+    informUser(`Elapsed: ${(countdown.text)?(countdown.text): 'countdown'}`)
+    showNotification(`Elapsed: ${(countdown.text)?(countdown.text): 'countdown'}`)
     console.log('Elapsed event fired',e)
     let song = new Audio("Efatawo.mp3");
     console.log(song);
