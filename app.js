@@ -27,15 +27,15 @@ var myclock = setMainClock();
 setInnerHtmlForNotNull(dueDate, `${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 
 function setMainClock() {
-    let myclock = new NewYearClock();
+    let theClock = new NewYearClock();
     let mainclock = localStorage.getItem('mainClock');
     console.log(mainclock);
     if (mainclock  && mainclock != 'undefined') { //countdown set to main
         mainclock = JSON.parse(mainclock)
-        myclock = new Clock(new Date(mainclock.date));
+        theClock = new Clock(new Date(mainclock.date));
         setMainText(mainclock.text)
     }
-    return myclock;
+    return theClock;
 
 }
 
