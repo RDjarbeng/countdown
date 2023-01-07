@@ -18,7 +18,7 @@ import { setInnerHtmlForNotNull, addZeros } from "./functions.js";
  * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
  * @param {Number} [duration=800] specifies how long the animation lasts in milliseconds
  */
-export async function waitForAnimation(clock, domElements, duration) {
+export async function animateAndStartClock(clock, domElements, duration) {
     await stepIncreaseAndStart(clock, domElements, duration || animatedCountDuration)
     startClock(clock, domElements);
 }

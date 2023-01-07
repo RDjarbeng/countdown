@@ -1,5 +1,5 @@
 import { Clock, NewYearClock } from "./js/clock.js";
-import { waitForAnimation } from "./js/appfunctions.js";
+import { animateAndStartClock } from "./js/appfunctions.js";
 import { errorHandler } from "./js/error.js";
 import { setInnerHtmlForNotNull } from "./js/functions.js";
 // import registerUpdateServiceWorker from "./js/serviceWorkerUpdate"
@@ -48,7 +48,7 @@ function setMainText(countdownText) {
 
 try {
     //show day value before animation runs
-    waitForAnimation(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
+    animateAndStartClock(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
 
     // addWhatappEventHandler();
     // as;
