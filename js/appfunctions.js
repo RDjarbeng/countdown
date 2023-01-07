@@ -24,16 +24,11 @@ export async function animateAndStartClock(clock, domElements, duration) {
 }
 
 export function startClock(clock, domElements) {
-    let intervalID = setInterval(() => { startTime(clock, domElements,); }, 500);
+    let intervalID = setInterval(() => { 
+        updateDisplay(clock, domElements);
+        // startTime(clock, domElements,);
+     }, 500);
     return intervalID;
-}
-
-
-
-export function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
-    // console.log(clock);
-    updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
-    // setInnerHtmlForNotNull(dayCount, dayClock.countDays());
 }
 /**
  * 
@@ -57,12 +52,9 @@ export async function stepIncreaseAndStart(clockElement, domElements, speed = 50
 /**
  * Updates the html dom nodes with the clock values, days, hours, minutes, seconds
  * @param {Clock} counter 
- * @param {HTMLElement} dayDisplay 
- * @param {HTMLElement} hourDisplay 
- * @param {HTMLElement} minDisplay 
- * @param {HTMLElement} secDisplay 
+ * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second 
  */
-export function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
+export function updateDisplay(counter,{ dayNumber, hourNumber, minNumber, secNumber }) {
     counter.countDown();
     let d = counter.days
     let h = counter.hours
@@ -72,10 +64,10 @@ export function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secD
     h = addZeros(h);
     m = addZeros(m);
     s = addZeros(s);
-    setInnerHtmlForNotNull(dayDisplay, `${d}`);
-    setInnerHtmlForNotNull(hourDisplay, `${h}`);
-    setInnerHtmlForNotNull(minDisplay, `${m}`);
-    setInnerHtmlForNotNull(secDisplay, `${s}`);
+    setInnerHtmlForNotNull(dayNumber, `${d}`);
+    setInnerHtmlForNotNull(hourNumber, `${h}`);
+    setInnerHtmlForNotNull(minNumber, `${m}`);
+    setInnerHtmlForNotNull(secNumber, `${s}`);
 }
 
 
