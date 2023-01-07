@@ -89,7 +89,7 @@ function openBgPicker() {
         const resetBtn = $(".reset")[0];
         const defaultImgs = $(".bg-presets-preview:not(.upload-preview) img");
         //main
-        filePicker.addEventListener("change", () => {processImg(filePicker.files[0])});
+        filePicker.addEventListener("change", () => { processImg(filePicker.files[0]) });
         closeFormBtn.addEventListener("click", closeFormPopUp);
         resetBtn.addEventListener("click", () => {
             localStorage.removeItem("userBg");
@@ -98,9 +98,9 @@ function openBgPicker() {
             closeFormPopUp();
         });
         defaultImgs.forEach((img) => {
-            img.addEventListener("click", async () => {processImg(await convertToBlob(img.src));});
+            img.addEventListener("click", async () => { processImg(await convertToBlob(img.src)); });
         });
-        
+
         //defs
         function processImg(uploadedPic) {
             let reader = new FileReader();
