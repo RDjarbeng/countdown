@@ -1,6 +1,7 @@
 import { startClock, stepIncreaseAndStart } from "../appfunctions.js";
 import { Anniversary, Clock } from "../clock.js";
 import { errorHandler } from "../error.js";
+import { fireElapsedEvent } from "../events.js";
 import { saveCountDownList } from "../formfunctions.js";
 import { setInnerHtmlForNotNull, stopClock } from "../functions.js";
 import { getLocalIsoStringFromDateInput } from "../timefunctions.js";
@@ -238,10 +239,7 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
             {  
                 //fire custom elapsed event, passing the countdown elapsed as detail
                 const countdown =arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id'))
-                const elapsedEvent = new CustomEvent('elapsed', { 
-                    detail: countdown 
-                });
-                dispatchEvent(elapsedEvent);
+                fireElapsedEvent(countdown);
                 console.log('elapsing');
 
                 if (element.getAttribute('data-repeat') == 'true') {

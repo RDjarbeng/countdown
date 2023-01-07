@@ -1,3 +1,4 @@
+import { fireElapsedEvent } from "./events.js";
 import { setInnerHtmlForNotNull, addZeros } from "./functions.js";
 
 /**
@@ -55,6 +56,11 @@ export async function stepIncreaseAndStart(clockElement, domElements, speed = 50
  * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second 
  */
 export function updateDisplay(counter,{ dayNumber, hourNumber, minNumber, secNumber }) {
+    if(counter.getDistance()<0){
+        //emit elapsed event
+        //todo: create a listener for homepage, update elapsed event with countdown
+        fireElapsedEvent()
+    }
     counter.countDown();
     let d = counter.days
     let h = counter.hours
