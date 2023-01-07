@@ -47,10 +47,16 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
  * @param {Event} e Contains countdown object at property detail with {text, date, dateModified, repeat}
  */
 const countHasElapsedListener =(e)=>{
-    const countdown = e.detail;
-    informUser(`Elapsed: ${(countdown.text)?(countdown.text): 'countdown'}`)
-    showNotification(`Elapsed: ${(countdown.text)?(countdown.text): 'countdown'}`)
     console.log('Elapsed event fired',e)
+    const countdown = e.detail;
+    //set text to display
+    let message=(countdown.text)?countdown.text: 'countdown'
+    //show notification on page
+    informUser(`Elapsed: ${message})}`)
+    //show notification using device notifications (if allowed)
+    showNotification(`Elapsed: ${message}`)
+    //play audio
+    //todo: get tone instead of song
     let song = new Audio("Efatawo.mp3");
     console.log(song);
     song.play();
