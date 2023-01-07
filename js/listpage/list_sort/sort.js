@@ -45,7 +45,6 @@ export const addSortEventListeners = () => {
  * Adds sort menu to the page
  */
  export const addSortUIAndListeners = () => {
-     console.log('Adding sort UI');
      let arrayOfCd=getArrayOfCountdownStatus();
      if(arrayOfCd &&arrayOfCd.length>0){
         addSortUI();
