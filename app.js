@@ -53,7 +53,7 @@ try {
     // addWhatappEventHandler();
     // as;
 } catch (error) {
-    errorHandler("Error in clock");
+    errorHandler("Error in time update");
     console.log(error);
     console.log("Error on main page clock inside wait for animation")
 }
