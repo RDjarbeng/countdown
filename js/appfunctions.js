@@ -76,6 +76,25 @@ export function updateDisplay(counter,{ dayNumber, hourNumber, minNumber, secNum
     setInnerHtmlForNotNull(secNumber, `${s}`);
 }
 
+/**
+ * Determines the response when a countdown elapses
+ * @param {Event} e Ideally contains countdown object details at property detail with {text, date, dateModified, repeat}
+ */
+ export const countElapsedListener_home =(e)=>{
+    console.log('Elapsed event caught',e)
+    const countdown = e.detail;
+    //set text to display
+    let message=(countdown.text)?countdown.text: 'countdown'
+    //show notification on page
+    informUser(`Elapsed: ${message})}`)
+    //show notification using device notifications (if allowed)
+    showNotification(`Elapsed: ${message}`)
+    //play audio
+    //todo: get tone instead of song
+    let song = new Audio("Efatawo.mp3");
+    console.log(song);
+    song.play();
+}
 
 /**
  * for the animated Countdown 
