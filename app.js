@@ -1,5 +1,5 @@
 import { Clock, NewYearClock } from "./js/clock.js";
-import { animateAndStartClock } from "./js/appfunctions.js";
+import { animateAndStartClock, countElapsedListener_home } from "./js/appfunctions.js";
 import { errorHandler } from "./js/error.js";
 import { setInnerHtmlForNotNull } from "./js/functions.js";
 import { HOMEPAGE_DOM_IDS } from "./js/HOMEPAGE_DOM_IDS.js";
@@ -41,14 +41,11 @@ function setMainText(countdownText) {
 try {
     //show day value before animation runs
     animateAndStartClock(myclock, { dayNumber, hourNumber, minNumber, secNumber }, animatedCountDuration);
-    addEventListener('elapsed', countHasElapsedListener);
-    coun
-    // addWhatappEventHandler();
-    // as;
+    addEventListener('elapsed', countElapsedListener_home);
 } catch (error) {
-    errorHandler("Error in time update");
+    errorHandler("Error in diplay on this page");
     console.log(error);
-    console.log("Error on main page clock inside wait for animation")
+    console.log("Error on main page clock")
 }
 
 
