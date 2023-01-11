@@ -3,6 +3,7 @@ import { displayFormPopUp } from "../formfunctions.js";
 import { handleFormUpdate } from "../formupdate.js";
 import { addClickListenersWithoutDuplicates } from "../functions.js";
 import { showNotification } from "../notification.js";
+import { playNotificationSound } from "../sound/playNotificationSound.js";
 import { informUser, notifyUser } from "../uiFunctions.js";
 import { deleteFromCountdownsWithId, getArrayIndexByDateModified, getArrayOfCountdownStatus, updateArrayOfCountdownState, updateClockAndText } from "./listFunctions";
 import { LISTPAGE_DOM_CLASSES } from "./LISTPAGE_DOM_SELECTORS.js";
@@ -44,22 +45,20 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
 }
 /**
  * Determines the response when a countdown elapses
- * @param {Event} e Ideally contains countdown object details at property detail with {text, date, dateModified, repeat}
+ * @param {Event} e Ideally contains countdown title at property detail with 
  */
 const countHasElapsedListener =(e)=>{
     console.log('Elapsed event fired',e)
-    const countdown = e.detail;
+    const countdownText = e.detail;
     //set text to display
-    let message=(countdown.text)?countdown.text: 'countdown'
+    let message=(countdownText)?countdownText: 'countdown'
     //show notification on page
-    informUser(`Elapsed: ${message})}`)
+    informUser(`Elapsed: ${message}`)
     //show notification using device notifications (if allowed)
     showNotification(`Elapsed: ${message}`)
     //play audio
     //todo: get tone instead of song
-    let song = new Audio("Efatawo.mp3");
-    console.log(song);
-    song.play();
+    playNotificationSound();
 }
 
 function addListEventListener() {

@@ -1,5 +1,9 @@
 import { fireElapsedEvent } from "./events.js";
 import { setInnerHtmlForNotNull, addZeros } from "./functions.js";
+import { HOMEPAGE_DOM_IDS } from "./HOMEPAGE_DOM_IDS.js";
+import { showNotification } from "./notification.js";
+import { playNotificationSound } from "./sound/playNotificationSound.js";
+import { informUser } from "./uiFunctions.js";
 
 /**
  * 
@@ -25,11 +29,16 @@ export async function animateAndStartClock(clock, domElements, duration) {
 }
 
 export function startClock(clock, domElements) {
+    if(clock.getDistance()>0){
     let intervalID = setInterval(() => { 
         updateDisplay(clock, domElements);
         // startTime(clock, domElements,);
      }, 500);
-    return intervalID;
+     return intervalID;
+    }else{
+        //updateDisplay once and stop, if home page clock has elapsed
+        updateDisplay(clock, domElements);
+    }
 }
 /**
  * 
@@ -59,7 +68,8 @@ export function updateDisplay(counter,{ dayNumber, hourNumber, minNumber, secNum
     if(counter.getDistance()<0){
         //emit elapsed event
         //todo: create a listener for homepage, update elapsed event with countdown
-        fireElapsedEvent()
+        let title =document.getElementById(HOMEPAGE_DOM_IDS.countdownTextDisplay).innerText;
+        fireElapsedEvent(title);
     }
     counter.countDown();
     let d = counter.days
@@ -82,20 +92,18 @@ export function updateDisplay(counter,{ dayNumber, hourNumber, minNumber, secNum
  */
  export const countElapsedListener_home =(e)=>{
     console.log('Elapsed event caught',e)
-    const countdown = e.detail;
+    const countdownText = e.detail;
     //set text to display
-    let message=(countdown.text)?countdown.text: 'countdown'
+    let message=(countdownText)?countdownText: 'countdown'
     //show notification on page
-    informUser(`Elapsed: ${message})}`)
+    informUser(`Elapsed: ${message}`)
     //show notification using device notifications (if allowed)
     showNotification(`Elapsed: ${message}`)
     //play audio
     //todo: get tone instead of song
-    let song = new Audio("Efatawo.mp3");
-    console.log(song);
-    song.play();
-}
+    playNotificationSound();
 
+}
 /**
  * for the animated Countdown 
  * @param {HTMLElement} domElement 
