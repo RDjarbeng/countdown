@@ -239,7 +239,7 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
             {  
                 //fire custom elapsed event, passing the countdown elapsed as detail
                 const countdown =arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id'))
-                fireElapsedEvent(countdown);
+                fireElapsedEvent(countdown.text);
                 console.log('elapsing');
 
                 if (element.getAttribute('data-repeat') == 'true') {

@@ -1,10 +1,10 @@
 /**
- * Takes a countdown object whose details are to be attached to the event
- * @param {Object} countdown 
+ * Takes a countdown event title to add to the event detail parameter
+ * @param {String} countdownTitle 
  */
-export const fireElapsedEvent=(countdown)=>{
+export const fireElapsedEvent=(countdownTitle)=>{
     const elapsedEvent = new CustomEvent('elapsed', { 
-        detail: countdown 
+        detail: countdownTitle 
     });
     dispatchEvent(elapsedEvent);
 }
