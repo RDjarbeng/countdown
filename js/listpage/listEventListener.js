@@ -52,13 +52,18 @@ const countHasElapsedListener =(e)=>{
     const countdownText = e.detail;
     //set text to display
     let message=(countdownText)?countdownText: 'countdown'
-    //show notification on page
-    informUser(`Elapsed: ${message}`)
-    //show notification using device notifications (if allowed)
-    showNotification(`Elapsed: ${message}`)
-    //play audio
-    //todo: get tone instead of song
-    playNotificationSound();
+    try {
+        //show notification on page
+        informUser(`Elapsed: ${message}`)
+        //play audio
+        //todo: get tone instead of song
+        playNotificationSound();
+        //show notification using device notifications (if allowed)
+        showNotification(`Elapsed: ${message}`)
+        
+    } catch (error) {
+        errorHandler("Sorry, could not alert properly ");
+    }
 }
 
 function addListEventListener() {
