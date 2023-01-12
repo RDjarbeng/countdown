@@ -1,20 +1,28 @@
-export const showNotification = (body) => {
-    if(Notification.permission !=='denied'){
-    const notif = new Notification('rCountdown', {
-        body: body,
-        icon: '/img/icons/favicon.png'
-    });
-    console.log(notif);
-    notif.onclick = (e) => {
-        console.log(e);
-        // window.location.href= '/html/countdown-list.html'
-    };
+import { errorHandler } from "./error";
 
-    notif.onclose = (e) => {
-        console.log('User dismissed notification');
-        //should stop sound if playing
-        // window.location.href= '/html/countdown-list.html'
-    };
+export const showNotification = (body) => {
+    if(Notification.permission ==='granted'){
+    try {
+        const notif = new Notification('rCountdown', {
+            body: body,
+            icon: '/img/icons/favicon.png'
+        });
+        console.log(notif);
+        notif.onclick = (e) => {
+            console.log(e);
+            // window.location.href= '/html/countdown-list.html'
+        };
+    
+        notif.onclose = (e) => {
+            console.log('User dismissed notification');
+            //should stop sound if playing
+            // window.location.href= '/html/countdown-list.html'
+        };
+    } catch (error) {
+        errorHandler('Error displaying device notification');
+        console.log(error);
+    }
+    
 }else{
     console.log('Notification not allowed by user, notific...js')
 }
@@ -22,18 +30,24 @@ export const showNotification = (body) => {
 
 
 export const requestNotificationPermission=(body)=>{
-    if(Notification.permission !=='denied'){
-        console.log('requesting permission');
-        Notification.requestPermission().then((permission)=>{
-            //3 permissions: default, granted, denied
-            console.log('Notification Permission>', Notification.permission);
-            if(permission ==='granted'){
-                console.log('User granted notification access');
-                // showNotification('Notification Permission granted');
-            }
-        })
+    try {
+        
+        if(Notification.permission !=='denied'){
+            console.log('requesting permission');
+            Notification.requestPermission().then((permission)=>{
+                //3 permissions: default, granted, denied
+                console.log('Notification Permission>', Notification.permission);
+                if(permission ==='granted'){
+                    console.log('User granted notification access');
+                    // showNotification('Notification Permission granted');
+                }
+            })
         }
         if(Notification.permission==='granted'){
             showNotification('Thank you for visiting');
         }
-}
+    } catch (error) {
+        console.log('Error occured requesting notification permission',error );
+        errorHandler('Error in notification request from user')
+    }
+    }
