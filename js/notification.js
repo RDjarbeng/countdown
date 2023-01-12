@@ -8,6 +8,7 @@ export const showNotification = (body) => {
             icon: '/img/icons/favicon.png'
         });
         console.log(notif);
+        if(notif){
         notif.onclick = (e) => {
             console.log(e);
             // window.location.href= '/html/countdown-list.html'
@@ -18,8 +19,11 @@ export const showNotification = (body) => {
             //should stop sound if playing
             // window.location.href= '/html/countdown-list.html'
         };
+    }else{
+        errorHandler('Could not create device notification')
+    }
     } catch (error) {
-        errorHandler('Error displaying device notification');
+        errorHandler('Error displaying device notification'+error);
         console.log(error);
     }
     
