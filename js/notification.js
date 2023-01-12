@@ -1,4 +1,5 @@
 export const showNotification = (body) => {
+    if(Notification.permission !=='denied'){
     const notif = new Notification('rCountdown', {
         body: body,
         icon: '/img/icons/favicon.png'
@@ -14,6 +15,9 @@ export const showNotification = (body) => {
         //should stop sound if playing
         // window.location.href= '/html/countdown-list.html'
     };
+}else{
+    console.log('Notification not allowed by user, notific...js')
+}
 };
 
 
