@@ -15,6 +15,13 @@ import { errorHandler } from "./error.js";
         console.warn('Element passed to setInnerHTML for not null is null/undefined');
 }
 
+export function storeMainClockCountdown(countdown){
+    if(countdown){
+        const countdownToStore=JSON.stringify(countdown)
+        localStorage.setItem('mainClock',countdownToStore);
+    }
+}
+
 
 /**
  * add zero in front of numbers < 10
