@@ -179,7 +179,7 @@ export  function displayCountdowns() {
         let listItems =  populateList(arrayOfCountdowns)
         
         setInnerHtmlForNotNull(countdownList, listItems)
-        setInnerHtmlForNotNull(countdownTextDisplay, '')
+        // setInnerHtmlForNotNull(countdownTextDisplay, '')
 
         setCountItemStatus(arrayOfCountdowns)
     } else {
