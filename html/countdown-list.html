@@ -10,16 +10,14 @@
     <meta name="Keywords" content="Countdown, Midnight countdown">
     <title>Final Countdown</title>
     <link href="/img/icons/favicon.png" rel="icon">
-    <link rel="mask-icon" href="/img/icons/favicon.png" color="#FFFFFF">
     <meta name="Author" content="R.Djarbeng| A.Nyakotey">
-    <link rel="preload stylesheet" as="style" type="text/css" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preload stylesheet" as="style" type="text/css" href="/css/countdown-list.css">
+    <link rel="stylesheet" href="/css/countdown-list.css">
     <link rel="preload stylesheet" as="style" type="text/css" href="/css/themes.css">
     <link rel="stylesheet" href="/css/themes.css">
-    <link rel="preload stylesheet" as="style" type="text/css" href="/css/form.css">
     <link rel="stylesheet" href="/css/form.css">
-    <link rel="preload stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     </noscript>
@@ -28,9 +26,7 @@
     <link rel="apple-touch-icon" href="/img/icons/favicon.png">
     <meta name="apple-mobile-web-app-status-bar" content="#7b68ee">
     <meta name="theme-color" content="#7b68ee">
-    <link rel="icon" href="img/icons/chrome512.png" color="#FFFFFF">
-    <link rel="mask-icon" href="img/icons/maskable_icon.png" color="#FFFFFF">
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="grey">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="gray">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#7b68ee">
 </head>
 
@@ -38,14 +34,15 @@
     <app-sidebar></app-sidebar>
     <app-header></app-header>
     <main>
-        <section class="container">
-            <div class="banner-row">
+        <div class="container">
+            <section class="banner-row">
                 <div class="banner">
-                    <div class="banner-h2" id='countdown-text'> CountDown to New Year <i class="fas fa-snowman"></i>
+                    <div class="banner-h1">My CountDowns</div>
+                    <div class="banner-h2" id='countdown-text'>
                     </div>
                 </div>
-            </div>
-            <div class="clock-row">
+            </section>
+            <section class="clock-row">
                 <div class="timer">
                     <span class="timer-num" id="day-num">00</span>
                     <span class="timer-text">Days</span>
@@ -62,26 +59,23 @@
                     <span class="timer-num" id="sec-num">00</span>
                     <span class="timer-text">Seconds</span>
                 </div>
-            </div>
-            <div class="due-row">
-                <div class="countdown-list-date">
-                    <div class="date-icon">
-                        <i class="far fa-calendar"></i>
-                        <span class="due">DUE</span>
-                    </div>
-                    <div id="dueDate"></div>
+            </section>
+            <section class="list-container">
+                <div class="countdown-list" id="countdown-list">
+                    Loading ...
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
     <div class="new-item"><i class="fas fa-plus fa-xl"></i></div>
-
     <script src="/js/error.js" type="module"></script>
-    <script src="/app.js" type="module"></script>
-    <script src="/js/sidebar.js" type="module" async></script>
+    <!-- <script src="/app.js" type="module"></script> -->
+    <script src="/js/sidebar.js" async type="module"></script>
     <script src="/js/loadCustomUI.js" type="module"></script>
-    <script src="/js/form.js" type="module" async></script>
-    <script src="/js/serviceWorkerUpdate.js" type="module"></script>
+    <script src="/js/formupdate.js" type="module" async></script>
+    <script src="/js/displayCountdowns.js" type="module"></script>
+    <!-- <script src="/js/listpage/addListEventListeners.js" type="module"></script> -->
+    <script  src="/js/serviceWorkerUpdate.js" type= "module"></script>
 
 </body>
 
