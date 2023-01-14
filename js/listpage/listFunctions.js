@@ -155,7 +155,7 @@ export function updateClockAndText(date, text, animation = true) {
     setInnerHtmlForNotNull(countdownTextDisplay, text);
     stopClock(interval);
     (animation) ? stepIncreaseAndStart(clock, { dayNumber, hourNumber, minNumber, secNumber }, 400) : null;
-    interval = startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500, interval);
+    interval = startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }, false);
 
 }
 
