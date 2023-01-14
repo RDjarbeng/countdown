@@ -24,6 +24,7 @@ function setMainClockOnHome() {
     if (mainclock  && mainclock != 'undefined') { //countdown set to main
         mainclock = JSON.parse(mainclock)
         if(mainclock.hasOwnProperty('repeat') && mainclock.repeat){
+            console.warn('Repeat found');
             theClock = new Clock(new Date(mainclock.date));
         }else{
             theClock = new Clock(new Date(mainclock.date));
