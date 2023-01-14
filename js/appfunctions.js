@@ -1,4 +1,11 @@
-import { setInnerHtmlForNotNull, addZeros } from "./functions.js";
+import { Anniversary } from "./clock.js";
+import { fireElapsedEvent } from "./events.js";
+import { setInnerHtmlForNotNull, addZeros, storeMainClockCountdown } from "./functions.js";
+import { HOMEPAGE_DOM_IDS } from "./HOMEPAGE_DOM_IDS.js";
+import { showNotification } from "./notification.js";
+import { playNotificationSound } from "./sound/playNotificationSound.js";
+import { getLocalIsoStringFromDateInput } from "./timefunctions.js";
+import { informUser } from "./uiFunctions.js";
 
 /**
  * 
@@ -18,23 +25,57 @@ import { setInnerHtmlForNotNull, addZeros } from "./functions.js";
  * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
  * @param {Number} [duration=800] specifies how long the animation lasts in milliseconds
  */
-export async function waitForAnimation(clock, domElements, duration) {
+export async function animateAndStartClock(clock, domElements, duration) {
     await stepIncreaseAndStart(clock, domElements, duration || animatedCountDuration)
-    startClock(clock, domElements);
+    startClock(clock, domElements, true);
+}
+/**
+ * 
+ * @param {Clock} clock 
+ * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
+ * @param {Boolean} [alertOnElapse=true] Should an elapsed event be fired on elapse
+ */
+export function startClock(clock, domElements, alertOnElapse) {
+    
+    if(clock.getDistance()>0){
+    let intervalID = setInterval(() => { 
+        if(clock.getDistance()<0){
+            
+            //emit elapsed event, if cd elapses
+            if(alertOnElapse){
+                let title =document.getElementById(HOMEPAGE_DOM_IDS.countdownTextDisplay).innerText;
+                fireElapsedEvent(title);
+                
+            }
+            //up
+            updateDisplay(clock, domElements);
+            
+            if(clock.getDistance()<0){
+                //if not anniversary after update will still be less than, so clear interval
+                clearInterval(intervalID);
+            }
+        }else{
+            updateDisplay(clock, domElements);
+        }
+        // startTime(clock, domElements,);
+     }, 500);
+     return intervalID;
+    }else{
+        //updateDisplay once and stop, if home page clock has elapsed
+        updateDisplay(clock, domElements);
+    }
 }
 
-export function startClock(clock, domElements) {
-    let intervalID = setInterval(() => { startTime(clock, domElements,); }, 500);
-    return intervalID;
+export function updateHomePageRepeatCountdown(countdown) {
+    if (new Date(countdown.date) - new Date() < 0) {
+        // arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
+        countdown.date =getLocalIsoStringFromDateInput(new Anniversary(new Date(countdown.date)).endDate);
+        storeMainClockCountdown(countdown);
+        return true;
+    };
+    return false;
 }
 
-
-
-export function startTime(clock, { dayNumber, hourNumber, minNumber, secNumber }) {
-    // console.log(clock);
-    updateDisplay(clock, dayNumber, hourNumber, minNumber, secNumber);
-    // setInnerHtmlForNotNull(dayCount, dayClock.countDays());
-}
 /**
  * 
  * @param {HTMLElement} clockElement 
@@ -57,12 +98,9 @@ export async function stepIncreaseAndStart(clockElement, domElements, speed = 50
 /**
  * Updates the html dom nodes with the clock values, days, hours, minutes, seconds
  * @param {Clock} counter 
- * @param {HTMLElement} dayDisplay 
- * @param {HTMLElement} hourDisplay 
- * @param {HTMLElement} minDisplay 
- * @param {HTMLElement} secDisplay 
+ * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second 
  */
-export function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secDisplay) {
+export function updateDisplay(counter,{ dayNumber, hourNumber, minNumber, secNumber }) {
     counter.countDown();
     let d = counter.days
     let h = counter.hours
@@ -72,13 +110,30 @@ export function updateDisplay(counter, dayDisplay, hourDisplay, minDisplay, secD
     h = addZeros(h);
     m = addZeros(m);
     s = addZeros(s);
-    setInnerHtmlForNotNull(dayDisplay, `${d}`);
-    setInnerHtmlForNotNull(hourDisplay, `${h}`);
-    setInnerHtmlForNotNull(minDisplay, `${m}`);
-    setInnerHtmlForNotNull(secDisplay, `${s}`);
+    setInnerHtmlForNotNull(dayNumber, `${d}`);
+    setInnerHtmlForNotNull(hourNumber, `${h}`);
+    setInnerHtmlForNotNull(minNumber, `${m}`);
+    setInnerHtmlForNotNull(secNumber, `${s}`);
 }
 
+/**
+ * Determines the response when a countdown elapses
+ * @param {Event} e Ideally contains countdown object details at property detail with {text, date, dateModified, repeat}
+ */
+ export const countElapsedListener_home =(e)=>{
+    console.log('Elapsed event caught',e)
+    const countdownText = e.detail;
+    //set text to display
+    let message=(countdownText)?countdownText: 'countdown'
+    //show notification on page
+    informUser(`Elapsed: ${message}`)
+    //show notification using device notifications (if allowed)
+    showNotification(`Elapsed: ${message}`)
+    //play audio
+    //todo: get tone instead of song
+    playNotificationSound();
 
+}
 /**
  * for the animated Countdown 
  * @param {HTMLElement} domElement 

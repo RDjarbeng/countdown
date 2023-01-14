@@ -11,7 +11,7 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,ico,jpg,png,svg,gif,webmanifest}"],
       },
       //include icons in public folder
-      includeAssets: ["**/*.{png}"],
+      includeAssets: ["**/*.{png, mp3}"],
       manifest: {
         name: 'Final Countdown',
         start_url: "/",

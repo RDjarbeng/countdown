@@ -6,7 +6,7 @@ import "toastify-js/src/toastify.css";
 //service worker update and offline functionality
 const updateSW = registerSW({
     onNeedRefresh() {
-        console.log("Update sw, now available, devEnv");
+        console.log("Update sw, now available, Rcountdown");
         Toastify({
             text: `
                 <h4>A newer version of this page is available!</h4>

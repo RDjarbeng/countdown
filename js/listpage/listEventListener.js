@@ -1,8 +1,10 @@
 import { errorHandler } from "../error.js";
 import { displayFormPopUp } from "../formfunctions.js";
 import { handleFormUpdate } from "../formupdate.js";
-import { addClickListenersWithoutDuplicates } from "../functions.js";
-import { notifyUser } from "../uiFunctions.js";
+import { addClickListenersWithoutDuplicates, storeMainClockCountdown } from "../functions.js";
+import { showNotification } from "../notification.js";
+import { playNotificationSound } from "../sound/playNotificationSound.js";
+import { informUser, notifyUser } from "../uiFunctions.js";
 import { deleteFromCountdownsWithId, getArrayIndexByDateModified, getArrayOfCountdownStatus, updateArrayOfCountdownState, updateClockAndText } from "./listFunctions";
 import { LISTPAGE_DOM_CLASSES } from "./LISTPAGE_DOM_SELECTORS.js";
 import { hideContextMenus } from "./list_ui/hideContextMenus.js";
@@ -31,8 +33,7 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
  
  export const setMainClockCountdown=(countdown) =>{
     if(countdown){
-        const countdownToStore=JSON.stringify(countdown)
-        localStorage.setItem('mainClock',countdownToStore);
+        storeMainClockCountdown(countdown);
         let date = new Date(countdown.date);
         notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
     }else{
@@ -41,10 +42,36 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
     }
         
 }
+/**
+ * Determines the response when a countdown elapses
+ * @param {Event} e Ideally contains countdown title at property detail with 
+ */
+const countHasElapsedListener =(e)=>{
+    console.log('Elapsed event fired',e)
+    const countdownText = e.detail;
+    // errorHandler(countdownText);
+    //set text to display
+    let message=(countdownText)?countdownText: 'countdown'
+    try {
+        //show notification on page
+        informUser(`Elapsed: ${message}`)
+        //play audio
+        //todo: get tone instead of song
+        playNotificationSound();
+        //show notification using device notifications (if allowed)
+        showNotification(`Elapsed: ${message}`)
+        
+    } catch (error) {
+        errorHandler("Sorry, could not alert properly ");
+    }
+}
+
 function addListEventListener() {
     const countList = document.querySelector(LISTPAGE_DOM_CLASSES.countdownList)
     addClickListenersWithoutDuplicates(countList, listEventListener)
+    addEventListener('elapsed', countHasElapsedListener);
 }
+
 
 /**
  * Adds event listeners for the list and the page container for closing context menus
@@ -64,15 +91,15 @@ function addListEventListener() {
 export const listEventListener = event => {
     const targetElement = event.target;
     let listArrayOfCountdowns =getArrayOfCountdownStatus();
-
     // if event is fired on text or date, countdown item
     if (isTargetElementOnCountdownItem(targetElement)) {
-        console.log(targetElement, 'parent', targetElement.parentElement);
         let targetIndex = getArrayIndexByDateModified(listArrayOfCountdowns, targetElement.parentElement.getAttribute('data-id'));
         // todo: find a better way of accessing element in countdown array
-        console.log(targetIndex, 'index of element found in array');
+        let miniClockDate =listArrayOfCountdowns[targetIndex].date
+        let miniClockText =listArrayOfCountdowns[targetIndex].text
+        let miniClockRepeatStatus =listArrayOfCountdowns[targetIndex].repeat
         showClockRow();
-        updateClockAndText(listArrayOfCountdowns[targetIndex].date, listArrayOfCountdowns[targetIndex].text);
+        updateClockAndText(miniClockDate, miniClockText, miniClockRepeatStatus);
     }
 
     //if the area for context menu is clicked
@@ -99,10 +126,9 @@ export const listEventListener = event => {
             // setInnerHtmlForNotNull(countdownList, populateList(arrayOfCountdowns));
         } else if (isClassOnTargetElement(targetElement, 'edit')) {
             if (!listArrayOfCountdowns) {
-                console.log("Strangely array was not found in list functions on edit");
+                console.warn("Strangely array was not found in list functions on edit");
                 updateArrayOfCountdownState();
             }
-            console.log(listArrayOfCountdowns);
             let editItem = listArrayOfCountdowns.find((countdown, index) => countdown.dateModified == count_modified);
             // todo: custom error messages for components on fail
             try {

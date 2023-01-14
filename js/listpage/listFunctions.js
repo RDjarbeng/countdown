@@ -1,6 +1,7 @@
 import { startClock, stepIncreaseAndStart } from "../appfunctions.js";
 import { Anniversary, Clock } from "../clock.js";
 import { errorHandler } from "../error.js";
+import { fireElapsedEvent } from "../events.js";
 import { saveCountDownList } from "../formfunctions.js";
 import { setInnerHtmlForNotNull, stopClock } from "../functions.js";
 import { getLocalIsoStringFromDateInput } from "../timefunctions.js";
@@ -127,15 +128,17 @@ export function setCountItemStatus( arrayOfCountdowns){
 * @param {Array.<{text: String, date: String, dateModified: String, repeat: String}>} arrayOfCountdowns | contains array of countdown objects
 * @param {String} date date preferrably in ISO string format
 * @param {Number} index index of the repeat countdown element 
+* @return {Boolean} repeat Item status
 */
 export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
     if (new Date(date) - new Date() < 0) {
         // arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
         arrayOfCountdowns[index].date =getLocalIsoStringFromDateInput(new Anniversary(new Date(date)).endDate);
         saveCountDownList(arrayOfCountdowns);
+        return true; //repeat updated
 
     };
-
+    return false
 }
 /**
  * 
@@ -148,13 +151,22 @@ export const setCountItemExists= (value)=> countItemExists = value;
  * @returns {Boolean}
  */
 export const getCountItemExists= ()=> countItemExists;
-
-export function updateClockAndText(date, text, animation = true) {
+/**
+ * 
+ * @param {Date} date Date as a string passed to date constructor
+ * @param {String} text Shown above the mini clock
+ * @param {Boolean} repeat if countdown repeat is true
+ * @param {Boolean} animation if clock should be animated
+ */
+export function updateClockAndText(date, text, repeat, animation = true) {
     let clock = new Clock(new Date(date));
+    if(repeat){
+        clock = new Anniversary(new Date(date))
+    }
     setInnerHtmlForNotNull(countdownTextDisplay, text);
     stopClock(interval);
     (animation) ? stepIncreaseAndStart(clock, { dayNumber, hourNumber, minNumber, secNumber }, 400) : null;
-    interval = startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }, 500, interval);
+    interval = startClock(clock, { dayNumber, hourNumber, minNumber, secNumber }, false);
 
 }
 
@@ -167,7 +179,7 @@ export  function displayCountdowns() {
         let listItems =  populateList(arrayOfCountdowns)
         
         setInnerHtmlForNotNull(countdownList, listItems)
-        setInnerHtmlForNotNull(countdownTextDisplay, '')
+        // setInnerHtmlForNotNull(countdownTextDisplay, '')
 
         setCountItemStatus(arrayOfCountdowns)
     } else {
@@ -212,7 +224,6 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
     try{
 
         displayCountdowns();
-        console.log('Count itemExists: ',getCountItemExists());
             if (getCountItemExists()) {
                 let interval = setInterval(() => getCountItemExists() ? updateCountdownItems() : clearInterval(interval), 500)
             }
@@ -235,7 +246,14 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
             clock.countDown();
             if (clock.getDistance() > 0) {
                 setInnerHtmlForNotNull(element, getCountdownString(clock));
-            } else if (element.getAttribute('data-repeat') == 'true') {
+            }else
+            {  
+                //fire custom elapsed event, passing the countdown elapsed as detail
+                const countdown =arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id'))
+                fireElapsedEvent(countdown.text);
+                console.log('elapsing');
+
+                if (element.getAttribute('data-repeat') == 'true') {
                 console.log('updating repeat', element);
                 // update repeat item set enddate to next year
                 let index = arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == element.getAttribute('data-id'));
@@ -246,13 +264,14 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
                 }
 
             } else {
-                console.log('elapsing', arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id')));
+                
                 element.classList.remove('countdown-counting')
                 setInnerHtmlForNotNull(element, 'Elapsed');
                 //update bottom part of countdown
                 displayAndUpdatecount();
 
             }
+        }
 
         });
     } else {
@@ -273,7 +292,7 @@ export function loadListPage(){
 
 /**
  *
- * @returns {Array} Array of countdowns stored in local storage, null if none
+ * @returns {Array.<{text: String, date: String, dateModified: String, repeat: String}>} Array of countdowns stored in local storage, null if none
  */
  function fetchArrayOfCountdowns() {
     let jsonListOfCountdowns = localStorage.getItem('countdown');
@@ -301,7 +320,6 @@ export const deleteFromCountdownsWithId=(id)=>{
 
 export function updateArrayOfCountdownState(){
     arrayOfCountdowns = fetchArrayOfCountdowns();
-    console.log(arrayOfCountdowns);
     loadListPage();
 }
 // todo: figure out a way to separate functions and dom references

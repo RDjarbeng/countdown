@@ -1,6 +1,7 @@
 import { setInnerHtmlForNotNull, $ } from "./functions.js";
 import "./customComponents.js";
 import loaderHtml from "../html/loader.html?raw";
+import { closeErrorInfo } from "./error.js";
 
 
 // DOM elements
@@ -26,6 +27,29 @@ export function notifyUser(message) {
         );
     }
 }
+
+export const informUser = (msg) => {
+    let thisNum = 1;
+    let currentNotifications = $(".notification--info");
+    if (currentNotifications) {
+        thisNum = thisNum + currentNotifications.length;
+    }
+    let infoHtml = `
+    <section class="notification notification--info" style="--num:${thisNum}">
+        <div class="notification_msg">
+            <span>${msg}</span>
+            <div class="notification_close" >
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+    </section>`;
+    
+    document.body.insertAdjacentHTML("afterbegin", infoHtml);
+    $('.notification_msg').forEach(elem => {
+        elem.addEventListener('click', closeErrorInfo);
+    })
+};
+
 export function activateLightMode() {
     setInnerHtmlForNotNull(icon, `<i class="fas fa-moon fa-fw"></i>`);
     if (body.classList.contains("dark")) {
