@@ -170,11 +170,8 @@ export function getCdFromFormInputs() {
     let userDate = dateInput.value;
     // get text field values, with auto values
     let userText = getUserText(userTextField);
-    console.log('Entered',userDate);
-    console.log('To locale',new Date(userDate).toLocaleString());
     // userDate = new Date(userDate).toISOString();
     userDate = getLocalIsoStringFromDateInput(userDate);
-    console.log('Stored',userDate);
     let countItem = { text: userText, date: userDate, dateModified: new Date() };
     if (repeatCheck) {
         countItem.repeat = repeatCheck.checked;

@@ -94,10 +94,8 @@ export const listEventListener = event => {
 
     // if event is fired on text or date, countdown item
     if (isTargetElementOnCountdownItem(targetElement)) {
-        console.log(targetElement, 'parent', targetElement.parentElement);
         let targetIndex = getArrayIndexByDateModified(listArrayOfCountdowns, targetElement.parentElement.getAttribute('data-id'));
         // todo: find a better way of accessing element in countdown array
-        console.log(targetIndex, 'index of element found in array');
         showClockRow();
         updateClockAndText(listArrayOfCountdowns[targetIndex].date, listArrayOfCountdowns[targetIndex].text);
     }

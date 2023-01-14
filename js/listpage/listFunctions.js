@@ -311,7 +311,6 @@ export const deleteFromCountdownsWithId=(id)=>{
 
 export function updateArrayOfCountdownState(){
     arrayOfCountdowns = fetchArrayOfCountdowns();
-    console.log(arrayOfCountdowns);
     loadListPage();
 }
 // todo: figure out a way to separate functions and dom references

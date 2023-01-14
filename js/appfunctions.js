@@ -63,7 +63,6 @@ export function startClock(clock, domElements, alertOnElapse) {
     }else{
         //updateDisplay once and stop, if home page clock has elapsed
         updateDisplay(clock, domElements);
-        console.warn(clock);
     }
 }
 
