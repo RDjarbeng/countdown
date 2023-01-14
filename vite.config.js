@@ -44,6 +44,7 @@ export default defineConfig({
         fallback: resolve(__dirname, 'html/fallback.html'),
         today: resolve(__dirname, 'html/today.html'),
         formupload: resolve(__dirname, 'html/form-upload.html'),
+        dayOfYear: resolve(__dirname, 'dayOfYear.html'),
 
         // aboutjs: resolve(__dirname, 'about.js')
       },
