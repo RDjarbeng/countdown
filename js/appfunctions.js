@@ -1,8 +1,10 @@
+import { Anniversary } from "./clock.js";
 import { fireElapsedEvent } from "./events.js";
 import { setInnerHtmlForNotNull, addZeros, storeMainClockCountdown } from "./functions.js";
 import { HOMEPAGE_DOM_IDS } from "./HOMEPAGE_DOM_IDS.js";
 import { showNotification } from "./notification.js";
 import { playNotificationSound } from "./sound/playNotificationSound.js";
+import { getLocalIsoStringFromDateInput } from "./timefunctions.js";
 import { informUser } from "./uiFunctions.js";
 
 /**
@@ -65,14 +67,14 @@ export function startClock(clock, domElements, alertOnElapse) {
     }
 }
 
-export function updateHomePageRepeatCountdown(countdown, date) {
-    if (new Date(date) - new Date() < 0) {
+export function updateHomePageRepeatCountdown(countdown) {
+    if (new Date(countdown.date) - new Date() < 0) {
         // arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
-        countdown.date =getLocalIsoStringFromDateInput(new Anniversary(new Date(date)).endDate);
+        countdown.date =getLocalIsoStringFromDateInput(new Anniversary(new Date(countdown.date)).endDate);
         storeMainClockCountdown(countdown);
-
+        return true;
     };
-
+    return false;
 }
 
 /**
