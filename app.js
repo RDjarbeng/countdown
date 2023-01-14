@@ -23,7 +23,12 @@ function setMainClock() {
     let mainclock = localStorage.getItem('mainClock');
     if (mainclock  && mainclock != 'undefined') { //countdown set to main
         mainclock = JSON.parse(mainclock)
-        theClock = new Clock(new Date(mainclock.date));
+        if(mainclock.hasOwnProperty('repeat') && mainclock.repeat){
+            theClock = new Clock(new Date(mainclock.date));
+        }else{
+            theClock = new Clock(new Date(mainclock.date));
+
+        }
         setMainText(mainclock.text)
     }
     return theClock;
