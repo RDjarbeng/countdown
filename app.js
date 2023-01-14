@@ -1,5 +1,5 @@
-import { Clock, NewYearClock } from "./js/clock.js";
-import { animateAndStartClock, countElapsedListener_home } from "./js/appfunctions.js";
+import { Anniversary, Clock, NewYearClock } from "./js/clock.js";
+import { animateAndStartClock, countElapsedListener_home, updateHomePageRepeatCountdown } from "./js/appfunctions.js";
 import { errorHandler } from "./js/error.js";
 import { setInnerHtmlForNotNull } from "./js/functions.js";
 import { HOMEPAGE_DOM_IDS } from "./js/HOMEPAGE_DOM_IDS.js";
@@ -20,17 +20,24 @@ setInnerHtmlForNotNull(dueDate, `${myclock.endDate.getDate() + ' ' + myclock.end
 
 function setMainClockOnHome() {
     let theClock = new NewYearClock();
-    let mainclock = localStorage.getItem('mainClock');
-    if (mainclock  && mainclock != 'undefined') { //countdown set to main
-        mainclock = JSON.parse(mainclock)
-        if(mainclock.hasOwnProperty('repeat') && mainclock.repeat){
+    let mainClockCountdown = localStorage.getItem('mainClock');
+    if (mainClockCountdown  && mainClockCountdown != 'undefined') { //countdown set to main
+        mainClockCountdown = JSON.parse(mainClockCountdown)
+        //if main clock is a repeat count
+        if(mainClockCountdown.hasOwnProperty('repeat') && mainClockCountdown.repeat){
             console.warn('Repeat found');
-            theClock = new Clock(new Date(mainclock.date));
+            //check if Countdown has elapsed
+            if (new Date(mainClockCountdown.date) - new Date() < 0){
+                console.log('Less than 0');
+                updateHomePageRepeatCountdown(mainClockCountdown)
+            }
+            console.log('inside app new Repeat',mainClockCountdown.date);
+            theClock = new Anniversary(new Date(mainClockCountdown.date));
         }else{
-            theClock = new Clock(new Date(mainclock.date));
+            theClock = new Clock(new Date(mainClockCountdown.date));
 
         }
-        setMainText(mainclock.text)
+        setMainText(mainClockCountdown.text)
     }
     return theClock;
 
