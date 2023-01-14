@@ -7,7 +7,6 @@ export const showNotification = (body) => {
             body: body,
             icon: '/img/icons/favicon.png'
         });
-        console.log(notif);
         if(notif){
         notif.onclick = (e) => {
             console.log(e);
