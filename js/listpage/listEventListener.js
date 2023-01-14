@@ -91,13 +91,15 @@ function addListEventListener() {
 export const listEventListener = event => {
     const targetElement = event.target;
     let listArrayOfCountdowns =getArrayOfCountdownStatus();
-
     // if event is fired on text or date, countdown item
     if (isTargetElementOnCountdownItem(targetElement)) {
         let targetIndex = getArrayIndexByDateModified(listArrayOfCountdowns, targetElement.parentElement.getAttribute('data-id'));
         // todo: find a better way of accessing element in countdown array
+        let miniClockDate =listArrayOfCountdowns[targetIndex].date
+        let miniClockText =listArrayOfCountdowns[targetIndex].text
+        let miniClockRepeatStatus =listArrayOfCountdowns[targetIndex].repeat
         showClockRow();
-        updateClockAndText(listArrayOfCountdowns[targetIndex].date, listArrayOfCountdowns[targetIndex].text);
+        updateClockAndText(miniClockDate, miniClockText, miniClockRepeatStatus);
     }
 
     //if the area for context menu is clicked
