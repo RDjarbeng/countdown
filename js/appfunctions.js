@@ -32,6 +32,13 @@ export function startClock(clock, domElements) {
     if(clock.getDistance()>0){
     let intervalID = setInterval(() => { 
         updateDisplay(clock, domElements);
+        if(clock.getDistance()<0){
+            //emit elapsed event
+            clearInterval(intervalID);
+            console.log('Interval cleared');
+            let title =document.getElementById(HOMEPAGE_DOM_IDS.countdownTextDisplay).innerText;
+            fireElapsedEvent(title);
+        }
         // startTime(clock, domElements,);
      }, 500);
      return intervalID;
@@ -65,12 +72,6 @@ export async function stepIncreaseAndStart(clockElement, domElements, speed = 50
  * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second 
  */
 export function updateDisplay(counter,{ dayNumber, hourNumber, minNumber, secNumber }) {
-    if(counter.getDistance()<0){
-        //emit elapsed event
-        //todo: create a listener for homepage, update elapsed event with countdown
-        let title =document.getElementById(HOMEPAGE_DOM_IDS.countdownTextDisplay).innerText;
-        fireElapsedEvent(title);
-    }
     counter.countDown();
     let d = counter.days
     let h = counter.hours
