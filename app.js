@@ -15,10 +15,10 @@ var dueDate = document.getElementById(HOMEPAGE_DOM_IDS.dueDate);
 
 // Initialize default Clock class
 // var myclock = new Anniversary(new Date('5-5-2022'));
-var myclock = setMainClock();
+var myclock = setMainClockOnHome();
 setInnerHtmlForNotNull(dueDate, `${myclock.endDate.getDate() + ' ' + myclock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + myclock.endDate.getFullYear()}`)
 
-function setMainClock() {
+function setMainClockOnHome() {
     let theClock = new NewYearClock();
     let mainclock = localStorage.getItem('mainClock');
     if (mainclock  && mainclock != 'undefined') { //countdown set to main
