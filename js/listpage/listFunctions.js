@@ -128,15 +128,17 @@ export function setCountItemStatus( arrayOfCountdowns){
 * @param {Array.<{text: String, date: String, dateModified: String, repeat: String}>} arrayOfCountdowns | contains array of countdown objects
 * @param {String} date date preferrably in ISO string format
 * @param {Number} index index of the repeat countdown element 
+* @return {Boolean} repeat Item status
 */
 export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
     if (new Date(date) - new Date() < 0) {
         // arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
         arrayOfCountdowns[index].date =getLocalIsoStringFromDateInput(new Anniversary(new Date(date)).endDate);
         saveCountDownList(arrayOfCountdowns);
+        return true; //repeat updated
 
     };
-
+    return false
 }
 /**
  * 
