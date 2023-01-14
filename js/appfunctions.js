@@ -25,18 +25,34 @@ import { informUser } from "./uiFunctions.js";
  */
 export async function animateAndStartClock(clock, domElements, duration) {
     await stepIncreaseAndStart(clock, domElements, duration || animatedCountDuration)
-    startClock(clock, domElements);
+    startClock(clock, domElements, true);
 }
-
-export function startClock(clock, domElements) {
+/**
+ * 
+ * @param {Clock} clock 
+ * @param {{dayNumber: HTMLElement, hourNumber: HTMLElement, minNumber: HTMLElement, secNumber: HTMLElement}}domElements  should contain elements for day, hour, minutes, second
+ * @param {Boolean} [alertOnElapse=true] Should an elapsed event be fired on elapse
+ */
+export function startClock(clock, domElements, alertOnElapse) {
+    
     if(clock.getDistance()>0){
     let intervalID = setInterval(() => { 
-        updateDisplay(clock, domElements);
         if(clock.getDistance()<0){
-            //emit elapsed event
-            clearInterval(intervalID);
-            let title =document.getElementById(HOMEPAGE_DOM_IDS.countdownTextDisplay).innerText;
-            fireElapsedEvent(title);
+            //emit elapsed event, if cd elapses
+            if(alertOnElapse){
+                let title =document.getElementById(HOMEPAGE_DOM_IDS.countdownTextDisplay).innerText;
+                fireElapsedEvent(title);
+                
+            }
+            //up
+            updateDisplay(clock, domElements);
+            
+            if(clock.getDistance()<0){
+                //if not anniversary after update will still be less than, so clear interval
+                clearInterval(intervalID);
+            }
+        }else{
+            updateDisplay(clock, domElements);
         }
         // startTime(clock, domElements,);
      }, 500);
