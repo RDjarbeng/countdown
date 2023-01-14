@@ -35,7 +35,6 @@ class Clock {
         return this.dayLength - this.days
     }
 }
-include('clock.js')
 let dayCount = new Clock().countDays();
 document.querySelector('div').innerText+= 'Day '+dayCount+'/365';
 let url = `whatsapp://send?text=Day ${dayCount || 'X'}/365`;
