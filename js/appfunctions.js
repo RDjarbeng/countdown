@@ -1,5 +1,5 @@
 import { fireElapsedEvent } from "./events.js";
-import { setInnerHtmlForNotNull, addZeros } from "./functions.js";
+import { setInnerHtmlForNotNull, addZeros, storeMainClockCountdown } from "./functions.js";
 import { HOMEPAGE_DOM_IDS } from "./HOMEPAGE_DOM_IDS.js";
 import { showNotification } from "./notification.js";
 import { playNotificationSound } from "./sound/playNotificationSound.js";
@@ -38,6 +38,7 @@ export function startClock(clock, domElements, alertOnElapse) {
     if(clock.getDistance()>0){
     let intervalID = setInterval(() => { 
         if(clock.getDistance()<0){
+            
             //emit elapsed event, if cd elapses
             if(alertOnElapse){
                 let title =document.getElementById(HOMEPAGE_DOM_IDS.countdownTextDisplay).innerText;
@@ -60,8 +61,20 @@ export function startClock(clock, domElements, alertOnElapse) {
     }else{
         //updateDisplay once and stop, if home page clock has elapsed
         updateDisplay(clock, domElements);
+        console.warn(clock);
     }
 }
+
+export function updateHomePageRepeatCountdown(countdown, date) {
+    if (new Date(date) - new Date() < 0) {
+        // arrayOfCountdowns[index].date = new Anniversary(new Date(date)).endDate.toISOString();
+        countdown.date =getLocalIsoStringFromDateInput(new Anniversary(new Date(date)).endDate);
+        storeMainClockCountdown(countdown);
+
+    };
+
+}
+
 /**
  * 
  * @param {HTMLElement} clockElement 
