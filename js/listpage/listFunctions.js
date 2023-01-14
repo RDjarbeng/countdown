@@ -151,9 +151,18 @@ export const setCountItemExists= (value)=> countItemExists = value;
  * @returns {Boolean}
  */
 export const getCountItemExists= ()=> countItemExists;
-
-export function updateClockAndText(date, text, animation = true) {
+/**
+ * 
+ * @param {Date} date Date as a string passed to date constructor
+ * @param {String} text Shown above the mini clock
+ * @param {Boolean} repeat if countdown repeat is true
+ * @param {Boolean} animation if clock should be animated
+ */
+export function updateClockAndText(date, text, repeat, animation = true) {
     let clock = new Clock(new Date(date));
+    if(repeat){
+        clock = new Anniversary(new Date(date))
+    }
     setInnerHtmlForNotNull(countdownTextDisplay, text);
     stopClock(interval);
     (animation) ? stepIncreaseAndStart(clock, { dayNumber, hourNumber, minNumber, secNumber }, 400) : null;
