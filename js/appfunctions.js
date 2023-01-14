@@ -35,7 +35,6 @@ export function startClock(clock, domElements) {
         if(clock.getDistance()<0){
             //emit elapsed event
             clearInterval(intervalID);
-            console.log('Interval cleared');
             let title =document.getElementById(HOMEPAGE_DOM_IDS.countdownTextDisplay).innerText;
             fireElapsedEvent(title);
         }
