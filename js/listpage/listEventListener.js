@@ -50,6 +50,7 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
 const countHasElapsedListener =(e)=>{
     console.log('Elapsed event fired',e)
     const countdownText = e.detail;
+    errorHandler(countdownText);
     //set text to display
     let message=(countdownText)?countdownText: 'countdown'
     try {
