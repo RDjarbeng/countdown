@@ -1,7 +1,7 @@
 import { errorHandler } from "../error.js";
 import { displayFormPopUp } from "../formfunctions.js";
 import { handleFormUpdate } from "../formupdate.js";
-import { addClickListenersWithoutDuplicates } from "../functions.js";
+import { addClickListenersWithoutDuplicates, storeMainClockCountdown } from "../functions.js";
 import { showNotification } from "../notification.js";
 import { playNotificationSound } from "../sound/playNotificationSound.js";
 import { informUser, notifyUser } from "../uiFunctions.js";
@@ -33,8 +33,7 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
  
  export const setMainClockCountdown=(countdown) =>{
     if(countdown){
-        const countdownToStore=JSON.stringify(countdown)
-        localStorage.setItem('mainClock',countdownToStore);
+        storeMainClockCountdown(countdown);
         let date = new Date(countdown.date);
         notifyUser(`Homepage clock set to ${date.getDate()} ${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`);
     }else{
