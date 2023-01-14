@@ -24,6 +24,7 @@ export const errorHandler = (msg) => {
     }
 
     const errMessage = "Oops an error occurred 🤧😐";
+    console.warn(msg)
     let errHtml = `
     <section class="notification notification--error" style="--num:1">
         <div class="notification_msg">
