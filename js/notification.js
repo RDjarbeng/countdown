@@ -20,10 +20,10 @@ export const showNotification = (body) => {
             // window.location.href= '/html/countdown-list.html'
         };
     }else{
-        errorHandler('Could not create device notification')
+        errorHandler('Could not send device notification')
     }
     } catch (error) {
-        errorHandler('Error displaying device notification'+error);
+        console.log('Error displaying device notification'+error);
         console.log(error);
     }
     
