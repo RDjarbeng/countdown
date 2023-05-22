@@ -1,4 +1,4 @@
-# Countdown app
+# The Countdown app
 
 Application that displays a countdown to a given date. It comes with a plethora of features such as custom date entries, theming etc.
 Oh and not forgetting the beloved dark mode! <br>
@@ -7,6 +7,41 @@ Just save the date and let the countdown begin!
 
 App deployed on netlify at https://rcountdown.netlify.app/
 <br><br>
+
+## Running the application in development on your device- For developers
+
+- Clone the repository using 
+```bash
+git clone https://github.com/RDjarbeng/countdown.git
+cd countdown
+```
+- Install dependencies, we used vite for bundling as a dev dependency
+```
+npm install
+```
+- View the application using vite by launching the dev server with
+```
+npm run dev
+```
+
+- Or alternatively use live server extension in vscode to view the application. NB: Vite is recommended because you might run into some minor issues with live server in vscode
+
+### Building for production
+Use
+```
+npm run build
+```
+This will create a build directory `/dist` with the bundled assets and pages as a Progressive Web App (PWA). You could open the index.html file generated with this build from your file explorer but a better option is to run:
+
+```
+npm run preview
+```
+This provides a link to the built website with the PWA ready to go, useful for testing the build before deploying
+Note that after building some assets such as css, js may have a hash/string of characters added to their name. It's vite's way of keeping track of files, so don't worry the application should still build.
+
+If you make changes that involve addition of new pages or routes you have to update the vite.config.js to ensure the new page is included in the bundling.
+It's a pain we know😪. But on the bright side it takes care of the PWA configuration and allowing the users to updating the application with the new version.
+
 
 To get started using the application you can follow this guide
 https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w
