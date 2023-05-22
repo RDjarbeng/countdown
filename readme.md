@@ -4,8 +4,13 @@ Application that displays a countdown to a given date. It comes with a plethora 
 Oh and not forgetting the beloved dark mode! <br>
 Just save the date and let the countdown begin!
 
+
 App deployed on netlify at https://rcountdown.netlify.app/
 <br><br>
+
+To get started using the application you can follow this guide
+https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w
+
 ## Countdown v0.1.0 (How it began)
 Counts down to midnight with clickable features (dark mode) <br><br>
 ![v0 1](https://user-images.githubusercontent.com/73431750/163797559-f06ea073-8a74-4a09-a5f7-8aa4cb8c4732.png)
