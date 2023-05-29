@@ -8,6 +8,7 @@ Just save the date and let the countdown begin!
 App deployed on netlify at https://rcountdown.netlify.app/
 <br><br>
 
+
 ## Running the application in development on your device- For developers
 
 - Clone the repository using 
@@ -42,9 +43,17 @@ Note that after building some assets such as css, js may have a hash/string of c
 If you make changes that involve addition of new pages or routes you have to update the vite.config.js to ensure the new page is included in the bundling.
 It's a pain we know😪. But on the bright side it takes care of the PWA configuration and allowing the users to updating the application with the new version.
 
-
+## How to use
 To get started using the application you can follow this guide
 https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w
+<br>
+Or you can read instructions right here
+- Visit the application here [rcountdown](https://rcountdown.netlify.app/)
+- Click the + icon here to add a countdown.
+
+![image](https://github.com/RDjarbeng/countdown/assets/57795443/355f9a5b-d84d-4ac9-8ab3-a780a1907490)
+
+<br><br>
 
 ## Countdown v0.1.0 (How it began)
 Counts down to midnight with clickable features (dark mode) <br><br>
