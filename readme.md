@@ -27,7 +27,7 @@ npm run dev
 
 - Or alternatively use live server extension in vscode to view the application. NB: Vite is recommended because you might run into some minor issues with live server in vscode
 
-### Building for production
+### Building for production or deployment
 Use
 ```
 npm run build
