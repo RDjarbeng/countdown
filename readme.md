@@ -37,11 +37,12 @@ This will create a build directory `/dist` with the bundled assets and pages as 
 ```
 npm run preview
 ```
-This provides a link to the built website with the PWA ready to go, useful for testing the build before deploying
-Note that after building some assets such as css, js may have a hash/string of characters added to their name. It's vite's way of keeping track of files, so don't worry the application should still build.
+This provides a link to the built website with the PWA ready to go, useful for testing the build. Before deploying
+note that after building some assets such as css, js may have a hash/string of characters added to their name.
+It's vite's way of keeping track of files,the application will be able to find those files referenced even with the strange names.
 
 If you make changes that involve addition of new pages or routes you have to update the vite.config.js to ensure the new page is included in the bundling.
-It's a pain we know😪. But on the bright side it takes care of the PWA configuration and allowing the users to updating the application with the new version.
+Sigh!😪. But on the bright side it takes care of the PWA configuration and allowing the users to updating the application with the new version.
 
 ## How to use
 To get started using the application you can follow this guide
