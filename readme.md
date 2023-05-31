@@ -12,6 +12,12 @@ App deployed on netlify at https://rcountdown.netlify.app/
 
 ## Running the application in development on your device- For developers
 
+### Prerequisites
+To use this repository, you need the following installed locally:
+
+- [npm](https://www.npmjs.com/)
+
+
 - Clone the repository using 
 ```bash
 git clone https://github.com/RDjarbeng/countdown.git
