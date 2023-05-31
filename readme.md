@@ -4,6 +4,7 @@ Application that displays a countdown to a given date. It comes with a plethora 
 Oh and not forgetting the beloved dark mode! <br>
 Just save the date and let the countdown begin!
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/be93b718-a6df-402a-b4a4-855ba186c97d/deploy-status)](https://app.netlify.com/sites/kubernetes-io-main-staging/deploys)
 
 App deployed on netlify at https://rcountdown.netlify.app/
 <br><br>
@@ -45,8 +46,7 @@ If you make changes that involve addition of new pages or routes you have to upd
 Sigh!😪. But on the bright side it takes care of the PWA configuration and allowing the users to updating the application with the new version.
 
 ## How to use
-To get started using the application you can follow this guide
-https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w
+To get started using the application you can follow this [guide](https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w)
 <br>
 Or you can read instructions right here
 1. Visit the application here [rcountdown](https://rcountdown.netlify.app/)
