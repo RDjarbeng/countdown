@@ -49,11 +49,23 @@ To get started using the application you can follow this guide
 https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w
 <br>
 Or you can read instructions right here
-- Visit the application here [rcountdown](https://rcountdown.netlify.app/)
-- Click the + icon here to add a countdown.
+1. Visit the application here [rcountdown](https://rcountdown.netlify.app/)
+2. Click the + icon here to add a countdown.
+3. Click the "Title" field to add a description or leave the default
+4. Click the date and time field to set your own date and time. By default it's set to your current date and time.
+5. Optional step: Set deadline date and time for your event, recommend setting birthdays to midnight '00:00'
+6. Optional step: Click the "Repeat every year" field if you want the countdown event to repeat annually, eg: birthdays
+7. Click the submit button to save your countdown.
+8. You should be redirected to the [countdown list page](https://rcountdown.netlify.app/html/countdown-list.html)
+9. Click the drop down icon on a countdown to show more options.
+10. Optional step: With these options you can edit, delete or set the current event to be displayed on the homepage. Click 'Set as main' to set the homepage clock to current event.
+11. Click this icon to show site navigation options and options to change the theme and background
+12. Click 'Home' to go to the homepage. Or alternatively you can click the application icon to go to the homepage.
+13. If you selected 'set as main' on the countdown you created you should see your countdown event displayed by default on the home screen now even when you reload the page.
 
 ![image](https://github.com/RDjarbeng/countdown/assets/57795443/355f9a5b-d84d-4ac9-8ab3-a780a1907490)
 
+> Note: Your countdowns are saved on your device and are not stored online. Currently you cannot access them from a separate device.
 <br><br>
 
 ## Countdown v0.1.0 (How it began)
