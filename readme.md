@@ -50,20 +50,42 @@ https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w
 <br>
 Or you can read instructions right here
 1. Visit the application here [rcountdown](https://rcountdown.netlify.app/)
-2. Click the + icon here to add a countdown.
-3. Click the "Title" field to add a description or leave the default
-4. Click the date and time field to set your own date and time. By default it's set to your current date and time.
-5. Optional step: Set deadline date and time for your event, recommend setting birthdays to midnight '00:00'
-6. Optional step: Click the "Repeat every year" field if you want the countdown event to repeat annually, eg: birthdays
-7. Click the submit button to save your countdown.
-8. You should be redirected to the [countdown list page](https://rcountdown.netlify.app/html/countdown-list.html)
-9. Click the drop down icon on a countdown to show more options.
-10. Optional step: With these options you can edit, delete or set the current event to be displayed on the homepage. Click 'Set as main' to set the homepage clock to current event.
-11. Click this icon to show site navigation options and options to change the theme and background
-12. Click 'Home' to go to the homepage. Or alternatively you can click the application icon to go to the homepage.
-13. If you selected 'set as main' on the countdown you created you should see your countdown event displayed by default on the home screen now even when you reload the page.
-
+3. Click the + icon here to add a countdown.
 ![image](https://github.com/RDjarbeng/countdown/assets/57795443/355f9a5b-d84d-4ac9-8ab3-a780a1907490)
+4. Click the "Title" field to add a description or leave the default
+![Screenshot 2023-05-22 105242](https://github.com/RDjarbeng/countdown/assets/57795443/8a7348b4-4bfa-4387-b5b6-eeb0baeebd96)
+
+5. Click the date and time field to set your own date and time. By default it's set to your current date and time.
+![Screenshot 2023-05-22 105517](https://github.com/RDjarbeng/countdown/assets/57795443/48ae2255-8084-4449-a749-6f19674dd90e)
+
+6. Optional step: Set deadline date and time for your event, recommend setting birthdays to midnight '00:00'
+
+7. Optional step: Click the "Repeat every year" field if you want the countdown event to repeat annually, eg: birthdays
+
+![Screenshot 2023-05-22 105616](https://github.com/RDjarbeng/countdown/assets/57795443/0fd1fa2f-990f-4208-9bb1-c7f6bbdd794d)
+
+8. Click the submit button to save your countdown.
+
+![Screenshot 2023-05-22 111201](https://github.com/RDjarbeng/countdown/assets/57795443/f85a039b-b691-436e-935c-c703704935bb)
+
+9. You should be redirected to the [countdown list page](https://rcountdown.netlify.app/html/countdown-list.html)
+
+![image](https://github.com/RDjarbeng/countdown/assets/57795443/c4202165-8629-490d-9ef3-2b6f101c27cb)
+
+10. Click the drop down icon on a countdown to show more options.
+![image](https://github.com/RDjarbeng/countdown/assets/57795443/63acdfe4-9fe3-48fd-b5c8-273a5892698f)
+
+11. Optional step: With these options you can edit, delete or set the current event to be displayed on the homepage. Click 'Set as main' to set the homepage clock to current event.
+![image](https://github.com/RDjarbeng/countdown/assets/57795443/92320477-51f4-4282-b0ad-169e712eda95)
+
+12. To go back to the homepage click this icon to show site navigation options as well as options to change the theme and background.
+![image](https://github.com/RDjarbeng/countdown/assets/57795443/4b3e40fb-d04a-49c3-bfb4-1dbcd83efb22)
+
+13. Click 'Home' to go to the homepage. Or alternatively you can click the application icon to go to the homepage.
+![image](https://github.com/RDjarbeng/countdown/assets/57795443/24a2d31e-e300-4948-9706-7cbfe73432b9)
+
+14. If you selected 'set as main' on the countdown you created you should see your countdown event displayed by default on the home screen now even when you reload the page.
+![image](https://github.com/RDjarbeng/countdown/assets/57795443/8a50c846-b898-441e-b7d9-6544ef933a48)
 
 > Note: Your countdowns are saved on your device and are not stored online. Currently you cannot access them from a separate device.
 <br><br>
