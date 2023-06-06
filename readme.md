@@ -52,6 +52,14 @@ It's vite's way of keeping track of files,the application will be able to find t
 
 If you make changes that involve addition of new pages or routes you have to update the vite.config.js to ensure the new page is included in the bundling.
 Sigh!😪. But on the bright side it takes care of the PWA configuration and allowing the users to updating the application with the new version.
+## Code structure
+There are 4 pages currently. 
+1. The homepage: with the large countdown:  index.html
+2. List page which shows the list of countdowns: countdown-list.html
+3. Today page which shows the day counter: today.html
+4. About page which shows information about the application version and contributors, about.html
+
+![image](https://github.com/RDjarbeng/countdown/assets/57795443/3a5b667f-2bdf-48e7-b49c-98721e32ba90)
 
 ## How to use
 To get started using the application you can follow this [guide](https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w)
