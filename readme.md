@@ -15,7 +15,7 @@ App deployed on netlify at https://rcountdown.netlify.app/
 ### Prerequisites
 To use this repository, you need the following installed locally:
 
-- [node] (https://nodejs.org/)
+- [node](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 
 npm comes installed with Node so most likely you don't need to install it separately.
