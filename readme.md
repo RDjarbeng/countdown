@@ -59,7 +59,7 @@ There are 4 pages currently.
 3. Today page which shows the day counter: today.html
 4. About page which shows information about the application version and contributors, about.html
 
-![image](https://github.com/RDjarbeng/countdown/assets/57795443/3a5b667f-2bdf-48e7-b49c-98721e32ba90)
+![image](https://github.com/RDjarbeng/countdown/assets/57795443/bc21ca78-e19a-4d8f-8935-17f9b039f8d2)
 
 ## How to use
 To get started using the application you can follow this [guide](https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w)
