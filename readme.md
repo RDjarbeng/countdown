@@ -97,9 +97,11 @@ Or you can read instructions right here
 ![image](https://github.com/RDjarbeng/countdown/assets/57795443/63acdfe4-9fe3-48fd-b5c8-273a5892698f)
 
 11. Optional step: With these options you can edit, delete or set the current event to be displayed on the homepage. Click 'Set as main' to set the homepage clock to current event.
+
 ![image](https://github.com/RDjarbeng/countdown/assets/57795443/92320477-51f4-4282-b0ad-169e712eda95)
 
 12. To go back to the homepage click this icon to show site navigation options as well as options to change the theme and background.
+
 ![image](https://github.com/RDjarbeng/countdown/assets/57795443/4b3e40fb-d04a-49c3-bfb4-1dbcd83efb22)
 
 13. Click 'Home' to go to the homepage. Or alternatively you can click the application icon to go to the homepage.
