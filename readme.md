@@ -71,6 +71,8 @@ Here a possible initial contributions, you can also look through the open issues
 - Add confetti effects when a countdown elapses. Current version 3 only plays sound
 - Adding a history page so users can set a memory to remember and view how long it has been since then. This page will also allow that elapsed countdowns show the time since they elapsed
 
+Also, view the [dev process](/docs/dev-process.md) for inspiration by looking at the history of the application and the current direction of the project.
+
 ## How to use
 To get started using the application you can follow this [guide](https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w)
 <br>
