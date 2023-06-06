@@ -7,6 +7,9 @@ Just save the date and let the countdown begin!
 [![Netlify Status](https://api.netlify.com/api/v1/badges/be93b718-a6df-402a-b4a4-855ba186c97d/deploy-status)](https://app.netlify.com/sites/kubernetes-io-main-staging/deploys)
 
 App deployed on netlify at https://rcountdown.netlify.app/
+
+Built with:
+Javascript, CSS, html
 <br><br>
 
 
