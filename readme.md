@@ -65,6 +65,11 @@ The image below helps to get a high level overview of the code structure
 Other utility functions that are used across the application and are not specific to a single page are shown here.
 ![image](https://github.com/RDjarbeng/countdown/assets/57795443/fafdb90d-20b5-421e-a443-85b2cf4cdeea)
 
+### Possible contributions
+Here a possible initial contributions, you can also look through the open issues for ideas. Or you can implement features that you think should be included. We would love to see what you add🌟.
+
+- Add confetti effects when a countdown elapses. Current version 3 only plays sound
+- Adding a history page so users can set a memory to remember and view how long it has been since then. This page will also allow that elapsed countdowns show the time since they elapsed
 
 ## How to use
 To get started using the application you can follow this [guide](https://scribehow.com/shared/Get_started_with_rcountdown__EyFbM6bFS5ql48-UeEyM2w)
