@@ -291,6 +291,18 @@ export function loadListPage(){
 }
 
 /**
+ * Loads elements for listpage, calls display and addListeners using try and catch
+ */
+ export function loadhistoryPage(){
+    try {
+        displayAndUpdatecount();
+    } catch (err) {
+        console.log(err, 'err in updating countdown initialisation');
+        errorHandler("Unable to fetch & update your countdowns");
+    }
+}
+
+/**
  *
  * @returns {Array.<{text: String, date: String, dateModified: String, repeat: String}>} Array of countdowns stored in local storage, null if none
  */
