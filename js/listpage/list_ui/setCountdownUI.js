@@ -29,6 +29,7 @@
     let timeDifference = clock.getDistance();
     let countdownStatus = "";
     let countdownStatusTI = `<span style="color:#03bf42;"><i class="fas fa-hourglass-start"></i> active</span>`;
+    let dueDateText= countdownStatus = 'Due: ' + clock.endDate.getDate() + ' ' + clock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + clock.endDate.getFullYear();
     if (timeDifference > 0) {
         countdownStatus = getCountdownString(clock);
     } else {
@@ -36,5 +37,5 @@
         countdownStatus = 'Due: ' + clock.endDate.getDate() + ' ' + clock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + clock.endDate.getFullYear();
         countdownStatusTI = `<span style="color:crimson;"><i class="fas fa-hourglass-end"></i> elapsed</span>`;
     }
-    return { countdownStatus, countdownStatusTI };
+    return { countdownStatus, countdownStatusTI, dueDateText };
 }
