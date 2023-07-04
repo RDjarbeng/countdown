@@ -5,7 +5,7 @@ import { fireElapsedEvent } from "../events.js";
 import { saveCountDownList } from "../formfunctions.js";
 import { setInnerHtmlForNotNull, stopClock } from "../functions.js";
 import { getLocalIsoStringFromDateInput } from "../timefunctions.js";
-import { LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_SELECTORS";
+import { LISTPAGE_DOM_CLASSES, LISTPAGE_DOM_IDS } from "./LISTPAGE_DOM_SELECTORS";
 import { sortArrayOnSelection } from "./list_sort/sortArrayOnSelection";
 import { removeSortUI } from "./list_ui/addSortUI.js";
 import { getCountdownString, setCountDownStatus } from "./list_ui/setCountdownUI.js";
@@ -94,7 +94,7 @@ export function setCountItemStatus( arrayOfCountdowns){
     // console.log(countdown, 'repeat true', arrayOfCountdowns[index]);
 
     let countdownListItem = `
-    <div class="countdown-list-item" data-index="${index}" data-id="${countdown.dateModified}">
+    <div class="countdown-list-item" title="${dueDateText}" data-index="${index}" data-id="${countdown.dateModified}">
         <div class="countdown-list-text"> ${countdown.text} </div>
         <div class="countdown-list-options"><i class="fas fa-chevron-circle-down fa-lg"></i>
             <div class="menu" data-index="${index}" data-id="${countdown.dateModified}" style="display:none">
@@ -113,7 +113,7 @@ export function setCountItemStatus( arrayOfCountdowns){
             <div data-date="${countdown.date}" 
                 data-id="${countdown.dateModified}" 
                 data-repeat="${repeat}" 
-                class="${(!elapsed) ? 'countdown-counting' : 'countdown-elapsed'}" 
+                class="${(!elapsed) ? LISTPAGE_DOM_CLASSES.countdownsActiveClass : LISTPAGE_DOM_CLASSES.countdownsElapsedClass}" 
                 title="${dueDateText}">
                 ${countdownStatus}
             </div>
@@ -239,7 +239,7 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
  * update countdown status for non elapsed countdowns
  */
  export async function updateCountdownItems() {
-    let activeCountItems = document.querySelectorAll('.countdown-counting')
+    let activeCountItems = document.querySelectorAll(LISTPAGE_DOM_CLASSES.countdownsActiveClass)
     const clock = new Clock();
     if (activeCountItems.length) {
         activeCountItems.forEach((element, _, countItems) => {
@@ -266,7 +266,7 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
 
             } else {
                 
-                element.classList.remove('countdown-counting')
+                element.classList.remove(LISTPAGE_DOM_CLASSES.countdownsActiveClass)
                 setInnerHtmlForNotNull(element, 'Elapsed');
                 //update bottom part of countdown
                 displayAndUpdatecount();
