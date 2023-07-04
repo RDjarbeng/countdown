@@ -235,6 +235,43 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
     }
 
 
+function updateActiveCountdowns(activeCountItems){
+    activeCountItems.forEach((element, _, countItems) => {
+        clock.setEndDate(new Date(element.getAttribute('data-date')));
+        clock.countDown();
+        //check elapsing countdowns
+        if (clock.getDistance() > 0) {
+            setInnerHtmlForNotNull(element, getCountdownString(clock)+' more');
+        }else
+        {  
+            //fire custom elapsed event, passing the countdown elapsed as detail
+            const countdown =arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id'))
+            fireElapsedEvent(countdown.text);
+            console.log('elapsing');
+
+            if (element.getAttribute('data-repeat') == 'true') {
+            console.log('updating repeat', element);
+            // update repeat item set enddate to next year
+            let index = arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == element.getAttribute('data-id'));
+            let date = element.getAttribute('data-date');
+            if (index && date) {
+                updateRepeatCountdown(arrayOfCountdowns, date, index);
+                displayAndUpdatecount();
+            }
+
+        } else {
+            //remove item from active countdowns
+            element.classList.remove(LISTPAGE_DOM_CLASSES.countdownsActiveClass)
+            element.classList.add(LISTPAGE_DOM_CLASSES.countdownsElapsedClass)
+            setInnerHtmlForNotNull(element, 'Elapsed');
+            //update bottom part of countdown
+            displayAndUpdatecount();
+
+        }
+    }
+
+    });
+}
 /**
  * update countdown status for non elapsed countdowns
  */
@@ -242,41 +279,11 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
     let activeCountItems = document.querySelectorAll(LISTPAGE_DOM_CLASSES.countdownsActiveClass)
     const clock = new Clock();
     if (activeCountItems.length) {
-        activeCountItems.forEach((element, _, countItems) => {
-            clock.setEndDate(new Date(element.getAttribute('data-date')));
-            clock.countDown();
-            if (clock.getDistance() > 0) {
-                setInnerHtmlForNotNull(element, getCountdownString(clock)+' more');
-            }else
-            {  
-                //fire custom elapsed event, passing the countdown elapsed as detail
-                const countdown =arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id'))
-                fireElapsedEvent(countdown.text);
-                console.log('elapsing');
-
-                if (element.getAttribute('data-repeat') == 'true') {
-                console.log('updating repeat', element);
-                // update repeat item set enddate to next year
-                let index = arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == element.getAttribute('data-id'));
-                let date = element.getAttribute('data-date');
-                if (index && date) {
-                    updateRepeatCountdown(arrayOfCountdowns, date, index);
-                    displayAndUpdatecount();
-                }
-
-            } else {
-                
-                element.classList.remove(LISTPAGE_DOM_CLASSES.countdownsActiveClass)
-                setInnerHtmlForNotNull(element, 'Elapsed');
-                //update bottom part of countdown
-                displayAndUpdatecount();
-
-            }
-        }
-
-        });
-    } else {
-        setCountItemExists(false)
+        updateActiveCountdowns(activeCountItems);
+    } 
+    let elapsedCountItems = document.querySelectorAll(LISTPAGE_DOM_CLASSES.countdownsElapsedClass)
+    if(elapsedCountItems) {
+        setCountItemExists(false);
     }
 }
 /**
