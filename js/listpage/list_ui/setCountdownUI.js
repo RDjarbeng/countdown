@@ -31,7 +31,7 @@
     let countdownStatusTI = `<span style="color:#03bf42;"><i class="fas fa-hourglass-start"></i> active</span>`;
     let dueDateText= countdownStatus = 'Due: ' + clock.endDate.getDate() + ' ' + clock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + clock.endDate.getFullYear();
     if (timeDifference > 0) {
-        countdownStatus = getCountdownString(clock);
+        countdownStatus = getCountdownString(clock) +' more';
     } else {
         // countdown elapsed
         countdownStatus = 'Due: ' + clock.endDate.getDate() + ' ' + clock.endDate.toLocaleString('default', { month: 'long' }) + ', ' + clock.endDate.getFullYear();
