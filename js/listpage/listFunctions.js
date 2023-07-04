@@ -87,7 +87,7 @@ export function setCountItemStatus( arrayOfCountdowns){
         repeat = true
     }
     let listItemClock = new Clock(new Date(countdown.date));
-    let {countdownStatus, countdownStatusTI}=setCountDownStatus(listItemClock)
+    let {countdownStatus, countdownStatusTI, dueDateText}=setCountDownStatus(listItemClock)
     if(listItemClock.getDistance()<0){
         elapsed =true
     }
@@ -113,7 +113,8 @@ export function setCountItemStatus( arrayOfCountdowns){
             <div data-date="${countdown.date}" 
                 data-id="${countdown.dateModified}" 
                 data-repeat="${repeat}" 
-                class="${(!elapsed) ? 'countdown-counting' : 'countdown-elapsed'}" > 
+                class="${(!elapsed) ? 'countdown-counting' : 'countdown-elapsed'}" 
+                title="${dueDateText}">
                 ${countdownStatus}
             </div>
             <div class="status-text">${countdownStatusTI}</div>
