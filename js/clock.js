@@ -38,7 +38,8 @@ export class Clock {
             this.calculateTimeValues()
         } else {
             // clear date values
-            this.resetMethod();
+            // this.resetMethod();
+            this.calculateTimeValues(); //temporary change to calculate time elapsed for elapsed countdowns
         }
     }
     /**
@@ -50,6 +51,7 @@ export class Clock {
 
     calculateTimeValues() {
         let distance = this.getDistance();
+        distance =distance>0 ? distance: -distance; //keep distance value positive even for elapsed countdowns
         this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
         this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
