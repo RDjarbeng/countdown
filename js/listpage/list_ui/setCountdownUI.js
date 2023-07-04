@@ -24,6 +24,7 @@
  * @returns {object} status
  * @returns {object} status.countdownStatus
  * @returns {object} status.countdownStatusTI
+ * @returns {object} status.dueDateText
  */
  export function setCountDownStatus(clock) {
     let timeDifference = clock.getDistance();
