@@ -15,7 +15,7 @@
     } else if (clock.seconds >= 0) {
         countdownString = clock.seconds + ' seconds ';
     }
-    return ` ${countdownString} more`;
+    return ` ${countdownString}`;
 }
 
 /**
