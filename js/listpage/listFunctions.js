@@ -245,7 +245,7 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
             clock.setEndDate(new Date(element.getAttribute('data-date')));
             clock.countDown();
             if (clock.getDistance() > 0) {
-                setInnerHtmlForNotNull(element, getCountdownString(clock));
+                setInnerHtmlForNotNull(element, getCountdownString(clock)+' more');
             }else
             {  
                 //fire custom elapsed event, passing the countdown elapsed as detail
