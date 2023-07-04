@@ -113,7 +113,7 @@ export function setCountItemStatus( arrayOfCountdowns){
             <div data-date="${countdown.date}" 
                 data-id="${countdown.dateModified}" 
                 data-repeat="${repeat}" 
-                class="${(!elapsed) ? 'countdown-counting' : ''}" > 
+                class="${(!elapsed) ? 'countdown-counting' : 'countdown-elapsed'}" > 
                 ${countdownStatus}
             </div>
             <div class="status-text">${countdownStatusTI}</div>
