@@ -13,6 +13,6 @@ export const LISTPAGE_DOM_CLASSES = {
     countdownList: '.countdown-list',
     countdownSortByOptions: '.sort-options',
     countdownSortByText: '.sort-title',
-    countdownsActiveClass: '.countdown-counting',
+    countdownsActiveClass: 'countdown-counting',
     countdownsElapsedClass: 'countdown-elapsed'
 };
