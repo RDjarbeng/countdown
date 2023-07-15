@@ -268,6 +268,7 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
     }
 
 function updateActiveCountdowns(activeCountItems) {
+    const clock = new Clock();
     activeCountItems.forEach((countdownElement, _, countItems) => {
         clock.setEndDate(new Date(countdownElement.getAttribute('data-date')));
         clock.countDown();
@@ -289,7 +290,7 @@ function updateActiveCountdowns(activeCountItems) {
  */
  export async function updateCountdownItems() {
     let activeCountItems = document.querySelectorAll('.'+LISTPAGE_DOM_CLASSES.countdownsActiveClass)
-    const clock = new Clock();
+    
     if (activeCountItems.length) {
         updateActiveCountdowns(activeCountItems);
     } 
