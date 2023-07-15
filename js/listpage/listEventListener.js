@@ -67,7 +67,7 @@ const countHasElapsedListener =(e)=>{
 }
 
 function addListEventListener() {
-    const countList = document.querySelector('+'+LISTPAGE_DOM_CLASSES.countdownList)
+    const countList = document.querySelector('.'+LISTPAGE_DOM_CLASSES.countdownList)
     addClickListenersWithoutDuplicates(countList, listEventListener)
     addEventListener('elapsed', countHasElapsedListener);
 }
