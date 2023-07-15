@@ -63,9 +63,10 @@ export function populateList(arrayOfCountdowns) {
 export function setCountItemStatus( arrayOfCountdowns){
     arrayOfCountdowns.forEach((countdown) => {
         let listItemClock = new Clock(new Date(countdown.date));
-    if(listItemClock.getDistance()>0){
-        setCountItemExists(true)
-    }
+    //@deprecated - rely only on array of countdowns to check if countdown exists
+        // if(listItemClock.getDistance()>0){
+    //     setCountItemExists(true)
+    // }
         
     });
     
@@ -142,16 +143,17 @@ export function updateRepeatCountdown(arrayOfCountdowns, date, index) {
     return false
 }
 /**
- * 
+ * @deprecated
+ * Soon to remove this function, no longer going to set countitems manually
  * @param {Boolean} value Represents if a countdown is in progress/ non-elapsed
  */
-export const setCountItemExists= (value)=> countItemExists = value;
+export const setCountItemExists= (value)=> True;
 
 /**
  * 
  * @returns {Boolean}
  */
-export const getCountItemExists= ()=> countItemExists;
+export const getCountItemExists= ()=> (arrayOfCountdowns.length>0)?true: false;
 /**
  * 
  * @param {Date} date Date as a string passed to date constructor
@@ -226,7 +228,11 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
 
         displayCountdowns();
             if (getCountItemExists()) {
+                console.log('Count Item exists');
+                //update countdown items regardless of if elapsed or not
                 let interval = setInterval(() => getCountItemExists() ? updateCountdownItems() : clearInterval(interval), 500)
+            }else{
+                console.warn('NO count items')
             }
         }catch(err) {
             console.log(err);
@@ -288,9 +294,6 @@ function updateActiveCountdowns(activeCountItems) {
         updateActiveCountdowns(activeCountItems);
     } 
     let elapsedCountItems = document.querySelectorAll(LISTPAGE_DOM_CLASSES.countdownsElapsedClass)
-    if(elapsedCountItems) {
-        setCountItemExists(false);
-    }
 }
 /**
  * Loads elements for listpage, calls display and addListeners using try and catch
@@ -361,5 +364,5 @@ export const countdownClock = document.querySelector('.clock-row');
 
 // clock interval tracker
 let interval;
-let countItemExists = false;
+// let countItemExists = false;
 export let arrayOfCountdowns = fetchArrayOfCountdowns()
