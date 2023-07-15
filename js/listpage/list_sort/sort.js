@@ -7,7 +7,7 @@ import { closeSortMenu } from "../list_ui/closeSortMenu";
 
 
 export const sortTitleEventHandler = () => {
-    const sortOpts = document.querySelector(LISTPAGE_DOM_CLASSES.countdownSortByOptions);
+    const sortOpts = document.querySelector('.'+LISTPAGE_DOM_CLASSES.countdownSortByOptions);
     toggleElementDisplayBlockOnScreen(sortOpts);
 }
 
@@ -27,8 +27,8 @@ export const sortTitleEventHandler = () => {
 }
 
 export const addSortEventListeners = () => {
-    const sortOpts = document.querySelector(LISTPAGE_DOM_CLASSES.countdownSortByOptions);
-    const sortTitle = document.querySelector(LISTPAGE_DOM_CLASSES.countdownSortByText);
+    const sortOpts = document.querySelector('.'+LISTPAGE_DOM_CLASSES.countdownSortByOptions);
+    const sortTitle = document.querySelector('.'+LISTPAGE_DOM_CLASSES.countdownSortByText);
 
     if (!(sortTitle && sortOpts)) {
         console.log('Var sort title and sortOpts is null', 'sort title', sortTitle, 'sort opts', sortOpts);
