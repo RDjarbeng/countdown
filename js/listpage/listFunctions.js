@@ -288,12 +288,12 @@ function updateActiveCountdowns(activeCountItems) {
  * update countdown status for non elapsed countdowns
  */
  export async function updateCountdownItems() {
-    let activeCountItems = document.querySelectorAll(LISTPAGE_DOM_CLASSES.countdownsActiveClass)
+    let activeCountItems = document.querySelectorAll('.'+LISTPAGE_DOM_CLASSES.countdownsActiveClass)
     const clock = new Clock();
     if (activeCountItems.length) {
         updateActiveCountdowns(activeCountItems);
     } 
-    let elapsedCountItems = document.querySelectorAll(LISTPAGE_DOM_CLASSES.countdownsElapsedClass)
+    let elapsedCountItems = document.querySelectorAll('.'+LISTPAGE_DOM_CLASSES.countdownsElapsedClass)
 }
 /**
  * Loads elements for listpage, calls display and addListeners using try and catch
