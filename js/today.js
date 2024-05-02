@@ -17,12 +17,12 @@ const TODAYPAGE_DOM_IDS = {
     daysInTheYearDomElement: 'year-count',
 };
 
-function updateDate() {
+const updateDate = () => {
     let today = new Date();
     setDomElements(today);
-}
+};
 
-function setDomElements(today) {
+const setDomElements = (today) => {
     day = document.getElementById(TODAYPAGE_DOM_IDS.dayOfMonthDomElement);
     month = document.getElementById(TODAYPAGE_DOM_IDS.monthDomElement);
     year = document.getElementById(TODAYPAGE_DOM_IDS.yearDomElement);
@@ -42,7 +42,7 @@ function setDomElements(today) {
     }));
     setInnerHtmlForNotNull(dayCount, dayClock.countDays());
     setInnerHtmlForNotNull(daysInYear, dayClock.getDaysinYear());
-}
+};
 
 const copyDOY = async () => {
     await navigator.clipboard.writeText(`Day ${dayCount.innerText || 'rcountdown'}/365`);
