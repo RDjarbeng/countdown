@@ -46,7 +46,15 @@ const setDomElements = (today) => {
 
 const copyDOY = async () => {
     let daysInYear =dayClock.getDaysinYear();
-    await navigator.clipboard.writeText(`Day ${dayCount.innerText || 'rcountdown'}/${daysInYear}`);
+    let today = new Date();
+    let dayOfWeek = days[today.getDay()];
+    let day =today.getDate();
+    let monthNumeric = today.getMonth()+1;
+    let year = today.getFullYear();
+
+    let dayTextToCopy = `Day ${dayCount.innerText || 'rcountdown'}/${daysInYear} \n${dayOfWeek}\n${day}.${monthNumeric}.${year}`
+    console.log(dayTextToCopy);
+    await navigator.clipboard.writeText(dayTextToCopy );
     notifyUser("Copied to clipboard");
 };
 
