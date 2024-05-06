@@ -45,7 +45,7 @@ const setDomElements = (today) => {
 };
 
 const copyDOY = async () => {
-    await navigator.clipboard.writeText(`Day ${dayCount.innerText || 'rcountdown'}/365`);
+    await navigator.clipboard.writeText(`Day ${dayCount.innerText || 'rcountdown'}/${dayClock.getDaysinYear()}`);
     notifyUser("Copied to clipboard");
 };
 
