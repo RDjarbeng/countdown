@@ -1,5 +1,5 @@
 import { NewYearClock } from "./clock.js";
-import { setInnerHtmlForNotNull } from "./functions.js";
+import { addZeros, setInnerHtmlForNotNull } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 
 const dayClock = new NewYearClock();
@@ -54,7 +54,7 @@ const getDayOfYearText=()=>{
     let monthNumeric = today.getMonth()+1;
     let year = today.getFullYear();
 
-    let dayTextToCopy= `Day ${dayCount.innerText || 'rcountdown'}/${daysInYear} \n${dayOfWeek} \n${day}.${monthNumeric}.${year}`
+    let dayTextToCopy= `Day ${dayCount.innerText || 'rcountdown'}/${daysInYear} \n${dayOfWeek} \n${addZeros(day)}.${addZeros(monthNumeric)}.${year}`
     return dayTextToCopy;  
 }
 
