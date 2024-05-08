@@ -80,7 +80,7 @@ export function addWhatappEventHandler() {
 }
 
 export function exportToWhatsapp() {
-    let dayNum = document.getElementById("countDay").innerText;
+    
     let dayTextToCopy =encodeURIComponent(getDayOfYearText());
     window.open(`whatsapp://send?text=${dayTextToCopy}`);
 }
