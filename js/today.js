@@ -1,5 +1,5 @@
 import { NewYearClock } from "./clock.js";
-import { setInnerHtmlForNotNull, addWhatappEventHandler } from "./functions.js";
+import { setInnerHtmlForNotNull } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 
 const dayClock = new NewYearClock();
@@ -43,8 +43,10 @@ const setDomElements = (today) => {
     setInnerHtmlForNotNull(dayCount, dayClock.countDays());
     setInnerHtmlForNotNull(daysInYear, dayClock.getDaysinYear());
 };
-
-const copyDOY = async () => {
+/**
+ * @return String
+ */
+const getDayOfYearText=()=>{
     let daysInYear =dayClock.getDaysinYear();
     let today = new Date();
     let dayOfWeek = days[today.getDay()];
@@ -52,7 +54,12 @@ const copyDOY = async () => {
     let monthNumeric = today.getMonth()+1;
     let year = today.getFullYear();
 
-    let dayTextToCopy = `Day ${dayCount.innerText || 'rcountdown'}/${daysInYear} \n${dayOfWeek}\n${day}.${monthNumeric}.${year}`
+    let dayTextToCopy= `Day ${dayCount.innerText || 'rcountdown'}/${daysInYear} \n${dayOfWeek} \n${day}.${monthNumeric}.${year}`
+    return dayTextToCopy;  
+}
+
+const copyDOY = async () => {
+    let dayTextToCopy = getDayOfYearText();
     console.log(dayTextToCopy);
     await navigator.clipboard.writeText(dayTextToCopy );
     notifyUser("Copied to clipboard");
@@ -63,6 +70,20 @@ const addClipBoardEventHandler = () => document.querySelector(".copy-link").addE
 const updateTimeValues = () => {
     return setInterval(updateDate, 1000);
 };
+
+export function addWhatappEventHandler() {
+    let whatsappIcon = document.getElementById('sendWhatsappButton');
+    if (whatsappIcon) {
+        whatsappIcon.addEventListener('click', exportToWhatsapp);
+    }
+
+}
+
+export function exportToWhatsapp() {
+    let dayNum = document.getElementById("countDay").innerText;
+    let dayTextToCopy =encodeURIComponent(getDayOfYearText());
+    window.open(`whatsapp://send?text=${dayTextToCopy}`);
+}
 
 const registerListenersAndUpdate = () => {
     addWhatappEventHandler();
