@@ -44,7 +44,7 @@ const setDomElements = (today) => {
     setInnerHtmlForNotNull(daysInYear, dayClock.getDaysinYear());
 };
 /**
- * @return String
+ * @returns {String} day Text depending on the format of the day of year text
  */
 const getDayOfYearText=()=>{
     let daysInYear =dayClock.getDaysinYear();
