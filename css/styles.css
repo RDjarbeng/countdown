@@ -543,6 +543,12 @@ hr {
 }
 
 /* mobile and small screens */
+@media screen and (max-width: 550px) {
+  .logo-name {
+    display:none
+  }
+}
+
 @media screen and (max-width: 427px) {
     .container {
         gap: 1.6em;
@@ -550,10 +556,6 @@ hr {
 
     .banner-row {
         font-size: 1.3rem;
-    }
-
-    .logo-name {
-        display: none;
     }
 
     .timer-text {
