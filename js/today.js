@@ -60,7 +60,7 @@ const getDayOfYearText=()=>{
 
 const copyDOY = async () => {
     let dayTextToCopy = getDayOfYearText();
-    console.log(dayTextToCopy);
+    //console.log(dayTextToCopy);
     await navigator.clipboard.writeText(dayTextToCopy );
     notifyUser("Copied to clipboard");
 };
