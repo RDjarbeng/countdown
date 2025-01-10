@@ -46,7 +46,7 @@ import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
  * Determines the response when a countdown elapses
  * @param {Event} e Ideally contains countdown title at property detail with 
  */
-const countHasElapsedListener =(e)=>{
+export const countHasElapsedListener =(e)=>{
     console.log('Elapsed event fired',e)
     const countdownText = e.detail;
     // errorHandler(countdownText);
