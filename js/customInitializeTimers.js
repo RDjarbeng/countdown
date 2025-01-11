@@ -2,10 +2,12 @@ import { Clock, Anniversary } from "./clock";
 import { fireElapsedEvent } from "./events";
 import { countHasElapsedListener } from "./listpage/listEventListener";
 
-addEventListener("elapsed", countHasElapsedListener);
 
 // Fetch the stored countdown object
 const countdownObject = JSON.parse(localStorage.getItem("mainClock"));
+
+if (countdownObject){
+addEventListener("elapsed", countHasElapsedListener);
 const isRepeat = countdownObject.repeat;
 
 // Create the appropriate clock instance
@@ -54,3 +56,4 @@ if (clock.getDistance() <= 0 && isRepeat) {
 
 if(clock.getDistance()>=0)
 updateClock();
+}
