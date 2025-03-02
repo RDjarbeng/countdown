@@ -3,8 +3,8 @@ import { addZeros, setInnerHtmlForNotNull } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 
 const dayClock = new NewYearClock();
-let day, month, year, time, dayOfWeek, dayCount, daysInYear, weekCount;
-let weekViewHidden = localStorage.getItem('weekViewHidden') === 'true';
+let day, month, year, time, dayOfWeek, dayCount, daysInYear, weekNumber, weekCount;
+let weekViewHidden = localStorage.getItem('weekViewHidden') === 'False';
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -16,10 +16,10 @@ const TODAYPAGE_DOM_IDS = {
     timeDomElement: 'time',
     dayCountDomElement: 'countDay',
     daysInTheYearDomElement: 'year-count',
+    weekNumberDomElement: 'weekNumber',
     weekCountDomElement: 'weekCount',
     weekCountContainerDomElement: 'weekCountContainer',
     toggleWeekViewDomElement: 'toggleWeekView',
-    weekToggleButtonDomElement: 'weekToggleButton',
     weekToggleTextDomElement: 'weekToggleText'
 };
 
@@ -64,6 +64,7 @@ const setDomElements = (today) => {
     time = document.getElementById(TODAYPAGE_DOM_IDS.timeDomElement);
     dayCount = document.getElementById(TODAYPAGE_DOM_IDS.dayCountDomElement);
     daysInYear = document.getElementById(TODAYPAGE_DOM_IDS.daysInTheYearDomElement);
+    weekNumber = document.getElementById(TODAYPAGE_DOM_IDS.weekNumberDomElement);
     weekCount = document.getElementById(TODAYPAGE_DOM_IDS.weekCountDomElement);
     
     setInnerHtmlForNotNull(day, today.getDate());
@@ -82,25 +83,26 @@ const setDomElements = (today) => {
      const currentWeek = getWeekNumber(today);
      // Get total weeks in the year
      const totalWeeks = getTotalWeeksInYear(today.getFullYear());
-     setInnerHtmlForNotNull(weekCount, `${currentWeek} — ${totalWeeks}`);
+     setInnerHtmlForNotNull(weekNumber, `${currentWeek}`);//— ${totalWeeks}
+     setInnerHtmlForNotNull(weekCount, `${totalWeeks}`);//— ${totalWeeks}
      
     
     // Apply hidden state if needed
-    updateWeekViewVisibility();
+    // updateWeekViewVisibility();
 };
 const updateWeekViewVisibility = () => {
     const weekContainer = document.getElementById(TODAYPAGE_DOM_IDS.weekCountContainerDomElement);
-    const toggleIcon = document.getElementById(TODAYPAGE_DOM_IDS.toggleWeekViewDomElement).querySelector('i');
-    const weekToggleText = document.getElementById(TODAYPAGE_DOM_IDS.weekToggleTextDomElement);
+    // const toggleIcon = document.getElementById(TODAYPAGE_DOM_IDS.toggleWeekViewDomElement).querySelector('i');
+    // const weekToggleText = document.getElementById(TODAYPAGE_DOM_IDS.weekToggleTextDomElement);
     
     if (weekViewHidden) {
         weekContainer.classList.add('hidden-section');
-        toggleIcon.className = 'fas fa-eye';
-        weekToggleText.textContent = '';
+        // toggleIcon.className = 'fas fa-eye';
+        // weekToggleText.textContent = '';
     } else {
         weekContainer.classList.remove('hidden-section');
-        toggleIcon.className = 'fas fa-eye-slash';
-        weekToggleText.textContent = '';
+        // toggleIcon.className = 'fas fa-eye-slash';
+        // weekToggleText.textContent = '';
     }
 };
 
@@ -115,12 +117,13 @@ const getDayOfYearText = () => {
     let monthNumeric = today.getMonth() + 1;
     let year = today.getFullYear();
     let currentWeek = getWeekNumber(today);
+    let totalWeeksInYear = getTotalWeeksInYear(today.getFullYear())
 
     let dayTextToCopy = `Day ${dayCount.innerText || 'rcountdown'}/${daysInYear} \n${dayOfWeek} \n${addZeros(day)}.${addZeros(monthNumeric)}.${year}`;
     
     // Add week information if it's visible
     if (!weekViewHidden) {
-        dayTextToCopy += `\nWeek ${currentWeek} of the year`;
+        dayTextToCopy += `\nWeek ${currentWeek} / ${totalWeeksInYear}`; //todo: set this to current week
     }
     
     return dayTextToCopy;
@@ -134,26 +137,26 @@ const copyDOY = async () => {
 
 const addClipBoardEventHandler = () => document.querySelector(".copy-link").addEventListener("click", copyDOY);
 
-const toggleWeekView = () => {
-    weekViewHidden = !weekViewHidden;
-    localStorage.setItem('weekViewHidden', weekViewHidden);
-    updateWeekViewVisibility();
+// const toggleWeekView = () => {
+//     weekViewHidden = !weekViewHidden;
+//     localStorage.setItem('weekViewHidden', weekViewHidden);
+//     updateWeekViewVisibility();
     
-};
+// };
 
-const addToggleWeekViewHandlers = () => {
-    // Add event listener to the eye icon in the week counter
-    const toggleBtn = document.getElementById(TODAYPAGE_DOM_IDS.toggleWeekViewDomElement);
-    if (toggleBtn) {
-        toggleBtn.addEventListener('click', toggleWeekView);
-    }
+// const addToggleWeekViewHandlers = () => {
+//     // Add event listener to the eye icon in the week counter
+//     const toggleBtn = document.getElementById(TODAYPAGE_DOM_IDS.toggleWeekViewDomElement);
+//     if (toggleBtn) {
+//         toggleBtn.addEventListener('click', toggleWeekView);
+//     }
     
-    // Add event listener to the dedicated toggle button
-    const weekToggleButton = document.getElementById(TODAYPAGE_DOM_IDS.weekToggleButtonDomElement);
-    if (weekToggleButton) {
-        weekToggleButton.addEventListener('click', toggleWeekView);
-    }
-};
+//     // Add event listener to the dedicated toggle button
+//     // const weekToggleButton = document.getElementById(TODAYPAGE_DOM_IDS.weekToggleButtonDomElement);
+//     // if (weekToggleButton) {
+//     //     weekToggleButton.addEventListener('click', toggleWeekView);
+//     // }
+// };
 
 const updateTimeValues = () => {
     return setInterval(updateDate, 1000);
@@ -174,7 +177,7 @@ export function exportToWhatsapp() {
 const registerListenersAndUpdate = () => {
     addWhatappEventHandler();
     addClipBoardEventHandler();
-    addToggleWeekViewHandlers();
+    // addToggleWeekViewHandlers();
     updateTimeValues();
 };
 
