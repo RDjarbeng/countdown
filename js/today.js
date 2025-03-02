@@ -96,11 +96,11 @@ const updateWeekViewVisibility = () => {
     if (weekViewHidden) {
         weekContainer.classList.add('hidden-section');
         toggleIcon.className = 'fas fa-eye';
-        weekToggleText.textContent = 'Show Week Counter';
+        weekToggleText.textContent = '';
     } else {
         weekContainer.classList.remove('hidden-section');
         toggleIcon.className = 'fas fa-eye-slash';
-        weekToggleText.textContent = 'Hide Week Counter';
+        weekToggleText.textContent = '';
     }
 };
 
@@ -138,7 +138,7 @@ const toggleWeekView = () => {
     weekViewHidden = !weekViewHidden;
     localStorage.setItem('weekViewHidden', weekViewHidden);
     updateWeekViewVisibility();
-    notifyUser(weekViewHidden ? "Week counter hidden" : "Week counter visible");
+    
 };
 
 const addToggleWeekViewHandlers = () => {
