@@ -92,6 +92,8 @@ const setDomElements = (today) => {
             }
         }); 
 
+        if (!view) return;
+
         switch (view.dataset.view.toLowerCase()) {
             case 'day':
                 setInnerHtmlForNotNull(numerator, dayClock.countDays() );
