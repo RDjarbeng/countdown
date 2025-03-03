@@ -27,78 +27,6 @@
     <meta name="theme-color" content="#7b68ee">
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="grey">
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#7b68ee">
-    <style>
-        .week-count-container {
-            margin-top: 2vmin;
-            width: 33vmin;
-            padding: 0.5em 0;
-            border-radius: 3vmin;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .week-count {
-            font-size: 2.5rem;
-            font-weight: bolder;
-        }
-        
-        .week-text {
-            font-size: 0.9rem;
-            border-bottom: 1px solid;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .toggle-week-view {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            cursor: pointer;
-            font-size: 0.8rem;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-        
-        .toggle-week-view:hover {
-            opacity: 1;
-        }
-        
-        .hidden-section {
-            height: 0;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-            opacity: 0;
-        }
-        
-        .week-toggle-button {
-            margin-top: 1vmin;
-            padding: 0.5em 1em;
-            border-radius: 2vmin;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.8rem;
-        }
-        
-        .week-toggle-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .week-toggle-button i {
-            margin-right: 0.5em;
-        }
-    </style>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y83G4YMZBK"></script>
@@ -115,11 +43,14 @@
     <main>
         <section class="container">
             <div class="date-row">
-                <div class="day-of-year">
-                    <div class="day-text">DAY</div>
-                    <div class="day-count" id='countDay'>X</div>
+                <div class="stat">
+                    <div class="title" id="title">
+                        <div class="option" data-view="Day">DAY</div>
+                        <div class="option" data-view="Week">WEEK</div>
+                    </div>
+                    <div class="numerator" id="num">0</div>
                     <div class="divider"></div>
-                    <div class="year-count" id="year-count">365</div>
+                    <div class="denominator" id="den">0</div>
 
                     <div class="share-row">
                         <div class="sm share-whatsapp" id="sendWhatsappButton" data-action="share/whatsapp/share"
@@ -138,15 +69,6 @@
                     <div class="time" id="time">00:00 pm</div>
                 </div>
 
-                <div class="week-count-container" id="weekCountContainer">
-                    <!-- <div class="toggle-week-view" id="toggleWeekView">
-                        <i class="fas fa-eye-slash"></i>
-                    </div> -->
-                    <div class="week-text">WEEK</div>
-                    <div class="day-count" id="weekNumber">X</div>
-                    <div class="divider"></div>
-                    <div class="year-count" id='weekCount'>X</div>
-                </div>
             </div>
         </section>
     </main>

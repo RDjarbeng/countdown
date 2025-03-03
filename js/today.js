@@ -3,8 +3,7 @@ import { addZeros, setInnerHtmlForNotNull } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 
 const dayClock = new NewYearClock();
-let day, month, year, time, dayOfWeek, dayCount, daysInYear, weekNumber, weekCount;
-let weekViewHidden = localStorage.getItem('weekViewHidden') === 'False';
+let day, month, year, time, dayOfWeek, dayCount, numerator, denominator, title;
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -14,13 +13,9 @@ const TODAYPAGE_DOM_IDS = {
     dayOfMonthDomElement: 'dayOfMonth',
     dayOfWeekDomElement: 'dayOfWeek',
     timeDomElement: 'time',
-    dayCountDomElement: 'countDay',
-    daysInTheYearDomElement: 'year-count',
-    weekNumberDomElement: 'weekNumber',
-    weekCountDomElement: 'weekCount',
-    weekCountContainerDomElement: 'weekCountContainer',
-    toggleWeekViewDomElement: 'toggleWeekView',
-    weekToggleTextDomElement: 'weekToggleText'
+    numerator: 'num',
+    denominator: 'den',
+    title: 'title',
 };
 
 const updateDate = () => {
@@ -62,10 +57,10 @@ const setDomElements = (today) => {
     year = document.getElementById(TODAYPAGE_DOM_IDS.yearDomElement);
     dayOfWeek = document.getElementById(TODAYPAGE_DOM_IDS.dayOfWeekDomElement);
     time = document.getElementById(TODAYPAGE_DOM_IDS.timeDomElement);
-    dayCount = document.getElementById(TODAYPAGE_DOM_IDS.dayCountDomElement);
-    daysInYear = document.getElementById(TODAYPAGE_DOM_IDS.daysInTheYearDomElement);
-    weekNumber = document.getElementById(TODAYPAGE_DOM_IDS.weekNumberDomElement);
-    weekCount = document.getElementById(TODAYPAGE_DOM_IDS.weekCountDomElement);
+
+    numerator = document.getElementById(TODAYPAGE_DOM_IDS.numerator);
+    denominator = document.getElementById(TODAYPAGE_DOM_IDS.denominator);
+    title = document.getElementById(TODAYPAGE_DOM_IDS.title);
     
     setInnerHtmlForNotNull(day, today.getDate());
     setInnerHtmlForNotNull(month, months[today.getMonth()]);
@@ -76,35 +71,54 @@ const setDomElements = (today) => {
         minute: '2-digit',
         hour12: true
     }));
-    setInnerHtmlForNotNull(dayCount, dayClock.countDays());
-    setInnerHtmlForNotNull(daysInYear, dayClock.getDaysinYear());
     
-     // Get the current week number
-     const currentWeek = getWeekNumber(today);
-     // Get total weeks in the year
-     const totalWeeks = getTotalWeeksInYear(today.getFullYear());
-     setInnerHtmlForNotNull(weekNumber, `${currentWeek}`);//— ${totalWeeks}
-     setInnerHtmlForNotNull(weekCount, `${totalWeeks}`);//— ${totalWeeks}
-     
-    
-    // Apply hidden state if needed
-    // updateWeekViewVisibility();
-};
-const updateWeekViewVisibility = () => {
-    const weekContainer = document.getElementById(TODAYPAGE_DOM_IDS.weekCountContainerDomElement);
-    // const toggleIcon = document.getElementById(TODAYPAGE_DOM_IDS.toggleWeekViewDomElement).querySelector('i');
-    // const weekToggleText = document.getElementById(TODAYPAGE_DOM_IDS.weekToggleTextDomElement);
-    
-    if (weekViewHidden) {
-        weekContainer.classList.add('hidden-section');
-        // toggleIcon.className = 'fas fa-eye';
-        // weekToggleText.textContent = '';
-    } else {
-        weekContainer.classList.remove('hidden-section');
-        // toggleIcon.className = 'fas fa-eye-slash';
-        // weekToggleText.textContent = '';
+     const currentWeek = getWeekNumber(today); // Get the current week number
+     const totalWeeks = getTotalWeeksInYear(today.getFullYear()); // Get total weeks in the year
+
+     const toggleSelectedOption = (view) => {
+        if (view.classList.contains("selected")) {
+            view.classList.remove("selected");
+        } else { view.classList.add("selected"); }
     }
+
+    // event for changing the stat view
+     const selectStatView = (e) =>{
+        let options = Array.from(e.currentTarget.children);
+        let view = e.target.closest(".option");
+
+        options.forEach(option => {            
+            if (option.classList.contains("selected")) {    
+                option.classList.remove("selected");
+            }
+        }); 
+
+        switch (view.dataset.view.toLowerCase()) {
+            case 'day':
+                setInnerHtmlForNotNull(numerator, dayClock.countDays() );
+                setInnerHtmlForNotNull(denominator, dayClock.getDaysinYear()); 
+                toggleSelectedOption(view);
+                break;
+            case 'week':
+                setInnerHtmlForNotNull(numerator, `${currentWeek}`);
+                setInnerHtmlForNotNull(denominator, `${totalWeeks}`);
+                toggleSelectedOption(view);
+                break;
+        }
+    }
+
+    title.addEventListener("click", selectStatView);
 };
+
+function defaultStatView() {
+    numerator = document.getElementById(TODAYPAGE_DOM_IDS.numerator);
+    denominator = document.getElementById(TODAYPAGE_DOM_IDS.denominator);
+    let selectedView = document.querySelector('[data-view]');
+    selectedView.classList.add("selected");
+    setInnerHtmlForNotNull(numerator, dayClock.countDays() );
+    setInnerHtmlForNotNull(denominator, dayClock.getDaysinYear());;
+}
+
+defaultStatView();
 
 /**
  * @returns {String} day Text depending on the format of the day of year text
@@ -121,11 +135,6 @@ const getDayOfYearText = () => {
 
     let dayTextToCopy = `Day ${dayCount.innerText || 'rcountdown'}/${daysInYear} \n${dayOfWeek} \n${addZeros(day)}.${addZeros(monthNumeric)}.${year}`;
     
-    // Add week information if it's visible
-    if (!weekViewHidden) {
-        dayTextToCopy += `\nWeek ${currentWeek} / ${totalWeeksInYear}`; //todo: set this to current week
-    }
-    
     return dayTextToCopy;
 };
 
@@ -136,27 +145,6 @@ const copyDOY = async () => {
 };
 
 const addClipBoardEventHandler = () => document.querySelector(".copy-link").addEventListener("click", copyDOY);
-
-// const toggleWeekView = () => {
-//     weekViewHidden = !weekViewHidden;
-//     localStorage.setItem('weekViewHidden', weekViewHidden);
-//     updateWeekViewVisibility();
-    
-// };
-
-// const addToggleWeekViewHandlers = () => {
-//     // Add event listener to the eye icon in the week counter
-//     const toggleBtn = document.getElementById(TODAYPAGE_DOM_IDS.toggleWeekViewDomElement);
-//     if (toggleBtn) {
-//         toggleBtn.addEventListener('click', toggleWeekView);
-//     }
-    
-//     // Add event listener to the dedicated toggle button
-//     // const weekToggleButton = document.getElementById(TODAYPAGE_DOM_IDS.weekToggleButtonDomElement);
-//     // if (weekToggleButton) {
-//     //     weekToggleButton.addEventListener('click', toggleWeekView);
-//     // }
-// };
 
 const updateTimeValues = () => {
     return setInterval(updateDate, 1000);
