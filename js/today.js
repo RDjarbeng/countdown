@@ -3,7 +3,7 @@ import { addZeros, setInnerHtmlForNotNull } from "./functions.js";
 import { notifyUser } from "./uiFunctions.js";
 
 const dayClock = new NewYearClock();
-let day, month, year, time, dayOfWeek, dayCount, numerator, denominator, title;
+let day, month, year, time, dayOfWeek, numerator, denominator, title;
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -125,7 +125,7 @@ defaultStatView();
 /**
  * @returns {String} day Text depending on the format of the day of year text
  */
-const getDayOfYearText = () => {
+const getStatText = () => {
     let daysInYear = dayClock.getDaysinYear();
     let today = new Date();
     let dayOfWeek = days[today.getDay()];
@@ -134,15 +134,25 @@ const getDayOfYearText = () => {
     let year = today.getFullYear();
     let currentWeek = getWeekNumber(today);
     let totalWeeksInYear = getTotalWeeksInYear(today.getFullYear())
-
-    let dayTextToCopy = `Day ${dayCount.innerText || 'rcountdown'}/${daysInYear} \n${dayOfWeek} \n${addZeros(day)}.${addZeros(monthNumeric)}.${year}`;
+    let statText;
     
-    return dayTextToCopy;
+    const selectedView = title.getElementsByClassName('selected')[0];
+
+    switch (selectedView.dataset.view.toLowerCase()) {
+        case 'day':
+            statText = `Day ${numerator.innerText || 'rcountdown'}/${daysInYear} \n${dayOfWeek} \n${addZeros(day)}.${addZeros(monthNumeric)}.${year}`;
+            break;
+        case 'week':
+            statText = `Week ${currentWeek}/${totalWeeksInYear} \n${dayOfWeek} \n${addZeros(day)}.${addZeros(monthNumeric)}.${year}`;
+            break;
+    }
+    
+    return statText;
 };
 
 const copyDOY = async () => {
-    let dayTextToCopy = getDayOfYearText();
-    await navigator.clipboard.writeText(dayTextToCopy);
+    let statText = getStatText();
+    await navigator.clipboard.writeText(statText);
     notifyUser("Copied to clipboard");
 };
 
@@ -152,7 +162,7 @@ const updateTimeValues = () => {
     return setInterval(updateDate, 1000);
 };
 
-export function addWhatappEventHandler() {
+export function addWhatsappEventHandler() {
     let whatsappIcon = document.getElementById('sendWhatsappButton');
     if (whatsappIcon) {
         whatsappIcon.addEventListener('click', exportToWhatsapp);
@@ -160,14 +170,13 @@ export function addWhatappEventHandler() {
 }
 
 export function exportToWhatsapp() {
-    let dayTextToCopy = encodeURIComponent(getDayOfYearText());
-    window.open(`whatsapp://send?text=${dayTextToCopy}`);
+    let statText = encodeURIComponent(getStatText());
+    window.open(`whatsapp://send?text=${statText}`);
 }
 
 const registerListenersAndUpdate = () => {
-    addWhatappEventHandler();
+    addWhatsappEventHandler();
     addClipBoardEventHandler();
-    // addToggleWeekViewHandlers();
     updateTimeValues();
 };
 
