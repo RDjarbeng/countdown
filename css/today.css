@@ -178,6 +178,9 @@ main {
     justify-content: center;
     align-items: center;
 }
+.title:hover{
+    cursor:pointer;
+}
 
 .option{
     display: flex;
