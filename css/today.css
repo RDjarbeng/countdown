@@ -149,7 +149,7 @@ main {
     user-select: text;
 }
 
-.day-of-year {
+.stat {
     width: 33vmin;
     padding: 0.5em 0;
     border-radius: 0.1em;
@@ -170,20 +170,40 @@ main {
     background: var(--color-text);
 }
 
-.day-text {
+.title{
+    display: flex;
     font-size: 0.9rem;
     border-bottom: 1px solid;
     width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.title:hover{
+    cursor:pointer;
 }
 
-.day-count {
+.option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    opacity: 0.45;
+}
+
+.numerator {
     font-size: 3.5rem;
     font-weight: bolder;
 }
 
-.year-count {
+.denominator {
     padding-top: 2vmin;
     font-size: 2rem;
+}
+
+.selected {
+    font-weight: bolder;
+    opacity: 1;
 }
 
 .date {
@@ -465,7 +485,7 @@ hr {
         width: 75vmin;
     }
 
-    .day-of-year {
+    .stat {
         width: 40vmin;
     }
 

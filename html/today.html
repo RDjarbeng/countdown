@@ -43,11 +43,14 @@
     <main>
         <section class="container">
             <div class="date-row">
-                <div class="day-of-year">
-                    <div class="day-text">DAY</div>
-                    <div class="day-count" id='countDay'>X</div>
+                <div class="stat">
+                    <div class="title" id="title">
+                        <div class="option" data-view="Day">DAY</div>
+                        <div class="option" data-view="Week">WEEK</div>
+                    </div>
+                    <div class="numerator" id="num">0</div>
                     <div class="divider"></div>
-                    <div class="year-count" id="year-count">365</div>
+                    <div class="denominator" id="den">0</div>
 
                     <div class="share-row">
                         <div class="sm share-whatsapp" id="sendWhatsappButton" data-action="share/whatsapp/share"
@@ -57,13 +60,15 @@
                         <div class="sm copy-link" title="copy link"><i class="far fa-copy fa-fw"></i></div>
                     </div>
                 </div>
+                
                 <div class="date">
-                    <div class="day-of-week" id="dayOfWeek">Monday</div>
-                    <div class="day" id="dayOfMonth">11</div>
+                    <div class="day-of-week" id="dayOfWeek">Xday</div>
+                    <div class="day" id="dayOfMonth">00</div>
                     <div class="month" id="month">Mar</div>
-                    <div class="year" id="year">2022</div>
-                    <div class="time" id="time">11:00 pm</div>
+                    <div class="year" id="year">0000</div>
+                    <div class="time" id="time">00:00 pm</div>
                 </div>
+
             </div>
         </section>
     </main>
