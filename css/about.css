@@ -326,7 +326,7 @@ a{
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
   body {
-    overflow-y: hidden;
+    overflow-y: auto;
   }
   .details{
     width: 100vmin;
