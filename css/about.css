@@ -288,6 +288,7 @@ a{
 }
 .details-info{
   font-size: 1rem;
+  width: 100%;
 }
 /* .app-learn{
   font-style: italic;
@@ -325,7 +326,7 @@ a{
 /* desktop */
 @media screen and (min-width: 750px) and (orientation: landscape) {
   body {
-    overflow-y: hidden;
+    overflow-y: auto;
   }
   .details{
     width: 100vmin;
@@ -347,4 +348,54 @@ a{
   .sidebar{
     width: 75vmin;
   }
+}
+
+/* Contributors section */
+.contributors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.contributor-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.contributor-card:hover {
+    background-color: rgba(128, 128, 128, 0.1);
+}
+
+.contributor-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+}
+
+.contributor-username {
+    font-size: 0.875rem;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .contributors-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+
+    .contributor-avatar {
+        width: 50px;
+        height: 50px;
+    }
 }
