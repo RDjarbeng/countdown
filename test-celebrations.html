@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Celebrations</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .test-button {
+            display: block;
+            width: 100%;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .test-button:hover {
+            transform: scale(1.05);
+        }
+        .test-button.new-year {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        }
+        .info {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+        .clock-row {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .timer {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            min-width: 80px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎉 Celebration Effects Tester</h1>
+        
+        <div class="info">
+            <strong>Instructions:</strong>
+            <ul>
+                <li>Click the buttons below to test different celebration types</li>
+                <li><strong>Regular countdowns:</strong> Simple "TIME'S UP!" banner only</li>
+                <li><strong>New Year:</strong> Full celebration with confetti, fireworks, stars!</li>
+                <li>Open browser console (F12) to see debug messages</li>
+            </ul>
+        </div>
+
+        <h2>Test Regular Countdown (Simple)</h2>
+        <button class="test-button" onclick="testBirthdayCelebration()">
+            🎂 Test Birthday Party (Simple "TIME'S UP!" only)
+        </button>
+        
+        <button class="test-button" onclick="testRegularCelebration()">
+            🎈 Test Regular Countdown (Simple "TIME'S UP!" only)
+        </button>
+
+        <h2>Test New Year Celebration</h2>
+        <button class="test-button new-year" onclick="testNewYearCelebration()">
+            🎊 Test New Year Celebration (SPECTACULAR!)
+        </button>
+
+        <h2>Test Individual Effects</h2>
+        <button class="test-button" onclick="testElapsedBanner()">
+            ⏰ Test Elapsed Banner Only
+        </button>
+        
+        <button class="test-button" onclick="testConfetti()">
+            🎊 Test Confetti
+        </button>
+        
+        <button class="test-button" onclick="testFireworks()">
+            🎆 Test Fireworks
+        </button>
+
+        <!-- Dummy clock for pulse effect -->
+        <div class="clock-row" style="display: none;">
+            <div class="timer">00</div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { triggerCelebration, showElapsedBanner, createConfetti, createFireworks, createScreenFlash } from '/js/celebrationEffects.js';
+        
+        // Make functions global for onclick handlers
+        window.testBirthdayCelebration = async () => {
+            console.log('🎂 Testing Birthday Party celebration...');
+            await triggerCelebration('Birthday Party', false);
+        };
+        
+        window.testRegularCelebration = async () => {
+            console.log('🎈 Testing regular celebration...');
+            await triggerCelebration('My Event Countdown', false);
+        };
+        
+        window.testNewYearCelebration = async () => {
+            console.log('🎊 Testing New Year celebration...');
+            await triggerCelebration('CountDown to New Year', true);
+        };
+        
+        window.testElapsedBanner = async () => {
+            console.log('⏰ Testing elapsed banner...');
+            // Test both types
+            await showElapsedBanner('Birthday Party', false);
+            setTimeout(async () => {
+                await showElapsedBanner('New Year 2026', true);
+            }, 3000);
+        };
+        
+        window.testConfetti = () => {
+            console.log('🎊 Testing confetti...');
+            createScreenFlash(false);
+            createConfetti(5000, 150, false);
+        };
+        
+        window.testFireworks = () => {
+            console.log('🎆 Testing fireworks...');
+            createScreenFlash(false);
+            createFireworks(5, false);
+        };
+        
+        console.log('✅ Celebration test page loaded!');
+        console.log('Click any button to test celebrations.');
+    </script>
+</body>
+</html>

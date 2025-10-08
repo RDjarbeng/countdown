@@ -3,7 +3,7 @@ import { addEventHandlers } from "./listpage/listEventListener.js";
 import { loadListPage } from "./listpage/listFunctions.js";
 import { addSortUIAndListeners } from "./listpage/list_sort/sort.js";
 import { addSortUI } from "./listpage/list_ui/addSortUI.js";
-import { requestNotificationPermission } from "./notification";
+import { requestNotificationPermission } from "./notification.js";
 // import { addEventHandlers } from "./listEventListener";
 
 // begin displaycountdown.js

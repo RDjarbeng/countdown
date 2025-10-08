@@ -246,38 +246,42 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
             clock.countDown();
             if (clock.getDistance() > 0) {
                 setInnerHtmlForNotNull(element, getCountdownString(clock));
-            }else
-            {  
+            } else {
                 //fire custom elapsed event, passing the countdown elapsed as detail
-                const countdown =arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id'))
+                const countdown = arrayOfCountdowns.find((countdown) => countdown.dateModified == element.getAttribute('data-id'));
                 fireElapsedEvent(countdown.text);
                 console.log('elapsing');
 
+                // Add elapsed effect
+                element.classList.add('countdown-elapsed-effect');
+                // Remove effect class after animation ends so it can be retriggered
+                element.addEventListener('animationend', function handler() {
+                    element.classList.remove('countdown-elapsed-effect');
+                    element.removeEventListener('animationend', handler);
+                });
+
                 if (element.getAttribute('data-repeat') == 'true') {
-                console.log('updating repeat', element);
-                // update repeat item set enddate to next year
-                let index = arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == element.getAttribute('data-id'));
-                let date = element.getAttribute('data-date');
-                if (index && date) {
-                    updateRepeatCountdown(arrayOfCountdowns, date, index);
+                    console.log('updating repeat', element);
+                    // update repeat item set enddate to next year
+                    let index = arrayOfCountdowns.findIndex((countdown) => countdown.dateModified == element.getAttribute('data-id'));
+                    let date = element.getAttribute('data-date');
+                    if (index && date) {
+                        updateRepeatCountdown(arrayOfCountdowns, date, index);
+                        displayAndUpdatecount();
+                    }
+                } else {
+                    element.classList.remove('countdown-counting');
+                    setInnerHtmlForNotNull(element, 'Elapsed');
+                    //update bottom part of countdown
                     displayAndUpdatecount();
                 }
-
-            } else {
-                
-                element.classList.remove('countdown-counting')
-                setInnerHtmlForNotNull(element, 'Elapsed');
-                //update bottom part of countdown
-                displayAndUpdatecount();
-
             }
-        }
-
         });
     } else {
         setCountItemExists(false)
     }
 }
+
 /**
  * Loads elements for listpage, calls display and addListeners using try and catch
  */

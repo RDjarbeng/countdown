@@ -10,6 +10,7 @@ import { LISTPAGE_DOM_CLASSES } from "./LISTPAGE_DOM_SELECTORS.js";
 import { hideContextMenus } from "./list_ui/hideContextMenus.js";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
 import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
+import { triggerCelebration } from "../celebrationEffects.js";
 
 
 /**
@@ -53,13 +54,19 @@ export const countHasElapsedListener =(e)=>{
     //set text to display
     let message=(countdownText)?countdownText: 'countdown'
     try {
+        // Check if this is a New Year countdown
+        const isNewYear = message.toLowerCase().includes('new year') || 
+                         message.toLowerCase().includes('newyear');
+        
         //show notification on page
         informUser(`Elapsed: ${message}`)
         //play audio
-        //todo: get tone instead of song
         playNotificationSound();
         //show notification using device notifications (if allowed)
         showNotification(`Elapsed: ${message}`)
+        
+        // Trigger celebration effects
+        triggerCelebration(message, isNewYear);
         
     } catch (error) {
         errorHandler("Sorry, could not alert properly ");

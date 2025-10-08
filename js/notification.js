@@ -1,4 +1,4 @@
-import { errorHandler } from "./error";
+import { errorHandler } from "./error.js";
 
 export const showNotification = (body) => {
     if(Notification.permission ==='granted'){

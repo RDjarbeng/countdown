@@ -6,6 +6,7 @@ import { showNotification } from "./notification.js";
 import { playNotificationSound } from "./sound/playNotificationSound.js";
 import { getLocalIsoStringFromDateInput } from "./timefunctions.js";
 import { informUser } from "./uiFunctions.js";
+import { triggerCelebration } from "./celebrationEffects.js";
 
 /**
  * 
@@ -125,14 +126,20 @@ export function updateDisplay(counter,{ dayNumber, hourNumber, minNumber, secNum
     const countdownText = e.detail;
     //set text to display
     let message=(countdownText)?countdownText: 'countdown'
+    
+    // Check if this is a New Year countdown
+    const isNewYear = message.toLowerCase().includes('new year') || 
+                     message.toLowerCase().includes('newyear');
+    
     //show notification on page
     informUser(`Elapsed: ${message}`)
     //show notification using device notifications (if allowed)
     showNotification(`Elapsed: ${message}`)
     //play audio
-    //todo: get tone instead of song
     playNotificationSound();
-
+    
+    // Trigger celebration effects with confetti and overlay
+    triggerCelebration(message, isNewYear);
 }
 /**
  * for the animated Countdown 

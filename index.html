@@ -84,6 +84,41 @@
     </main>
     <div class="new-item"><i class="fas fa-plus fa-xl"></i></div>
 
+    <script>
+        // Simple test function for elapsed effect
+        function testElapsedEffectNow() {
+            console.log('Testing elapsed effect directly...');
+            const clockRow = document.querySelector('.clock-row');
+            const container = document.querySelector('.container');
+            
+            if (clockRow) {
+                console.log('Adding effect to clock row');
+                clockRow.classList.add('countdown-elapsed-effect');
+                setTimeout(() => {
+                    console.log('Removing effect from clock row');
+                    clockRow.classList.remove('countdown-elapsed-effect');
+                }, 2000);
+            } else if (container) {
+                console.log('Adding effect to container');
+                container.classList.add('countdown-elapsed-effect');
+                setTimeout(() => {
+                    console.log('Removing effect from container');
+                    container.classList.remove('countdown-elapsed-effect');
+                }, 2000);
+            } else {
+                console.log('No element found for effect');
+            }
+        }
+        
+        // Make it globally available
+        window.testElapsedEffectNow = testElapsedEffectNow;
+        
+        // Also try applying effect immediately when page loads (for testing)
+        window.addEventListener('load', () => {
+            console.log('Page loaded - you can now run testElapsedEffectNow()');
+        });
+    </script>
+
     <script src="/js/error.js" type="module"></script>
     <script src="/app.js" type="module"></script>
     <script src="/js/sidebar.js" type="module" async></script>
