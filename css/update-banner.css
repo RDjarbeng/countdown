@@ -1,0 +1,49 @@
+.updateToastify {
+  background: var(--bg-form);
+  color: var(--color-text);
+  font-family: "Ubuntu", sans-serif;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-left: 5px solid var(--color-banner);
+}
+
+/* Headline */
+.updateToastify h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Action link */
+.updateToastify a.do-sw-update {
+  color: var(--color-banner);
+  text-decoration: underline;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Adjust line spacing */
+.updateToastify br {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* Close icon position */
+.updateToastify .toast-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  bottom: auto !important;
+  color: var(--color-text);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.updateToastify .toast-close:hover {
+  opacity: 1;
+}
