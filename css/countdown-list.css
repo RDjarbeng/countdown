@@ -1,25 +1,3 @@
-/* Elapsed countdown effect */
-.countdown-elapsed-effect {
-    animation: countdownElapsedFlash 0.7s cubic-bezier(0.4,0,0.2,1);
-}
-
-@keyframes countdownElapsedFlash {
-    0% {
-        background-color: #fff3cd;
-        color: #b94a48;
-        box-shadow: 0 0 0.7em 0.2em #ffe082;
-    }
-    60% {
-        background-color: #ffe082;
-        color: #b94a48;
-        box-shadow: 0 0 1.2em 0.4em #ffe082;
-    }
-    100% {
-        background-color: inherit;
-        color: inherit;
-        box-shadow: none;
-    }
-}
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap");
 /* basic reset */
 *,
@@ -30,6 +8,26 @@
     padding: 0;
     scroll-behavior: smooth;
     user-select: none;
+}
+
+/* Elapsed countdown effect */
+.countdown-elapsed-effect {
+    animation: countdownElapsedFlash 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes countdownElapsedFlash {
+    0% {
+        background-color: rgba(123, 104, 238, 0.2);
+        box-shadow: 0 0 0.7em 0.2em rgba(123, 104, 238, 0.4);
+    }
+    60% {
+        background-color: rgba(123, 104, 238, 0.4);
+        box-shadow: 0 0 1.2em 0.4em rgba(123, 104, 238, 0.6);
+    }
+    100% {
+        background-color: inherit;
+        box-shadow: none;
+    }
 }
 
 /* mode variables */

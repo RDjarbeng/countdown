@@ -54,9 +54,15 @@ export const countHasElapsedListener =(e)=>{
     //set text to display
     let message=(countdownText)?countdownText: 'countdown'
     try {
-        // Check if this is a New Year countdown
-        const isNewYear = message.toLowerCase().includes('new year') || 
-                         message.toLowerCase().includes('newyear');
+        // Add flash effect to the clock row
+        const clockRow = document.querySelector('.clock-row');
+        if (clockRow) {
+            clockRow.classList.add('countdown-elapsed-effect');
+            // Remove the effect class after animation completes (700ms)
+            setTimeout(() => {
+                clockRow.classList.remove('countdown-elapsed-effect');
+            }, 700);
+        }
         
         //show notification on page
         informUser(`Elapsed: ${message}`)
@@ -64,9 +70,6 @@ export const countHasElapsedListener =(e)=>{
         playNotificationSound();
         //show notification using device notifications (if allowed)
         showNotification(`Elapsed: ${message}`)
-        
-        // Trigger celebration effects
-        triggerCelebration(message, isNewYear);
         
     } catch (error) {
         errorHandler("Sorry, could not alert properly ");

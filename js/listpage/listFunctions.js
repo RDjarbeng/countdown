@@ -272,6 +272,16 @@ export const getArrayIndexByDateModified = (array,dateModified)=>{
                 } else {
                     element.classList.remove('countdown-counting');
                     setInnerHtmlForNotNull(element, 'Elapsed');
+                    
+                    // Add flash effect to the countdown list item after basic reset
+                    const listItem = element.closest('.countdown-list-item');
+                    if (listItem) {
+                        listItem.classList.add('countdown-elapsed-effect');
+                        setTimeout(() => {
+                            listItem.classList.remove('countdown-elapsed-effect');
+                        }, 700);
+                    }
+                    
                     //update bottom part of countdown
                     displayAndUpdatecount();
                 }

@@ -127,19 +127,24 @@ export function updateDisplay(counter,{ dayNumber, hourNumber, minNumber, secNum
     //set text to display
     let message=(countdownText)?countdownText: 'countdown'
     
-    // Check if this is a New Year countdown
-    const isNewYear = message.toLowerCase().includes('new year') || 
-                     message.toLowerCase().includes('newyear');
+    // Add flash effect to the clock row
+    const clockRow = document.querySelector('.clock-row');
+    if (clockRow) {
+        clockRow.classList.add('countdown-elapsed-effect');
+        // Remove the effect class after animation completes (700ms)
+        setTimeout(() => {
+            clockRow.classList.remove('countdown-elapsed-effect');
+        }, 700);
+    }
     
     //show notification on page
     informUser(`Elapsed: ${message}`)
     //show notification using device notifications (if allowed)
     showNotification(`Elapsed: ${message}`)
     //play audio
+    //todo: get tone instead of song
     playNotificationSound();
-    
-    // Trigger celebration effects with confetti and overlay
-    triggerCelebration(message, isNewYear);
+
 }
 /**
  * for the animated Countdown 
