@@ -10,7 +10,6 @@ import { LISTPAGE_DOM_CLASSES } from "./LISTPAGE_DOM_SELECTORS.js";
 import { hideContextMenus } from "./list_ui/hideContextMenus.js";
 import { triggerContextMenu } from "./list_ui/triggerContextMenu.js";
 import { showClockRow } from "./list_ui/updateListpageClockAndText.js";
-import { triggerCelebration } from "../celebrationEffects.js";
 
 
 /**

@@ -6,7 +6,6 @@ import { showNotification } from "./notification.js";
 import { playNotificationSound } from "./sound/playNotificationSound.js";
 import { getLocalIsoStringFromDateInput } from "./timefunctions.js";
 import { informUser } from "./uiFunctions.js";
-import { triggerCelebration } from "./celebrationEffects.js";
 
 /**
  * 
