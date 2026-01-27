@@ -1,5 +1,6 @@
 import sidebarHtml from "../html/sidebar.html?raw";
 import headerHtml from "../html/header.html?raw";
+import { initCustomAppName } from "./customAppName.js";
 
 class sidebar extends HTMLElement {
     constructor() {
@@ -11,10 +12,12 @@ class sidebar extends HTMLElement {
 }
 class header extends HTMLElement {
     constructor() {
-        super()
+        super();
     }
     connectedCallback() {
         this.innerHTML = headerHtml;
+        // Initialize custom app name after DOM is ready
+        setTimeout(() => initCustomAppName(), 0);
     }
 }
 
