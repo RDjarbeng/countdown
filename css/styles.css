@@ -255,7 +255,6 @@ main {
 
 .app-name-display {
     cursor: pointer;
-    padding: 0.2em 0.5em;
     border-radius: 0.3em;
     transition: background-color 0.2s ease;
     display: inline-block;
