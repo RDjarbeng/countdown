@@ -21,7 +21,7 @@
 
 /* Action link */
 .updateToastify a.do-sw-update {
-  color: var(--color-banner);
+  color: var(--form-header);
   text-decoration: underline;
   font-weight: 500;
   cursor: pointer;
