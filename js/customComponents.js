@@ -17,7 +17,7 @@ class header extends HTMLElement {
     connectedCallback() {
         this.innerHTML = headerHtml;
         // Initialize custom app name after DOM is ready
-        setTimeout(() => initCustomAppName(), 0);
+        initCustomAppName();
     }
 }
 
