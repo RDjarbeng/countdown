@@ -4,7 +4,7 @@
  */
 
 const STORAGE_KEY = "customAppName";
-const DEFAULT_NAME = "rcountdown";
+const DEFAULT_NAME = "Final CountDown";
 
 /**
  * Get the custom app name from localStorage
