@@ -48,7 +48,9 @@ body {
     background: var(--bg-url) var(--bg-color) center no-repeat fixed;
     background-size: cover;
     background-blend-mode: overlay;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
     color: var(--color-text);
     font-family: "Nunito", sans-serif;
     width: 100vw;
@@ -78,9 +80,12 @@ main {
     border-radius: 0.3rem;
     color: var(--color-text);
     padding: 0.2rem 0.8rem;
-    -webkit-animation: slide-in 0.2s ease-in forwards,
+    -webkit-animation:
+        slide-in 0.2s ease-in forwards,
         fade-out 2s ease 0.9s forwards;
-    animation: slide-in 0.2s ease-in forwards, fade-out 2s ease 0.9s forwards;
+    animation:
+        slide-in 0.2s ease-in forwards,
+        fade-out 2s ease 0.9s forwards;
     position: fixed;
     left: 50%;
     top: -10rem;
@@ -246,6 +251,36 @@ main {
     font-size: 5vh;
     color: var(--color-sidebar);
     /* margin-left: 1rem; incase logo gap doesn't work on mobile browsers */
+}
+
+.app-name-display {
+    cursor: pointer;
+    border-radius: 0.3em;
+    transition: background-color 0.2s ease;
+    display: inline-block;
+}
+
+.app-name-display:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.app-name-input {
+    font-family: "Nunito", sans-serif;
+    font-size: 5vh;
+    color: var(--color-sidebar);
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 0.3em;
+    padding: 0.2em 0.5em;
+    text-align: center;
+    outline: none;
+    min-width: 200px;
+    max-width: 400px;
+}
+
+.app-name-input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
 .logo-ico img {
@@ -544,9 +579,9 @@ hr {
 
 /* mobile and small screens */
 @media screen and (max-width: 550px) {
-  .logo-name {
-    display:none
-  }
+    .logo-name {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 427px) {
