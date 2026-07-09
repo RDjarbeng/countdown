@@ -252,13 +252,9 @@ const setupNasaUI = () => {
         toggle.addEventListener('change', (e) => {
             localStorage.setItem('useNasaBg', e.target.checked);
             if (!e.target.checked) {
-                document.body.style.backgroundImage = ''; // Revert to default
-                const loading = document.getElementById('nasaLoading');
-                if (loading) loading.style.display = 'none';
                 const details = document.getElementById('nasaDetails');
                 if (details) details.style.display = 'none';
-                const titleEl = document.getElementById('nasaInfoHeaderTitle');
-                if (titleEl) titleEl.innerText = "NASA APOD (Disabled)";
+                fetchNasaBackground();
             } else {
                 const titleEl = document.getElementById('nasaInfoHeaderTitle');
                 if (titleEl) titleEl.innerText = "NASA Picture of the Day";
