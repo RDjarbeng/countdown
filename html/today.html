@@ -71,6 +71,27 @@
 
             </div>
         </section>
+        
+        <div class="nasa-info-container" id="nasaInfoContainer" style="display: none;">
+            <div class="nasa-info-header" id="nasaInfoHeader" title="About this picture">
+                <i class="fas fa-info-circle" id="nasaInfoToggleIcon"></i>
+                <span id="nasaInfoHeaderTitle">NASA Picture of the Day</span>
+            </div>
+            <div class="nasa-info-content" id="nasaInfoContent">
+                <div class="nasa-toggle">
+                    <label style="cursor:pointer;">
+                        <input type="checkbox" id="nasaBgToggle" checked> Enable NASA Background
+                    </label>
+                </div>
+                <div class="nasa-loading" id="nasaLoading">
+                    <i class="fas fa-spinner fa-spin"></i> Loading...
+                </div>
+                <div class="nasa-details" id="nasaDetails" style="display: none;">
+                    <h3 id="nasaTitle"></h3>
+                    <p id="nasaExplanation"></p>
+                </div>
+            </div>
+        </div>
     </main>
     <script src="/js/error.js" type="module"></script>
     <script src="/js/customInitializeTimers.js" async type="module"></script>

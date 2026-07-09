@@ -174,10 +174,107 @@ export function exportToWhatsapp() {
     window.open(`whatsapp://send?text=${statText}`);
 }
 
+export const fetchNasaBackground = async () => {
+    const userBg = localStorage.getItem('userBg');
+    const useNasaBg = localStorage.getItem('useNasaBg') !== 'false';
+    const container = document.getElementById('nasaInfoContainer');
+    const toggle = document.getElementById('nasaBgToggle');
+    
+    if (userBg) {
+        if (container) container.style.display = 'none';
+        return;
+    }
+
+    if (container) {
+        container.style.display = 'flex';
+        toggle.checked = useNasaBg;
+    }
+
+    if (!useNasaBg) {
+        const titleEl = document.getElementById('nasaInfoHeaderTitle');
+        if (titleEl) titleEl.innerText = "NASA APOD (Disabled)";
+        const loading = document.getElementById('nasaLoading');
+        if (loading) loading.style.display = 'none';
+        return;
+    }
+
+    try {
+        const cachedData = sessionStorage.getItem('nasaApod');
+        let data;
+        
+        if (cachedData) {
+            data = JSON.parse(cachedData);
+        } else {
+            const response = await fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY');
+            if (!response.ok) throw new Error('NASA API error');
+            data = await response.json();
+            sessionStorage.setItem('nasaApod', JSON.stringify(data));
+        }
+
+        if (data.media_type === 'image') {
+            const imageUrl = data.hdurl || data.url;
+            
+            const img = new Image();
+            img.src = imageUrl;
+            img.onload = () => {
+                document.body.style.backgroundImage = `url('${imageUrl}')`;
+                
+                const loading = document.getElementById('nasaLoading');
+                if (loading) loading.style.display = 'none';
+                const details = document.getElementById('nasaDetails');
+                if (details) details.style.display = 'block';
+                const titleEl = document.getElementById('nasaTitle');
+                if (titleEl) titleEl.innerText = data.title;
+                const explanationEl = document.getElementById('nasaExplanation');
+                if (explanationEl) explanationEl.innerText = data.explanation;
+            };
+        }
+    } catch (error) {
+        console.warn("Could not fetch NASA background:", error);
+        const loading = document.getElementById('nasaLoading');
+        if (loading) loading.innerText = "Failed to load APOD.";
+    }
+};
+
+const setupNasaUI = () => {
+    const header = document.getElementById('nasaInfoHeader');
+    const container = document.getElementById('nasaInfoContainer');
+    const toggle = document.getElementById('nasaBgToggle');
+    
+    if (header) {
+        header.addEventListener('click', () => {
+            if (container) container.classList.toggle('expanded');
+        });
+    }
+
+    if (toggle) {
+        toggle.addEventListener('change', (e) => {
+            localStorage.setItem('useNasaBg', e.target.checked);
+            if (!e.target.checked) {
+                document.body.style.backgroundImage = ''; // Revert to default
+                const loading = document.getElementById('nasaLoading');
+                if (loading) loading.style.display = 'none';
+                const details = document.getElementById('nasaDetails');
+                if (details) details.style.display = 'none';
+                const titleEl = document.getElementById('nasaInfoHeaderTitle');
+                if (titleEl) titleEl.innerText = "NASA APOD (Disabled)";
+            } else {
+                const titleEl = document.getElementById('nasaInfoHeaderTitle');
+                if (titleEl) titleEl.innerText = "NASA Picture of the Day";
+                const loading = document.getElementById('nasaLoading');
+                if (loading) loading.style.display = 'block';
+                fetchNasaBackground();
+            }
+        });
+    }
+};
+
 const registerListenersAndUpdate = () => {
     addWhatsappEventHandler();
     addClipBoardEventHandler();
     updateTimeValues();
+    setupNasaUI();
+    fetchNasaBackground();
 };
 
 registerListenersAndUpdate();
