@@ -175,19 +175,13 @@ export function exportToWhatsapp() {
 }
 
 export const fetchNasaBackground = async () => {
-    const userBg = localStorage.getItem('userBg');
     const useNasaBg = localStorage.getItem('useNasaBg') !== 'false';
     const container = document.getElementById('nasaInfoContainer');
     const toggle = document.getElementById('nasaBgToggle');
-    
-    if (userBg) {
-        if (container) container.style.display = 'none';
-        return;
-    }
 
     if (container) {
         container.style.display = 'flex';
-        toggle.checked = useNasaBg;
+        if (toggle) toggle.checked = useNasaBg;
     }
 
     if (!useNasaBg) {
@@ -259,6 +253,7 @@ const setupNasaUI = () => {
                 const titleEl = document.getElementById('nasaInfoHeaderTitle');
                 if (titleEl) titleEl.innerText = "NASA APOD (Disabled)";
             } else {
+                localStorage.removeItem("userBg");
                 const titleEl = document.getElementById('nasaInfoHeaderTitle');
                 if (titleEl) titleEl.innerText = "NASA Picture of the Day";
                 const loading = document.getElementById('nasaLoading');
