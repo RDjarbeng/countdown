@@ -189,6 +189,13 @@ export const fetchNasaBackground = async () => {
         if (titleEl) titleEl.innerText = "NASA APOD (Disabled)";
         const loading = document.getElementById('nasaLoading');
         if (loading) loading.style.display = 'none';
+        
+        const userBg = localStorage.getItem('userBg');
+        if (userBg) {
+            document.body.style.backgroundImage = `url(${userBg})`;
+        } else {
+            document.body.style.backgroundImage = "";
+        }
         return;
     }
 
@@ -253,7 +260,6 @@ const setupNasaUI = () => {
                 const titleEl = document.getElementById('nasaInfoHeaderTitle');
                 if (titleEl) titleEl.innerText = "NASA APOD (Disabled)";
             } else {
-                localStorage.removeItem("userBg");
                 const titleEl = document.getElementById('nasaInfoHeaderTitle');
                 if (titleEl) titleEl.innerText = "NASA Picture of the Day";
                 const loading = document.getElementById('nasaLoading');
