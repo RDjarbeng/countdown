@@ -93,6 +93,7 @@ function openBgPicker() {
         closeFormBtn.addEventListener("click", closeFormPopUp);
         resetBtn.addEventListener("click", () => {
             localStorage.removeItem("userBg");
+            localStorage.setItem("useNasaBg", "false"); // explicitly disable NASA to ensure default
             body.style.backgroundImage = "";
             notifyUser("Default background restored");
             closeFormPopUp();
