@@ -275,6 +275,7 @@ const registerListenersAndUpdate = () => {
     updateTimeValues();
     setupNasaUI();
     fetchNasaBackground();
+    window.addEventListener('backgroundChanged', fetchNasaBackground);
 };
 
 registerListenersAndUpdate();

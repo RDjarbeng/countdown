@@ -96,6 +96,7 @@ function openBgPicker() {
             body.style.backgroundImage = "";
             notifyUser("Default background restored");
             closeFormPopUp();
+            window.dispatchEvent(new Event('backgroundChanged'));
         });
         defaultImgs.forEach((img) => {
             img.addEventListener("click", async () => { processImg(await convertToBlob(img.src)); });
@@ -117,6 +118,7 @@ function openBgPicker() {
                 body.style.backgroundImage = `url(${uploadedPic64})`;
                 notifyUser("Background is set");
                 closeFormPopUp();
+                window.dispatchEvent(new Event('backgroundChanged'));
             };
             reader.onerror = function () {
                 errorHandler("Unable to set background");
