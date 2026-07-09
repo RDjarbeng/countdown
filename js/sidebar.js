@@ -116,6 +116,7 @@ function openBgPicker() {
             reader.onload = function () {
                 let uploadedPic64 = reader.result;
                 localStorage.setItem("userBg", `${uploadedPic64}`);
+                localStorage.setItem("useNasaBg", "false"); // explicitly disable NASA when custom bg is set
                 body.style.backgroundImage = `url(${uploadedPic64})`;
                 notifyUser("Background is set");
                 closeFormPopUp();
