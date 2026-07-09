@@ -15,10 +15,14 @@ export class Clock {
     */
     setEndDate(endDate) {
         //set endDate to end of year
-        // todo: check endDate for validity as date
         this.currentDate = new Date();
         this.endDate = endDate || new Date(`Jan 1, ${this.currentDate.getFullYear() + 1} 00:00:00`)
-
+        
+        // check endDate for validity as date
+        if (isNaN(this.endDate.getTime())) {
+            console.warn("Invalid date provided to Clock:", endDate, ". Falling back to end of year.");
+            this.endDate = new Date(`Jan 1, ${this.currentDate.getFullYear() + 1} 00:00:00`);
+        }
     }
     /**
      * Returns the time in seconds between end date and current time
@@ -70,8 +74,9 @@ export class Clock {
      * @returns {Number}
      */
     getDaysinYear(){
-        //todo: add 400 year condition for leap year
-        return ((this.currentDate.getFullYear() % 4 != 0) ? 365 : 366)
+        const year = this.currentDate.getFullYear();
+        const isLeap = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        return isLeap ? 366 : 365;
     }
     /**
      * Sets the clock values, day, hour, year, second to 0, !not a replacement for stop clock 

@@ -8,13 +8,6 @@ const popAndAddFormSubmission = () => {
 
 
 
-// todo: remove dynamic seting of css
-// if (!document.querySelector("[href='css/form.css']")) {
-//     document.head.insertAdjacentHTML(
-//         "beforeend",
-//         `<link rel="stylesheet" href="/css/form.css">`
-//     );
-// }
 
 // DOM Elements
 const createButton = document.getElementsByClassName("new-item")[0];
