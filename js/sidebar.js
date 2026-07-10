@@ -93,9 +93,11 @@ function openBgPicker() {
         closeFormBtn.addEventListener("click", closeFormPopUp);
         resetBtn.addEventListener("click", () => {
             localStorage.removeItem("userBg");
+            localStorage.setItem("useNasaBg", "false"); // explicitly disable NASA to ensure default
             body.style.backgroundImage = "";
             notifyUser("Default background restored");
             closeFormPopUp();
+            window.dispatchEvent(new Event('backgroundChanged'));
         });
         defaultImgs.forEach((img) => {
             img.addEventListener("click", async () => { processImg(await convertToBlob(img.src)); });
@@ -114,9 +116,11 @@ function openBgPicker() {
             reader.onload = function () {
                 let uploadedPic64 = reader.result;
                 localStorage.setItem("userBg", `${uploadedPic64}`);
+                localStorage.setItem("useNasaBg", "false"); // explicitly disable NASA when custom bg is set
                 body.style.backgroundImage = `url(${uploadedPic64})`;
                 notifyUser("Background is set");
                 closeFormPopUp();
+                window.dispatchEvent(new Event('backgroundChanged'));
             };
             reader.onerror = function () {
                 errorHandler("Unable to set background");

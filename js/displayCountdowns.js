@@ -13,8 +13,7 @@ addSortUIAndListeners()
 const handleSubmissionAndLoadListpage=()=>{
     popAndAddFormOnList();
     loadListPage();
-// addEventHandlers();
-addSortUI();
+    addSortUIAndListeners();
 }
 //get button for create countdown
 const createButton = document.getElementsByClassName("new-item")[0];
