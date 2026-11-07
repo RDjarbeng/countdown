@@ -117,7 +117,7 @@ function defaultStatView() {
     let selectedView = document.querySelector('[data-view]');
     selectedView.classList.add("selected");
     setInnerHtmlForNotNull(numerator, dayClock.countDays() );
-    setInnerHtmlForNotNull(denominator, dayClock.getDaysinYear());;
+    setInnerHtmlForNotNull(denominator, dayClock.getDaysinYear());
 }
 
 defaultStatView();
@@ -175,6 +175,7 @@ export function exportToWhatsapp() {
 }
 
 export const fetchNasaBackground = async () => {
+    const userBg = localStorage.getItem('userBg');
     const useNasaBg = localStorage.getItem('useNasaBg') !== 'false';
     const container = document.getElementById('nasaInfoContainer');
     const toggle = document.getElementById('nasaBgToggle');
@@ -184,18 +185,18 @@ export const fetchNasaBackground = async () => {
         if (toggle) toggle.checked = useNasaBg;
     }
 
+    // Apply custom background if present, or clear to default if NASA is disabled
+    if (userBg) {
+        document.body.style.backgroundImage = `url(${userBg})`;
+    } else if (!useNasaBg) {
+        document.body.style.backgroundImage = "";
+    }
+
     if (!useNasaBg) {
         const titleEl = document.getElementById('nasaInfoHeaderTitle');
         if (titleEl) titleEl.innerText = "NASA APOD (Disabled)";
         const loading = document.getElementById('nasaLoading');
         if (loading) loading.style.display = 'none';
-        
-        const userBg = localStorage.getItem('userBg');
-        if (userBg) {
-            document.body.style.backgroundImage = `url(${userBg})`;
-        } else {
-            document.body.style.backgroundImage = "";
-        }
         return;
     }
 
@@ -206,11 +207,27 @@ export const fetchNasaBackground = async () => {
         if (cachedData) {
             data = JSON.parse(cachedData);
         } else {
-            const response = await fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY');
+            const response = await fetch('https://science.nasa.gov/wp-json/wp/v2/apod-basic');
             if (!response.ok) throw new Error('NASA API error');
-            data = await response.json();
+            const rawData = await response.json();
+            data = Array.isArray(rawData) ? rawData[0] : rawData;
             sessionStorage.setItem('nasaApod', JSON.stringify(data));
         }
+
+        const populateDetails = () => {
+            const loading = document.getElementById('nasaLoading');
+            if (loading) loading.style.display = 'none';
+            const details = document.getElementById('nasaDetails');
+            if (details) details.style.display = 'block';
+            const titleEl = document.getElementById('nasaTitle');
+            if (titleEl) titleEl.innerText = data.title || "Astronomy Picture of the Day";
+            const explanationEl = document.getElementById('nasaExplanation');
+            if (explanationEl) {
+                let explanationText = (data.explanation || "").replace(/<strong>\s*Explanation:\s*<\/strong>/gi, "");
+                explanationText = explanationText.replace(/<[^>]+>/g, "").trim();
+                explanationEl.innerText = explanationText;
+            }
+        };
 
         if (data.media_type === 'image') {
             const imageUrl = data.hdurl || data.url;
@@ -218,17 +235,20 @@ export const fetchNasaBackground = async () => {
             const img = new Image();
             img.src = imageUrl;
             img.onload = () => {
-                document.body.style.backgroundImage = `url('${imageUrl}')`;
-                
-                const loading = document.getElementById('nasaLoading');
-                if (loading) loading.style.display = 'none';
-                const details = document.getElementById('nasaDetails');
-                if (details) details.style.display = 'block';
-                const titleEl = document.getElementById('nasaTitle');
-                if (titleEl) titleEl.innerText = data.title;
-                const explanationEl = document.getElementById('nasaExplanation');
-                if (explanationEl) explanationEl.innerText = data.explanation;
+                const currentUserBg = localStorage.getItem('userBg');
+                // Custom backgrounds should remain over the NASA APOD; default background is the only one overwritten (Issue #169)
+                if (!currentUserBg && useNasaBg) {
+                    document.body.style.backgroundImage = `url('${imageUrl}')`;
+                } else if (currentUserBg) {
+                    document.body.style.backgroundImage = `url(${currentUserBg})`;
+                }
+                populateDetails();
             };
+            img.onerror = () => {
+                populateDetails();
+            };
+        } else {
+            populateDetails();
         }
     } catch (error) {
         console.warn("Could not fetch NASA background:", error);
